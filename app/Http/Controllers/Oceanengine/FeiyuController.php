@@ -10,7 +10,8 @@ class FeiyuController extends Controller
 {
     //接收飞鱼传送过来的数据
     public function receive_fei_oceanengine (Request $request){
-
-        return '123456';
+        logger('接收的数据');
+        logger($request->all());
+        return ['code'=>0,'message'=>'success'];
     }
 }
