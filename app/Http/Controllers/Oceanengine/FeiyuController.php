@@ -12,7 +12,7 @@ class FeiyuController extends Controller
     public function receive_fei_oceanengine (Request $request){
         logger('接收的数据');
         logger($request->all());
-        return ['code'=>0,'message'=>'success'];
+        return json_encode(['code'=>0,'message'=>'success']);
     }
 
 }
