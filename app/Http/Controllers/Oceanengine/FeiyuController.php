@@ -14,4 +14,5 @@ class FeiyuController extends Controller
         logger($request->all());
         return ['code'=>0,'message'=>'success'];
     }
+
 }
