@@ -16,6 +16,7 @@ class FeiyuController extends Controller
         logger('接收飞鱼crm传来的数据');
         logger($para);
         //开始处理传来的数据
+        date_default_timezone_set('Asia/Shanghai');
 
         //第一步开始去查询相应的账号对应
         $config_data = DB::table('res_config')->where('account_id', '=', $para['adv_id'])->where('status','=','1')->first();
