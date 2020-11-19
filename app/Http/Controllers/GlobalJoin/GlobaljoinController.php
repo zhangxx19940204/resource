@@ -11,11 +11,18 @@ class GlobaljoinController extends Controller
 {
     //接收全球加盟网传送过来的数据
     public function receive_global_join (Request $request){
+        date_default_timezone_set('Asia/Shanghai');
         $para = $request->all();
         logger('接收全球加盟网传来的数据');
         logger($para);
+        logger('请求方式'.$request->method());
+        logger('header：'.json_encode($request->header()));
+        logger('cookie：'.json_encode($request->cookie()));
+        logger('url：'.$request->path());
+
+
         //开始处理传来的数据
-        date_default_timezone_set('Asia/Shanghai');
+
 
         //第一步开始去查询相应的账号对应
 //        $config_data = DB::table('res_config')->where('account_id', '=', $para['adv_id'])->where('status','=','1')->first();
@@ -38,6 +45,6 @@ class GlobaljoinController extends Controller
 //        $ResData->data_phone = $para['telphone'];
 //        $ResData->save();
 
-        return json_encode(['success'=>'成功','msg'=>'测试','code'=>200,'response_code'=>0]);
+        return ['success'=>'成功','msg'=>'测试','code'=>200,'response_code'=>0];
     }
 }
