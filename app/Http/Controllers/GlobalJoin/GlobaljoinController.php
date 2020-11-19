@@ -27,7 +27,7 @@ class GlobaljoinController extends Controller
         if (empty($config_data)){
             //没有对应的生效账号
             logger('无对应有效账号:');
-            return json_encode(['code'=>-1,'message'=>'fail：接收方账号未配置']);
+            return ['success'=>'失败','msg'=>'接收方账号未配置','code'=>400,'response_code'=>0];
         }
 
         //查询到全球的账号，进行数据的整理和存储
