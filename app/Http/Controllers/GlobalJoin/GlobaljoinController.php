@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Oceanengine;
+namespace App\Http\Controllers\GlobalJoin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ResData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\models;
 
-class FeiyuController extends Controller
+class GlobaljoinController extends Controller
 {
-    //接收飞鱼传送过来的数据
-    public function receive_fei_oceanengine (Request $request){
+    //接收全球加盟网传送过来的数据
+    public function receive_global_join (Request $request){
         $para = $request->all();
-        logger('接收飞鱼crm传来的数据');
-//        logger($para);
+        logger('接收全球加盟网传来的数据');
+        logger($para);
         //开始处理传来的数据
         date_default_timezone_set('Asia/Shanghai');
 
@@ -41,5 +40,4 @@ class FeiyuController extends Controller
 
         return json_encode(['code'=>0,'message'=>'success']);
     }
-
 }
