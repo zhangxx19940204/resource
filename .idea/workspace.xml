@@ -5,7 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update global join second">
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update global join third">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GlobalJoin/GlobaljoinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GlobalJoin/GlobaljoinController.php" afterDir="false" />
     </list>
@@ -271,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605779517596</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update global join third">
+      <created>1605779627031</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1605779627031</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +335,8 @@
     <MESSAGE value="update logger" />
     <MESSAGE value="update global join" />
     <MESSAGE value="update global join second" />
-    <option name="LAST_COMMIT_MESSAGE" value="update global join second" />
+    <MESSAGE value="update global join third" />
+    <option name="LAST_COMMIT_MESSAGE" value="update global join third" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Deployment" timestamp="1605340669002">
@@ -355,10 +363,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605340336405" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605779529812">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605779632075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605779529812" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605779632075" />
     <state x="729" y="419" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1605493601173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
