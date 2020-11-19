@@ -26,7 +26,7 @@ class GlobaljoinController extends Controller
         $config_data = DB::table('res_config')->where('account', '=', $para['data']['login_name' ])->where('status','=','1')->first();
         if (empty($config_data)){
             //没有对应的生效账号
-            logger('无对应有效账号:'.$para['adv_name'].','.$para['adv_id']);
+            logger('无对应有效账号:');
             return json_encode(['code'=>-1,'message'=>'fail：接收方账号未配置']);
         }
 
