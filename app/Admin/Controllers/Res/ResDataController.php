@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 
 class ResDataController extends AdminController
 {
@@ -15,7 +16,7 @@ class ResDataController extends AdminController
      *
      * @var string
      */
-    protected $title = 'ResData';
+    protected $title = '资源统计';
 
     /**
      * Make a grid builder.
@@ -27,22 +28,62 @@ class ResDataController extends AdminController
         $grid = new Grid(new ResData());
 
         $grid->column('id', __('Id'));
-        $grid->column('user_id', __('User id'));
+        $grid->column('user_id', __('用户ID'));
         $grid->column('config_id', __('Config id'));
 
-        $grid->column('data_name', __('Data name'));
-        $grid->column('data_phone', __('Data phone'));
-        $grid->column('belong', __('Belong'));
-        $grid->column('type', __('Type'));
+        $grid->column('data_name', __('姓名'));
+        $grid->column('data_phone', __('电话'));
+        $grid->column('belong', __('所属'));
+        $grid->column('type', __('类型'));
 
-        $grid->column('created_at', __('Created at'))->date('Y-m-d H:i:s');
-        $grid->column('updated_at', __('Updated at'))->date('Y-m-d H:i:s');
-        $grid->column('last_para', __('Last para'));
-        $grid->column('remarks', __('Remarks'));
+        $grid->column('created_at', __('入库时间'))->display(function ($created_at){
+            return date('Y-m-d H:i:s',strtotime($created_at));
+        });
+        $grid->column('updated_at', __('更新时间'))->display(function ($updated_at){
+            return date('Y-m-d H:i:s',strtotime($updated_at));
+        });
 
-        $grid->column('data_json', __('Data json'));
+        $grid->column('remarks', __('备注'));
 
-        $grid->column('data_request_id', __('Data request id'));
+        $grid->column('data_json', __('源数据'))->display(function (){
+            return '123456';
+        })->modal('数据源数据', function ($model) {
+            $data_arr= json_decode($model->data_json,true);
+            $key_arr = array_keys($data_arr);
+            $data_val = [];
+            foreach ($key_arr as $k=>$value){
+                $data_val[] = ['key'=>$value,'value'=>$data_arr[$value]];
+            }
+            return new Table(['key','value'], $data_val);
+
+        });
+
+        $grid->model()->orderBy('id', 'desc');
+
+        $grid->disableCreateButton();
+
+        $grid->filter(function ($filter) {
+
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+            $filter->expand();//默认展开搜索栏
+
+            $filter->column(1/2, function ($filter) {
+                $filter->ilike('config_id', '账户信息');
+                $filter->ilike('belong', '所属');
+                // 设置created_at字段的范围查询
+                $filter->between('created_at', '创建时间')->datetime();
+            });
+
+            $filter->column(1/2, function ($filter) {
+                $filter->ilike('type', '类型');
+                $filter->ilike('data_phone', '客户电话');
+                $filter->ilike('data_name', '客户姓名');
+                $filter->between('updated_at', '更新时间')->datetime();
+            });
+
+
+        });
 
         return $grid;
     }
