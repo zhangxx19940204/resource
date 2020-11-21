@@ -48,10 +48,13 @@ class ResDataController extends AdminController
         $grid->column('belong', __('所属'));
         $grid->column('type', __('类型'));
 
-        $grid->column('fastHorse_id', __('快马数据ID'))->display(function (){
+        $grid->column('fastHorse_id', __('快马ID / 头条来源'))->display(function (){
             if ($this->type == '快马'){
                 $data_arr = json_decode($this->data_json,true);
-               return $data_arr['id'];
+                return $data_arr['id'];
+            }if ($this->type == '头条'){
+                $data_arr = json_decode($this->data_json,true);
+                return $data_arr['app_name'];
             }else{
                 return '';
             }
