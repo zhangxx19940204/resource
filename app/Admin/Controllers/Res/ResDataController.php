@@ -3,11 +3,13 @@
 namespace App\Admin\Controllers\Res;
 
 use App\Models\ResData;
+use App\Models\ResConfig;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Widgets\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ResDataController extends AdminController
 {
@@ -27,9 +29,19 @@ class ResDataController extends AdminController
     {
         $grid = new Grid(new ResData());
 
+        $user_obj = Auth::guard('admin')->user();
+
+        $grid->header(function ($query) {
+            $user_obj = Auth::guard('admin')->user();
+
+            return '用户ID：'.$user_obj->id;
+        });
+
         $grid->column('id', __('Id'));
         $grid->column('user_id', __('用户ID'));
-        $grid->column('config_id', __('Config id'));
+        $grid->column('config_id', __('所属账号'))->display(function (){
+            return $this->configData->custom_name;
+        });
 
         $grid->column('data_name', __('姓名'));
         $grid->column('data_phone', __('电话'));
@@ -45,8 +57,10 @@ class ResDataController extends AdminController
 
         $grid->column('remarks', __('备注'));
 
+
+
         $grid->column('data_json', __('源数据'))->display(function (){
-            return '123456';
+            return '点击查看详细数据';
         })->modal('数据源数据', function ($model) {
             $data_arr= json_decode($model->data_json,true);
             $key_arr = array_keys($data_arr);
@@ -59,6 +73,11 @@ class ResDataController extends AdminController
         });
 
         $grid->model()->orderBy('id', 'desc');
+        if ($user_obj->id == 1) {
+            // 不加 用户id的限制
+        } else {
+            $grid->model()->whereIn('user_id', [$user_obj->id]);
+        }
 
         $grid->disableCreateButton();
 
@@ -69,19 +88,49 @@ class ResDataController extends AdminController
             $filter->expand();//默认展开搜索栏
 
             $filter->column(1/2, function ($filter) {
-                $filter->ilike('config_id', '账户信息');
-                $filter->ilike('belong', '所属');
+
+                $user_obj = Auth::guard('admin')->user();
+                if ($user_obj->id == 1){
+                    //超级管理员
+                    $config_data = ResConfig::get()->toarray();
+                }else{
+                    $config_data = ResConfig::get()->where('user_id',$user_obj->id)->toarray();
+                }
+                $config_arr = [];
+                foreach ($config_data as $key=>$config_data){
+                    $config_arr[$config_data['id']] = $config_data['custom_name'];
+                }
+
+
+                $filter->in('config_id', '账户信息')->multipleSelect($config_arr);
+                $filter->in('belong', '所属')->multipleSelect(['半城外'=>'半城外','阿城'=>'阿城']);
                 // 设置created_at字段的范围查询
                 $filter->between('created_at', '创建时间')->datetime();
             });
 
             $filter->column(1/2, function ($filter) {
-                $filter->ilike('type', '类型');
-                $filter->ilike('data_phone', '客户电话');
-                $filter->ilike('data_name', '客户姓名');
+                $filter->in('type', '类型')->multipleSelect(['头条'=>'头条','快马'=>'快马','全球'=>'全球']);
+                $filter->like('data_phone', '客户电话');
+                $filter->like('data_name', '客户姓名');
                 $filter->between('updated_at', '更新时间')->datetime();
             });
 
+
+        });
+
+        //导出配置
+        $grid->export(function ($export) {
+
+            $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
+
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at']);
+
+            $export->column('created_at', function ($value, $original) {
+                return $value;
+            });
+            $export->column('config_id', function ($value, $original) {
+                return $value;
+            });
 
         });
 
