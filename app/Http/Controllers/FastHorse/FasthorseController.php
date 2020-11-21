@@ -31,11 +31,11 @@ class FasthorseController extends Controller
             //先去查询最近的一条数据
             $last_data = ResData::where('config_id', $config->id)->orderBy('id', 'desc')->first();
             $data = $this->get_all_kuaima_data($config->account,$config->account_password,$last_data,$endtime);
-//            var_dump($data);
-            if ($data['status'] == '1000'){
 
+            if ($data['status'] == '1000'){
                 //状态正常可以进行数据的记录
                 $list = $data['data']['list'];
+                ksort($list);
                 //循环将数据插入到数据库中
                 $res_data_arr = [];
                 if (empty($list)){
@@ -72,11 +72,12 @@ class FasthorseController extends Controller
             //此账号的上一条记录为空，则首次请求，没有则以上一天的此时为标准
             $starttime = date("Y-m-d H:i:s",strtotime("-1 day"));
         }else{
-            $starttime = $last_data->created_at;
+            $starttime = date("Y-m-d H:i:s",strtotime($last_data->created_at));
         }
         $api_url = 'https://business.kmway.com/api/data/info?';
         $api_para = array("appId"=>$appId,"appKey"=>$appKey,'startTime'=>$starttime,'endTime'=>$endtime,'type'=>'2','pageIndex'=>1,'pageSize'=>80,'token'=>'');
         $api_url .= http_build_query($api_para,'','&');
+        logger('快马url：'.$api_url);
         $data = file_get_contents($api_url);
         return json_decode($data,true);
     }
