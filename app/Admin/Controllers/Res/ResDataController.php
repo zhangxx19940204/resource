@@ -63,10 +63,20 @@ class ResDataController extends AdminController
             return '点击查看详细数据';
         })->modal('数据源数据', function ($model) {
             $data_arr= json_decode($model->data_json,true);
+
             $key_arr = array_keys($data_arr);
             $data_val = [];
+
             foreach ($key_arr as $k=>$value){
-                $data_val[] = ['key'=>$value,'value'=>$data_arr[$value]];
+                //判断值是否为其他类型
+                if (is_array($data_arr[$value])){
+                    //当前值为数组
+                    $data_val[] = ['key'=>$value,'value'=>implode(';',((array) $data_arr[$value]))];
+                }else{
+                    //不是数组直接赋值
+                    $data_val[] = ['key'=>$value,'value'=>$data_arr[$value]];
+                }
+
             }
             return new Table(['key','value'], $data_val);
 
