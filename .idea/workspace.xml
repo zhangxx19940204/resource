@@ -5,10 +5,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update admin update fastHorse error">
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update admin update feiyu data show error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605941052642</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update admin update feiyu data show error">
+      <created>1605946235053</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1605946235053</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +383,8 @@
     <MESSAGE value="update admin second" />
     <MESSAGE value="update admin res-datas first" />
     <MESSAGE value="update admin update fastHorse error" />
-    <option name="LAST_COMMIT_MESSAGE" value="update admin update fastHorse error" />
+    <MESSAGE value="update admin update feiyu data show error" />
+    <option name="LAST_COMMIT_MESSAGE" value="update admin update feiyu data show error" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Deployment" timestamp="1605340669002">
@@ -404,10 +411,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605340336405" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605941081626">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605946242856">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605941081626" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605946242856" />
     <state x="662" y="252" width="596" height="536" key="find.popup" timestamp="1605942302124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -420,9 +427,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605677368091" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605684123538">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1605947888237">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605684123538" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605947888237" />
   </component>
 </project>

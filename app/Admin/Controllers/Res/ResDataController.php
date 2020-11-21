@@ -48,6 +48,16 @@ class ResDataController extends AdminController
         $grid->column('belong', __('所属'));
         $grid->column('type', __('类型'));
 
+        $grid->column('fastHorse_id', __('快马数据ID'))->display(function (){
+            if ($this->type == '快马'){
+                $data_arr = json_decode($this->data_json,true);
+               return $data_arr['id'];
+            }else{
+                return '';
+            }
+
+        });
+
         $grid->column('created_at', __('入库时间'))->display(function ($created_at){
             return date('Y-m-d H:i:s',strtotime($created_at));
         });
@@ -97,7 +107,7 @@ class ResDataController extends AdminController
             $filter->disableIdFilter();
             $filter->expand();//默认展开搜索栏
 
-            $filter->column(1/2, function ($filter) {
+            $filter->column(5/10, function ($filter) {
 
                 $user_obj = Auth::guard('admin')->user();
                 if ($user_obj->id == 1){
@@ -118,10 +128,11 @@ class ResDataController extends AdminController
                 $filter->between('created_at', '创建时间')->datetime();
             });
 
-            $filter->column(1/2, function ($filter) {
+            $filter->column(5/10, function ($filter) {
                 $filter->in('type', '类型')->multipleSelect(['头条'=>'头条','快马'=>'快马','全球'=>'全球']);
                 $filter->like('data_phone', '客户电话');
                 $filter->like('data_name', '客户姓名');
+                $filter->like('data_json', '源数据查询');
                 $filter->between('updated_at', '更新时间')->datetime();
             });
 
@@ -133,7 +144,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
