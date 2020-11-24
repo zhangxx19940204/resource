@@ -18,7 +18,6 @@ class PromoteDataController extends Controller
     public function get_mail_list(Request $request){
         ini_set('max_execution_time', '0');
     	$user_id = $request->get('user', '');
-    	return  'mail:'.$user_id;
     	//先去查询出可以读取的邮件列表
         $from_mail_list = EmailPass::where('user_id', $user_id)->get();
         $from_mail_arr = [];//可以被获取的收件人的邮件（在这个邮件列表中的邮箱可以抓取内容）
