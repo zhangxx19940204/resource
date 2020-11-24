@@ -21,3 +21,7 @@ Route::any('/receive_fei_oceanengine', [Oceanengine\FeiyuController::class, 'rec
 Route::any('/get_fast_horse_data', [FastHorse\FasthorseController::class, 'get_fast_horse']); //获取快马账号的数据
 Route::any('/get_global_join', [GlobalJoin\GlobaljoinController::class, 'receive_global_join']); //获取快马账号的数据
 Route::any('/get_second_third', [ChannelNetwork\SecondthirdController::class, 'get_second_third']); //获取23网的数据
+
+//邮件系统
+Route::any('/get_mail_list', [PromoteData\PromoteDataController::class, 'get_mail_list']);
+
