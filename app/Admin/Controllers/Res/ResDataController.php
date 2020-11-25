@@ -88,7 +88,7 @@ class ResDataController extends AdminController
                     $data_val[] = ['key'=>$value,'value'=>$data_arr[$value]];
                 }
             }
-            return new Table(['key','value'], $data_val);
+            return new Table(['名称','值'], $data_val);
 
         });
 
