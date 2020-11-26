@@ -5,6 +5,8 @@ namespace App\Admin\Actions\Res;
 use Encore\Admin\Actions\RowAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Distribution extends RowAction
 {
@@ -13,17 +15,37 @@ class Distribution extends RowAction
     public function handle(Model $model,Request $request)
     {
         // $model ...
-        // 获取到表单中的`type`值
-        $request->get('type');
+        // 获取到表单中的`ec_user`值
+        $ec_user = $request->get('ec_user');
+        if (empty($ec_user) || count($ec_user) != '1'){
+            return $this->response()->error('分配人员异常，检查数量')->refresh();
+        }
+        $userId = $ec_user['0'];//用户ID
+        logger('在分配数据给：'.$userId);
 
-        // 获取表单中的`reason`值
-        $request->get('reason');
-        return $this->response()->success('Success message.')->refresh();
+        //查询当前列的数据
+        $name = empty($model->data_name)?'未知':$model->data_name;
+        if (empty($model->data_phone)){
+            return $this->response()->error('手机号为空')->refresh();
+        }else{
+            $phone = $model->data_phone;
+        }
+        $customer = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone];
+
+        $url = env('EC_ADDCUSTOMER');
+        $cid = env('EC_CID');
+        $appId = env('EC_APPID');
+        $appSecret = env('EC_APPSECRET');
+        $psot_data = ['optUserId'=>$userId,'list'=>$customer];
+        $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$psot_data);
+        $res_data = json_decode($res_data_json,true);
+        logger('分配厚的数据为：',$res_data);
+        return $this->response()->success('分配成功')->refresh();
     }
 
     public function form()
     {
-        $users = DB::table('ec_users')->get()->toArray();
+        $users = DB::table('ec_users')->where('status','=','1')->get()->toArray();
         $depts = DB::table('ec_depts')->get()->toArray();
         $complete_depts = [];
         foreach ($depts as $dept){
@@ -43,7 +65,7 @@ class Distribution extends RowAction
             }
         }
 
-        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr);
+        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
     }
 
     public function get_user_depts($res,$deptId,$depts){
@@ -59,17 +81,97 @@ class Distribution extends RowAction
 
     }
 
-//    public function get_complete_user_list(){
-//        static $i = 0;
-//
-//        echo $i . '';
-//
-//        $i++;
-//
-//        if($i<10){
-//
-//            get_complete_user_list();
-//
-//        }
-//    }
+
+
+//EC的封装方法
+
+    /**
+     *  签名算法
+     *  该方法可以公用
+     * @param int $timeStamp
+     * @param string $appId
+     * @param string $appSecret
+     * @return string 返回签名数据
+     */
+    function getSign($timeStamp, $appId, $appSecret)
+    {
+        $sign = "appId={$appId}&appSecret={$appSecret}&timeStamp={$timeStamp}";
+        return strtoupper(md5($sign));
+    }
+
+    /**
+     * get 请求业务
+     * 该方法可以公用
+     *
+     * @param string $url
+     * @param string $jsonData
+     * @param int $cid
+     * @param string $appId
+     * @param string $appSecret
+     */
+    function http_get($url, $cid, $appId, $appSecret,$method = 'GET',$psot_data =[])
+    {
+        // 1. 获取当前时间戳
+        $timeStamp = time() * 1000;
+        // 2. 获取签名
+        $sign = $this->getSign($timeStamp, $appId, $appSecret);
+        // 3. 封装请求头
+        $head = array(
+            'Content-Type: application/json; charset=utf-8',
+            'X-Ec-Cid: ' . $cid,
+            'X-Ec-Sign: ' . $sign,
+            'X-Ec-TimeStamp: ' . $timeStamp
+        );
+        // 3. 传入http 参数
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // https 支持 - 对认证证书来源的检查
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        // head
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
+
+        if($method == 'POST'){
+            //设置post方式提交
+            curl_setopt($ch, CURLOPT_POST, 1);
+            //设置post数据
+            $post_data = json_encode($psot_data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        }
+
+
+        // 请求服务器
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        // 组织，返回结果和响应码
+        return $response;
+    }
+
+    /**
+     * 该方法可以公用
+     * 将参数拼接到url地址中
+     * @param string $url
+     * @param string $params
+     * @return string|string|string
+     */
+    function addParmasToUrl($url, $params)
+    {
+        $urlParmas = $url;
+        if (empty($params)) {
+            return $urlParmas;
+        }
+        $isFist = true;
+        foreach ($params as $key => $val) {
+            if ($isFist) {
+                $urlParmas = $urlParmas . "?" . $key . "=" . $val;
+                $isFist = false;
+            } else {
+                $urlParmas = $urlParmas . "&" . $key . "=" . $val;
+            }
+        }
+        return $urlParmas;
+    }
+
+
 }

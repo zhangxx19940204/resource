@@ -11,10 +11,10 @@ class UserController extends Controller
 {
     //
     public function get_framework_info(Request $request){
-        $url = 'https://open.workec.com/v2/org/struct/info';
-        $cid = '10569552';
-        $appId = '644478092940673024';
-        $appSecret = 'twtMv7TQBBdja7PKMIp';
+        $url = env('EC_STRUCT_INFO');
+        $cid = env('EC_CID');
+        $appId = env('EC_APPID');
+        $appSecret = env('EC_APPSECRET');
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret);
         $res_data = json_decode($res_data_json,true);
 //        echo '<pre>';
