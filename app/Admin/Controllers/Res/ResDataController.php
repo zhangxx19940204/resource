@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers\Res;
 
+use App\Admin\Actions\Res\Distribution;
 use App\Models\ResData;
 use App\Models\ResConfig;
 use Encore\Admin\Controllers\AdminController;
@@ -10,6 +11,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Widgets\Table;
 use Illuminate\Support\Facades\Auth;
+use Encore\Admin\Actions\RowAction;
 
 class ResDataController extends AdminController
 {
@@ -58,7 +60,15 @@ class ResDataController extends AdminController
             }else{
                 return '';
             }
+        });
 
+        $grid->column('fast_horse_message', __('快马备注'))->display(function (){
+            if ($this->type == '快马'){
+                $data_arr = json_decode($this->data_json,true);
+                return $data_arr['message'];
+            }else{
+                return '';
+            }
         });
 
         $grid->column('created_at', __('入库时间'))->display(function ($created_at){
@@ -100,6 +110,17 @@ class ResDataController extends AdminController
         }
 
         $grid->disableCreateButton();
+
+        $grid->actions(function ($actions){
+            // 去掉删除
+            //$actions->disableDelete();
+            // 去掉编辑
+            $actions->disableEdit();
+            // 去掉查看
+            $actions->disableView();
+
+            $actions->add(new Distribution);
+        });
 
         $grid->filter(function ($filter) {
 
@@ -144,7 +165,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
