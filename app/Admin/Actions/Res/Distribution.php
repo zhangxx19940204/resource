@@ -32,11 +32,11 @@ class Distribution extends RowAction
         }
         //添加备注
         if ($model->type == '快马'){
-            $data_arr = json_decode($this->data_json,true);
+            $data_arr = json_decode($model->data_json,true);
             $fastHorse_id =  $data_arr['id'];
             $fast_horse_message = $data_arr['message'];
         }if ($model->type == '头条'){
-            $data_arr = json_decode($this->data_json,true);
+            $data_arr = json_decode($model->data_json,true);
             $fastHorse_id = $data_arr['app_name'];
             $fast_horse_message = '';
         }else{
