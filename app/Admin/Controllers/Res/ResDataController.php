@@ -109,7 +109,7 @@ class ResDataController extends AdminController
                 return '';
             }
             $single_user = DB::table('ec_users')->where('userId','=',$ec_userId)->first();
-            return $single_user->title.'-'.$single_user->userName;
+            return $single_user->userName;
 
         });
 //        $grid->column('crmId', __('客户ID'));
@@ -182,7 +182,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','ec_userId']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
