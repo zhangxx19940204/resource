@@ -39,9 +39,14 @@ class UserController extends Controller
     }
 
     public function synchronous_feedback(Request $request){
-        $para = $request->all();
-        logger($para);
-        logger(json_encode($para));
+        $para = array ('crmId' => 4264496813, 'crmMobile' => '15153619259', 'optUserId' => 11153702);//$request->all();
+        logger($para);//array ('crmId' => 4264496813, 'crmMobile' => '15153619259', 'optUserId' => 11153702)
+        $this->get_ec_customer_last_feedback($para);
         return json_encode(['code'=>202,'msg'=>'尚在开发中']);
+    }
+
+    public function get_ec_customer_last_feedback($single_data){
+        //调用接口获取最新的一条反馈
+
     }
 }
