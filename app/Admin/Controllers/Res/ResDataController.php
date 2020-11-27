@@ -12,6 +12,7 @@ use Encore\Admin\Show;
 use Encore\Admin\Widgets\Table;
 use Illuminate\Support\Facades\Auth;
 use Encore\Admin\Actions\RowAction;
+use Illuminate\Support\Facades\DB;
 
 class ResDataController extends AdminController
 {
@@ -81,7 +82,6 @@ class ResDataController extends AdminController
         $grid->column('remarks', __('备注'));
 
 
-
         $grid->column('data_json', __('源数据'))->display(function (){
             return '点击查看详细数据';
         })->modal('数据源数据', function ($model) {
@@ -102,6 +102,19 @@ class ResDataController extends AdminController
 
         });
 
+        $grid->column('synchronize_results', __('同步结果'))->bool();
+        $grid->column('failureCause', __('错误原因'));
+        $grid->column('ec_userId', __('招商经理'))->display(function ($ec_userId){
+            if (empty($ec_userId)){
+                return '';
+            }
+            $single_user = DB::table('ec_users')->where('userId','=',$ec_userId)->first();
+            return $single_user->title.'-'.$single_user->userName;
+
+        });
+//        $grid->column('crmId', __('客户ID'));
+
+
         $grid->model()->orderBy('id', 'desc');
         if ($user_obj->id == 1) {
             // 不加 用户id的限制
@@ -118,8 +131,12 @@ class ResDataController extends AdminController
             $actions->disableEdit();
             // 去掉查看
             $actions->disableView();
+            // 根据条件关闭操作
+            if (empty($actions->row['synchronize_results'])) {
+                //同步结果为1时，关闭分配功能
+                $actions->add(new Distribution);
+            }
 
-            $actions->add(new Distribution);
         });
 
         $grid->filter(function ($filter) {

@@ -30,8 +30,22 @@ class Distribution extends RowAction
         }else{
             $phone = $model->data_phone;
         }
-        $customer = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone];
+        //添加备注
+        if ($model->type == '快马'){
+            $data_arr = json_decode($this->data_json,true);
+            $fastHorse_id =  $data_arr['id'];
+            $fast_horse_message = $data_arr['message'];
+        }if ($model->type == '头条'){
+            $data_arr = json_decode($this->data_json,true);
+            $fastHorse_id = $data_arr['app_name'];
+            $fast_horse_message = '';
+        }else{
+            $fastHorse_id = '';
+            $fast_horse_message = '';
+        }
 
+        $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
+        $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
         $appId = env('EC_APPID');
@@ -40,6 +54,43 @@ class Distribution extends RowAction
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$psot_data);
         $res_data = json_decode($res_data_json,true);
         logger('分配厚的数据为：',$res_data);
+        //下面进行数据的记录
+        //根据返回值进行判断
+        if ($res_data['code'] == '200'){
+            //请求成功，判断成功和失败列表 进行更新
+            if (!empty($res_data['data']['successIdList'])){
+                foreach ($res_data['data']['successIdList'] as $success_data){ //{"index": 0,"crmId": 4262563847}
+
+                    DB::table('res_data')->where('id', $model->id)
+                        ->update(['crmId' => $success_data['crmId'] //数据库设计为字符串即可
+                            ,'ec_userId' => $userId
+                            ,'failureCause' => ''
+                            ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
+                            ,'synchronize_results'=>1
+                        ]);
+                }
+            }
+            if (!empty($res_data['data']['failureList'])){
+                foreach ($res_data['data']['failureList'] as $failure_data){ //{"failureCause": "该客户被多人频繁操作，请稍后重试。", "index": 1}
+
+                    DB::table('res_data')->where('id', $model->id)
+                        ->update(['crmId' => '' //数据库设计为字符串即可
+                            ,'ec_userId' => $userId
+                            ,'failureCause' => $failure_data['failureCause']
+                            ,'synchronize_para' => $customer[$failure_data['index']] //相对应的用户
+                            ,'synchronize_results'=>0
+                        ]);
+                }
+            }
+            logger('分配完毕，如有异常已记录在数据中，请查看');
+
+
+        }else{
+            //请求失败,不做操作
+            logger('EC异常：'.$res_data['code'].':'.$res_data['msg']);
+            return $this->response()->error('EC异常：'.$res_data['code'].':'.$res_data['msg'])->refresh();
+        }
+
         return $this->response()->success('分配成功')->refresh();
     }
 
