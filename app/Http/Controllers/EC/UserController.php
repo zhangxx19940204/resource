@@ -37,4 +37,11 @@ class UserController extends Controller
 
 
     }
+
+    public function synchronous_feedback(Request $request){
+        $para = $request->all();
+        logger($para);
+        logger(json_encode($para));
+        return json_encode(['code'=>202,'msg'=>'尚在开发中']);
+    }
 }
