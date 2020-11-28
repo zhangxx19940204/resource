@@ -103,10 +103,7 @@ class ResDataController extends AdminController
 
         });
 
-        $grid->column('synchronize_results', __('分配状态'))->bool()->filter([
-            0 => '未有效分配',
-            1 => '已分配',
-        ]);
+        $grid->column('synchronize_results', __('分配状态'))->bool();
         $grid->column('failureCause', __('错误原因'));
         $grid->column('ec_userId', __('招商经理'))->display(function ($ec_userId){
             if (empty($ec_userId)){
