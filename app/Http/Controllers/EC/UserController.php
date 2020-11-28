@@ -71,7 +71,7 @@ class UserController extends Controller
 
                 DB::beginTransaction();
                 try {
-                    $update_id = DB::table('res_data')->where('id', $data->id)->update(['feedback_status' => 1,'feedback_content'=>json_encode($feedback_arr)]);
+                    $update_id = DB::table('res_data')->where('id', $data->id)->update(['feedback_status' => 1,'feedback_content'=>$feedback_arr]);
                     logger('反馈更新成功'.$update_id);
                     return json_encode(['code'=>200,'msg'=>'同步成功']);
 

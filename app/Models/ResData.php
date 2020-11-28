@@ -11,6 +11,9 @@ class ResData extends Model
 
     protected $table = 'res_data';
     protected $primaryKey = 'id';
+    protected $casts = [
+        'feedback_content' => 'json'
+    ];
 
     /**
      * 获取该数据的所属配置
