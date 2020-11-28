@@ -29,5 +29,5 @@ Route::any('/get_mail_list', [PromoteData\PromoteDataController::class, 'get_mai
 //EC的用户的相关操作
 Route::any('/get_framework_info', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息
 Route::any('/get_user_list', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息
-Route::any('/synchronous_feedback', [EC\UserController::class, 'synchronous_feedback']);//更新EC客户的反馈
+Route::any('/synchronous_feedback', [EC\UserController::class, 'synchronous_single_feedback']);//更新单个EC客户的反馈
 

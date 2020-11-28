@@ -2,17 +2,16 @@
 
 namespace App\Admin\Actions\Res;
 
-use Encore\Admin\Actions\RowAction;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Encore\Admin\Actions\BatchAction;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
-class Distribution extends RowAction
+class BatchDistribution extends BatchAction
 {
-    public $name = '分配';
+    public $name = '批量分配';
 
-    public function handle(Model $model,Request $request)
+    public function handle(Collection $collection,Request $request)
     {
         // $model ...
         // 获取到表单中的`ec_user`值
@@ -21,31 +20,38 @@ class Distribution extends RowAction
             return $this->response()->error('分配人员异常，检查数量')->refresh();
         }
         $userId = $ec_user['0'];//用户ID
-        logger('在分配数据给：'.$userId);
+        logger('批量分配，分配数据给：'.$userId);
 
-        //查询当前列的数据
-        $name = empty($model->data_name)?'未知':$model->data_name;
-        if (empty($model->data_phone)){
-            return $this->response()->error('手机号为空')->refresh();
-        }else{
-            $phone = $model->data_phone;
-        }
-        //添加备注
-        if ($model->type == '快马'){
-            $data_arr = json_decode($model->data_json,true);
-            $fastHorse_id =  $data_arr['id'];
-            $fast_horse_message = $data_arr['message'];
-        }if ($model->type == '头条'){
-            $data_arr = json_decode($model->data_json,true);
-            $fastHorse_id = $data_arr['app_name'];
-            $fast_horse_message = '';
-        }else{
-            $fastHorse_id = '';
-            $fast_horse_message = '';
-        }
+        //已知要分配给谁,接下来判定多选的数据
+        $customer = [];
+        $model_arr = [];//用来存储相关的res_data 记录
+        foreach ($collection as $model) {
+            //循环每一列的数据，进行整合和操作
+            //查询当前列的数据
+            $name = empty($model->data_name)?'未知':$model->data_name;
+            if (empty($model->data_phone)){
+                return $this->response()->error('手机号为空')->refresh();
+            }else{
+                $phone = $model->data_phone;
+            }
+            //添加备注
+            if ($model->type == '快马'){
+                $data_arr = json_decode($model->data_json,true);
+                $fastHorse_id =  $data_arr['id'];
+                $fast_horse_message = $data_arr['message'];
+            }if ($model->type == '头条'){
+                $data_arr = json_decode($model->data_json,true);
+                $fastHorse_id = $data_arr['app_name'];
+                $fast_horse_message = '';
+            }else{
+                $fastHorse_id = '';
+                $fast_horse_message = '';
+            }
 
-        $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
-        $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
+            $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
+            $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
+            $model_arr[] = $model;
+        }
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
         $appId = env('EC_APPID');
@@ -53,7 +59,7 @@ class Distribution extends RowAction
         $psot_data = ['optUserId'=>$userId,'list'=>$customer];
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$psot_data);
         $res_data = json_decode($res_data_json,true);
-        logger('分配厚的数据为：',$res_data);
+        logger('批量分配的数据为：',$res_data);
 
         //下面进行数据的记录
         //根据返回值进行判断
@@ -62,7 +68,7 @@ class Distribution extends RowAction
             if (!empty($res_data['data']['successIdList'])){
                 foreach ($res_data['data']['successIdList'] as $success_data){ //{"index": 0,"crmId": 4262563847}
 
-                    DB::table('res_data')->where('id', $model->id)
+                    DB::table('res_data')->where('id', $model_arr[$success_data['index']]->id)
                         ->update(['crmId' => $success_data['crmId'] //数据库设计为字符串即可
                             ,'ec_userId' => $userId
                             ,'failureCause' => ''
@@ -74,7 +80,7 @@ class Distribution extends RowAction
             if (!empty($res_data['data']['failureList'])){
                 foreach ($res_data['data']['failureList'] as $failure_data){ //{"failureCause": "该客户被多人频繁操作，请稍后重试。", "index": 1}
 
-                    DB::table('res_data')->where('id', $model->id)
+                    DB::table('res_data')->where('id', $model_arr[$failure_data['index']]->id)
                         ->update(['crmId' => '' //数据库设计为字符串即可
                             ,'ec_userId' => $userId
                             ,'failureCause' => $failure_data['failureCause']
@@ -92,7 +98,8 @@ class Distribution extends RowAction
             return $this->response()->error('EC异常：'.$res_data['code'].':'.$res_data['msg'])->refresh();
         }
 
-        return $this->response()->success('分配成功')->refresh();
+        return $this->response()->success('批量分配成功')->refresh();
+
     }
 
     public function form()
@@ -132,7 +139,6 @@ class Distribution extends RowAction
         }
 
     }
-
 
 
 

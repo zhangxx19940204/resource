@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers\Res;
 
 use App\Admin\Actions\Res\Distribution;
+use App\Admin\Actions\Res\BatchDistribution;
 use App\Models\ResData;
 use App\Models\ResConfig;
 use Encore\Admin\Controllers\AdminController;
@@ -79,11 +80,11 @@ class ResDataController extends AdminController
             return date('Y-m-d H:i:s',strtotime($updated_at));
         });
 
-        $grid->column('remarks', __('备注'));
+//        $grid->column('remarks', __('备注'));
 
 
         $grid->column('data_json', __('源数据'))->display(function (){
-            return '点击查看详细数据';
+            return '点击查看';
         })->modal('数据源数据', function ($model) {
             $data_arr= json_decode($model->data_json,true);
             $key_arr = array_keys($data_arr);
@@ -102,7 +103,10 @@ class ResDataController extends AdminController
 
         });
 
-        $grid->column('synchronize_results', __('同步结果'))->bool();
+        $grid->column('synchronize_results', __('分配状态'))->bool()->filter([
+            0 => '未有效分配',
+            1 => '已分配',
+        ]);
         $grid->column('failureCause', __('错误原因'));
         $grid->column('ec_userId', __('招商经理'))->display(function ($ec_userId){
             if (empty($ec_userId)){
@@ -113,6 +117,11 @@ class ResDataController extends AdminController
 
         });
 //        $grid->column('crmId', __('客户ID'));
+        $grid->column('feedback_status', __('反馈状态'))->bool()->filter([
+            0 => '未反馈',
+            1 => '已反馈',
+        ]);
+        $grid->column('feedback_content', __('反馈内容'));
 
 
         $grid->model()->orderBy('id', 'desc');
@@ -138,6 +147,11 @@ class ResDataController extends AdminController
             }
 
         });
+
+        $grid->batchActions(function ($batch) {
+            $batch->add(new BatchDistribution());
+        });
+
 
         $grid->filter(function ($filter) {
 
