@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function synchronous_single_feedback(Request $request){
 
-        $para = $request->all();//array ('crmId' => 4264425363, 'crmMobile' => '15153619259', 'optUserId' => 11153702);//$request->all();
+        $para = $request->all();
         //判断crmId是否存在系统中，根据crmId查询是否存在，是否需要同步反馈
         $data = DB::table('res_data')->where('crmId','=',$para['crmId'])->first();
         if (empty($data)){
@@ -54,6 +54,7 @@ class UserController extends Controller
             return json_encode(['code'=>202,'msg'=>'此记录已反馈完毕']);
         }else{
             //还未反馈
+            logger('EC用户点击同步按钮获得的参数：');
             logger($para);//array ('crmId' => 4264496813, 'crmMobile' => '15153619259', 'optUserId' => 11153702)
             $single_feedback_data = $this->get_ec_customer_last_feedback($para);
             logger('EC返回的跟进数据：');
@@ -104,8 +105,7 @@ class UserController extends Controller
         $appSecret = env('EC_APPSECRET');
         $post_data = [
             'crmIds'=>$single_data['crmId'],
-//            'date'=>['startTime'=>date('Y-m-d').' 00:00:00','endTime'=>date('Y-m-d',strtotime('+1 day')).' 00:00:00'],
-            'date'=>['startTime'=>'2020-11-29 00:00:00','endTime'=>'2020-11-30 00:00:00'],
+            'date'=>['startTime'=>date('Y-m-d').' 00:00:00','endTime'=>date('Y-m-d',strtotime('+1 day')).' 00:00:00'],
             'trajectoryType'=>4000
             ];
         logger('记录请求EC的参数：');

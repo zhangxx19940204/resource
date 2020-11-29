@@ -118,7 +118,13 @@ class ResDataController extends AdminController
             0 => '未反馈',
             1 => '已反馈',
         ]);
-        $grid->column('feedback_content', __('反馈内容'));
+        $grid->column('feedback_content', __('反馈内容'))->display(function ($feedback_content){
+            $content_str = '';
+            foreach ($feedback_content as $val){
+                $content_str .= $val['content'];
+            }
+            return $content_str;
+        });
 
 
         $grid->model()->orderBy('id', 'desc');
@@ -193,7 +199,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','ec_userId']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','ec_userId','feedback_content']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
