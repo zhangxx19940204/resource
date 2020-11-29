@@ -56,6 +56,8 @@ class UserController extends Controller
             //还未反馈
             logger($para);//array ('crmId' => 4264496813, 'crmMobile' => '15153619259', 'optUserId' => 11153702)
             $single_feedback_data = $this->get_ec_customer_last_feedback($para);
+            logger('EC返回的跟进数据：');
+            logger(json_encode($single_feedback_data));
             //获取到了数据，进行反馈数据的存储
             //判断EC返回值的状态
             if ($single_feedback_data['code'] == '200'){
@@ -102,10 +104,12 @@ class UserController extends Controller
         $appSecret = env('EC_APPSECRET');
         $post_data = [
             'crmIds'=>$single_data['crmId'],
-            'date'=>['startTime'=>date('Y-m-d').' 00:00:00','endTime'=>date('Y-m-d',strtotime('+1 day')).' 00:00:00'],
-//            'date'=>['startTime'=>'2020-11-27 00:00:00','endTime'=>'2020-11-28 00:00:00'],
+//            'date'=>['startTime'=>date('Y-m-d').' 00:00:00','endTime'=>date('Y-m-d',strtotime('+1 day')).' 00:00:00'],
+            'date'=>['startTime'=>'2020-11-29 00:00:00','endTime'=>'2020-11-30 00:00:00'],
             'trajectoryType'=>4000
             ];
+        logger('记录请求EC的参数：');
+        logger($post_data);
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
         return json_decode($res_data_json,true);
     }
