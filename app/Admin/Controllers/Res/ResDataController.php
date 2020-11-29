@@ -120,10 +120,15 @@ class ResDataController extends AdminController
         ]);
         $grid->column('feedback_content', __('反馈内容'))->display(function ($feedback_content){
             $content_str = '';
-            foreach ($feedback_content as $val){
-                $content_str .= $val['content'];
+            if (empty($feedback_content)){
+                return $content_str;
+            }else{
+                foreach ($feedback_content as $val){
+                    $content_str .= $val['content'];
+                }
+                return $content_str;
             }
-            return $content_str;
+
         });
 
 
