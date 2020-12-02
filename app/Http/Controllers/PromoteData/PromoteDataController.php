@@ -257,7 +257,7 @@ class PromoteDataController extends Controller
                 try {
                     $res_data_arr[] = ['user_id' => $res_config_info->user_id, 'config_id' => $res_config_info->id
                         ,'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')
-                        ,'belong'=>$belong,'type'=>$res_config_info->type,'data_json'=>json_encode(['content'=>$single_census_data->mail_content])
+                        ,'belong'=>$belong,'type'=>$res_config_info->type,'data_json'=>json_encode(['content'=>$single_census_data->mail_content,'title'=>$single_census_data->mail_title])
                         ,'data_name'=>$single_census_data->username,'data_phone'=>$single_census_data->phone];
                     DB::commit();
                 }catch (Exception $e){
