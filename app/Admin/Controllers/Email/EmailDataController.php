@@ -46,9 +46,12 @@ class EmailDataController extends AdminController
         $grid->column('mail_date', __('邮件日期'));
         $grid->column('mail_content', __('邮件内容'));
         $grid->column('econfig_id', __('Econfig id'));
+        $grid->column('is_census', __('是否已同步'));
 
 
-        $grid->column('created_at', __('入库时间'))->sortable();
+        $grid->column('created_at', __('入库时间'))->display(function ($created_at){
+            return date('Y-m-d H:i:s',strtotime($created_at));
+        })->sortable();
         $grid->column('user_id', __('用户ID'));
 
 

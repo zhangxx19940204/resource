@@ -24,6 +24,7 @@ Route::any('/get_second_third', [ChannelNetwork\SecondthirdController::class, 'g
 
 //邮件系统
 Route::any('/get_mail_list', [PromoteData\PromoteDataController::class, 'get_mail_list']);//获取用户的邮件列表（外部设定的定时访问）
+Route::any('/synchronous_maildata', [PromoteData\PromoteDataController::class, 'synchronous_mailData']);//同步邮件数据到统计系统中
 
 
 //EC的用户的相关操作

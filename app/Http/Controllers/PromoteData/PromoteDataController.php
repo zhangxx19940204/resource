@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\PromoteData;
 
+use App\Models\ResConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use mysql_xdevapi\Exception;
 use Symfony\Component\Console\Input\Input;
 use App\Models\EmailConfig;
 use App\Models\EmailData;
@@ -143,6 +145,7 @@ class PromoteDataController extends Controller
             var_dump('插入的数据：',json_encode($total_mail_data));
             // die();
             $insert_status = DB::table('email_data')->insert($total_mail_data);
+            //插入邮件表格后，进行
             dump(DB::getQueryLog());
             if(empty($be_to_flaged)){
                 var_dump('邮件ID列表为空');
@@ -216,5 +219,78 @@ class PromoteDataController extends Controller
     }
 
 
+    //定时获取邮件列表去同步到统计表格中
+    public function synchronous_mailData(Request $request){
+        date_default_timezone_set('Asia/Shanghai');
+        $mail_config_arr = EmailConfig::where('status','=','1')->get();
+        if (empty($mail_config_arr)){
+            return '邮件系统有效账号为空';
+        }
+        foreach ($mail_config_arr as $mail_config){
+            //循环邮件账号列表（email_config）
+            //去寻找对应（统计系统）的账号配置信息
+            $res_config_info = ResConfig::where('account_id','=',$mail_config->id)->where('type','=','mail')->first();
+            if (empty($res_config_info)){
+                continue;
+                logger('统计系统中未对应有效账号');
+            }
+            //通过单个邮件账号；去取邮件系统中的相关数据
+            $wait_census_data  = EmailData::where('is_census','=','0')->where('econfig_id','=',$mail_config->id)->get();//单个账号下，未同步的数据
+            if (empty($wait_census_data)){
+                continue;
+                logger('暂无有效数据同步');
+            }
+            //账号有效，数据有效，接下来组装数据来存储在统计系统中
+            $res_data_arr = [];
+            foreach ($wait_census_data as $single_census_data){
+                DB::beginTransaction();
+                $update_status = EmailData::where('id','=',$single_census_data->id)->update(['is_census' => 1]);
+                if (!$update_status){
+                    DB::rollBack();
+                    continue;
+                }
+                $belong = $this->get_belong_by_content($single_census_data->mail_content,$single_census_data->mail_title);
+                if ($belong == '未知'){
+                    DB::rollBack();
+                    continue;
+                }
+                try {
+                    $res_data_arr[] = ['user_id' => $res_config_info->user_id, 'config_id' => $res_config_info->id
+                        ,'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')
+                        ,'belong'=>$belong,'type'=>$res_config_info->type,'data_json'=>json_encode(['content'=>$single_census_data->mail_content])
+                        ,'data_name'=>$single_census_data->username,'data_phone'=>$single_census_data->phone];
+                    DB::commit();
+                }catch (Exception $e){
+                    DB::rollBack();
+                }
+
+            }
+            //状态更新完毕，将数据插入统计数据库
+            try {
+                DB::beginTransaction();
+                DB::table('res_data')->insert($res_data_arr);
+                DB::commit();
+            }catch (Exception $e){
+                DB::rollBack();
+            }
+
+        }
+        logger('邮件系统数据完成');
+        return '邮件系统数据完成';
+    }
+
+
+    public function get_belong_by_content($content,$title){
+
+        if(strpos($content,'半城外')!==false || strpos($title,'半城外')!==false){
+            //半城外的数据
+            return '半城外';
+        }if(strpos($content,'阿城')!==false || strpos($title,'阿城')!==false){
+            //阿城的数据
+            return '阿城';
+        }else{
+            return '未知';
+        }
+    }
 
 }

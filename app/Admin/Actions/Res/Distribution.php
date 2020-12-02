@@ -116,7 +116,9 @@ class Distribution extends RowAction
                 $finish_user_arr[$user->userId] = implode('-',array_reverse($dept_PreName_arr)).'-'.$user->title.'-'.$user->userName;
             }
         }
-
+//        var_dump($finish_user_arr);//10575740
+//        die();
+//        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required')->default(['10575740']);
         $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
     }
 

@@ -15,6 +15,7 @@ Route::group([
 
     //资源统计列表页
     $router->resource('res-datas', Res\ResDataController::class);
+    $router->resource('res-distribution-configs', Res\ResDistributionConfigController::class);
 
     //邮件留言系统
     $router->resource('email-configs', Email\EmailConfigController::class);
