@@ -21,6 +21,7 @@ Route::any('/receive_fei_oceanengine', [Oceanengine\FeiyuController::class, 'rec
 Route::any('/get_fast_horse_data', [FastHorse\FasthorseController::class, 'get_fast_horse']); //获取快马账号的数据 （定时）
 Route::any('/get_global_join', [GlobalJoin\GlobaljoinController::class, 'receive_global_join']); //接收全球加盟网账号的数据
 Route::any('/get_second_third', [ChannelNetwork\SecondthirdController::class, 'get_second_third']); //获取23网的数据 (定时)
+Route::any('/get_5988_data', [ZuoSai\ZuoSaiController::class, 'get_5988_data']); //获取5988的数据 (需要定时)
 
 //邮件系统
 Route::any('/get_mail_list', [PromoteData\PromoteDataController::class, 'get_mail_list']);//获取用户的邮件列表（外部设定的定时访问）
