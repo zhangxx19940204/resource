@@ -59,6 +59,9 @@ class ResDataController extends AdminController
             }if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
                 return $data_arr['app_name'];
+            }if ($this->type == 'mail'){
+                $data_arr = json_decode($this->data_json,true);
+                return $data_arr['title'];
             }else{
                 return '';
             }
