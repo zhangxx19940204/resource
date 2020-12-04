@@ -67,10 +67,13 @@ class ResDataController extends AdminController
             }
         });
 
-        $grid->column('fast_horse_message', __('快马备注'))->display(function (){
+        $grid->column('fast_horse_message', __('快马备注/备注'))->display(function (){
             if ($this->type == '快马'){
                 $data_arr = json_decode($this->data_json,true);
                 return $data_arr['message'];
+            }if ($this->type == '5988'){
+                $data_arr = json_decode($this->data_json,true);
+                return $data_arr['remark'];
             }else{
                 return '';
             }
@@ -116,7 +119,7 @@ class ResDataController extends AdminController
             return $single_user->userName;
 
         });
-//        $grid->column('crmId', __('客户ID'));
+
         $grid->column('feedback_status', __('反馈状态'))->bool()->filter([
             0 => '未反馈',
             1 => '已反馈',
@@ -133,6 +136,8 @@ class ResDataController extends AdminController
             }
 
         });
+
+//        $grid->column('', __('客户ID'))->hide();
 
 
         $grid->model()->orderBy('id', 'desc');
