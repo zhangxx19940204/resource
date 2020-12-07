@@ -4,6 +4,7 @@ namespace App\Admin\Controllers\Res;
 
 use App\Admin\Actions\Res\Distribution;
 use App\Admin\Actions\Res\BatchDistribution;
+use App\Admin\Actions\Res\ImportData;
 use App\Models\ResData;
 use App\Models\ResConfig;
 use Encore\Admin\Controllers\AdminController;
@@ -14,6 +15,7 @@ use Encore\Admin\Widgets\Table;
 use Illuminate\Support\Facades\Auth;
 use Encore\Admin\Actions\RowAction;
 use Illuminate\Support\Facades\DB;
+use Encore\Admin\Grid\Displayers\Actions;
 
 class ResDataController extends AdminController
 {
@@ -51,6 +53,7 @@ class ResDataController extends AdminController
         $grid->column('data_phone', __('电话'));
         $grid->column('belong', __('所属'));
         $grid->column('type', __('类型'));
+        $grid->column('remarks', __('备注'));
 
         $grid->column('fastHorse_id', __('快马ID / 头条来源'))->display(function (){
             if ($this->type == '快马'){
@@ -73,7 +76,12 @@ class ResDataController extends AdminController
                 return $data_arr['message'];
             }if ($this->type == '5988'){
                 $data_arr = json_decode($this->data_json,true);
-                return $data_arr['remark'];
+                if (is_array($data_arr) && array_key_exists('remarks',$data_arr)){
+                    return $data_arr['remark'];
+                }else{
+                    return '';
+                }
+
             }else{
                 return '';
             }
@@ -166,6 +174,10 @@ class ResDataController extends AdminController
 
         $grid->batchActions(function ($batch) {
             $batch->add(new BatchDistribution());
+        });
+
+        $grid->tools(function (Grid\Tools $tools) {
+            $tools->append(new ImportData());
         });
 
 
