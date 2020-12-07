@@ -19,6 +19,7 @@ class ImportData extends Action
 
     public function handle(Request $request)
     {
+        date_default_timezone_set('Asia/Shanghai');
         // 下面的代码获取到上传的文件，然后使用`maatwebsite/excel`等包来处理上传你的文件，保存到数据库
         $file = $request->file('res_file');
         $file_path = $file->getRealPath();
@@ -27,17 +28,22 @@ class ImportData extends Action
         $result = Storage::disk('public')->put($fileName, file_get_contents($file_path));
         //上传excel文件到服务器
         //上传完毕，进行数据的读取和存储
-        $file_storage_path = storage_path($fileName);
+        $file_storage_path = 'E:\phpstudy_pro\WWW\resource\public\storage\20201207\1607335183.xlsx';//storage_path($fileName);
         $excel_all_data = Excel::toArray(new ResDataImport, $file_storage_path);//读取本地的文件，将数据投放给excel类去处理
 //        var_dump($file_storage_path,$excel_all_data);
 //        die();
         $excel_data = $excel_all_data[0];
         $head_data = $excel_data[0];
         unset($excel_data[0]);
+//        var_dump(json_encode($excel_data));
+//        die();
         $insert_data = [];
         foreach ($excel_data as $single_data){
             $basic_data = [];
             foreach ($single_data as $k=>$v){
+                if (empty($head_data[$k])){
+                    continue;
+                }
                 $basic_data[$head_data[$k]] = $v;
             }
             $config = DB::table('res_config')->where('id','=',$basic_data['config_id'])->first();
@@ -50,9 +56,11 @@ class ImportData extends Action
             $basic_data['data_json'] = json_encode([]);
             $insert_data[] = $basic_data;
 
+
         }
 
 //        var_dump(json_encode($insert_data));
+//        die();
 //        var_dump($file_path,$extension,$result,$file_storage_path);
         try {
             DB::beginTransaction();
