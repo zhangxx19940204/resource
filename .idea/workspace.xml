@@ -195,14 +195,7 @@
       <workItem from="1607046444053" duration="9684000" />
       <workItem from="1607219559496" duration="1385000" />
       <workItem from="1607242972173" duration="6901000" />
-      <workItem from="1607305997533" duration="17292000" />
-    </task>
-    <task id="LOCAL-00007" summary="update mysql">
-      <created>1605604316701</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1605604316701</updated>
+      <workItem from="1607305997533" duration="17451000" />
     </task>
     <task id="LOCAL-00008" summary="update mysql">
       <created>1605604327438</created>
@@ -540,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607334864031</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="commit import mukuai five">
+      <created>1607336750802</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1607336750802</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +589,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update data_json show five" />
     <MESSAGE value="update fenpei" />
     <MESSAGE value="update synchronize synchronize" />
     <MESSAGE value="update synchronize synchronize second" />
@@ -614,6 +613,7 @@
     <MESSAGE value="commit import mukuai second" />
     <MESSAGE value="commit import mukuai third" />
     <MESSAGE value="commit import mukuai four" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai four" />
+    <MESSAGE value="commit import mukuai five" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai five" />
   </component>
 </project>
