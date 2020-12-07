@@ -29,8 +29,8 @@ class ImportData extends Action
         //上传完毕，进行数据的读取和存储
         $file_storage_path = storage_path($fileName);
         $excel_all_data = Excel::toArray(new ResDataImport, $file_storage_path);//读取本地的文件，将数据投放给excel类去处理
-        var_dump($file_storage_path,$excel_all_data);
-        die();
+//        var_dump($file_storage_path,$excel_all_data);
+//        die();
         $excel_data = $excel_all_data[0];
         $head_data = $excel_data[0];
         unset($excel_data[0]);

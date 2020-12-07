@@ -198,7 +198,7 @@ class ResDataController extends AdminController
                 }
                 $config_arr = [];
                 foreach ($config_data as $key=>$config_data){
-                    $config_arr[$config_data['id']] = $config_data['custom_name'];
+                    $config_arr[$config_data['id']] = '账号（'.$config_data['id'].'）：'.$config_data['custom_name'];
                 }
 
 
@@ -222,7 +222,7 @@ class ResDataController extends AdminController
         //导出配置
         $grid->export(function ($export) {
 
-            $export->filename(date('Y-m-d H:i:s').'-资源统计.csv');
+            $export->filename(date('YmdHis').'-资源统计.csv');
 
             $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','ec_userId','feedback_content']);
 
