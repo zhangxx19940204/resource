@@ -18,15 +18,31 @@ class UserController extends Controller
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret);
         $res_data = json_decode($res_data_json,true);
 //        echo '<pre>';
-//        var_dump($res_data);
+//        var_dump(json_encode($res_data));
 //        echo '</pre>';
 //        die();
         DB::beginTransaction();
         try {
-            DB::table('ec_users')->truncate();
-            DB::table('ec_depts')->truncate();
-            DB::table('ec_users')->insert($res_data['data']['users']);
-            DB::table('ec_depts')->insert($res_data['data']['depts']);
+//            DB::table('ec_users')->truncate();
+//            DB::table('ec_users')->insert($res_data['data']['users']);
+//            DB::table('ec_depts')->truncate();
+//            DB::table('ec_depts')->insert($res_data['data']['depts']);
+            foreach ($res_data['data']['users'] as $user){
+                DB::table('ec_users')
+                    ->updateOrInsert(
+                        ['userId' => $user['userId']],
+                        ['userName' => $user['userName'],'title' => $user['title'],'status' => $user['status'],'deptId' => $user['deptId']]
+                    );
+            }
+
+            foreach ($res_data['data']['depts'] as $dept){
+                DB::table('ec_depts')
+                    ->updateOrInsert(
+                        ['deptId' => $dept['deptId']],
+                        ['deptName' => $dept['deptName'],'parentDeptId' => $dept['parentDeptId']]
+                    );
+            }
+
             DB::commit();
             logger('数据库更新或者操作成功');
 

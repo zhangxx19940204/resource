@@ -147,7 +147,6 @@ class ResDataController extends AdminController
 
 //        $grid->column('', __('客户ID'))->hide();
 
-
         $grid->model()->orderBy('id', 'desc');
         if ($user_obj->id == 1) {
             // 不加 用户id的限制
