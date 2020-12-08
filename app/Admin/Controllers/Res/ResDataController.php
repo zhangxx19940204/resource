@@ -209,7 +209,11 @@ class ResDataController extends AdminController
             });
 
             $filter->column(5/10, function ($filter) {
-                $filter->in('type', '类型')->multipleSelect(['头条'=>'头条','快马'=>'快马','全球'=>'全球','23网'=>'23网','mail'=>'mail','5988'=>'5988']);
+                $filter->in('type', '类型')->multipleSelect(['头条'=>'头条','快马'=>'快马','全球'=>'全球',
+                    '23网'=>'23网','mail'=>'mail','5988'=>'5988',
+                    '微视频'=>'微视频',
+                    '全球网'=>'全球网',
+                    '寻餐网'=>'寻餐网']);
                 $filter->like('data_phone', '客户电话');
                 $filter->like('data_name', '客户姓名');
                 $filter->like('data_json', '源数据查询');
