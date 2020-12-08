@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/app/Admin/Actions/Res/ImportData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Actions/Res/ImportData.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,14 +195,7 @@
       <workItem from="1607046444053" duration="9684000" />
       <workItem from="1607219559496" duration="1385000" />
       <workItem from="1607242972173" duration="6901000" />
-      <workItem from="1607305997533" duration="19207000" />
-    </task>
-    <task id="LOCAL-00009" summary="update fasthorse">
-      <created>1605685939113</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1605685939113</updated>
+      <workItem from="1607305997533" duration="19541000" />
     </task>
     <task id="LOCAL-00010" summary="update logger">
       <created>1605761909088</created>
@@ -541,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607336906029</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="commit import mukuai ceshi">
+      <created>1607391823544</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1607391823544</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +589,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update synchronize synchronize" />
     <MESSAGE value="update synchronize synchronize second" />
     <MESSAGE value="update synchronize synchronize third" />
     <MESSAGE value="update synchronize synchronize button first" />
@@ -615,6 +613,7 @@
     <MESSAGE value="commit import mukuai four" />
     <MESSAGE value="commit import mukuai five" />
     <MESSAGE value="commit import mukuai six" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai six" />
+    <MESSAGE value="commit import mukuai ceshi" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai ceshi" />
   </component>
 </project>

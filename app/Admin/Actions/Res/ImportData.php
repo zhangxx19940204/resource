@@ -24,7 +24,7 @@ class ImportData extends Action
         $file = $request->file('res_file');
         $file_path = $file->getRealPath();
         $extension = $file->getClientOriginalExtension();
-        $fileName = '/'.date('Ymd').'/'.time().'.'.$extension;
+        $fileName = date('Ymd').'/'.time().'.'.$extension;
         $result = Storage::disk('public')->put($fileName, file_get_contents($file_path));
         //上传excel文件到服务器
         //上传完毕，进行数据的读取和存储
