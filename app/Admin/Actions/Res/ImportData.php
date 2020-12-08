@@ -28,10 +28,10 @@ class ImportData extends Action
         $result = Storage::disk('public')->put($fileName, file_get_contents($file_path));
         //上传excel文件到服务器
         //上传完毕，进行数据的读取和存储
-        $file_storage_path = storage_path($fileName);//'E:\phpstudy_pro\WWW\resource\public\storage\20201207\1607335183.xlsx';//
+        $file_storage_path = 'public/'.$fileName;//默认指向storage目录（根据目录来的）
         $excel_all_data = Excel::toArray(new ResDataImport, $file_storage_path);//读取本地的文件，将数据投放给excel类去处理
-        var_dump($file_storage_path,$excel_all_data);
-        die();
+//        var_dump($file_storage_path,$excel_all_data);
+//        die();
         $excel_data = $excel_all_data[0];
         $head_data = $excel_data[0];
         unset($excel_data[0]);

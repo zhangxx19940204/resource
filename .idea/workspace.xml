@@ -195,14 +195,7 @@
       <workItem from="1607046444053" duration="9684000" />
       <workItem from="1607219559496" duration="1385000" />
       <workItem from="1607242972173" duration="6901000" />
-      <workItem from="1607305997533" duration="19687000" />
-    </task>
-    <task id="LOCAL-00011" summary="update logger">
-      <created>1605765207999</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1605765207999</updated>
+      <workItem from="1607305997533" duration="20935000" />
     </task>
     <task id="LOCAL-00012" summary="update global join">
       <created>1605767972050</created>
@@ -540,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607392142257</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="commit import mukuai ceshi3">
+      <created>1607392290128</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1607392290128</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +589,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update synchronize synchronize third" />
     <MESSAGE value="update synchronize synchronize button first" />
     <MESSAGE value="update synchronize synchronize button second" />
     <MESSAGE value="update synchronize synchronize button third" />
@@ -614,6 +613,7 @@
     <MESSAGE value="commit import mukuai six" />
     <MESSAGE value="commit import mukuai ceshi" />
     <MESSAGE value="commit import mukuai ceshi2" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai ceshi2" />
+    <MESSAGE value="commit import mukuai ceshi3" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai ceshi3" />
   </component>
 </project>
