@@ -4,11 +4,10 @@ namespace App\Admin\Actions\Res;
 
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ResDataImport;
-use Mockery\Exception;
-use Psy\Exception\ErrorException;
 use Illuminate\Support\Facades\Storage;
 
 class ImportData extends Action
@@ -24,8 +23,8 @@ class ImportData extends Action
         $file = $request->file('res_file');
         $file_path = $file->getRealPath();
         $extension = $file->getClientOriginalExtension();
-        $fileName = date('Ymd').'/'.time().'.'.$extension;
-        $result = Storage::disk('public')->put($fileName, file_get_contents($file_path));
+        $fileName = date('Ymd').'/'.rand(0,999).time().'.'.$extension;
+        Storage::disk('public')->put($fileName, file_get_contents($file_path));
         //上传excel文件到服务器
         //上传完毕，进行数据的读取和存储
         $file_storage_path = 'public/'.$fileName;//默认指向storage目录（根据目录来的）
@@ -65,11 +64,15 @@ class ImportData extends Action
         try {
             DB::beginTransaction();
             DB::table('res_data')->insert($insert_data);
+            //数据导入成功，记录一下文件
+
             DB::commit();
         }catch (\mysql_xdevapi\Exception $e){
             DB::rollBack();
         }
-
+        $user_obj = Auth::guard('admin')->user();
+        $current_date = date('Y-m-d H:i:s');
+        DB::table('res_upload_data')->insert(['user_id' => $user_obj->id,'file_path' => 'storage/'.$fileName,'created_at' => $current_date,'updated_at' => $current_date]);
         return $this->response()->success('导入完成！')->refresh();
     }
 
