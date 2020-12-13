@@ -2,6 +2,7 @@
 
 namespace App\Admin\Actions\Res;
 
+use App\Models\ResDistributionConfig;
 use Encore\Admin\Actions\RowAction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -69,6 +70,13 @@ class Distribution extends RowAction
                             ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
                             ,'synchronize_results'=>1
                         ]);
+                    //操作完毕后，进行调用日志方法
+                    $distribution_log_data = ['ec_userId' => $userId
+                        ,'failureCause' => ''
+                        ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
+                        ,'synchronize_results'=>1];
+                    $this->record_distribution_log($distribution_log_data,$model->belong);
+
                 }
             }
             if (!empty($res_data['data']['failureList'])){
@@ -81,6 +89,12 @@ class Distribution extends RowAction
                             ,'synchronize_para' => $customer[$failure_data['index']] //相对应的用户
                             ,'synchronize_results'=>0
                         ]);
+                    //操作完毕后，进行调用日志方法
+                    $distribution_log_data = ['ec_userId' => $userId
+                        ,'failureCause' => $failure_data['failureCause']
+                        ,'synchronize_para' => $customer[$failure_data['index']] //相对应的用户
+                        ,'synchronize_results'=>0];
+                    $this->record_distribution_log($distribution_log_data,$model->belong);
                 }
             }
             logger('分配完毕，如有异常已记录在数据中，请查看');
@@ -95,7 +109,7 @@ class Distribution extends RowAction
         return $this->response()->success('分配成功')->refresh();
     }
 
-    public function form()
+    public function form(Model $model)
     {
         $users = DB::table('ec_users')->where('status','=','1')->get()->toArray();
         $depts = DB::table('ec_depts')->get()->toArray();
@@ -118,8 +132,68 @@ class Distribution extends RowAction
         }
 //        var_dump($finish_user_arr);//10575740
 //        die();
-//        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required')->default(['10575740']);
-        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
+        $to_user_id = $this->get_next_userId($model->belong);
+        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required')->default([$to_user_id]);
+//        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
+    }
+
+    public function get_next_userId($belong){
+        //第一步，查询数据相关的分配数据
+        $distribution_arr = ResDistributionConfig::where('status','=','1')->where('belong','=',$belong)->first();
+        if (empty($distribution_arr)){
+            return '';
+        }
+//        var_dump($distribution_arr);
+//        die();
+
+        $active_arr = $distribution_arr['active_list'];
+        foreach ($distribution_arr['except_list'] as $val){
+            unset($active_arr[$val]);
+        }
+        //判断现用分配列表是否为空
+        if (empty($active_arr)){
+            //现用的分配列表为空，判断是否重复加载
+            if ($distribution_arr['recyclable'] == '1'){
+                //可循环，先把数据拿来处理，选出用户ID后，在存入使用列表中
+                //对于再次加载使用的列表，去除排除外的列表
+                $recyclable_arr = $distribution_arr['recyclable_list'];
+                foreach ($distribution_arr['except_list'] as $val){
+                    unset($recyclable_arr[$val]);
+                }
+                $userId = $this->get_userId_dealData($recyclable_arr);
+                DB::table('res_distribution_config')->where('id', '=',$distribution_arr['id'])->update(['active_list' => json_encode($recyclable_arr)]);
+                return $userId;
+
+            }else{
+                //不可循环，数据为空，则直接返回空
+                return '';
+            }
+
+        }else{
+            //现用的分配列表不为空，直接开始整理数据，给到下一次的分配的用户id
+            $userId = $this->get_userId_dealData($active_arr);
+            return $userId;
+        }
+    }
+
+    public function get_userId_dealData($list){
+        //获取需要分配的id
+        arsort($list);
+        //根据value值排序完毕，接下来循环并判断是否需要跳过和删除
+        foreach ($list as $key=>$single_user){
+            return $key;
+        }
+    }
+
+    public function record_distribution_log($distribution_log_data,$belong){
+        DB::table('res_distribution_log')->insert($distribution_log_data);
+        //通过以上记录已被log，现在去改变活跃表的数据（去除发送的） $distribution_log_data['ec_userId'];
+        $distribution_arr = ResDistributionConfig::where('status','=','1')->where('belong','=',$belong)->first()->toarray();
+        $userId = $distribution_log_data['ec_userId'];
+        $active_arr = $distribution_arr['active_list'];
+        unset($active_arr[$userId]);
+        DB::table('res_distribution_config')->where('id', '=',$distribution_arr['id'])->update(['active_list' => json_encode($active_arr)]);
+        return '';
     }
 
     public function get_user_depts($res,$deptId,$depts){

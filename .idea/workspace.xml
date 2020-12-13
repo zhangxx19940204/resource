@@ -7,11 +7,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ResDistributionConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ResDistributionConfig.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +163,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -197,21 +197,12 @@
       <workItem from="1607046444053" duration="9684000" />
       <workItem from="1607219559496" duration="1385000" />
       <workItem from="1607242972173" duration="6901000" />
-      <workItem from="1607305997533" duration="30555000" />
-    </task>
-    <task id="LOCAL-00016" summary="update global join four">
-      <created>1605779960758</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1605779960758</updated>
-    </task>
-    <task id="LOCAL-00017" summary="update admin">
-      <created>1605856712459</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1605856712459</updated>
+      <workItem from="1607305997533" duration="32081000" />
+      <workItem from="1607578914826" duration="648000" />
+      <workItem from="1607592804789" duration="1641000" />
+      <workItem from="1607648880533" duration="729000" />
+      <workItem from="1607679602359" duration="7000" />
+      <workItem from="1607741442313" duration="21506000" />
     </task>
     <task id="LOCAL-00018" summary="update admin second">
       <created>1605867341260</created>
@@ -542,7 +533,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607398764989</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="commit import mukuai ceshi8">
+      <created>1607413859767</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1607413859767</updated>
+    </task>
+    <task id="LOCAL-00066" summary="add auto distribution first">
+      <created>1607657953915</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1607657953915</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,8 +596,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update synchronize synchronize button five" />
-    <MESSAGE value="update logger post_para res_data" />
     <MESSAGE value="update logger post_para res_data second" />
     <MESSAGE value="update logger post_para res_data third" />
     <MESSAGE value="update logger post_para res_data four" />
@@ -616,6 +619,8 @@
     <MESSAGE value="commit import mukuai ceshi5" />
     <MESSAGE value="commit import mukuai ceshi6" />
     <MESSAGE value="commit import mukuai ceshi7" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit import mukuai ceshi7" />
+    <MESSAGE value="commit import mukuai ceshi8" />
+    <MESSAGE value="add auto distribution first" />
+    <option name="LAST_COMMIT_MESSAGE" value="add auto distribution first" />
   </component>
 </project>

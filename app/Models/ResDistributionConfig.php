@@ -13,15 +13,17 @@ class ResDistributionConfig extends Model
     protected $casts = [
         'recyclable_list' => 'json',
         'active_list' => 'json',
+        'except_list' => 'json',
     ];
     public function getRecyclableListAttribute($value)
     {
-        return array_values(json_decode($value, true) ?: []);
+        return json_decode($value, true) ?: [];
     }
-
+//
     public function setRecyclableListAttribute($value)
     {
-        $this->attributes['recyclable_list'] = json_encode(array_values($value));
+
+        $this->attributes['recyclable_list'] = json_encode($value);
     }
 
 }
