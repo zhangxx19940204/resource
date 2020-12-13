@@ -22,5 +22,7 @@ Route::group([
     $router->resource('email-datas', Email\EmailDataController::class);
     $router->resource('email-passes', Email\EmailPassController::class);
 
+    $router->resource('ec-users', Res\EcUserController::class);
+
 
 });

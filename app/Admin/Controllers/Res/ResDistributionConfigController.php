@@ -125,6 +125,7 @@ class ResDistributionConfigController extends AdminController
 
                 $form->switch('recyclable', __('是否循环'));
                 $form->switch('status', __('启用状态'));
+                $form->text('belong', __('所属'));
 
             })->default(1);
 
