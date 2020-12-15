@@ -7,13 +7,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/EcUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/EcUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/EcUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/EcUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ResDistributionConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ResDistributionConfig.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,14 +200,7 @@
       <workItem from="1607592804789" duration="1641000" />
       <workItem from="1607648880533" duration="729000" />
       <workItem from="1607679602359" duration="7000" />
-      <workItem from="1607741442313" duration="37644000" />
-    </task>
-    <task id="LOCAL-00020" summary="update admin update fastHorse error">
-      <created>1605941052642</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1605941052642</updated>
+      <workItem from="1607741442313" duration="42074000" />
     </task>
     <task id="LOCAL-00021" summary="update admin update feiyu data show error">
       <created>1605946235053</created>
@@ -549,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607854003796</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="commit auto distribution third">
+      <created>1608021899973</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1608021899973</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +594,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update logger post_para res_data four" />
     <MESSAGE value="update logger post_para res_data five" />
     <MESSAGE value="update config filesystems" />
     <MESSAGE value="commit sync mail_data" />
@@ -623,6 +618,7 @@
     <MESSAGE value="add auto distribution first" />
     <MESSAGE value="commit auto distribution first" />
     <MESSAGE value="commit auto distribution second" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit auto distribution second" />
+    <MESSAGE value="commit auto distribution third" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit auto distribution third" />
   </component>
 </project>

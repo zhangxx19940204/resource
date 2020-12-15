@@ -15,15 +15,36 @@ class ResDistributionConfig extends Model
         'active_list' => 'json',
         'except_list' => 'json',
     ];
-    public function getRecyclableListAttribute($value)
+    public function getRecyclableListAttribute($value1)
     {
-        return json_decode($value, true) ?: [];
+        return json_decode($value1, true) ?: [];
     }
-//
-    public function setRecyclableListAttribute($value)
-    {
 
-        $this->attributes['recyclable_list'] = json_encode($value);
+    public function setRecyclableListAttribute($value1)
+    {
+        logger('setRecyclableListAttribute',$value1);
+        $this->attributes['recyclable_list'] = json_encode($value1);
     }
+    public function getActiveListAttribute($value2)
+    {
+        return json_decode($value2, true) ?: [];
+    }
+
+    public function setActiveListAttribute($value2)
+    {
+        $this->attributes['active_list'] = json_encode($value2);
+    }
+
+
+    public function getExceptListAttribute($value3)
+    {
+        return array_values(json_decode($value3, true) ?: []);
+    }
+
+    public function setExceptListAttribute($value3)
+    {
+        $this->attributes['except_list'] = json_encode(array_values($value3));
+    }
+
 
 }
