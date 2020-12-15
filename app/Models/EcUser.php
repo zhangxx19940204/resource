@@ -10,4 +10,6 @@ class EcUser extends Model
     use HasFactory;
     protected $table = 'ec_users';
     protected $primaryKey = 'id';
+
+
 }

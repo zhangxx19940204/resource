@@ -29,9 +29,30 @@ class ResDistributionConfigController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('belong', __('所属（与资源所属关联）'))->editable();
-        $grid->column('recyclable_list', __('可重复使用列表'));
-        $grid->column('active_list', __('正在使用的列表'));
-        $grid->column('except_list', __('排除列表'));
+        $grid->column('recyclable_list', __('可重复使用列表'))->display(function ($recyclable_list){
+            $recyclable_list_arr = DB::table('ec_users')->whereIn('userId', array_keys($recyclable_list))->get();
+            $recyclable_str = '';
+            foreach ($recyclable_list_arr as $key=>$single_recyclable){
+                $recyclable_str .= '<strong>'.$single_recyclable->userName.'</strong>:'.$recyclable_list[$single_recyclable->userId].'；<br/>';
+            }
+            return $recyclable_str;
+        });
+        $grid->column('active_list', __('正在使用的列表'))->display(function ($active_list){
+            $active_list_arr = DB::table('ec_users')->whereIn('userId', array_keys($active_list))->get();
+            $active_str = '';
+            foreach ($active_list_arr as $single_active){
+                $active_str .= '<strong>'.$single_active->userName.'</strong>:'.$active_list[$single_active->userId].'；<br/>';
+            }
+            return $active_str;
+        });
+        $grid->column('except_list', __('排除列表'))->display(function ($except_list){
+            $except_list_arr = DB::table('ec_users')->whereIn('userId', $except_list)->get();
+            $except_str = '';
+            foreach ($except_list_arr as $single_except){
+                $except_str .= '<strong>'.$single_except->userName.'</strong>；<br/>';
+            }
+            return $except_str;
+        });
 
         $states = [
             1 => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
@@ -43,6 +64,17 @@ class ResDistributionConfigController extends AdminController
 //        $grid->column('disbale_time', __('Disbale time'));
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
+
+        $grid->filter(function ($filter) {
+
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+            $filter->expand();//默认展开搜索栏
+            $filter->column(6/10, function ($filter) {
+                $filter->equal('belong', '所属');
+            });
+
+        });
 
         return $grid;
     }
@@ -84,21 +116,11 @@ class ResDistributionConfigController extends AdminController
 
         $form->radio('nationality', '分组展示')
             ->options([
-                1 => '可循环的列表',
+                1 => '排除列表',
+                3 => '可循环的列表',
                 2 => '使用中的列表',
-                3 => '排除列表',
                 4 => '其他',
             ])->when(1, function (Form $form) {
-
-                $form->keyValue('recyclable_list', __('可循环的列表'));
-
-            })->when(2, function (Form $form) {
-
-                $form->keyValue('active_list', __('使用中的列表'));
-
-
-            })->when(3, function (Form $form) {
-
                 $users = DB::table('ec_users')->where('status','=','1')->get()->toArray();
                 $depts = DB::table('ec_depts')->get()->toArray();
                 $complete_depts = [];
@@ -120,6 +142,16 @@ class ResDistributionConfigController extends AdminController
                 }
 
                 $form->listbox('except_list', __('排除列表'))->options($finish_user_arr);
+
+            })->when(2, function (Form $form) {
+
+                $form->keyValue('active_list', __('使用中的列表'));
+
+
+            })->when(3, function (Form $form) {
+
+//                $form->html('你的html内容');
+                $form->keyValue('recyclable_list', __('可循环的列表'));
 
             })->when(4, function (Form $form) {
 

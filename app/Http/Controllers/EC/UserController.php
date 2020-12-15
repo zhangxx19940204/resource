@@ -129,4 +129,37 @@ class UserController extends Controller
         $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
         return json_decode($res_data_json,true);
     }
+
+    public function add_deptName(){
+        $ec_users_obj = DB::table('ec_users')->get();
+        $depts = DB::table('ec_depts')->get()->toArray();
+        $complete_depts = [];
+        foreach ($depts as $dept){
+            $complete_depts[$dept->deptId] = ['deptName'=>$dept->deptName,'parentDeptId'=>$dept->parentDeptId];
+        }
+
+        foreach ($ec_users_obj as $ec_user){
+            $dept_PreName_arr = $this->get_user_depts([],$ec_user->deptId,$complete_depts);
+            $user_dept_str = implode('-',array_reverse($dept_PreName_arr)).'-'.$ec_user->title.'-'.$ec_user->userName;
+            DB::table('ec_users')->where('id', '=',$ec_user->id)->update(['deptName' => $user_dept_str]);
+//            logger(';userId:'.$ec_user->id);
+        }
+        return '部门名称更新完毕，可以使用了';
+    }
+
+    public function get_user_depts($res,$deptId,$depts){
+        //第一步直接根据部门ID取部门值
+        if ($deptId == '0'){
+            //第一不属于任何部门
+            return ['德胜企业'];
+        }
+        $res[] = $depts[$deptId]['deptName'];
+        //判断对否还有父部门
+        if ($depts[$deptId]['parentDeptId'] == '0'){
+            return $res;
+        }else{
+            return $this->get_user_depts($res,$depts[$deptId]['parentDeptId'],$depts);
+        }
+
+    }
 }

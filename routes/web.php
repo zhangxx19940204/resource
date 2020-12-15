@@ -29,6 +29,8 @@ Route::any('/synchronous_maildata', [PromoteData\PromoteDataController::class, '
 
 
 //EC的用户的相关操作
-Route::any('/get_framework_info', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息 （需要单独调用去更新新用户）
 Route::any('/synchronous_feedback', [EC\UserController::class, 'synchronous_single_feedback']);//更新单个EC客户的反馈(EC客户端用户主动调用)
+
+Route::any('/get_framework_info', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息和部门信息 （需要单独调用去更新新用户）
+Route::any('/add_deptName', [EC\UserController::class, 'add_deptName']);//更新EC用户的所有部门名
 
