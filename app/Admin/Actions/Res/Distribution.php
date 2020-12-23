@@ -62,7 +62,6 @@ class Distribution extends RowAction
             //请求成功，判断成功和失败列表 进行更新
             if (!empty($res_data['data']['successIdList'])){
                 foreach ($res_data['data']['successIdList'] as $success_data){ //{"index": 0,"crmId": 4262563847}
-
                     DB::table('res_data')->where('id', $model->id)
                         ->update(['crmId' => $success_data['crmId'] //数据库设计为字符串即可
                             ,'ec_userId' => $userId
@@ -70,11 +69,13 @@ class Distribution extends RowAction
                             ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
                             ,'synchronize_results'=>1
                         ]);
+
                     //操作完毕后，进行调用日志方法
                     $distribution_log_data = ['ec_userId' => $userId
                         ,'failureCause' => ''
                         ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
                         ,'synchronize_results'=>1];
+
                     $this->record_distribution_log($distribution_log_data,$model->belong);
 
                 }
@@ -186,8 +187,15 @@ class Distribution extends RowAction
     }
 
     public function record_distribution_log($distribution_log_data,$belong){
-        logger('开始记录log日志;日志数据：'.$distribution_log_data.';所属：'.$belong);
+        logger('开始记录log日志;日志数据：',$distribution_log_data);
+        $synchronize_para = json_encode($distribution_log_data['synchronize_para']);
+        $distribution_log_data['synchronize_para'] = $synchronize_para;
+
         DB::table('res_distribution_log')->insert($distribution_log_data);
+        if ($distribution_log_data['synchronize_results'] == 0){
+            //同步结果失败，不清除分配资格
+            return '';
+        }
         //通过以上记录已被log，现在去改变活跃表的数据（去除发送的） $distribution_log_data['ec_userId'];
         $distribution_arr = ResDistributionConfig::where('status','=','1')->where('belong','=',$belong)->first()->toarray();
         $userId = $distribution_log_data['ec_userId'];
