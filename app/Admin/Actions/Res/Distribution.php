@@ -186,6 +186,7 @@ class Distribution extends RowAction
     }
 
     public function record_distribution_log($distribution_log_data,$belong){
+        logger('开始记录log日志;日志数据：'.$distribution_log_data.';所属：'.$belong);
         DB::table('res_distribution_log')->insert($distribution_log_data);
         //通过以上记录已被log，现在去改变活跃表的数据（去除发送的） $distribution_log_data['ec_userId'];
         $distribution_arr = ResDistributionConfig::where('status','=','1')->where('belong','=',$belong)->first()->toarray();
