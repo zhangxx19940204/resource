@@ -204,14 +204,7 @@
       <workItem from="1607741442313" duration="42639000" />
       <workItem from="1608516538359" duration="384000" />
       <workItem from="1608702569122" duration="55000" />
-      <workItem from="1608702636585" duration="2318000" />
-    </task>
-    <task id="LOCAL-00022" summary="update admin update fastHorse show">
-      <created>1605949317864</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1605949317864</updated>
+      <workItem from="1608702636585" duration="4110000" />
     </task>
     <task id="LOCAL-00023" summary="update admin update fastHorse and feiyu show">
       <created>1605951322811</created>
@@ -549,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608026941673</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="commit disabled distribution button">
+      <created>1608710708758</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1608710708759</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +598,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update config filesystems" />
     <MESSAGE value="commit sync mail_data" />
     <MESSAGE value="commit sync mail_data second" />
     <MESSAGE value="commit sync mail_data third" />
@@ -623,6 +622,7 @@
     <MESSAGE value="commit auto distribution second" />
     <MESSAGE value="commit auto distribution third" />
     <MESSAGE value="commit auto distribution four" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit auto distribution four" />
+    <MESSAGE value="commit disabled distribution button" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit disabled distribution button" />
   </component>
 </project>
