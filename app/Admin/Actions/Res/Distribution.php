@@ -133,7 +133,7 @@ class Distribution extends RowAction
 //        var_dump($finish_user_arr);//10575740
 //        die();
         $to_user_id = $this->get_next_userId($model->belong);
-        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required')->default([$to_user_id]);
+        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required')->default([$to_user_id])->disable();
 //        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
     }
 
