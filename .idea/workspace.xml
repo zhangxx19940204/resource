@@ -204,21 +204,8 @@
       <workItem from="1607741442313" duration="42639000" />
       <workItem from="1608516538359" duration="384000" />
       <workItem from="1608702569122" duration="55000" />
-      <workItem from="1608702636585" duration="4845000" />
-    </task>
-    <task id="LOCAL-00024" summary="update admin update fastHorse and feiyu show">
-      <created>1606118812702</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1606118812702</updated>
-    </task>
-    <task id="LOCAL-00025" summary="update mail system">
-      <created>1606205875080</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1606205875080</updated>
+      <workItem from="1608702636585" duration="9125000" />
+      <workItem from="1609218031392" duration="1513000" />
     </task>
     <task id="LOCAL-00026" summary="update mail system second">
       <created>1606205980015</created>
@@ -549,7 +536,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608712394789</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="commit disabled distribution button third">
+      <created>1608713124763</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1608713124763</updated>
+    </task>
+    <task id="LOCAL-00074" summary="commit disabled distribution button four">
+      <created>1608715552186</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1608715552186</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,8 +599,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit sync mail_data second" />
-    <MESSAGE value="commit sync mail_data third" />
     <MESSAGE value="commit sync mail_data four" />
     <MESSAGE value="update res_data show first" />
     <MESSAGE value="commit import mukuai first" />
@@ -623,6 +622,8 @@
     <MESSAGE value="commit auto distribution four" />
     <MESSAGE value="commit disabled distribution button" />
     <MESSAGE value="commit disabled distribution button second" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit disabled distribution button second" />
+    <MESSAGE value="commit disabled distribution button third" />
+    <MESSAGE value="commit disabled distribution button four" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit disabled distribution button four" />
   </component>
 </project>

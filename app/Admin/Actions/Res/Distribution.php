@@ -36,7 +36,8 @@ class Distribution extends RowAction
             $data_arr = json_decode($model->data_json,true);
             $fastHorse_id =  $data_arr['id'];
             $fast_horse_message = $data_arr['message'];
-        }if ($model->type == '头条'){
+
+        }elseif ($model->type == '头条'){
             $data_arr = json_decode($model->data_json,true);
             $fastHorse_id = $data_arr['app_name'];
             $fast_horse_message = '';
@@ -47,6 +48,7 @@ class Distribution extends RowAction
 
         $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
         $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
+
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
         $appId = env('EC_APPID');
