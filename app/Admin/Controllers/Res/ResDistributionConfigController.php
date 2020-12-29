@@ -31,16 +31,37 @@ class ResDistributionConfigController extends AdminController
         $grid->column('belong', __('所属（与资源所属关联）'))->editable();
         $grid->column('recyclable_list', __('可重复使用列表'))->display(function ($recyclable_list){
             $recyclable_list_arr = DB::table('ec_users')->whereIn('userId', array_keys($recyclable_list))->get();
+            $new_recyclable_list_arr = [];
+            foreach ($recyclable_list_arr as $single_recyclable_list_arr){
+                $single_recyclable_list_arr->sort = $recyclable_list[$single_recyclable_list_arr->userId];
+                $new_recyclable_list_arr[] = $single_recyclable_list_arr;
+            }
+
+            $new_recyclable_arr = array_column($new_recyclable_list_arr, 'sort');
+            array_multisort($new_recyclable_arr, SORT_DESC, $new_recyclable_list_arr);
+
             $recyclable_str = '';
-            foreach ($recyclable_list_arr as $key=>$single_recyclable){
+            foreach ($new_recyclable_list_arr as $key=>$single_recyclable){
                 $recyclable_str .= '<strong>'.$single_recyclable->userName.'</strong>:'.$recyclable_list[$single_recyclable->userId].'；<br/>';
             }
             return $recyclable_str;
         });
         $grid->column('active_list', __('正在使用的列表'))->display(function ($active_list){
             $active_list_arr = DB::table('ec_users')->whereIn('userId', array_keys($active_list))->get();
+
+            $new_active_list_arr = [];
+            foreach ($active_list_arr as $single_active_list_arr){
+                $single_active_list_arr->sort = $active_list[$single_active_list_arr->userId];
+                $new_active_list_arr[] = $single_active_list_arr;
+            }
+
+            $new_active_arr = array_column($new_active_list_arr, 'sort');
+            array_multisort($new_active_arr, SORT_DESC, $new_active_list_arr);
+
+
+
             $active_str = '';
-            foreach ($active_list_arr as $single_active){
+            foreach ($new_active_list_arr as $single_active){
                 $active_str .= '<strong>'.$single_active->userName.'</strong>:'.$active_list[$single_active->userId].'；<br/>';
             }
             return $active_str;
