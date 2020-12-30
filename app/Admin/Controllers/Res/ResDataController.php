@@ -118,7 +118,16 @@ class ResDataController extends AdminController
         });
 
         $grid->column('synchronize_results', __('分配状态'))->bool();
-        $grid->column('failureCause', __('错误原因'));
+        $grid->column('failureCause', __('错误原因'))->display(function ($failureCause){
+            $exist_ec_userId = $this->exist_ec_userId;
+            if ($failureCause == '手机号已被其他客户使用' && !empty($exist_ec_userId)){
+                $single_user = DB::table('ec_users')->where('userId','=',$this->exist_ec_userId)->first();
+                return $failureCause.'：<b>'.$single_user->userName.'</b>';
+            }else{
+                return $failureCause;
+            }
+
+        });
         $grid->column('ec_userId', __('招商经理'))->display(function ($ec_userId){
             if (empty($ec_userId)){
                 return '';
