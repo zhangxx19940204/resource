@@ -236,7 +236,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('YmdHis').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','ec_userId','feedback_content']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId','feedback_content']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
