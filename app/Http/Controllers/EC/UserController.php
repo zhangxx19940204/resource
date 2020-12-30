@@ -178,7 +178,9 @@ class UserController extends Controller
             ->whereNull('exist_ec_userId')
             ->where('synchronize_results','=','0')
             ->where('failureCause','=','手机号已被其他客户使用')->get()->toArray();
-
+        if (empty($synchronize_fail_list)){
+            return '暂无新的占用手机号';
+        }
         foreach ($synchronize_fail_list as $synchronize_fail_data){
             $post_data = [
                 'mobile'=>$synchronize_fail_data->data_phone,
