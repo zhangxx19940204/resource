@@ -242,6 +242,8 @@ class PromoteDataController extends Controller
             }
             //账号有效，数据有效，接下来组装数据来存储在统计系统中
             $res_data_arr = [];
+            //将这个账号的用户ID取到 $mail_config->user_id, 根据user_id 去取这个用户的关键字列表
+            $keyword_list = DB::table('mail_from')->where('user_id', $mail_config->user_id)->get()->toArray();
             foreach ($wait_census_data as $single_census_data){
                 DB::beginTransaction();
                 $update_status = EmailData::where('id','=',$single_census_data->id)->update(['is_census' => 1]);
@@ -250,6 +252,7 @@ class PromoteDataController extends Controller
                     continue;
                 }
                 $belong = $this->get_belong_by_content($single_census_data->mail_content,$single_census_data->mail_title);
+                $from = $this->get_mail_from_remarks($single_census_data->mail_content,$keyword_list);
                 if ($belong == '未知'){
                     DB::rollBack();
                     continue;
@@ -257,7 +260,7 @@ class PromoteDataController extends Controller
                 try {
                     $res_data_arr[] = ['user_id' => $res_config_info->user_id, 'config_id' => $res_config_info->id
                         ,'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')
-                        ,'belong'=>$belong,'type'=>$res_config_info->type,'data_json'=>json_encode(['content'=>$single_census_data->mail_content,'title'=>$single_census_data->mail_title])
+                        ,'belong'=>$belong,'type'=>$res_config_info->type,'data_json'=>json_encode(['content'=>$single_census_data->mail_content,'title'=>$single_census_data->mail_title,'remarks'=>$from])
                         ,'data_name'=>$single_census_data->username,'data_phone'=>$single_census_data->phone];
                     DB::commit();
                 }catch (Exception $e){
@@ -291,6 +294,22 @@ class PromoteDataController extends Controller
         }else{
             return '未知';
         }
+    }
+
+    public function get_mail_from_remarks($content,$keyword_list){
+        $res_str = '';
+        foreach ($keyword_list as $keyword_arr){
+            if(strpos($content,$keyword_arr['keyword']) !== false){
+                //匹配到了
+                $res_str = $keyword_arr['from'];
+                break;
+            }else{
+                //未匹配
+                continue;
+            }
+        }
+        return $res_str;
+
     }
 
 }
