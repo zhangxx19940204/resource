@@ -193,9 +193,11 @@ class Distribution extends RowAction
     }
 
     public function record_distribution_log($distribution_log_data,$belong){
+        date_default_timezone_set('Asia/Shanghai');
         logger('开始记录log日志;日志数据：',$distribution_log_data);
         $synchronize_para = json_encode($distribution_log_data['synchronize_para']);
         $distribution_log_data['synchronize_para'] = $synchronize_para;
+        $distribution_log_data['created_at'] = date('Y-m-d H:i:s');
 
         DB::table('res_distribution_log')->insert($distribution_log_data);
         if ($distribution_log_data['synchronize_results'] == 0){

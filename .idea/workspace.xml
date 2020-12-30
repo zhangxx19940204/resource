@@ -8,7 +8,6 @@
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDistributionConfigController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
@@ -206,14 +205,7 @@
       <workItem from="1608516538359" duration="384000" />
       <workItem from="1608702569122" duration="55000" />
       <workItem from="1608702636585" duration="9125000" />
-      <workItem from="1609218031392" duration="11760000" />
-    </task>
-    <task id="LOCAL-00028" summary="update data_json show five">
-      <created>1606271600914</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1606271600914</updated>
+      <workItem from="1609218031392" duration="12809000" />
     </task>
     <task id="LOCAL-00029" summary="update fenpei">
       <created>1606371879885</created>
@@ -551,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609230749436</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="commit distribute update four">
+      <created>1609297510975</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1609297510975</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +599,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit import mukuai second" />
     <MESSAGE value="commit import mukuai third" />
     <MESSAGE value="commit import mukuai four" />
     <MESSAGE value="commit import mukuai five" />
@@ -625,6 +623,7 @@
     <MESSAGE value="commit distribute update first" />
     <MESSAGE value="commit distribute update second" />
     <MESSAGE value="commit distribute update third" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit distribute update third" />
+    <MESSAGE value="commit distribute update four" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit distribute update four" />
   </component>
 </project>
