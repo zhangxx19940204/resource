@@ -170,19 +170,20 @@ class UserController extends Controller
         $cid = env('EC_CID');
         $appId = env('EC_APPID');
         $appSecret = env('EC_APPSECRET');
+        logger('synchronous_failureCause_userId；');
 
         //查询当前手机重复的记录，准备一次去请求
-        $synchronize_fail_list = DB::table('res_data')->where('crmId','=','')
-            ->where('exist_ec_userId','=','')
+        $synchronize_fail_list = DB::table('res_data')
+            // ->whereNull('crmId')
+            ->whereNull('exist_ec_userId')
             ->where('synchronize_results','=','0')
-            ->where('failureCause','=','手机号已被其他客户使用')->get();
+            ->where('failureCause','=','手机号已被其他客户使用')->get()->toArray();
 
         foreach ($synchronize_fail_list as $synchronize_fail_data){
             $post_data = [
                 'mobile'=>$synchronize_fail_data->data_phone,
             ];
             logger('请求手机重复记录的客户记录请求EC的参数：');
-            logger($synchronize_fail_list);
             logger($post_data);
             $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
             $res_data_arr = json_decode($res_data_json,true);

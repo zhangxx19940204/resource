@@ -8,11 +8,9 @@
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,14 +205,7 @@
       <workItem from="1608516538359" duration="384000" />
       <workItem from="1608702569122" duration="55000" />
       <workItem from="1608702636585" duration="9125000" />
-      <workItem from="1609218031392" duration="25482000" />
-    </task>
-    <task id="LOCAL-00034" summary="update synchronize synchronize third">
-      <created>1606459190789</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1606459190789</updated>
+      <workItem from="1609218031392" duration="26184000" />
     </task>
     <task id="LOCAL-00035" summary="update synchronize synchronize button first">
       <created>1606461838280</created>
@@ -552,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609313351681</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="commit distribute update eight">
+      <created>1609322876718</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1609322876718</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +599,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit import mukuai six" />
     <MESSAGE value="commit import mukuai ceshi" />
     <MESSAGE value="commit import mukuai ceshi2" />
     <MESSAGE value="commit import mukuai ceshi3" />
@@ -626,6 +623,7 @@
     <MESSAGE value="commit distribute update five" />
     <MESSAGE value="commit distribute update six" />
     <MESSAGE value="commit distribute update seven" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit distribute update seven" />
+    <MESSAGE value="commit distribute update eight" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit distribute update eight" />
   </component>
 </project>
