@@ -162,4 +162,33 @@ class UserController extends Controller
         }
 
     }
+
+    public function synchronous_failureCause_userId(){
+        date_default_timezone_set('Asia/Shanghai');
+        //调用接口获取最新的一条反馈
+        $url = env('EC_QUERY');
+        $cid = env('EC_CID');
+        $appId = env('EC_APPID');
+        $appSecret = env('EC_APPSECRET');
+
+        //查询当前手机重复的记录，准备一次去请求
+        $synchronize_fail_list = DB::table('res_data')->where('crmId','=','')
+            ->where('exist_ec_userId','=','')
+            ->where('synchronize_results','=','0')
+            ->where('failureCause','=','手机号已被其他客户使用')->get();
+
+        foreach ($synchronize_fail_list as $synchronize_fail_data){
+            $post_data = [
+                'mobile'=>$synchronize_fail_data->data_phone,
+            ];
+            logger('请求手机重复记录的客户记录请求EC的参数：');
+            logger($synchronize_fail_list);
+            logger($post_data);
+            $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
+            $res_data_arr = json_decode($res_data_json,true);
+            DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
+                ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
+        }
+
+    }
 }

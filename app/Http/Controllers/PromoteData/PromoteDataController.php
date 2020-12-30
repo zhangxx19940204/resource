@@ -240,6 +240,7 @@ class PromoteDataController extends Controller
                 continue;
                 logger('暂无有效数据同步');
             }
+
             //账号有效，数据有效，接下来组装数据来存储在统计系统中
             $res_data_arr = [];
             //将这个账号的用户ID取到 $mail_config->user_id, 根据user_id 去取这个用户的关键字列表
