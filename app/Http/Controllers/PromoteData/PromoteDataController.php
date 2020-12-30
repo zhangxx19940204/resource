@@ -298,6 +298,9 @@ class PromoteDataController extends Controller
 
     public function get_mail_from_remarks($content,$keyword_list){
         $res_str = '';
+        if (empty($keyword_list)){
+            return $res_str;
+        }
         foreach ($keyword_list as $keyword_arr){
             if(strpos($content,$keyword_arr['keyword']) !== false){
                 //匹配到了
