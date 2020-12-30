@@ -302,9 +302,9 @@ class PromoteDataController extends Controller
             return $res_str;
         }
         foreach ($keyword_list as $keyword_arr){
-            if(strpos($content,$keyword_arr['keyword']) !== false){
+            if(strpos($content,$keyword_arr->keyword) !== false){
                 //匹配到了
-                $res_str = $keyword_arr['from'];
+                $res_str = $keyword_arr->from;
                 break;
             }else{
                 //未匹配
