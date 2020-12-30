@@ -41,6 +41,10 @@ class Distribution extends RowAction
             $data_arr = json_decode($model->data_json,true);
             $fastHorse_id = $data_arr['app_name'];
             $fast_horse_message = '';
+        }elseif ($model->type == '5988'){
+            $data_arr = json_decode($model->data_json,true);
+            $fastHorse_id = '';
+            $fast_horse_message = $data_arr['remark'];
         }else{
             $fastHorse_id = '';
             $fast_horse_message = '';

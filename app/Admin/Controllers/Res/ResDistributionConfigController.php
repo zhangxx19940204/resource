@@ -58,8 +58,6 @@ class ResDistributionConfigController extends AdminController
             $new_active_arr = array_column($new_active_list_arr, 'sort');
             array_multisort($new_active_arr, SORT_DESC, $new_active_list_arr);
 
-
-
             $active_str = '';
             foreach ($new_active_list_arr as $single_active){
                 $active_str .= '<strong>'.$single_active->userName.'</strong>:'.$active_list[$single_active->userId].'；<br/>';
