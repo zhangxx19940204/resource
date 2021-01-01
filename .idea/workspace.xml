@@ -7,10 +7,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EC/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,14 +207,7 @@
       <workItem from="1608516538359" duration="384000" />
       <workItem from="1608702569122" duration="55000" />
       <workItem from="1608702636585" duration="9125000" />
-      <workItem from="1609218031392" duration="27703000" />
-    </task>
-    <task id="LOCAL-00038" summary="update synchronize synchronize button four">
-      <created>1606558010290</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1606558010290</updated>
+      <workItem from="1609218031392" duration="34876000" />
     </task>
     <task id="LOCAL-00039" summary="update synchronize synchronize button five">
       <created>1606559160675</created>
@@ -550,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609325540054</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="commit distribute update ten">
+      <created>1609325746923</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1609325746923</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

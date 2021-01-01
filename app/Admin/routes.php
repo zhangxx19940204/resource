@@ -23,6 +23,7 @@ Route::group([
     $router->resource('email-passes', Email\EmailPassController::class);
 
     $router->resource('ec-users', Res\EcUserController::class);
+    $router->resource('short-feedback_relatives', Res\ShortFeedbackController::class);
 
 
 });

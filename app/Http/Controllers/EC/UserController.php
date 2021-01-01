@@ -194,4 +194,54 @@ class UserController extends Controller
         }
 
     }
+
+    public function add_feedbackContent_short(){
+        //先去查询没有简短反馈的相关数据
+        $add_shortWord_list = DB::table('res_data')
+            ->where('feedback_status','=','1')
+            ->whereNotNull('feedback_content')
+            ->get()->toArray();
+        $find_list =  DB::table('short_feedback_relative')->get()->toArray();
+        $find_arr = [];
+        foreach ($find_list as $single_find){
+            $find_arr[$single_find->short_feeback] = json_decode($single_find->find_keywords_list,true);
+        }
+//        dump($find_arr);
+//        die();
+        foreach ($add_shortWord_list as $add_shortWord){ //这个循环的数据为：需要添加简短反馈的数据列表
+
+            $content_arr = json_decode($add_shortWord->feedback_content,true);
+
+            $content_str = array_shift($content_arr)['content'];//反馈的内容，根据这个内容进行判断
+            //获取完毕反馈的内容，下面进行数据判断
+            $short_feeback_str = $this->get_short_feedback_str($find_arr,$content_str);
+            if (empty($short_feeback_str)){
+                continue;
+            }else{
+                DB::table('res_data')->where('id', '=',$add_shortWord->id)->update(['short_feedback' => $short_feeback_str]);
+                logger('简短反馈更新完毕:'.$add_shortWord->id);
+            }
+
+        }
+
+    }
+
+    public function get_short_feedback_str($find_arr,$content_str){
+        $res_str = '';
+        foreach ($find_arr as $short_feeback =>$single_find_arr){ //循环多个类别
+            foreach ($single_find_arr as $single_word){ //这个循环的是一个类别下的多个关键字
+                if(strpos($content_str,$single_word)!==false){
+                    //匹配到关键字，直接返回，不在继续循环
+                    $res_str = $short_feeback;
+                    break;
+                }else{
+                    //此类中，此关键字，不匹配
+                    continue;
+                }
+            }
+        }
+
+        return $res_str;
+
+    }
 }
