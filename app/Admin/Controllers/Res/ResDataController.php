@@ -15,7 +15,7 @@ use Encore\Admin\Widgets\Table;
 use Illuminate\Support\Facades\Auth;
 use Encore\Admin\Actions\RowAction;
 use Illuminate\Support\Facades\DB;
-use Encore\Admin\Grid\Displayers\Actions;
+
 
 class ResDataController extends AdminController
 {
@@ -141,6 +141,7 @@ class ResDataController extends AdminController
             0 => '未反馈',
             1 => '已反馈',
         ]);
+        $grid->column('short_feedback', __('简短反馈'));
         $grid->column('feedback_content', __('反馈内容'))->display(function ($feedback_content){
             $content_str = '';
             if (empty($feedback_content)){
@@ -165,6 +166,7 @@ class ResDataController extends AdminController
 
         $grid->disableCreateButton();
 
+
         $grid->actions(function ($actions){
             // 去掉删除
             $actions->disableDelete();
@@ -179,6 +181,7 @@ class ResDataController extends AdminController
             }
 
         });
+
 
         $grid->batchActions(function ($batch) {
             $batch->add(new BatchDistribution());
@@ -236,7 +239,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('YmdHis').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId','feedback_content']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId','short_feedback','feedback_content']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;

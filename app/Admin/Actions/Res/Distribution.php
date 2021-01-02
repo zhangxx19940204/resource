@@ -148,6 +148,7 @@ class Distribution extends RowAction
 //        $this->multipleSelect('ec_user', '招商')->options($finish_user_arr)->rules('required');
     }
 
+
     public function get_next_userId($belong){
         //第一步，查询数据相关的分配数据
         $distribution_arr = ResDistributionConfig::where('status','=','1')->where('belong','=',$belong)->first();

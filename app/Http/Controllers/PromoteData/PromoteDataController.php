@@ -289,7 +289,7 @@ class PromoteDataController extends Controller
         if(strpos($content,'半城外')!==false || strpos($title,'半城外')!==false){
             //半城外的数据
             return '半城外';
-        }if(strpos($content,'阿城')!==false || strpos($title,'阿城')!==false){
+        }elseif(strpos($content,'阿城')!==false || strpos($title,'阿城')!==false){
             //阿城的数据
             return '阿城';
         }else{
