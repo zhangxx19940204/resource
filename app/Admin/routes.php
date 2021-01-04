@@ -24,6 +24,8 @@ Route::group([
 
     $router->resource('ec-users', Res\EcUserController::class);
     $router->resource('short-feedback_relatives', Res\ShortFeedbackController::class);
+    $router->resource('distribute-logs', Res\DistributeLogController::class);
+    $router->resource('mail-froms', Res\MailFromController::class);
 
 
 });

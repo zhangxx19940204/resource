@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EcUser extends Model
+class DistributeLog extends Model
 {
     use HasFactory;
-    protected $table = 'ec_users';
+    protected $table = 'res_distribution_log';
     protected $primaryKey = 'id';
 
-    public function distributeLog()
+    public function ecUser()
     {
-        return $this->hasMany('App\Models\DistributeLog','userId','ec_userId');
+        return $this->belongsTo('App\Models\EcUser','ec_userId','userId');
     }
 }
