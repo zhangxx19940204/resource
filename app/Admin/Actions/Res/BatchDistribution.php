@@ -39,10 +39,25 @@ class BatchDistribution extends BatchAction
                 $data_arr = json_decode($model->data_json,true);
                 $fastHorse_id =  $data_arr['id'];
                 $fast_horse_message = $data_arr['message'];
-            }if ($model->type == '头条'){
+            }elseif ($model->type == '头条'){
                 $data_arr = json_decode($model->data_json,true);
                 $fastHorse_id = $data_arr['app_name'];
                 $fast_horse_message = '';
+            }elseif ($model->type == '5988'){
+                $data_arr = json_decode($model->data_json,true);
+                $fastHorse_id = '';
+                $fast_horse_message = $data_arr['remark'];
+            }elseif ($model->type == 'mail'){
+
+                if (empty($model->data_json)){
+                    $fastHorse_id = '';
+                    $fast_horse_message = '';
+                }else{
+                    $data_arr = json_decode($model->data_json,true);
+                    $fastHorse_id = '';
+                    $fast_horse_message = $data_arr['remarks'];
+                }
+
             }else{
                 $fastHorse_id = '';
                 $fast_horse_message = '';

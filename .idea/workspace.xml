@@ -6,12 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/resource.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resource.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Actions/Res/Distribution.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
@@ -156,7 +153,6 @@
       <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
-      <path value="$PROJECT_DIR$/vendor/jxlwqq/material-ui" />
     </include_path>
   </component>
   <component name="ProjectId" id="1kBKS9H8ihx14VYMZX0I9YpwUX4" />
@@ -211,21 +207,8 @@
       <workItem from="1608702569122" duration="55000" />
       <workItem from="1608702636585" duration="9125000" />
       <workItem from="1609218031392" duration="36111000" />
-      <workItem from="1609480175328" duration="10690000" />
-    </task>
-    <task id="LOCAL-00040" summary="update logger post_para res_data">
-      <created>1606617231537</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1606617231537</updated>
-    </task>
-    <task id="LOCAL-00041" summary="update logger post_para res_data second">
-      <created>1606619360707</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1606619360707</updated>
+      <workItem from="1609480175328" duration="28879000" />
+      <workItem from="1609912401851" duration="1381000" />
     </task>
     <task id="LOCAL-00042" summary="update logger post_para res_data third">
       <created>1606619600024</created>
@@ -556,7 +539,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609479123647</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="commit Optimized code">
+      <created>1609572937956</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1609572937956</updated>
+    </task>
+    <task id="LOCAL-00090" summary="commit system finally 0.1">
+      <created>1609742742760</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1609742742760</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,8 +602,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit import mukuai ceshi4" />
-    <MESSAGE value="commit import mukuai ceshi5" />
     <MESSAGE value="commit import mukuai ceshi6" />
     <MESSAGE value="commit import mukuai ceshi7" />
     <MESSAGE value="commit import mukuai ceshi8" />
@@ -630,6 +625,8 @@
     <MESSAGE value="commit distribute update night" />
     <MESSAGE value="commit distribute update ten" />
     <MESSAGE value="commit shortfeedback update first" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit shortfeedback update first" />
+    <MESSAGE value="commit Optimized code" />
+    <MESSAGE value="commit system finally 0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit system finally 0.1" />
   </component>
 </project>

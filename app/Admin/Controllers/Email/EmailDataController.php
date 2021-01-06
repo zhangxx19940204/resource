@@ -72,6 +72,10 @@ class EmailDataController extends AdminController
 
             $filter->column(1/2, function ($filter) {
                 $filter->like('phone', '手机号');
+                $filter->in('is_census','是否已同步')->checkbox([
+                    '0'    => '未同步',
+                    '1'    => '已同步',
+                ]);
 
                 $filter->between('created_at', '时间区间')->datetime();
 
