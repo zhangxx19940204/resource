@@ -93,6 +93,12 @@ class DistributeLogController extends AdminController
                 }
 
                 $filter->in('ec_userId', '分配人')->multipleSelect($ecUser_arr);
+                $filter->where(function ($query) {
+
+                    $query->where('synchronize_para->mobile', "{$this->input}");
+
+                }, '手机号');
+
                 $filter->in('synchronize_results','同步结果')->checkbox([
                     '0'    => '失败',
                     '1'    => '成功',

@@ -7,8 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailDataController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/DistributeLogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/DistributeLogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
@@ -208,14 +208,7 @@
       <workItem from="1608702636585" duration="9125000" />
       <workItem from="1609218031392" duration="36111000" />
       <workItem from="1609480175328" duration="28879000" />
-      <workItem from="1609912401851" duration="1381000" />
-    </task>
-    <task id="LOCAL-00042" summary="update logger post_para res_data third">
-      <created>1606619600024</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1606619600024</updated>
+      <workItem from="1609912401851" duration="3193000" />
     </task>
     <task id="LOCAL-00043" summary="update logger post_para res_data four">
       <created>1606619898524</created>
@@ -553,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609742742760</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="commit batchdistirbute bug 0.1">
+      <created>1609915501496</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1609915501497</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,7 +602,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit import mukuai ceshi6" />
     <MESSAGE value="commit import mukuai ceshi7" />
     <MESSAGE value="commit import mukuai ceshi8" />
     <MESSAGE value="add auto distribution first" />
@@ -627,6 +626,7 @@
     <MESSAGE value="commit shortfeedback update first" />
     <MESSAGE value="commit Optimized code" />
     <MESSAGE value="commit system finally 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit system finally 0.1" />
+    <MESSAGE value="commit batchdistirbute bug 0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.1" />
   </component>
 </project>
