@@ -12,6 +12,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
+    $router->any('/get_resource_all_by_day', 'HomeController@get_resource_all_by_day');
 
     //资源统计列表页
     $router->resource('res-datas', Res\ResDataController::class);
