@@ -245,6 +245,7 @@ class PromoteDataController extends Controller
             $res_data_arr = [];
             //将这个账号的用户ID取到 $mail_config->user_id, 根据user_id 去取这个用户的关键字列表
             $keyword_list = DB::table('mail_from')->where('user_id', $mail_config->user_id)->get()->toArray();
+            $belong_list = DB::table('mail_belong')->where('user_id', $mail_config->user_id)->get()->toArray();
             foreach ($wait_census_data as $single_census_data){
                 DB::beginTransaction();
                 $update_status = EmailData::where('id','=',$single_census_data->id)->update(['is_census' => 1]);
@@ -252,7 +253,7 @@ class PromoteDataController extends Controller
                     DB::rollBack();
                     continue;
                 }
-                $belong = $this->get_belong_by_content($single_census_data->mail_content,$single_census_data->mail_title);
+                $belong = $this->get_belong_by_content($single_census_data->mail_content,$single_census_data->mail_title,$belong_list);
                 $from = $this->get_mail_from_remarks($single_census_data->mail_content,$keyword_list);
                 if ($belong == '未知'){
                     DB::rollBack();
@@ -284,17 +285,28 @@ class PromoteDataController extends Controller
     }
 
 
-    public function get_belong_by_content($content,$title){
+    public function get_belong_by_content($content,$title,$belong_list){
 
-        if(strpos($content,'半城外')!==false || strpos($title,'半城外')!==false){
-            //半城外的数据
-            return '半城外';
-        }elseif(strpos($content,'阿城')!==false || strpos($title,'阿城')!==false){
-            //阿城的数据
-            return '阿城';
-        }else{
-            return '未知';
+        $res_str = '未知';
+        if (empty($content) && empty($title)){
+            return $res_str;
         }
+        if (empty($belong_list)){
+            return $res_str;
+        }
+
+        foreach ($belong_list as $keyword_arr){
+            if(strpos($content,$keyword_arr->keyword)!==false || strpos($title,$keyword_arr->keyword)!==false){
+                //匹配到了
+                $res_str = $keyword_arr->belong;
+                break;
+            }else{
+                //未匹配
+                continue;
+            }
+        }
+
+        return $res_str;
     }
 
     public function get_mail_from_remarks($content,$keyword_list){
