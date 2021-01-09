@@ -29,7 +29,8 @@ class HomeController extends Controller
             ->select('res_data.*',DB::raw("date_format(res_data.created_at, '%Y-%m-%d') as created_date"),'res_config.custom_name')
             ->join('res_config', 'res_config.id', '=', 'res_data.config_id')
             ->whereBetween('res_data.created_at',[$request_data['startDate'],$request_data['endDate']])
-            ->orderByDesc('res_data.created_at')
+//            ->orderByDesc('res_data.created_at')
+            ->orderBy('res_data.created_at', 'asc')
             ->get();
         $legend_data = []; //账户列表
         $xAxis_arr = []; //过渡时间列表
