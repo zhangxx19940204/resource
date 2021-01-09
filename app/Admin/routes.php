@@ -27,6 +27,7 @@ Route::group([
     $router->resource('short-feedback_relatives', Res\ShortFeedbackController::class);
     $router->resource('distribute-logs', Res\DistributeLogController::class);
     $router->resource('mail-froms', Res\MailFromController::class);
+    $router->resource('mail-belongs', Res\MailBelongController::class);
 
 
 });

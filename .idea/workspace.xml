@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PromoteData/PromoteDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
@@ -211,14 +211,7 @@
       <workItem from="1608702636585" duration="9125000" />
       <workItem from="1609218031392" duration="36111000" />
       <workItem from="1609480175328" duration="28879000" />
-      <workItem from="1609912401851" duration="32563000" />
-    </task>
-    <task id="LOCAL-00048" summary="commit sync mail_data second">
-      <created>1606906615191</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1606906615191</updated>
+      <workItem from="1609912401851" duration="33675000" />
     </task>
     <task id="LOCAL-00049" summary="commit sync mail_data third">
       <created>1606961404854</created>
@@ -556,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610154348736</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="commit batchdistirbute bug 0.7">
+      <created>1610182121824</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1610182121824</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +605,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit auto distribution third" />
     <MESSAGE value="commit auto distribution four" />
     <MESSAGE value="commit disabled distribution button" />
     <MESSAGE value="commit disabled distribution button second" />
@@ -630,6 +629,7 @@
     <MESSAGE value="commit batchdistirbute bug 0.4" />
     <MESSAGE value="commit batchdistirbute bug 0.5" />
     <MESSAGE value="commit batchdistirbute bug 0.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.6" />
+    <MESSAGE value="commit batchdistirbute bug 0.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.7" />
   </component>
 </project>
