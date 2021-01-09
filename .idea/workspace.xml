@@ -6,10 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/home/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/home/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,14 +211,7 @@
       <workItem from="1608702636585" duration="9125000" />
       <workItem from="1609218031392" duration="36111000" />
       <workItem from="1609480175328" duration="28879000" />
-      <workItem from="1609912401851" duration="25823000" />
-    </task>
-    <task id="LOCAL-00045" summary="update config filesystems">
-      <created>1606634484725</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1606634484725</updated>
+      <workItem from="1609912401851" duration="28251000" />
     </task>
     <task id="LOCAL-00046" summary="update config filesystems">
       <created>1606642763669</created>
@@ -556,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610100196836</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="commit batchdistirbute bug 0.4">
+      <created>1610100302454</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1610100302454</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +605,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add auto distribution first" />
     <MESSAGE value="commit auto distribution first" />
     <MESSAGE value="commit auto distribution second" />
     <MESSAGE value="commit auto distribution third" />
@@ -630,6 +629,7 @@
     <MESSAGE value="commit batchdistirbute bug 0.1" />
     <MESSAGE value="commit batchdistirbute bug 0.2" />
     <MESSAGE value="commit batchdistirbute bug 0.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.3" />
+    <MESSAGE value="commit batchdistirbute bug 0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.4" />
   </component>
 </project>

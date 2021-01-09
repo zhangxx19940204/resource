@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>资源统计后台首页</title>
-    <link rel="stylesheet" type="text/css" href="/admin/home/css/style.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/admin/home/css/style.css" />
+    <script type="text/javascript" src="/assets/admin/home/js/echarts.min.js"></script>
 
-    <script type="text/javascript" src="/admin/home/js/moment.min.js"></script>
-    <script type="text/javascript" src="/admin/home/js/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/admin/home/css/daterangepicker.css" />
+    <script type="text/javascript" src="/assets/admin/home/js/moment.min.js"></script>
+    <script type="text/javascript" src="/assets/admin/home/js/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/admin/home/css/daterangepicker.css" />
 </head>
 
 <body>
