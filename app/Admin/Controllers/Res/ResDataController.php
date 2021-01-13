@@ -74,10 +74,10 @@ class ResDataController extends AdminController
             if ($this->type == '快马'){
                 $data_arr = json_decode($this->data_json,true);
                 return $data_arr['message'];
-            }if ($this->type == '5988'){
+            } elseif ($this->type == '5988'){
                 $data_arr = json_decode($this->data_json,true);
-                if (is_array($data_arr) && array_key_exists('remarks',$data_arr)){
-                    return $data_arr['remark'];
+                if (is_array($data_arr) && array_key_exists('remark',$data_arr)){
+                    return $data_arr['remark'].'微信号：'.$data_arr['wechat'];
                 }else{
                     return '';
                 }
