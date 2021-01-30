@@ -14,3 +14,5 @@ yarn-error.log
 /public/.htaccess
 *.lock
 /public/*
+public/.htaccess
+composer.lock
