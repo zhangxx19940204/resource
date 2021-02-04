@@ -64,7 +64,7 @@ class BatchDistribution extends BatchAction
             }
 
             $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
-            $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
+            $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>trim($phone),'memo'=>$memo];
             $model_arr[] = $model;
         }
         $url = env('EC_ADDCUSTOMER');
