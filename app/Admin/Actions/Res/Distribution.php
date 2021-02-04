@@ -62,7 +62,7 @@ class Distribution extends RowAction
         }
 
         $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
-        $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>$phone,'memo'=>$memo];
+        $customer[] = ['followUserId'=>$userId,'name'=>$name,'mobile'=>trim($phone),'memo'=>$memo];
 
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
