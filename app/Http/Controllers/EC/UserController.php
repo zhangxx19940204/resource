@@ -27,6 +27,7 @@ class UserController extends Controller
 //            DB::table('ec_users')->insert($res_data['data']['users']);
 //            DB::table('ec_depts')->truncate();
 //            DB::table('ec_depts')->insert($res_data['data']['depts']);
+            DB::table('ec_users')->update(['status' => 0]);
             foreach ($res_data['data']['users'] as $user){
                 DB::table('ec_users')
                     ->updateOrInsert(
