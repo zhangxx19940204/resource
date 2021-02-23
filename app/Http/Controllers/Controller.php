@@ -35,6 +35,20 @@ class Controller extends BaseController
 
     }
 
+    public function simple_get($url, $get_data){
+        $ch = curl_init();
+        $timeout = 300;
+        $get_data_para = implode('&',$get_data);
+        $complete_url = $url.'?'.$get_data_para;
+        curl_setopt ($ch, CURLOPT_URL, $complete_url);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $file_contents = curl_exec($ch);
+        curl_close($ch);
+
+        return $file_contents;
+    }
+
 //EC的封装方法
 
     /**
