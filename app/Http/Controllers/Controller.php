@@ -49,7 +49,135 @@ class Controller extends BaseController
         return $file_contents;
     }
 
-//EC的封装方法
+//    封装的dingTalk的方法
+    //钉钉用户登录接口
+    public function user_login(){
+
+        $code = Input::get('code', '');
+        if ($code == '') {
+            //code值为空
+            return response()->json(['status'=>-1,'message'=>'登录异常，请重新登录','data'=>[]]);
+        } else {
+            //code正常
+            $app_config = config('dingTalk');
+            $app = new Application($app_config);
+            $user_id_arr = $app->user->getUserByCode($code); //{"errcode":0,"sys_level":0,"is_sys":false,"name":"张祥祥","errmsg":"ok","deviceId":"693ef736987bb9c1cb2df1294d58b8a3","userid":"100700404824396736"}
+
+            if ($user_id_arr['errcode'] != '0'){
+                return response()->json(['status'=>-1,'message'=>'登录异常2，请重新登录','data'=>[]]);
+            }
+
+            //判断userid是否存在
+            $single_user = DB::table('dingding_user')->where('userid', '=',$user_id_arr['userid'])->first();
+
+
+            if(empty($single_user)){
+                //新用户，进行插入操作
+
+                $user_detail = $this->get_user_detail($app,$user_id_arr['userid']);
+
+                if ($user_detail['status'] != '0'){
+                    //不正常
+                    return response()->json(['status'=>-1,'message'=>$user_detail['message'],'data'=>[]]);
+                }
+
+                //正常，操作
+                $user_id = DB::table('dingding_user')->insertGetId($user_detail['data']);
+
+
+                if ($user_id > '0'){
+                    $res_data = $user_detail['data'];
+                    $res_data['id'] = $user_id;
+                    return response()->json(['status'=>1,'message'=>'正常登录','data'=>$res_data]);
+                }else{
+                    return response()->json(['status'=>-1,'message'=>'登录异常4，请重新登录','data'=>[]]);
+                }
+            }else{
+                //查询到了用户，判断状态是否需要更新
+                if ($single_user->status == '1'){
+                    //无需更新
+                    return response()->json(['status'=>1,'message'=>'登录成功1','data'=>$single_user]);
+                }else{
+                    //需要更新数据
+                    $user_detail = $this->get_user_detail($app,$user_id_arr['userid']);
+                    if ($user_detail['status'] != '0'){
+                        //不正常
+                        return response()->json(['status'=>-1,'message'=>$user_detail['message'],'data'=>[]]);
+                    }
+                    //正常，更新操作
+                    $update_status = DB::table('dingding_user')->where('id', '=',$single_user->id)->update($user_detail['data']);
+                    $update_after_data = DB::table('dingding_user')->where('userid', '=',$user_id_arr['userid'])->first();
+                    return response()->json(['status'=>1,'message'=>'登录成功2','data'=>$update_after_data]);
+                }
+            }
+
+
+        }
+
+
+
+
+    }
+
+    //获取钉钉用户的详情和部门
+    public function get_user_detail($app,$userid){
+        //查詢用户详情和部门列表更新
+        $user_detail_arr = $app->user->get($userid, $lang = null);
+        if ($user_detail_arr['errcode'] != '0'){
+            return ['status'=>-1,'message'=>'登录异常3，请重新登录','data'=>[]];
+        }
+        //去获取部门详情作为参数
+        $department_name = '';
+        $department_id_str = '';
+        foreach ($user_detail_arr['department'] as $key=>$department_id){
+            $department_id_str .= $department_id.',';
+            $single_department = $app->department->get($department_id, $lang = null);
+            if ($single_department['errcode'] != '0'){
+                continue;
+            }
+            $department_name .= $single_department['name'].'-';
+        }
+        //下面组装用户的信息装备进入数据库
+        $data = ['userid' => $user_detail_arr['userid'],
+            'openid' => $user_detail_arr['openId'],
+            'unionid' => $user_detail_arr['unionid'],
+            'name' => $user_detail_arr['name'],
+            'mobile' => $user_detail_arr['mobile'],
+            'position' => array_key_exists('position', $user_detail_arr)? $user_detail_arr['position']:'无职位',
+            'avatar' => $user_detail_arr['avatar'],
+            'department_id' => $department_id_str,
+            'department_name' => $department_name,
+            'status' => '1',
+            'create_date' => date("Y-m-d H:i:s")
+        ];
+
+        return ['status'=>0,'message'=>'正常','data'=>$data];
+
+    }
+    /**
+     * 发送post请求
+     * @param string $url 请求地址
+     * @param array $post_data post键值对数据
+     * @return string
+     */
+    public function send_post($url, $post_data) {
+
+        $postdata = http_build_query($post_data);
+        $options = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-type:application/x-www-form-urlencoded',
+                'content' => $postdata,
+                'timeout' => 15 * 60 // 超时时间（单位:s）
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return $result;
+
+    }
+
+//  EC的封装方法
 
     /**
      *  签名算法
