@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
+use EasyDingTalk\Application;
+
 
 class Controller extends BaseController
 {
@@ -52,9 +55,9 @@ class Controller extends BaseController
 
 //    封装的dingTalk的方法
     //钉钉用户登录接口
-    public function user_login(){
+    public function user_login(Request $request){
 
-        $code = Input::get('code', '');
+        $code = $request->get('code', '');
         if ($code == '') {
             //code值为空
             return response()->json(['status'=>-1,'message'=>'登录异常，请重新登录','data'=>[]]);
