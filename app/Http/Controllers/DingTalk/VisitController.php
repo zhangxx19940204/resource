@@ -12,8 +12,8 @@ class VisitController extends Controller
 
     //来访进款表
     public function index(){
-
-        return view('dingTalk.visit',[]);
+        $dingTalk_arr = config('dingTalk');
+        return view('dingTalk.visit',['corp_id'=>$dingTalk_arr['corp_id']]);
 
     }
     //获取列表

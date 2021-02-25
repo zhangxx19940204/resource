@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Filesystem\Cache;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
-use EasyDingTalk\Application;
-
+use Illuminate\Support\Facades\Cache;
 
 class Controller extends BaseController
 {
@@ -64,9 +64,16 @@ class Controller extends BaseController
         } else {
             //code正常
             $app_config = config('dingTalk');
-            $app = new Application($app_config);
-            $user_id_arr = $app->user->getUserByCode($code); //{"errcode":0,"sys_level":0,"is_sys":false,"name":"张祥祥","errmsg":"ok","deviceId":"693ef736987bb9c1cb2df1294d58b8a3","userid":"100700404824396736"}
-
+//            $app = new Application($app_config);
+//            $user_id_arr = $app->user->getUserByCode($code); //{"errcode":0,"sys_level":0,"is_sys":false,"name":"张祥祥","errmsg":"ok","deviceId":"693ef736987bb9c1cb2df1294d58b8a3","userid":"100700404824396736"}
+            $access_token = $this->get_dingTalk_access_token($app_config,$app_config['corp_id']);
+            if (empty($access_token)){
+                return response()->json(['status'=>-1,'message'=>'系统异常，请重新登录——ak','data'=>[]]);
+            }
+            $url = 'https://oapi.dingtalk.com/topapi/v2/user/getuserinfo?access_token='.$access_token;
+            $user_id_arr = $this->simple_post($url,['code'=>$code]);
+            logger($code,$user_id_arr);
+            die();
             if ($user_id_arr['errcode'] != '0'){
                 return response()->json(['status'=>-1,'message'=>'登录异常2，请重新登录','data'=>[]]);
             }
@@ -120,6 +127,29 @@ class Controller extends BaseController
 
 
 
+
+    }
+
+    //钉钉获取$access_token定时
+    public function get_dingTalk_access_token($app_config,$corp_id){
+
+        if (Cache::has($corp_id.'_ak')) {
+            //access_token存在，直接返回
+            return Cache::get($corp_id.'_ak');
+        }else{
+            //access_token不存在，直接请求获取并记录
+            $url = 'https://oapi.dingtalk.com/gettoken';
+            $access_token_json = $this->simple_get($url,['appkey'=>$app_config['app_key'],'appsecret'=>$app_config['app_secret']]);
+            $access_token_arr = json_decode($access_token_json,true);
+            if ($access_token_arr['errcode'] == '0'){
+                //获取成功，记录进缓存中,同时返回去
+                Cache::put($corp_id.'_ak', $access_token_arr['access_token'], 60*60);
+                return $access_token_arr['access_token'];
+            }else{
+                //出错了，提示
+                return '';
+            }
+        }
 
     }
 

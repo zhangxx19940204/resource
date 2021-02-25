@@ -12,7 +12,8 @@ class FeedbackController extends Controller
 {
     //首页（资源反馈表）
     public function index(){
-        return view('dingTalk.feedback',[]);
+        $dingTalk_arr = config('dingTalk');
+        return view('dingTalk.feedback',['corp_id'=>$dingTalk_arr['corp_id']]);
     }
 
     //获取列表

@@ -43,14 +43,14 @@ Route::any('/synchronous_failureCause_userId', [EC\UserController::class, 'synch
 //钉钉微应用 ==招商资源中心
 Route::any('/user_login', [DingTalk\FeedbackController::class, 'user_login']); //接收code，查询数据
 
-Route::get('investment', [DingTalk\FeedbackController::class, 'index']); //默认为资源反馈表
-Route::any('get_list', [DingTalk\FeedbackController::class, 'get_list']); //资源反馈表的列表
-Route::any('opera_data', [DingTalk\FeedbackController::class, 'opera_data']); //资源反馈表的操作
+Route::get('/investment', [DingTalk\FeedbackController::class, 'index']); //默认为资源反馈表
+Route::any('/get_list', [DingTalk\FeedbackController::class, 'get_list']); //资源反馈表的列表
+Route::any('/opera_data', [DingTalk\FeedbackController::class, 'opera_data']); //资源反馈表的操作
 
 
-Route::get('visit', [DingTalk\VisitController::class, 'index']); //来访进款表
-Route::any('get_visit_list', [DingTalk\VisitController::class, 'get_list']); //资源反馈表的列表
-Route::any('opera_visit_data', [DingTalk\VisitController::class, 'opera_data']); //资源反馈表的操作
+Route::get('/visit', [DingTalk\VisitController::class, 'index']); //来访进款表
+Route::any('/get_visit_list', [DingTalk\VisitController::class, 'get_list']); //资源反馈表的列表
+Route::any('/opera_visit_data', [DingTalk\VisitController::class, 'opera_data']); //资源反馈表的操作
 
 
 

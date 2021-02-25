@@ -186,7 +186,7 @@
             dd.ready(function() {
                 // dd.ready参数为回调函数，在环境准备就绪时触发，jsapi的调用需要保证在该回调函数触发后调用，否则无效。
                 dd.runtime.permission.requestAuthCode({
-                    corpId: "ding72571b91c47e745235c2f4657eb6378f",
+                    corpId: "{{ $corp_id }}",
                     onSuccess: function(result) {
                         //
                         $.ajax({
