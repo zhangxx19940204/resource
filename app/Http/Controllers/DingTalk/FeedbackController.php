@@ -17,7 +17,7 @@ class FeedbackController extends Controller
 
     //获取列表
     public function get_list(Request $request){
-        $para = $request->get(); //array(3) { ["page"]=> string(1) "1" ["limit"]=> string(2) "10" ["user_id"]=> string(1) "5" }
+        $para = $request->all(); //array(3) { ["page"]=> string(1) "1" ["limit"]=> string(2) "10" ["user_id"]=> string(1) "5" }
         $page=$para['page']-1;
         if ($page != 0) {
             $page = $para['limit'] * $page;//从哪里开始
@@ -39,7 +39,7 @@ class FeedbackController extends Controller
 
     //操作数据
     public function opera_data(Request $request){
-        $para = $request->get();
+        $para = $request->all();
         //判断类型
         if ($para['opera_type'] == 'edit') {
 
