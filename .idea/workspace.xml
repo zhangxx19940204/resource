@@ -7,9 +7,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +160,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -211,28 +212,11 @@
       <workItem from="1608702636585" duration="9125000" />
       <workItem from="1609218031392" duration="36111000" />
       <workItem from="1609480175328" duration="28879000" />
-      <workItem from="1609912401851" duration="33675000" />
-    </task>
-    <task id="LOCAL-00049" summary="commit sync mail_data third">
-      <created>1606961404854</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1606961404854</updated>
-    </task>
-    <task id="LOCAL-00050" summary="commit sync mail_data four">
-      <created>1606991609458</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1606991609458</updated>
-    </task>
-    <task id="LOCAL-00051" summary="update res_data show first">
-      <created>1607059465898</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1607059465899</updated>
+      <workItem from="1609912401851" duration="35210000" />
+      <workItem from="1613784368876" duration="1738000" />
+      <workItem from="1613871081868" duration="2598000" />
+      <workItem from="1614044459410" duration="104000" />
+      <workItem from="1614044597204" duration="28502000" />
     </task>
     <task id="LOCAL-00052" summary="commit import mukuai first">
       <created>1607332890359</created>
@@ -556,7 +540,28 @@
       <option name="project" value="LOCAL" />
       <updated>1610182121824</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="commit batchdistirbute bug 0.8">
+      <created>1610183262486</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1610183262486</updated>
+    </task>
+    <task id="LOCAL-00099" summary="commit update ec_user list 20210221">
+      <created>1613873080151</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1613873080151</updated>
+    </task>
+    <task id="LOCAL-00100" summary="update Globaljoin access">
+      <created>1614076943308</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1614076943308</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,9 +610,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit auto distribution four" />
-    <MESSAGE value="commit disabled distribution button" />
-    <MESSAGE value="commit disabled distribution button second" />
     <MESSAGE value="commit disabled distribution button third" />
     <MESSAGE value="commit disabled distribution button four" />
     <MESSAGE value="commit distribute update first" />
@@ -630,6 +632,9 @@
     <MESSAGE value="commit batchdistirbute bug 0.5" />
     <MESSAGE value="commit batchdistirbute bug 0.6" />
     <MESSAGE value="commit batchdistirbute bug 0.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit batchdistirbute bug 0.7" />
+    <MESSAGE value="commit batchdistirbute bug 0.8" />
+    <MESSAGE value="commit update ec_user list 20210221" />
+    <MESSAGE value="update Globaljoin access" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Globaljoin access" />
   </component>
 </project>
