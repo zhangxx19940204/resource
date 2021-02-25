@@ -6,21 +6,21 @@ return [
     | 【必填】企业 corpId
     |-----------------------------------------------------------
     */
-    'corp_id' => 'ding72571b91c47e745235c2f4657eb6378f',
+    'corp_id' => env('dingTalk_corp_id'),
 
     /*
     |-----------------------------------------------------------
     | 【必填】应用 AppKey
     |-----------------------------------------------------------
     */
-    'app_key' => 'dings5ylsqdwfmzzu8d6',
+    'app_key' => env('dingTalk_app_key'),
 
     /*
     |-----------------------------------------------------------
     | 【必填】应用 AppSecret
     |-----------------------------------------------------------
     */
-    'app_secret' => 'rS-RGiK2YTCkVBWXbb4tWgDiKSdXX15LHy38p9Ujr1yedRhedDtMZEHEWPUj_rmr',
+    'app_secret' => env('dingTalk_app_secret'),
 
 //    自定义了一个链接集合
     'gettoken_url'=>'https://oapi.dingtalk.com/gettoken',//获取token的url
