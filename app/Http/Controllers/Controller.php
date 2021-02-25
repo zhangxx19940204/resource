@@ -70,22 +70,22 @@ class Controller extends BaseController
             if (empty($access_token)){
                 return response()->json(['status'=>-1,'message'=>'系统异常，请重新登录——ak','data'=>[]]);
             }
-            $url = 'https://oapi.dingtalk.com/topapi/v2/user/getuserinfo?access_token='.$access_token;
-            $user_id_arr = $this->simple_post($url,['code'=>$code]);
+            $url = $app_config['getuserinfo_url'].'?access_token='.$access_token;
+            $user_id_json = $this->simple_post($url,['code'=>$code]);
+            $user_id_arr = json_decode($user_id_json,true);
             logger($code,$user_id_arr);
-            die();
+
             if ($user_id_arr['errcode'] != '0'){
                 return response()->json(['status'=>-1,'message'=>'登录异常2，请重新登录','data'=>[]]);
             }
 
             //判断userid是否存在
-            $single_user = DB::table('dingding_user')->where('userid', '=',$user_id_arr['userid'])->first();
-
+            $single_user = DB::table('dingding_user')->where('userid', '=',$user_id_arr['result']['userid'])->first();
 
             if(empty($single_user)){
                 //新用户，进行插入操作
 
-                $user_detail = $this->get_user_detail($app,$user_id_arr['userid']);
+                $user_detail = $this->get_user_detail($app_config,$user_id_arr['result']['userid'],$access_token);
 
                 if ($user_detail['status'] != '0'){
                     //不正常
@@ -110,7 +110,7 @@ class Controller extends BaseController
                     return response()->json(['status'=>1,'message'=>'登录成功1','data'=>$single_user]);
                 }else{
                     //需要更新数据
-                    $user_detail = $this->get_user_detail($app,$user_id_arr['userid']);
+                    $user_detail = $this->get_user_detail($app_config,$user_id_arr['result']['userid'],$access_token);
                     if ($user_detail['status'] != '0'){
                         //不正常
                         return response()->json(['status'=>-1,'message'=>$user_detail['message'],'data'=>[]]);
@@ -122,11 +122,7 @@ class Controller extends BaseController
                 }
             }
 
-
         }
-
-
-
 
     }
 
@@ -138,7 +134,7 @@ class Controller extends BaseController
             return Cache::get($corp_id.'_ak');
         }else{
             //access_token不存在，直接请求获取并记录
-            $url = 'https://oapi.dingtalk.com/gettoken';
+            $url = $app_config['gettoken_url'];
             $access_token_json = $this->simple_get($url,['appkey'=>$app_config['app_key'],'appsecret'=>$app_config['app_secret']]);
             $access_token_arr = json_decode($access_token_json,true);
             if ($access_token_arr['errcode'] == '0'){
@@ -154,31 +150,34 @@ class Controller extends BaseController
     }
 
     //获取钉钉用户的详情和部门
-    public function get_user_detail($app,$userid){
+    public function get_user_detail($app_config,$userid,$access_token){
         //查詢用户详情和部门列表更新
-        $user_detail_arr = $app->user->get($userid, $lang = null);
+        $user_detail_json = $this->simple_post($app_config['getuserdetail_url'].'?access_token='.$access_token,['userid'=>$userid]);
+        $user_detail_arr = json_decode($user_detail_json,true);
         if ($user_detail_arr['errcode'] != '0'){
             return ['status'=>-1,'message'=>'登录异常3，请重新登录','data'=>[]];
         }
         //去获取部门详情作为参数
         $department_name = '';
         $department_id_str = '';
+        $department_detail_url = $app_config['getdepartmentdetail_url'];
         foreach ($user_detail_arr['department'] as $key=>$department_id){
             $department_id_str .= $department_id.',';
-            $single_department = $app->department->get($department_id, $lang = null);
+            $single_department_json = $this->simple_post($department_detail_url.'?access_token='.$access_token,['dept_id'=>$department_id]);
+            $single_department = json_decode($single_department_json,true);
             if ($single_department['errcode'] != '0'){
                 continue;
             }
-            $department_name .= $single_department['name'].'-';
+            $department_name .= $single_department['result']['name'].'-';
         }
         //下面组装用户的信息装备进入数据库
-        $data = ['userid' => $user_detail_arr['userid'],
-            'openid' => $user_detail_arr['openId'],
-            'unionid' => $user_detail_arr['unionid'],
-            'name' => $user_detail_arr['name'],
-            'mobile' => $user_detail_arr['mobile'],
-            'position' => array_key_exists('position', $user_detail_arr)? $user_detail_arr['position']:'无职位',
-            'avatar' => $user_detail_arr['avatar'],
+        $data = ['userid' => $user_detail_arr['result']['userid'],
+//            'openid' => $user_detail_arr['openId'],
+            'unionid' => $user_detail_arr['result']['unionid'],
+            'name' => $user_detail_arr['result']['name'],
+            'mobile' => $user_detail_arr['result']['mobile'],
+            'position' => '未知',
+            'avatar' => $user_detail_arr['result']['avatar'],
             'department_id' => $department_id_str,
             'department_name' => $department_name,
             'status' => '1',
