@@ -159,7 +159,7 @@ class Controller extends BaseController
         $department_name = '';
         $department_id_str = '';
         $department_detail_url = $app_config['getdepartmentdetail_url'];
-        foreach ($user_detail_arr['department'] as $key=>$department_id){
+        foreach ($user_detail_arr['dept_id_list'] as $key=>$department_id){
             $department_id_str .= $department_id.',';
             $single_department_json = $this->simple_post($department_detail_url.'?access_token='.$access_token,['dept_id'=>$department_id]);
             $single_department = json_decode($single_department_json,true);
