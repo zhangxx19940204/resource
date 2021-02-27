@@ -39,12 +39,10 @@ class Controller extends BaseController
 
     }
 
-    public function simple_get($url, $get_data){
+    public function simple_get($url){
         $ch = curl_init();
         $timeout = 300;
-        $get_data_para = implode('&',$get_data);
-        $complete_url = $url.'?'.$get_data_para;
-        curl_setopt ($ch, CURLOPT_URL, $complete_url);
+        curl_setopt ($ch, CURLOPT_URL, $url);
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $file_contents = curl_exec($ch);
@@ -135,7 +133,7 @@ class Controller extends BaseController
         }else{
             //access_token不存在，直接请求获取并记录
             $url = $app_config['gettoken_url'];
-            $access_token_json = $this->simple_get($url,['appkey'=>$app_config['app_key'],'appsecret'=>$app_config['app_secret']]);
+            $access_token_json = $this->simple_get($url.'?appkey='.$app_config['app_key'].'&appsecret='.$app_config['app_secret']);
             $access_token_arr = json_decode($access_token_json,true);
             if ($access_token_arr['errcode'] == '0'){
                 //获取成功，记录进缓存中,同时返回去
