@@ -54,7 +54,7 @@ class Controller extends BaseController
 //    封装的dingTalk的方法
     //钉钉用户登录接口
     public function user_login(Request $request){
-
+        header('Access-Control-Allow-Origin:*');
         $code = $request->get('code', '');
         if ($code == '') {
             //code值为空

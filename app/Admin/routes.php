@@ -29,5 +29,10 @@ Route::group([
     $router->resource('mail-froms', Res\MailFromController::class);
     $router->resource('mail-belongs', Res\MailBelongController::class);
 
+    //钉钉反馈系统
+    $router->resource('feedback', DingTalk\FeedbackController::class);
+    $router->resource('visits', DingTalk\VisitController::class);
+    $router->resource('ding-talk-users', DingTalk\DingTalkUserController::class);
+
 
 });
