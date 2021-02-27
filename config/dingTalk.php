@@ -24,7 +24,7 @@ return [
 
 //    自定义了一个链接集合
     'gettoken_url'=>'https://oapi.dingtalk.com/gettoken',//获取token的url
-    'getuserinfo_url'=>'https://oapi.dingtalk.com/topapi/v2/user/getusserinfo',//获取用户信息的url
+    'getuserinfo_url'=>'https://oapi.dingtalk.com/topapi/v2/user/getuserinfo',//获取用户信息的url
     'getuserdetail_url'=>'https://oapi.dingtalk.com/topapi/v2/user/get',//获取用户详细信息的url
     'getdepartmentdetail_url'=>'https://oapi.dingtalk.com/topapi/v2/department/get',//获取部门的详细信息的url
 

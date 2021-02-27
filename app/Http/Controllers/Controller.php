@@ -62,8 +62,6 @@ class Controller extends BaseController
         } else {
             //code正常
             $app_config = config('dingTalk');
-//            $app = new Application($app_config);
-//            $user_id_arr = $app->user->getUserByCode($code); //{"errcode":0,"sys_level":0,"is_sys":false,"name":"张祥祥","errmsg":"ok","deviceId":"693ef736987bb9c1cb2df1294d58b8a3","userid":"100700404824396736"}
             $access_token = $this->get_dingTalk_access_token($app_config,$app_config['app_key']);
             if (empty($access_token)){
                 return response()->json(['status'=>-1,'message'=>'系统异常，请重新登录——ak','data'=>[]]);
@@ -72,7 +70,6 @@ class Controller extends BaseController
             $user_id_json = $this->simple_post($url,['code'=>$code]);
             $user_id_arr = json_decode($user_id_json,true);
             logger($code,$user_id_arr);
-
             if ($user_id_arr['errcode'] != '0'){
                 return response()->json(['status'=>-1,'message'=>'登录异常2，请重新登录','data'=>[]]);
             }
@@ -129,6 +126,7 @@ class Controller extends BaseController
 
         if (Cache::has($app_key.'_ak')) {
             //access_token存在，直接返回
+            logger('dingTalk_access_token直接取出');
             return Cache::get($app_key.'_ak');
         }else{
             //access_token不存在，直接请求获取并记录
@@ -138,6 +136,7 @@ class Controller extends BaseController
             if ($access_token_arr['errcode'] == '0'){
                 //获取成功，记录进缓存中,同时返回去
                 Cache::put($app_key.'_ak', $access_token_arr['access_token'], 60*60);
+                logger('dingTalk_access_token请求新取');
                 return $access_token_arr['access_token'];
             }else{
                 //出错了，提示
