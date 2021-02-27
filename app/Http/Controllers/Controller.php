@@ -140,7 +140,6 @@ class Controller extends BaseController
                 return $access_token_arr['access_token'];
             }else{
                 //出错了，提示
-
                 return '';
             }
         }
@@ -174,7 +173,7 @@ class Controller extends BaseController
             'unionid' => $user_detail_arr['result']['unionid'],
             'name' => $user_detail_arr['result']['name'],
             'mobile' => $user_detail_arr['result']['mobile'],
-            'position' => '未知',
+            'position' => array_key_exists('title', $user_detail_arr['result'])? $user_detail_arr['result']['title']:'无职位',
             'avatar' => $user_detail_arr['result']['avatar'],
             'department_id' => $department_id_str,
             'department_name' => $department_name,
