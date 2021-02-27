@@ -36,8 +36,12 @@ class FeedbackController extends AdminController
 
         $grid->column('blong', __('品牌所属'));
         // $grid->column('status', __('Status'));
-        $grid->column('updated_at', __('上次更新时间'));
-        $grid->column('created_at', __('创建时间'));
+        $grid->column('updated_at', __('上次更新时间'))->display(function ($date) {
+            return date('Y-m-d H:i:s',strtotime($date));
+        });
+        $grid->column('created_at', __('创建时间'))->display(function ($date) {
+            return date('Y-m-d H:i:s',strtotime($date));
+        });
         $grid->column('data_date', __('日期'));
         $grid->column('phone', __('手机号'));
         $grid->column('feedback_short', __('反馈'));
