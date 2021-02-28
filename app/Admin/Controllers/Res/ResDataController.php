@@ -131,8 +131,10 @@ class ResDataController extends AdminController
             if ($failureCause == '手机号已被其他客户使用' && !empty($exist_ec_userId)){
                 $single_user = DB::table('ec_users')->where('userId','=',$this->exist_ec_userId)->first();
                 return $failureCause.'：<b>'.$single_user->userName.'</b>';
+            }else if ($failureCause == '手机号已被其他客户使用' && empty($exist_ec_userId)){
+                return $failureCause.'：<b>公海资源或其他原因</b>';
             }else{
-                return $failureCause.'：<b>公海资源或者其他原因</b>';
+                return $failureCause;
             }
 
         });
