@@ -61,7 +61,7 @@ class GlobaljoinController extends Controller
             }else{
                 //不是第一次请求，已正常拿到上一次入库的数据
                 $last_msg_data_arr = json_decode($last_data->data_json,true);//上一次请求的最新的数据
-                logger('全球加盟网63行报错的数据：'.$last_msg_data_arr);
+                logger('全球加盟网63行报错的数据：'.$last_data->data_json);
                 foreach ($message_data_arr['data'] as $single_message_data){
                     //判断时间和data_json 中的id，共同确定
 
