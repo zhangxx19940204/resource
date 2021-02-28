@@ -82,6 +82,14 @@ class ResDataController extends AdminController
                     return '';
                 }
 
+            }elseif ($this->type == '全球'){
+                $data_arr = json_decode($this->data_json,true);
+                if (is_array($data_arr) && array_key_exists('original_brand',$data_arr)){
+                    return $data_arr['original_brand'];
+                }else{
+                    return '';
+                }
+
             }else{
                 return '';
             }

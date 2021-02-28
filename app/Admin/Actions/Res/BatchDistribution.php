@@ -39,6 +39,11 @@ class BatchDistribution extends BatchAction
                 $data_arr = json_decode($model->data_json,true);
                 $fastHorse_id =  $data_arr['id'];
                 $fast_horse_message = $data_arr['message'];
+            }elseif ($model->type == '全球'){
+                $data_arr = json_decode($model->data_json,true);
+                $fastHorse_id = '';
+                $fast_horse_message = array_key_exists('original_brand',$data_arr)?$data_arr['original_brand']:'';
+
             }elseif ($model->type == '头条'){
                 $data_arr = json_decode($model->data_json,true);
                 $fastHorse_id = $data_arr['app_name'];
