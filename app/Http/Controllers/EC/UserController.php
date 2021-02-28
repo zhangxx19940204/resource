@@ -191,8 +191,15 @@ class UserController extends Controller
             $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
             $res_data_arr = json_decode($res_data_json,true);
             logger(json_encode($res_data_arr));
-            DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
-                ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
+            if (empty($res_data_arr['data']['customerInfoList'])){
+                //公海资源，没有指定人
+                continue;
+            }else{
+                //资源原先已有指定人
+                DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
+                    ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
+            }
+
         }
 
     }

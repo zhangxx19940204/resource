@@ -132,7 +132,7 @@ class ResDataController extends AdminController
                 $single_user = DB::table('ec_users')->where('userId','=',$this->exist_ec_userId)->first();
                 return $failureCause.'：<b>'.$single_user->userName.'</b>';
             }else{
-                return $failureCause;
+                return $failureCause.'：<b>公海资源或者其他原因</b>';
             }
 
         });
