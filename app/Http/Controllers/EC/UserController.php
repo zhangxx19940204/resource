@@ -190,6 +190,7 @@ class UserController extends Controller
             logger($post_data);
             $res_data_json = $this->http_get($url, $cid, $appId, $appSecret,'POST',$post_data);
             $res_data_arr = json_decode($res_data_json,true);
+            logger(json_encode($res_data_arr));
             DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
                 ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
         }
