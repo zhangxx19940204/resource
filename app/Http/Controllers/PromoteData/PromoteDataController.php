@@ -231,14 +231,14 @@ class PromoteDataController extends Controller
             //去寻找对应（统计系统）的账号配置信息
             $res_config_info = ResConfig::where('account_id','=',$mail_config->id)->where('type','=','mail')->first();
             if (empty($res_config_info)){
-                continue;
                 logger('统计系统中未对应有效账号');
+                continue;
             }
             //通过单个邮件账号；去取邮件系统中的相关数据
             $wait_census_data  = EmailData::where('is_census','=','0')->where('econfig_id','=',$mail_config->id)->get();//单个账号下，未同步的数据
             if (empty($wait_census_data)){
-                continue;
                 logger('暂无有效数据同步');
+                continue;
             }
 
             //账号有效，数据有效，接下来组装数据来存储在统计系统中
