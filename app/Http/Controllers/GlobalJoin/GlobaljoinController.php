@@ -26,6 +26,7 @@ class GlobaljoinController extends Controller
 
         //查询到全球的账号，进行数据的整理和存储
         $api_url = 'http://zs.jiameng.com/service/msgOpenService.html';
+        logger('全球的账号列表：'.$config_data);
         foreach ($config_data as $config){
             //单独的全球的账号,进行请求判定
             $para = [
@@ -60,6 +61,7 @@ class GlobaljoinController extends Controller
             }else{
                 //不是第一次请求，已正常拿到上一次入库的数据
                 $last_msg_data_arr = json_decode($last_data->data_json,true);//上一次请求的最新的数据
+                logger('全球加盟网63行报错的数据：'.$last_msg_data_arr);
                 foreach ($message_data_arr['data'] as $single_message_data){
                     //判断时间和data_json 中的id，共同确定
 
