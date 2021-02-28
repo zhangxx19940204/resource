@@ -50,20 +50,32 @@ class GlobaljoinController extends Controller
             $add_data_arr = [];
             if (empty($last_data)){
                 //第一次请求，全部的100条，记录进数据库
-                foreach ($message_data_arr['data'] as $single_message_data){
-                    $add_data_arr[] = ['user_id' => $config->user_id, 'config_id' => $config->id
-                        ,'created_at'=>$current_datetime,'updated_at'=>$current_datetime
-                        ,'belong'=>$config->belong,'type'=>$config->type,'data_json'=>json_encode($single_message_data)
-                        ,'data_name'=>(array_key_exists('name',$single_message_data)?$single_message_data['name']:'')
-                        ,'data_phone'=>trim($single_message_data['phone'])];
+                if (empty($message_data_arr['data'])){
+                    //传过来的数组数据为空
+                    continue;
+                }else {
+                    //数据数组不为空
+                    foreach ($message_data_arr['data'] as $single_message_data){
+                        $add_data_arr[] = ['user_id' => $config->user_id, 'config_id' => $config->id
+                            ,'created_at'=>$current_datetime,'updated_at'=>$current_datetime
+                            ,'belong'=>$config->belong,'type'=>$config->type,'data_json'=>json_encode($single_message_data)
+                            ,'data_name'=>(array_key_exists('name',$single_message_data)?$single_message_data['name']:'')
+                            ,'data_phone'=>trim($single_message_data['phone'])];
+                    }
                 }
+
 
             }else{
                 //不是第一次请求，已正常拿到上一次入库的数据
                 $last_msg_data_arr = json_decode($last_data->data_json,true);//上一次请求的最新的数据
                 logger('全球加盟网63行报错的数据：'.$last_data->data_json);
-                foreach ($message_data_arr['data'] as $single_message_data){
-                    //判断时间和data_json 中的id，共同确定
+                if (empty($message_data_arr['data'])){
+                    //传过来的数组数据为空
+                    continue;
+                }else{
+                    //数据数组不为空
+                    foreach ($message_data_arr['data'] as $single_message_data){
+                        //判断时间和data_json 中的id，共同确定
 
 //                    if (trim($last_data->data_phone) == trim($single_message_data['phone']) && trim($last_data->data_name) == trim($single_message_data['name']) ){
 //                        //资源的手机号和名称相同，判断data_json中的id是否相等
@@ -71,17 +83,19 @@ class GlobaljoinController extends Controller
 //                    }else{
 //
 //                    }
-                    if ($last_msg_data_arr['id'] == $single_message_data['id']){
-                        //已循环到上次循环的记录
-                        break;
-                    }
+                        if ($last_msg_data_arr['id'] == $single_message_data['id']){
+                            //已循环到上次循环的记录
+                            break;
+                        }
 
-                    $add_data_arr[] = ['user_id' => $config->user_id, 'config_id' => $config->id
-                        ,'created_at'=>$current_datetime,'updated_at'=>$current_datetime
-                        ,'belong'=>$config->belong,'type'=>$config->type,'data_json'=>json_encode($single_message_data)
-                        ,'data_name'=>(array_key_exists('name',$single_message_data)?$single_message_data['name']:'')
-                        ,'data_phone'=>trim($single_message_data['phone'])];
+                        $add_data_arr[] = ['user_id' => $config->user_id, 'config_id' => $config->id
+                            ,'created_at'=>$current_datetime,'updated_at'=>$current_datetime
+                            ,'belong'=>$config->belong,'type'=>$config->type,'data_json'=>json_encode($single_message_data)
+                            ,'data_name'=>(array_key_exists('name',$single_message_data)?$single_message_data['name']:'')
+                            ,'data_phone'=>trim($single_message_data['phone'])];
+                    }
                 }
+
             }
 
             //插入数据库
