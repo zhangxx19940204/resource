@@ -112,7 +112,7 @@ class Controller extends BaseController
                     }
                     //正常，更新操作
                     $update_status = DB::table('dingding_user')->where('id', '=',$single_user->id)->update($user_detail['data']);
-                    $update_after_data = DB::table('dingding_user')->where('userid', '=',$user_id_arr['userid'])->first();
+                    $update_after_data = DB::table('dingding_user')->where('userid', '=',$user_id_arr['result']['userid'])->first();
                     return response()->json(['status'=>1,'message'=>'登录成功2','data'=>$update_after_data]);
                 }
             }
