@@ -8,6 +8,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class VisitController extends AdminController
 {
@@ -86,8 +87,12 @@ class VisitController extends AdminController
 
             $filter->column(0.5, function ($filter) {
 
-
-                $filter->in('blong', '品牌所属')->multipleSelect(['腩潮鲜' => '腩潮鲜','下江腩'=>'下江腩','半城外' => '半城外','原时烤肉' => '原时烤肉','阿城牛货'=>'阿城牛货','隐匠'=>'隐匠']);
+                $project_list = DB::table('dingding_project')->get();
+                $project_arr = [];
+                foreach ($project_list as $single_project) {
+                    $project_arr[$single_project->project_name] = $single_project->project_name;
+                }
+                $filter->in('blong', '品牌所属')->multipleSelect($project_arr);
                 $filter->between('visit_date', '来访日期')->date();
 
 

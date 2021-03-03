@@ -8,6 +8,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\DB;
 
 class FeedbackController extends AdminController
 {
@@ -71,10 +72,18 @@ class FeedbackController extends AdminController
 
             $filter->column(0.5, function ($filter) {
 
-
-                $filter->in('blong', '品牌所属')->multipleSelect(['腩潮鲜' => '腩潮鲜','半城外' => '半城外','下江腩'=>'下江腩','原时烤肉' => '原时烤肉','阿城牛货'=>'阿城牛货','隐匠'=>'隐匠']);
+                $short_feedback_list = DB::table('short_feedback_relative')->get();
+                $project_list = DB::table('dingding_project')->get();
+                $project_arr = [];
+                foreach ($project_list as $single_project) {
+                    $project_arr[$single_project->project_name] = $single_project->project_name;
+                }
+                $feedback_short_arr = [];
+                foreach ($short_feedback_list as $short_feedback) {
+                    $feedback_short_arr[$short_feedback->short_feeback] = $short_feedback->short_feeback;
+                }
+                $filter->in('blong', '品牌所属')->multipleSelect($project_arr);
                 $filter->between('data_date', '日期')->date();
-                $feedback_short_arr = ['简短反馈'=>'简短反馈','意向客户'=>'意向客户','正常咨询'=>'正常咨询','已加微信发资料'=>'已加微信发资料','在忙，加微信'=>'在忙，加微信','预约回电'=>'预约回电','多次未接（3次及以上）'=>'多次未接（3次及以上）','未接'=>'未接','接了就挂'=>'接了就挂','未咨询，被黑'=>'未咨询，被黑','关机'=>'关机','停机'=>'停机','空号'=>'空号','没钱，费用接受不了'=>'没钱，费用接受不了','公海资源'=>'公海资源','重复他人'=>'重复他人','无意向'=>'无意向','同行'=>'同行','学技术买设备'=>'学技术买设备','推广推销'=>'推广推销'];
                 $filter->in('feedback_short', '反馈')->multipleSelect($feedback_short_arr);
             });
             $filter->column(1/2, function ($filter) {
@@ -85,7 +94,6 @@ class FeedbackController extends AdminController
                 foreach ($user_list as $k=>$v){
                     $user_arr[$v['id']] = $v['department_name'].$v['name'];
                 }
-
                 $filter->in('dingding_user_id','用户')->multipleSelect($user_arr);
                 $filter->like('phone', '手机号');
                 $filter->ilike('feedback_detail', '跟进记录');

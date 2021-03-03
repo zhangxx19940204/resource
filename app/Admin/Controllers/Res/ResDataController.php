@@ -224,7 +224,14 @@ class ResDataController extends AdminController
 
 
                 $filter->in('config_id', '账户信息')->multipleSelect($config_arr);
-                $filter->in('belong', '所属')->multipleSelect(['半城外'=>'半城外','阿城'=>'阿城']);
+
+                $project_list = DB::table('dingding_project')->get();
+                $project_arr = [];
+                foreach ($project_list as $single_project) {
+                    $project_arr[$single_project->project_name] = $single_project->project_name;
+                }
+
+                $filter->in('belong', '所属')->multipleSelect($project_arr);
                 // 设置created_at字段的范围查询
                 $filter->between('created_at', '创建时间')->datetime();
             });
