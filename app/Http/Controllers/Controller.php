@@ -184,6 +184,7 @@ class Controller extends BaseController
         return ['status'=>0,'message'=>'正常','data'=>$data];
 
     }
+
     /**
      * 发送post请求
      * @param string $url 请求地址

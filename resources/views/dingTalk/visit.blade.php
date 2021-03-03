@@ -7,17 +7,241 @@
 @parent
 @endsection
 
+
+@section('modal')
+    @parent
+    <!--客户来访表的modal框-->
+    <!--弹出的modal框-->
+    <div id="modal_visit" style="text-align:center;display:none;">
+        <form class="layui-form layui-form-pane" action="" lay-filter="visit">
+            <!--所属-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属</label>
+                <div class="layui-input-block">
+                    <select name="blong" lay-filter="aihao">
+                        <option value="请选择">请选择</option>
+                        <option value="腩潮鲜">腩潮鲜</option>
+                        <option value="原时烤肉">原时烤肉</option>
+                        <option value="半城外">半城外</option>
+                        <option value="下江腩">下江腩</option>
+                        <option value="阿城牛货">阿城牛货</option>
+                        <option value="隐匠">隐匠</option>
+
+                    </select>
+                </div>
+            </div>
+            <!--月份-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">月份</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="visit_month" id="visit_month" lay-verify="date" placeholder="yyyy-MM" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <!--来访日期-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">来访/合作 日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="visit_date" id="visit_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--品牌-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">品牌</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="visit_brand" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--客户姓名-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">客户姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="visit_name" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--性别-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <select name="visit_sex" lay-filter="aihao">
+                        <option value="请选择">请选择</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+
+                    </select>
+                    <!--<input type="text" name="visit_sex" lay-verify="required" autocomplete="off" class="layui-input">-->
+                </div>
+            </div>
+            <!--来访结果-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">来访结果</label>
+                <div class="layui-input-block">
+
+                    <select name="visit_result" lay-filter="aihao">
+                        <option value="请选择">请选择</option>
+                        <option value="已签约">已签约</option>
+                        <option value="未签">未签</option>
+
+                    </select>
+                    <!--<input type="text" name="visit_result" lay-verify="required" autocomplete="off" class="layui-input">-->
+                </div>
+            </div>
+            <!--进款分类-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">进款分类</label>
+                <div class="layui-input-block">
+                    <select name="money_type" lay-filter="aihao">
+                        <option value="请选择">请选择</option>
+                        <option value="定金">定金</option>
+                        <option value="异地定金">异地定金</option>
+                        <option value="尾款">尾款</option>
+                        <option value="全款">全款</option>
+                        <option value="无">无</option>
+
+                    </select>
+                    <!--<input type="text" name="money_type" lay-verify="required" autocomplete="off" class="layui-input">-->
+                </div>
+            </div>
+            <!--入款-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">入款</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="money_enter" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--待收尾款-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">待收尾款</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pending_closing" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--店型-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">店型</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="shop_type" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--邀约人-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">邀约人</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="invitee" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--谈判经理-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">谈判经理</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="negotiation_manager" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--部门-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-block">
+                    <select name="department" lay-filter="aihao">
+                        <option value="请选择">请选择</option>
+                        <option value="一部">一部</option>
+                        <option value="二部">二部</option>
+                        <option value="三部">三部</option>
+                        <option value="四部">四部</option>
+                        <option value="五部">五部</option>
+                        <option value="六部">六部</option>
+                        <option value="七部">七部</option>
+
+                    </select>
+                    <!--<input type="text" name="department" lay-verify="required" autocomplete="off" class="layui-input">-->
+                </div>
+            </div>
+            <!--资源平台-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">资源平台</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="resource_platform" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <!--录入时间-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">录入时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="include_time" id="include_time" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <!--手机-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <!--地址-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="address" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--年龄-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="age" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--职业-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">职业</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="occupational" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--未签原因-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">未签原因</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="reason_not_signed" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--是否有合伙人-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否有合伙人</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="is_partner" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--来访周期（距离拿资源时间）-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">来访周期（距离拿资源时间）</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="visit_cycle" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--签约周期-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">签约周期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="signing_cycle" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+        </form>
+        <!--操作按钮-->
+        <button type="submit" class="layui-btn" id="visit_sub_btn" lay-submit="" lay-filter="demo2">立即提交</button>
+    </div>
+@endsection
+
+
+
+
 @section('content')
-
-
 <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
-
-
- 
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
-
 <table id="visit" lay-filter="visit"></table>
-
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
     <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
@@ -51,7 +275,7 @@ layui.use('table', function(){
         ,{field: 'visit_month', title: '月份'}
         ,{field: 'visit_date', title: '来访日期'}
         ,{field: 'visit_brand', title: '品牌'}
-        
+
         ,{field: 'visit_sex', title: '性别'}
         ,{field: 'visit_result', title: '来访结果'}
         ,{field: 'money_type', title: '进款分类'}
@@ -74,13 +298,13 @@ layui.use('table', function(){
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_visit'} //这里的toolbar值是模板元素的选择器
     ]]
   });
-  
-   //监听工具条 
+
+   //监听工具条
     table.on('tool(visit)', function(obj){ //注：tool 是工具条事件名，feedback 是 table 原始容器的属性 lay-filter="对应的值"
       var data = obj.data; //获得当前行数据
       var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
       var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
-     
+
       if(layEvent === 'detail'){ //查看
         //do somehing
         console.log('detail')
@@ -98,7 +322,7 @@ layui.use('table', function(){
         //   username: '123'
         //   ,title: 'xxx'
         // });
-        
+
       } else if(layEvent === 'del'){ //删除
         // layer.confirm('真的删除行么', function(index){
         //   obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
@@ -109,7 +333,7 @@ layui.use('table', function(){
         layer.alert('未知操作');
       }
     });
-    
+
     //监听头部工具条
     table.on('toolbar(visit)', function(obj){
       var checkStatus = table.checkStatus(obj.config.id);
@@ -119,17 +343,17 @@ layui.use('table', function(){
             modal_data_func(obj.event,[])
             open_modal(1,'新增','modal_visit')
         break;
-        
+
       };
     });
-  
-  
-  
+
+
+
 });
 
 function open_modal(type,title='信息',content='modal_visit'){
         layer.open({
-          type: type, 
+          type: type,
           title:title,
           content: $('#'+content+'') //这里content是一个普通的String
         });
@@ -144,7 +368,7 @@ function modal_data_func(layEvent,data){
         ,layer = layui.layer
         ,layedit = layui.layedit
         ,laydate = layui.laydate;
-          
+
         //月份
         laydate.render({
             elem: '#visit_month'
@@ -158,7 +382,7 @@ function modal_data_func(layEvent,data){
             ,type: 'date'
             // ,value: new Date()
             ,isInitValue: true //是否允许填充初始值，默认为 true
-        });        
+        });
         //录入时间
         laydate.render({
             elem: '#include_time'
@@ -166,10 +390,10 @@ function modal_data_func(layEvent,data){
             // ,value: new Date()
             ,isInitValue: true //是否允许填充初始值，默认为 true
         });
-        
+
     //先做判断类型，进行添加值
     let assignment = {}
-    
+
     switch (layEvent) {
     case 'edit':
         assignment.blong = data.blong
@@ -196,7 +420,7 @@ function modal_data_func(layEvent,data){
         assignment.is_partner = data.is_partner
         assignment.visit_cycle = data.visit_cycle
         assignment.signing_cycle = data.signing_cycle
-        
+
         $("#visit_sub_btn").html('修改');
         $("#visit_sub_btn").show();
         get_opera_data('edit',data,data.dingding_user_id) //操作的方法的集合
@@ -235,34 +459,34 @@ function modal_data_func(layEvent,data){
         let user_info = JSON.parse(localStorage.getItem("user_info"))
         let show_user_name = user_info.data.department_name+user_info.data.position + '--' +user_info.data.name
         if(show_user_name.indexOf("腩潮鲜") !== -1){
-            //包含腩潮鲜 
+            //包含腩潮鲜
             assignment.blong = '腩潮鲜';
-            
+
         }else if(show_user_name.indexOf("半城外") !== -1){
             //包含半城外
             assignment.blong = '半城外';
-            
+
         }else if(show_user_name.indexOf("原时") !== -1){
             //包含原时
             assignment.blong = '原时烤肉';
-            
+
         }else if(show_user_name.indexOf("下江腩") !== -1){
             //包含原时
             assignment.blong = '下江腩';
-            
+
         }else if(show_user_name.indexOf("阿城牛货") !== -1){
             //包含原时
             assignment.blong = '阿城牛货';
-            
+
         }else if(show_user_name.indexOf("隐匠") !== -1){
             //包含原时
             assignment.blong = '隐匠';
-            
+
         }else{
             assignment.blong = '';
         }
         let dingding_user_id = user_info.data.id;
-        
+
         assignment.blong = ''
         assignment.visit_month = ''
         assignment.visit_date = ''
@@ -287,22 +511,22 @@ function modal_data_func(layEvent,data){
         assignment.is_partner = ''
         assignment.visit_cycle = ''
         assignment.signing_cycle = ''
-        
+
         $("#sub_btn").html('新增');
         $("#sub_btn").show();
         get_opera_data('add',data,dingding_user_id) //操作的方法的集合
         break;
     }
-    
+
     console.log(assignment);
     //表单赋值
     form.val('visit', assignment)
-    
+
     //获取表单值并请求后台
     function get_opera_data(opera_type,originally_data,user_id){
-        
+
         $("#visit_sub_btn").unbind("click")
-        
+
         layui.$('#visit_sub_btn').on('click', function(){
             var data = form.val("visit");
             // alert(JSON.stringify(data));
@@ -321,7 +545,7 @@ function modal_data_func(layEvent,data){
                     console.log(result);
                     layer.msg(result.msg);
                     location.reload();
-                    
+
                 },
                 //请求失败，包含具体的错误信息
                 error : function(e){
@@ -331,11 +555,11 @@ function modal_data_func(layEvent,data){
                     location.reload();
                 }
             });
-            
+
         });//layui的click的事件的结束
     }
-    
-    
+
+
 });
 }
 
@@ -344,7 +568,7 @@ function modal_data_func(layEvent,data){
 
   <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  
+
 </script>
 
 
