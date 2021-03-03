@@ -20,12 +20,18 @@
                 <div class="layui-input-block">
                     <select name="blong" lay-filter="aihao">
                         <option value="请选择">请选择</option>
-                        <option value="腩潮鲜">腩潮鲜</option>
-                        <option value="原时烤肉">原时烤肉</option>
-                        <option value="半城外">半城外</option>
-                        <option value="下江腩">下江腩</option>
-                        <option value="阿城牛货">阿城牛货</option>
-                        <option value="隐匠">隐匠</option>
+
+                        @forelse ($project_list as $project)
+                            <option value="{{ $project->project_name }}">{{ $project->project_name }}</option>
+                        @empty
+
+                        @endforelse
+{{--                        <option value="腩潮鲜">腩潮鲜</option>--}}
+{{--                        <option value="原时烤肉">原时烤肉</option>--}}
+{{--                        <option value="半城外">半城外</option>--}}
+{{--                        <option value="下江腩">下江腩</option>--}}
+{{--                        <option value="阿城牛货">阿城牛货</option>--}}
+{{--                        <option value="隐匠">隐匠</option>--}}
                     </select>
                 </div>
             </div>
@@ -50,25 +56,31 @@
                     <select name="feedback_short" lay-verify="required" lay-search="">
                         <option value="">请选择</option>
                         <!--<option value="简短反馈">简短反馈</option>-->
-                        <option value="意向客户">意向客户</option>
-                        <option value="正常咨询">正常咨询</option>
-                        <option value="已加微信发资料">已加微信发资料</option>
-                        <option value="在忙，加微信">在忙，加微信</option>
-                        <option value="预约回电">预约回电</option>
-                        <option value="多次未接（3次及以上）">多次未接（3次及以上）</option>
-                        <option value="未接">未接</option>
-                        <option value="接了就挂">接了就挂</option>
-                        <option value="未咨询，被黑">未咨询，被黑</option>
-                        <option value="关机">关机</option>
-                        <option value="停机">停机</option>
-                        <option value="空号">空号</option>
-                        <option value="没钱，费用接受不了">没钱，费用接受不了</option>
-                        <option value="公海资源">公海资源</option>
-                        <!--<option value="重复他人">重复他人</option>-->
-                        <option value="无意向">无意向</option>
-                        <option value="同行">同行</option>
-                        <option value="学技术买设备">学技术买设备</option>
-                        <option value="推广推销">推广推销</option>
+
+                        @forelse ($short_feedback_list as $short_feedback)
+                            <option value="{{ $short_feedback->short_feeback }}">{{ $short_feedback->short_feeback }}</option>
+                        @empty
+
+                        @endforelse
+{{--                        <option value="意向客户">意向客户</option>--}}
+{{--                        <option value="正常咨询">正常咨询</option>--}}
+{{--                        <option value="已加微信发资料">已加微信发资料</option>--}}
+{{--                        <option value="在忙，加微信">在忙，加微信</option>--}}
+{{--                        <option value="预约回电">预约回电</option>--}}
+{{--                        <option value="多次未接（3次及以上）">多次未接（3次及以上）</option>--}}
+{{--                        <option value="未接">未接</option>--}}
+{{--                        <option value="接了就挂">接了就挂</option>--}}
+{{--                        <option value="未咨询，被黑">未咨询，被黑</option>--}}
+{{--                        <option value="关机">关机</option>--}}
+{{--                        <option value="停机">停机</option>--}}
+{{--                        <option value="空号">空号</option>--}}
+{{--                        <option value="没钱，费用接受不了">没钱，费用接受不了</option>--}}
+{{--                        <option value="公海资源">公海资源</option>--}}
+{{--                        <!--<option value="重复他人">重复他人</option>-->--}}
+{{--                        <option value="无意向">无意向</option>--}}
+{{--                        <option value="同行">同行</option>--}}
+{{--                        <option value="学技术买设备">学技术买设备</option>--}}
+{{--                        <option value="推广推销">推广推销</option>--}}
                     </select>
                 </div>
             </div>

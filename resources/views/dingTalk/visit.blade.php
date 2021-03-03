@@ -20,12 +20,18 @@
                 <div class="layui-input-block">
                     <select name="blong" lay-filter="aihao">
                         <option value="请选择">请选择</option>
-                        <option value="腩潮鲜">腩潮鲜</option>
-                        <option value="原时烤肉">原时烤肉</option>
-                        <option value="半城外">半城外</option>
-                        <option value="下江腩">下江腩</option>
-                        <option value="阿城牛货">阿城牛货</option>
-                        <option value="隐匠">隐匠</option>
+
+                        @forelse ($project_list as $project)
+                            <option value="{{ $project->project_name }}">{{ $project->project_name }}</option>
+                        @empty
+
+                        @endforelse
+{{--                        <option value="腩潮鲜">腩潮鲜</option>--}}
+{{--                        <option value="原时烤肉">原时烤肉</option>--}}
+{{--                        <option value="半城外">半城外</option>--}}
+{{--                        <option value="下江腩">下江腩</option>--}}
+{{--                        <option value="阿城牛货">阿城牛货</option>--}}
+{{--                        <option value="隐匠">隐匠</option>--}}
 
                     </select>
                 </div>
@@ -234,7 +240,6 @@
         <button type="submit" class="layui-btn" id="visit_sub_btn" lay-submit="" lay-filter="demo2">立即提交</button>
     </div>
 @endsection
-
 
 
 

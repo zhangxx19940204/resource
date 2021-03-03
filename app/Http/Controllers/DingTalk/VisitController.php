@@ -13,7 +13,8 @@ class VisitController extends Controller
     //来访进款表
     public function index(){
         $dingTalk_arr = config('dingTalk');
-        return view('dingTalk.visit',['corp_id'=>$dingTalk_arr['corp_id']]);
+        $project_list = DB::table('dingding_projrct')->get();
+        return view('dingTalk.visit',['project_list'=>$project_list,'corp_id'=>$dingTalk_arr['corp_id']]);
 
     }
     //获取列表
