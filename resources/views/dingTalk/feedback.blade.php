@@ -233,34 +233,6 @@ function modal_data_func(layEvent,data){
                 continue;
             }
         }
-
-        // if(show_user_name.indexOf("腩潮鲜") !== -1){
-        //     //包含腩潮鲜
-        //     assignment.blong = '腩潮鲜';
-        //
-        // }else if(show_user_name.indexOf("半城外") !== -1){
-        //     //包含半城外
-        //     assignment.blong = '半城外';
-        //
-        // }else if(show_user_name.indexOf("原时") !== -1){
-        //     //包含原时
-        //     assignment.blong = '原时烤肉';
-        //
-        // }else if(show_user_name.indexOf("下江腩") !== -1){
-        //     //包含原时
-        //     assignment.blong = '下江腩';
-        //
-        // }else if(show_user_name.indexOf("阿城牛货") !== -1){
-        //     //包含原时
-        //     assignment.blong = '阿城牛货';
-        //
-        // }else if(show_user_name.indexOf("隐匠") !== -1){
-        //     //包含原时
-        //     assignment.blong = '隐匠';
-        //
-        // }else{
-        //     assignment.blong = '';
-        // }
         let dingding_user_id = user_info.data.id;
 
         assignment.phone = '';
