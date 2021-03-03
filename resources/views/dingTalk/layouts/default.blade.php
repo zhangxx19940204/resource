@@ -168,13 +168,9 @@
             get_user_info_and_set();
     	}
 
-
-
         $(document).ready(function(){
             user_info = JSON.parse(localStorage.getItem("user_info"))
 
-            // var a = JSON.stringify($user_info.data);
-            // alert(a);
             let show_user_name = user_info.data.department_name+user_info.data.position + '--' +user_info.data.name
             $('#pc_user_name').text(show_user_name);
             $('#mobile_user_name').text(show_user_name);
@@ -213,9 +209,6 @@
                                 }else{
                                     alert("登录失败，请重试");
                                 }
-
-
-
 
                             },
                             error: function (xhr, errorType, error) {

@@ -26,12 +26,7 @@
                         @empty
 
                         @endforelse
-{{--                        <option value="腩潮鲜">腩潮鲜</option>--}}
-{{--                        <option value="原时烤肉">原时烤肉</option>--}}
-{{--                        <option value="半城外">半城外</option>--}}
-{{--                        <option value="下江腩">下江腩</option>--}}
-{{--                        <option value="阿城牛货">阿城牛货</option>--}}
-{{--                        <option value="隐匠">隐匠</option>--}}
+
                     </select>
                 </div>
             </div>
@@ -55,32 +50,13 @@
                 <div class="layui-input-inline">
                     <select name="feedback_short" lay-verify="required" lay-search="">
                         <option value="">请选择</option>
-                        <!--<option value="简短反馈">简短反馈</option>-->
 
                         @forelse ($short_feedback_list as $short_feedback)
                             <option value="{{ $short_feedback->short_feeback }}">{{ $short_feedback->short_feeback }}</option>
                         @empty
 
                         @endforelse
-{{--                        <option value="意向客户">意向客户</option>--}}
-{{--                        <option value="正常咨询">正常咨询</option>--}}
-{{--                        <option value="已加微信发资料">已加微信发资料</option>--}}
-{{--                        <option value="在忙，加微信">在忙，加微信</option>--}}
-{{--                        <option value="预约回电">预约回电</option>--}}
-{{--                        <option value="多次未接（3次及以上）">多次未接（3次及以上）</option>--}}
-{{--                        <option value="未接">未接</option>--}}
-{{--                        <option value="接了就挂">接了就挂</option>--}}
-{{--                        <option value="未咨询，被黑">未咨询，被黑</option>--}}
-{{--                        <option value="关机">关机</option>--}}
-{{--                        <option value="停机">停机</option>--}}
-{{--                        <option value="空号">空号</option>--}}
-{{--                        <option value="没钱，费用接受不了">没钱，费用接受不了</option>--}}
-{{--                        <option value="公海资源">公海资源</option>--}}
-{{--                        <!--<option value="重复他人">重复他人</option>-->--}}
-{{--                        <option value="无意向">无意向</option>--}}
-{{--                        <option value="同行">同行</option>--}}
-{{--                        <option value="学技术买设备">学技术买设备</option>--}}
-{{--                        <option value="推广推销">推广推销</option>--}}
+
                     </select>
                 </div>
             </div>
@@ -244,33 +220,47 @@ function modal_data_func(layEvent,data){
         assignment.blong = '';
         let user_info = JSON.parse(localStorage.getItem("user_info"))
         let show_user_name = user_info.data.department_name+user_info.data.position + '--' +user_info.data.name
-        if(show_user_name.indexOf("腩潮鲜") !== -1){
-            //包含腩潮鲜
-            assignment.blong = '腩潮鲜';
 
-        }else if(show_user_name.indexOf("半城外") !== -1){
-            //包含半城外
-            assignment.blong = '半城外';
-
-        }else if(show_user_name.indexOf("原时") !== -1){
-            //包含原时
-            assignment.blong = '原时烤肉';
-
-        }else if(show_user_name.indexOf("下江腩") !== -1){
-            //包含原时
-            assignment.blong = '下江腩';
-
-        }else if(show_user_name.indexOf("阿城牛货") !== -1){
-            //包含原时
-            assignment.blong = '阿城牛货';
-
-        }else if(show_user_name.indexOf("隐匠") !== -1){
-            //包含原时
-            assignment.blong = '隐匠';
-
-        }else{
-            assignment.blong = '';
+        let project_arr = <?php echo json_encode($project_list);?>;
+        console.log(project_arr)
+        for (x in project_arr) {
+            console.log(project_arr[x].project_name)
+            if(show_user_name.indexOf(project_arr[x].project_name) !== -1){
+                //包含此項目名稱
+                assignment.blong = project_arr[x].project_name;
+            }else{
+                //跳過
+                continue;
+            }
         }
+
+        // if(show_user_name.indexOf("腩潮鲜") !== -1){
+        //     //包含腩潮鲜
+        //     assignment.blong = '腩潮鲜';
+        //
+        // }else if(show_user_name.indexOf("半城外") !== -1){
+        //     //包含半城外
+        //     assignment.blong = '半城外';
+        //
+        // }else if(show_user_name.indexOf("原时") !== -1){
+        //     //包含原时
+        //     assignment.blong = '原时烤肉';
+        //
+        // }else if(show_user_name.indexOf("下江腩") !== -1){
+        //     //包含原时
+        //     assignment.blong = '下江腩';
+        //
+        // }else if(show_user_name.indexOf("阿城牛货") !== -1){
+        //     //包含原时
+        //     assignment.blong = '阿城牛货';
+        //
+        // }else if(show_user_name.indexOf("隐匠") !== -1){
+        //     //包含原时
+        //     assignment.blong = '隐匠';
+        //
+        // }else{
+        //     assignment.blong = '';
+        // }
         let dingding_user_id = user_info.data.id;
 
         assignment.phone = '';

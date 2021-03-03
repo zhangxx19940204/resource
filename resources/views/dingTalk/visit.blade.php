@@ -26,12 +26,7 @@
                         @empty
 
                         @endforelse
-{{--                        <option value="腩潮鲜">腩潮鲜</option>--}}
-{{--                        <option value="原时烤肉">原时烤肉</option>--}}
-{{--                        <option value="半城外">半城外</option>--}}
-{{--                        <option value="下江腩">下江腩</option>--}}
-{{--                        <option value="阿城牛货">阿城牛货</option>--}}
-{{--                        <option value="隐匠">隐匠</option>--}}
+
 
                     </select>
                 </div>
@@ -463,33 +458,19 @@ function modal_data_func(layEvent,data){
         assignment.blong = '';
         let user_info = JSON.parse(localStorage.getItem("user_info"))
         let show_user_name = user_info.data.department_name+user_info.data.position + '--' +user_info.data.name
-        if(show_user_name.indexOf("腩潮鲜") !== -1){
-            //包含腩潮鲜
-            assignment.blong = '腩潮鲜';
-
-        }else if(show_user_name.indexOf("半城外") !== -1){
-            //包含半城外
-            assignment.blong = '半城外';
-
-        }else if(show_user_name.indexOf("原时") !== -1){
-            //包含原时
-            assignment.blong = '原时烤肉';
-
-        }else if(show_user_name.indexOf("下江腩") !== -1){
-            //包含原时
-            assignment.blong = '下江腩';
-
-        }else if(show_user_name.indexOf("阿城牛货") !== -1){
-            //包含原时
-            assignment.blong = '阿城牛货';
-
-        }else if(show_user_name.indexOf("隐匠") !== -1){
-            //包含原时
-            assignment.blong = '隐匠';
-
-        }else{
-            assignment.blong = '';
+        let project_arr = <?php echo json_encode($project_list);?>;
+        console.log(project_arr)
+        for (x in project_arr) {
+            console.log(project_arr[x].project_name)
+            if(show_user_name.indexOf(project_arr[x].project_name) !== -1){
+                //包含此項目名稱
+                assignment.blong = project_arr[x].project_name;
+            }else{
+                //跳過
+                continue;
+            }
         }
+
         let dingding_user_id = user_info.data.id;
 
         assignment.blong = ''
