@@ -18,8 +18,10 @@ Route::get('/', function () {
 });
 
 Route::any('/receive_fei_oceanengine', [Oceanengine\FeiyuController::class, 'receive_fei_oceanengine']); //接收头条飞鱼crm发送的数据
-Route::any('/get_fast_horse_data', [FastHorse\FasthorseController::class, 'get_fast_horse']); //获取快马账号的数据 （定时）
 Route::any('/get_global_join', [GlobalJoin\GlobaljoinController::class, 'get_global_join']); //获取全球加盟网账号的数据（定时）
+Route::any('/get_zhihu_data', [ZhiHu\ZhiHuController::class, 'get_zhihu_data']); //获取知乎账号的数据（定时）
+
+Route::any('/get_fast_horse_data', [FastHorse\FasthorseController::class, 'get_fast_horse']); //获取快马账号的数据 （定时）
 Route::any('/get_second_third', [ChannelNetwork\SecondthirdController::class, 'get_second_third']); //获取23网的数据 (定时)
 Route::any('/get_5988_data', [ZuoSai\ZuoSaiController::class, 'get_5988_data']); //获取5988的数据 (需要定时)
 
