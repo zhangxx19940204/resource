@@ -73,7 +73,7 @@ class FeedbackController extends AdminController
             $filter->column(0.5, function ($filter) {
 
                 $short_feedback_list = DB::table('short_feedback_relative')->get();
-                $project_list = DB::table('dingding_project')->get();
+                $project_list = DB::table('dingding_project')->where('status','1')->get();
                 $project_arr = [];
                 foreach ($project_list as $single_project) {
                     $project_arr[$single_project->project_name] = $single_project->project_name;

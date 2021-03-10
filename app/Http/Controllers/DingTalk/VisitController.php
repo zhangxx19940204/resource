@@ -46,7 +46,7 @@ class VisitController extends Controller
         if ($para['opera_type'] == 'edit') {
 
             $latest_data = $para['latest_data'];
-            $latest_data['create_date'] = date('Y-m-d H:i:s');
+            $latest_data['update_date'] = date('Y-m-d H:i:s');
             $originally_data = $para['originally_data'];
             $opera_status =  DB::table('dingding_visit')->where('id', $originally_data['id'])->update($latest_data);
             $res_info = ['code'=>0,'msg'=>'更新成功','data'=>$latest_data];
@@ -54,7 +54,8 @@ class VisitController extends Controller
         }elseif ($para['opera_type'] == 'add') {
 
             $latest_data = $para['latest_data'];
-            $latest_data['create_date'] = date('Y-m-d H:i:s');
+//            $latest_data['create_date'] = date('Y-m-d H:i:s');
+            $latest_data['update_date'] = date('Y-m-d H:i:s');
             $latest_data['dingding_user_id'] = $para['dingding_user_id'];
             $opera_status =  DB::table('dingding_visit')->insert($latest_data);
             $res_info = ['code'=>0,'msg'=>'新增成功','data'=>$latest_data];

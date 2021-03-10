@@ -225,7 +225,7 @@ class ResDataController extends AdminController
 
                 $filter->in('config_id', '账户信息')->multipleSelect($config_arr);
 
-                $project_list = DB::table('dingding_project')->get();
+                $project_list = DB::table('dingding_project')->where('status','1')->get();
                 $project_arr = [];
                 foreach ($project_list as $single_project) {
                     $project_arr[$single_project->project_name] = $single_project->project_name;

@@ -60,7 +60,8 @@ class VisitController extends AdminController
         $grid->column('is_partner', __('是否有合伙人'));
         $grid->column('visit_cycle', __('来访周期（距离拿资源时间）'));
         $grid->column('signing_cycle', __('签约周期'));
-        $grid->column('create_date', __('创建时间'));
+        $grid->column('create_date', __('首次创建时间'));
+        $grid->column('update_date', __('上次修改/创建 时间'));
 
         $grid->export(function ($export) {
 
@@ -87,7 +88,7 @@ class VisitController extends AdminController
 
             $filter->column(0.5, function ($filter) {
 
-                $project_list = DB::table('dingding_project')->get();
+                $project_list = DB::table('dingding_project')->where('status','1')->get();
                 $project_arr = [];
                 foreach ($project_list as $single_project) {
                     $project_arr[$single_project->project_name] = $single_project->project_name;
@@ -112,6 +113,7 @@ class VisitController extends AdminController
                 $filter->like('visit_name', '客户姓名');
 
                 $filter->between('create_date', '创建时间')->datetime();
+                $filter->between('update_date', '上次修改时间')->datetime();
 
             });
 
