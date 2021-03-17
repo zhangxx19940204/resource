@@ -38,6 +38,11 @@ Route::any('/add_feedbackContent_short', [EC\UserController::class, 'add_feedbac
 Route::any('/get_framework_info', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息和部门信息 （需要单独调用去更新新用户）
 Route::any('/add_deptName', [EC\UserController::class, 'add_deptName']);//更新EC用户的所有部门名
 
+
+Route::any('/distribute_ec_data', [DistributeEc\DistributeDataController::class, 'distribute_ec_data']);//自动下发资源模块
+
+
+
 //同步统计系统中，那些报错数据的相关人员ID
 Route::any('/synchronous_failureCause_userId', [EC\UserController::class, 'synchronous_failureCause_userId']);
 

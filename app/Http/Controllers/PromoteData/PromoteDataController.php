@@ -6,7 +6,6 @@ use App\Models\ResConfig;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use mysql_xdevapi\Exception;
-use Symfony\Component\Console\Input\Input;
 use App\Models\EmailConfig;
 use App\Models\EmailData;
 use App\Models\EmailPass;
@@ -283,7 +282,6 @@ class PromoteDataController extends Controller
         logger('邮件系统数据完成');
         return '邮件系统数据完成';
     }
-
 
     public function get_belong_by_content($content,$title,$belong_list){
 
