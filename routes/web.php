@@ -46,6 +46,10 @@ Route::any('/distribute_ec_data', [DistributeEc\DistributeDataController::class,
 //同步统计系统中，那些报错数据的相关人员ID
 Route::any('/synchronous_failureCause_userId', [EC\UserController::class, 'synchronous_failureCause_userId']);
 
+//对接53客服的消息
+Route::any('/receive_53kf_message_info', [CustomerService\FiveThreeController::class, 'receive_53kf_message_info']);//接收53客服的整体消息
+Route::any('/receive_53kf_user_info', [CustomerService\FiveThreeController::class, 'receive_53kf_user_info']);//接收53客服的客户消息
+
 
 //钉钉微应用 ==招商资源中心
 Route::any('/user_login', [DingTalk\FeedbackController::class, 'user_login']); //接收code，查询数据
@@ -58,6 +62,4 @@ Route::any('/opera_data', [DingTalk\FeedbackController::class, 'opera_data']); /
 Route::get('/visit', [DingTalk\VisitController::class, 'index']); //来访进款表
 Route::any('/get_visit_list', [DingTalk\VisitController::class, 'get_list']); //资源反馈表的列表
 Route::any('/opera_visit_data', [DingTalk\VisitController::class, 'opera_data']); //资源反馈表的操作
-
-
 
