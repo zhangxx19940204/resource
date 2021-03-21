@@ -47,7 +47,7 @@ Route::any('/distribute_ec_data', [DistributeEc\DistributeDataController::class,
 Route::any('/synchronous_failureCause_userId', [EC\UserController::class, 'synchronous_failureCause_userId']);
 
 //对接53客服的消息
-Route::any('/receive_53kf_message_info', [CustomerService\FiveThreeController::class, 'receive_53kf_message_info']);//接收53客服的整体消息
+Route::any('/receive_53kf_info', [CustomerService\FiveThreeController::class, 'receive_53kf_info']);//接收53客服的所有消息类型
 Route::any('/receive_53kf_user_info', [CustomerService\FiveThreeController::class, 'receive_53kf_user_info']);//接收53客服的客户消息
 
 
