@@ -30,6 +30,9 @@ class FiveThreeController extends Controller
     }
     //接收53客服的整体的消息数据
     public function receive_53kf_message_info($data,$customerService_config){//para 数组
+        //判断session是否需要更新
+        $data_session = $data['session'];
+        $data_end = $data['end'];
         $origin_data = DB::table('customerservice_record')->where('config_id',$customerService_config->id)
             ->where('data_guest_id',$data['session']['guest_id'])->first();
         //组装message信息 $data['message'];
@@ -44,8 +47,6 @@ class FiveThreeController extends Controller
 
         if (empty($origin_data)){
             //数据为空，新增一条记录
-            $data_session = [$data['session']];
-            $data_end = $data['end'];
             DB::table('customerservice_record')->insert(
                 ['config_id' => $customerService_config->id,
                     'data_guest_id' =>$data['session']['guest_id'],
@@ -57,10 +58,6 @@ class FiveThreeController extends Controller
             );
         }else{
             //此数据已存在，进行更新操作
-            //判断session是否需要更新
-            $data_session = $data['session'];
-//            $origin_data_session_arr = json_decode($origin_data->data_session,true);
-            $data_end = $data['end'];
             DB::table('customerservice_record')
                 ->where('id', $origin_data->id)
                 ->update(['updated_at' => date('Y-m-d H:i:s'),
@@ -69,7 +66,7 @@ class FiveThreeController extends Controller
                     'data_session'=>json_encode($data_session)
                 ]);
         }
-
+        return '';
     }
 
     //接收53客服的客户消息
