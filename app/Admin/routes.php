@@ -34,5 +34,9 @@ Route::group([
     $router->resource('visits', DingTalk\VisitController::class);
     $router->resource('ding-talk-users', DingTalk\DingTalkUserController::class);
 
+    //53kf系统对接
+    $router->resource('customerService_configs', CustomerService\ConfigController::class);
+    $router->resource('customerService_records', CustomerService\RecordController::class);
+
 
 });
