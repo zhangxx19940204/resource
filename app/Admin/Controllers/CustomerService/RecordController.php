@@ -16,7 +16,7 @@ class RecordController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Record';
+    protected $title = '客服系统聊天记录';
 
     /**
      * Make a grid builder.
@@ -36,19 +36,40 @@ class RecordController extends AdminController
         Admin::js('/assets/admin/customer_service/list.min.js');
         Admin::js('/assets/admin/customer_service/handlebars.min.js');
         Admin::js('/assets/admin/customer_service/script.js');
+        Admin::style('.mSlider-inner {overflow:auto;}');
+        Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;padding: 5px 0 0 10px;">留言内容加载中</div>');
         $grid->column('id', __('编号'));
         $grid->column('config_id', __('账号信息'));
-        $grid->column('data_guest_id', __('Data guest id'))->display(function ($data_guest_id){
+        $grid->column('data_guest_id', __('聊天详情'))->display(function ($data_guest_id){
             $customer_arr = json_decode($this,true);
             return '<button type="button" class="btn btn-secondary" data-whole_data="'.base64_encode(json_encode($customer_arr)).'">详细信息</button>';
         });
 //        $grid->column('data_session', __('Data session'));
 //        $grid->column('data_end', __('Data end'));
 //        $grid->column('data_message', __('Data message'));
-        $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('上次更新时间'));
-        Admin::style('.mSlider-inner {overflow:auto;}');
-        Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;padding: 5px 0 0 10px;">留言内容加载中</div>');
+//        $grid->column('created_at', __('创建时间'));
+        $grid->model()->orderBy('updated_at', 'desc');
+
+        $grid->column('updated_at', __('上次更新时间'))->display(function ($updated_at){
+            return date('Y-m-d H:i:s',strtotime($updated_at));
+        });
+
+        $grid->disableCreateButton();
+        $grid->disableActions();
+        $grid->actions(function ($actions){
+            // 去掉删除
+            $actions->disableDelete();
+            // 去掉编辑
+            $actions->disableEdit();
+            // 去掉查看
+            $actions->disableView();
+
+        });
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter();
+            $filter->expand();//默认展开搜索栏
+            $filter->between('updated_at', '上次更新时间')->datetime();
+        });
 
         return $grid;
     }
