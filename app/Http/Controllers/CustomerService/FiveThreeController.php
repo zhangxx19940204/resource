@@ -46,7 +46,7 @@ class FiveThreeController extends Controller
             ->where('data_guest_id',$data['session']['guest_id'])->first();
         //组装message信息 $data['message'];
         if (!empty($origin_data)){
-            $data_message = json_decode($origin_data->data_message);
+            $data_message = json_decode($origin_data->data_message,true);
         }else{
             $data_message = [];
         }

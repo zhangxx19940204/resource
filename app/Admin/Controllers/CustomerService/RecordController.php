@@ -37,7 +37,7 @@ class RecordController extends AdminController
         Admin::js('/assets/admin/customer_service/handlebars.min.js');
         Admin::js('/assets/admin/customer_service/script.js');
         Admin::style('.mSlider-inner {overflow:auto;}');
-        Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;padding: 5px 0 0 10px;">留言内容加载中</div>');
+        Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;">留言内容加载中</div>');
         $grid->column('id', __('编号'));
         $grid->column('config_id', __('账号信息'));
         $grid->column('data_guest_id', __('聊天详情'))->display(function ($data_guest_id){
