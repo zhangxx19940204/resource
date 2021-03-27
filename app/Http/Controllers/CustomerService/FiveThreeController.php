@@ -46,6 +46,9 @@ class FiveThreeController extends Controller
 //                }
 //                $token = $this->receive_53kf_user_info($complete_data,$customerService_config);
                 logger('记录下customer的'.json_encode($customer_data));
+            }elseif($customer_data['cmd'] == 'activate'){
+                //激活的推送
+                return ['cmd'=>'OK','token'=>$customer_data['token']];
             }else{
                 logger('else:cmd不存在'.json_encode($customer_data));
                 return ['cmd'=>'OK','token'=>''];
