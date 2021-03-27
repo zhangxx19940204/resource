@@ -38,13 +38,13 @@ class FiveThreeController extends Controller
                 //客户信息的数据的推送
                 $complete_data = json_decode(urldecode($customer_data['content']),true);
                 //先去判断token是否在系统中
-//                $customerService_config = DB::table('customerservice_config')->where('status','1')->where('token',$customer_data['token'])->first();
-//                if (empty($customerService_config)){
-//                    //此推送不在系统配置中,直接返回就好
-//                    logger('系统未配置');
-//                    return ['cmd'=>'OK','token'=>$customer_data['token']];
-//                }
-//                $token = $this->receive_53kf_user_info($complete_data,$customerService_config);
+                $customerService_config = DB::table('customerservice_config')->where('status','1')->where('token',$complete_data['token'])->first();
+                if (empty($customerService_config)){
+                    //此推送不在系统配置中,直接返回就好
+                    logger('客户信息推送系统未配置');
+                    return ['cmd'=>'OK','token'=>''];
+                }
+                $token = $this->receive_53kf_user_info($complete_data,$customerService_config);
                 logger('记录下customer的'.json_encode($customer_data));
             }elseif($customer_data['cmd'] == 'activate'){
                 //激活的推送
@@ -74,9 +74,6 @@ class FiveThreeController extends Controller
             $data_message[$single_message['talk_id']][] = $single_message;
         }
 
-        //去判断其他的数据（电话和微信）是否存在和正常来进行判断，并存入数据库中
-//        isMobile  isQQ
-
         if (empty($origin_data)){
             //数据为空，新增一条记录
             DB::table('customerservice_record')->insert(
@@ -85,7 +82,8 @@ class FiveThreeController extends Controller
                     'updated_at' => date('Y-m-d H:i:s'),
                     'data_message'=>json_encode($data_message),
                     'data_end'=>json_encode($data_end),
-                    'data_session'=>json_encode($data_session)
+                    'data_session'=>json_encode($data_session),
+                    'data_customer'=>json_encode([])
                 ]
             );
         }else{
@@ -102,7 +100,49 @@ class FiveThreeController extends Controller
     }
 
     //接收53客服的客户消息
-    public function receive_53kf_user_info(){
-        return '';
+    public function receive_53kf_user_info($data,$customerService_config){//para 数组
+        //
+        $data_session = [];
+        $data_end = [];
+        $data_message = [];
+        $origin_data = DB::table('customerservice_record')->where('config_id',$customerService_config->id)
+            ->where('data_guest_id',$data['guest_id'])->first();
+        //判断此条数据是否存在
+        if (!empty($origin_data)){
+            //数据已存在,只更新自我的字段就可以了
+            DB::table('customerservice_record')
+                ->where('id', $origin_data->id)
+                ->update(['updated_at' => date('Y-m-d H:i:s'),
+                    'customer_phone'=>$data['phone'],
+                    'customer_weixin'=>$data['weixin'],
+                    'customer_mobile'=>$data['mobile'],
+                    'customer_remark'=>$data['remark'],
+                    'customer_se'=>$data['se'],
+                    'customer_kw'=>$data['kw'],
+                    'customer_styleName'=>$data['style_name'],
+                    'data_customer'=>json_encode($data)
+                ]);
+        }else{
+            //数据不存在，直接插入表中
+            DB::table('customerservice_record')->insert(
+                ['config_id' => $customerService_config->id,
+                    'data_guest_id' =>$data['guest_id'],
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'data_message'=>json_encode($data_message),
+                    'data_end'=>json_encode($data_end),
+                    'data_session'=>json_encode($data_session),
+                    'customer_phone'=>$data['phone'],
+                    'customer_weixin'=>$data['weixin'],
+                    'customer_mobile'=>$data['mobile'],
+                    'customer_remark'=>$data['remark'],
+                    'customer_se'=>$data['se'],
+                    'customer_kw'=>$data['kw'],
+                    'customer_styleName'=>$data['style_name'],
+                    'data_customer'=>json_encode($data)
+                ]
+            );
+        }
+
+        return $customerService_config->token;
     }
 }
