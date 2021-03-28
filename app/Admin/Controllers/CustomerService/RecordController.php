@@ -8,6 +8,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Admin;
+use Illuminate\Support\Facades\DB;
 
 class RecordController extends AdminController
 {
@@ -39,20 +40,24 @@ class RecordController extends AdminController
         Admin::style('.mSlider-inner {overflow:auto;}');
         Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;">留言内容加载中</div>');
         $grid->column('id', __('编号'));
-        $grid->column('config_id', __('账号信息'));
+//        $grid->column('config_id', __('账号信息'));
+        $grid->column('customer_styleName', __('风格名称（用于同步）'))->width(200);
+        $grid->column('customer_mobile', __('手机号'));
+        $grid->column('customer_kw', __('关键字'));
+        $grid->column('customer_se', __('搜索引擎'));
+        $grid->column('customer_remark', __('备注'));
+        $grid->column('customer_weixin', __('微信'));
+        $grid->column('syn_status', __('是否同步'))->bool(['1' => true, '0' => false]);
         $grid->column('data_guest_id', __('聊天详情'))->display(function ($data_guest_id){
             $customer_arr = json_decode($this,true);
             return '<button type="button" class="btn btn-secondary" data-whole_data="'.base64_encode(json_encode($customer_arr)).'">详细信息</button>';
         });
-//        $grid->column('data_session', __('Data session'));
-//        $grid->column('data_end', __('Data end'));
-//        $grid->column('data_message', __('Data message'));
-//        $grid->column('created_at', __('创建时间'));
-        $grid->model()->orderBy('updated_at', 'desc');
-
         $grid->column('updated_at', __('上次更新时间'))->display(function ($updated_at){
             return date('Y-m-d H:i:s',strtotime($updated_at));
         });
+
+
+        $grid->model()->orderBy('updated_at', 'desc');
 
         $grid->disableCreateButton();
         $grid->disableActions();
@@ -68,7 +73,41 @@ class RecordController extends AdminController
         $grid->filter(function ($filter) {
             $filter->disableIdFilter();
             $filter->expand();//默认展开搜索栏
-            $filter->between('updated_at', '上次更新时间')->datetime();
+            $filter->column(5/10, function ($filter) {
+                $filter->like('customer_mobile', '手机号');
+                $filter->like('customer_remark', '备注');
+                $filter->like('customer_se', '搜索引擎');
+                $filter->like('customer_kw', '关键词');
+                $filter->like('customer_styleName', '风格');
+            });
+            $filter->column(5/10, function ($filter) {
+                $filter->in('syn_status', '同步状态')->checkbox([
+                    '0'    => '未同步',
+                    '1'    => '已同步',
+                ]);
+                $filter->where(function ($query) {
+                    switch ($this->input) {
+                        case 'all':
+                            //全部数据的展示
+                            break;
+                        case 'user':
+                            $query->whereNotNull('customer_mobile');
+                            break;
+                        case 'message':
+                            $query->whereNull('customer_mobile');
+                            break;
+                        default:
+                            //啥操作也不做，全部展示出来
+                    }
+                }, '数据的分类', 'mobile_status')->radio([
+                    'all' => '全部数据',
+                    'user' => '仅展示用户数据',
+                    'message' => '仅展示留言数据',
+                ]);
+                $filter->between('updated_at', '上次更新时间')->datetime();
+            });
+
+
         });
 
         return $grid;

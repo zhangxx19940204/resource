@@ -106,13 +106,15 @@ class FiveThreeController extends Controller
         $data_message = [];
         $origin_data = DB::table('customerservice_record')->where('config_id',$customerService_config->id)
             ->where('data_guest_id',$data['guest_id'])->first();
-        logger('receive_53kf_user_info进行数据的数据库'.json_encode($data));
-        //判断此条数据是否存在
+//        logger('receive_53kf_user_info进行数据的数据库'.json_encode($data));
+        //判断此条数据是否存在，此数据必然更新或者插入了，那先去同步至同步系统中
+        $syn_status = $this->syn_user_info_to_distribute_sys($customerService_config->id,$data);
         if (!empty($origin_data)){
             //数据已存在,只更新自我的字段就可以了
             DB::table('customerservice_record')
                 ->where('id', $origin_data->id)
                 ->update(['updated_at' => date('Y-m-d H:i:s'),
+                    'syn_status'=>$syn_status,
                     'customer_weixin'=>$data['weixin'],
                     'customer_mobile'=>$data['mobile'],
                     'customer_remark'=>$data['remark'],
@@ -130,6 +132,7 @@ class FiveThreeController extends Controller
                     'data_message'=>json_encode($data_message),
                     'data_end'=>json_encode($data_end),
                     'data_session'=>json_encode($data_session),
+                    'syn_status'=>$syn_status,
                     'customer_weixin'=>$data['weixin'],
                     'customer_mobile'=>$data['mobile'],
                     'customer_remark'=>$data['remark'],
@@ -142,5 +145,33 @@ class FiveThreeController extends Controller
         }
 
         return $customerService_config->token;
+    }
+
+    //用于将数据直接同步至统计系统中
+    public function syn_user_info_to_distribute_sys($customerService_configId,$data){
+        //得到了相关的数据客服数据，进行统计系统的对接
+        //不用判定是否已经存在，分配时会提示出来
+        //根据客服系统的id来去取相关的统计系统的配置，看是否配置
+        $date = date('Y-m-d H:i:s');
+        $res_config_data = DB::table('res_config')->where('account_id', '=',$customerService_configId)
+            ->where('type','=','53客服')->first();
+        if (empty($res_config_data)){
+            //统计系统的配置，未配置相关
+            logger('客服同步统计系统的配置，未配置');
+            return 0;
+        }else{
+            try {
+                //查询到了统计配置相关的数据，组装数据插入到统计系统中
+                $res_data_arr = ['user_id' => $res_config_data->user_id, 'config_id' => $res_config_data->id
+                    ,'created_at'=>$date,'updated_at'=>$date
+                    ,'belong'=>$data['style_name'],'type'=>$res_config_data->type,'data_json'=>json_encode($data)
+                    ,'data_name'=>'未命名','data_phone'=>$data['mobile']];
+                DB::table('res_data')->insert($res_data_arr);
+                return 1;
+            } catch (Exception $e) {
+                logger('插入到统计系统中时，出错，返回0');
+                return 0;
+            }
+        }
     }
 }
