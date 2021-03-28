@@ -101,19 +101,18 @@ class FiveThreeController extends Controller
 
     //接收53客服的客户消息
     public function receive_53kf_user_info($data,$customerService_config){//para 数组
-        //
         $data_session = [];
         $data_end = [];
         $data_message = [];
         $origin_data = DB::table('customerservice_record')->where('config_id',$customerService_config->id)
             ->where('data_guest_id',$data['guest_id'])->first();
+        logger('receive_53kf_user_info进行数据的数据库'.json_encode($data));
         //判断此条数据是否存在
         if (!empty($origin_data)){
             //数据已存在,只更新自我的字段就可以了
             DB::table('customerservice_record')
                 ->where('id', $origin_data->id)
                 ->update(['updated_at' => date('Y-m-d H:i:s'),
-                    'customer_phone'=>$data['phone'],
                     'customer_weixin'=>$data['weixin'],
                     'customer_mobile'=>$data['mobile'],
                     'customer_remark'=>$data['remark'],
@@ -131,7 +130,6 @@ class FiveThreeController extends Controller
                     'data_message'=>json_encode($data_message),
                     'data_end'=>json_encode($data_end),
                     'data_session'=>json_encode($data_session),
-                    'customer_phone'=>$data['phone'],
                     'customer_weixin'=>$data['weixin'],
                     'customer_mobile'=>$data['mobile'],
                     'customer_remark'=>$data['remark'],
