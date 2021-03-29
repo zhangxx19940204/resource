@@ -147,23 +147,23 @@ class ResDataController extends AdminController
 
         });
 
-        $grid->column('feedback_status', __('反馈状态'))->bool()->filter([
-            0 => '未反馈',
-            1 => '已反馈',
-        ]);
-        $grid->column('short_feedback', __('简短反馈'));
-        $grid->column('feedback_content', __('反馈内容'))->display(function ($feedback_content){
-            $content_str = '';
-            if (empty($feedback_content)){
-                return $content_str;
-            }else{
-                foreach ($feedback_content as $val){
-                    $content_str .= $val['content'];
-                }
-                return $content_str;
-            }
-
-        });
+//        $grid->column('feedback_status', __('反馈状态'))->bool()->filter([
+//            0 => '未反馈',
+//            1 => '已反馈',
+//        ]);
+//        $grid->column('short_feedback', __('简短反馈'));
+//        $grid->column('feedback_content', __('反馈内容'))->display(function ($feedback_content){
+//            $content_str = '';
+//            if (empty($feedback_content)){
+//                return $content_str;
+//            }else{
+//                foreach ($feedback_content as $val){
+//                    $content_str .= $val['content'];
+//                }
+//                return $content_str;
+//            }
+//
+//        });
 
 //        $grid->column('', __('客户ID'))->hide();
 
@@ -258,7 +258,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('YmdHis').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId','short_feedback','feedback_content']);
+            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
