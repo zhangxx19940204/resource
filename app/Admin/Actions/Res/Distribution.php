@@ -171,9 +171,15 @@ class Distribution extends RowAction
 //        die();
 
         $active_arr = $distribution_arr['active_list'];
-        foreach ($distribution_arr['except_list'] as $val){
+        foreach ($distribution_arr['except_list'] as $val){//排除了请假列表的数据
             unset($active_arr[$val]);
         }
+        //排除了请假列表后，还需排除掉离职的人员
+        $resign_users = DB::table('ec_users')->where('status','=','0')->get()->toArray();
+        foreach ($resign_users as $val){//排除了请假列表的数据
+            unset($active_arr[$val['userId']]);
+        }
+
         //判断现用分配列表是否为空
         if (empty($active_arr)){
             //现用的分配列表为空，判断是否重复加载
