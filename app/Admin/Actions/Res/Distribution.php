@@ -175,9 +175,9 @@ class Distribution extends RowAction
             unset($active_arr[$val]);
         }
         //排除了请假列表后，还需排除掉离职的人员
-        $resign_users = DB::table('ec_users')->where('status','=','0')->get()->toArray();
+        $resign_users = DB::table('ec_users')->where('status','=','0')->get();
         foreach ($resign_users as $val){//排除了请假列表的数据
-            unset($active_arr[$val['userId']]);
+            unset($active_arr[$val->userId]);
         }
 
         //判断现用分配列表是否为空
