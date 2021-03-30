@@ -73,16 +73,29 @@ class ResDistributionConfigController extends AdminController
             return $except_str;
         });
 
+        $grid->column('auto_distribute_list', __('自动分配列表'))->display(function ($auto_distribute_list){
+            $auto_distribute_arr = json_decode($auto_distribute_list,true);
+            $auto_distribute_values = is_array($auto_distribute_arr)? array_values($auto_distribute_arr): [];
+            $auto_list_arr = DB::table('ec_users')->whereIn('userId',$auto_distribute_values)->get();
+
+            $auto_str = '';
+            foreach ($auto_list_arr as $single_auto){
+                $auto_str .= '<strong>'.$single_auto->userName.'</strong>:'.$single_auto->userId.'；<br/>';
+            }
+            return $auto_str;
+        });
+
         $states = [
             1 => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
             0 => ['value' => 0, 'text' => '关闭', 'color' => 'default'],
         ];
         $grid->column('recyclable', __('是否重复'))->switch($states);
         $grid->column('status', __('启用状态'))->switch($states);
-//        $grid->column('enable_time', __('Enable time'));
-//        $grid->column('disbale_time', __('Disbale time'));
-        $grid->column('created_at', __('创建时间'));
-        $grid->column('updated_at', __('更新时间'));
+        $grid->column('status', __('自动分配状态'))->switch($states);
+        $grid->column('enable_time', __('开始工作时间'))->editable();
+        $grid->column('disbale_time', __('结束工作时间'))->editable();
+//        $grid->column('created_at', __('创建时间'));
+//        $grid->column('updated_at', __('更新时间'));
 
         $grid->filter(function ($filter) {
 
