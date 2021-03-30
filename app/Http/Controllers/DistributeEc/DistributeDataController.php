@@ -69,9 +69,17 @@ class DistributeDataController extends Controller
                 $relate_customer_resData[$key] = ['res_data_id'=>$single_res_data->id,'ec_userId'=>$userId];
             }
             //customer 列表已加载完毕
-            $optUserId = env('AUTO_DISTRIBUTE_OPTUSERID');
-            echo $this->request_EC_add_customer($optUserId,$list,$relate_customer_resData,$new_auto_EcUser_list,$single_available_distribute->id);
-//            die();
+            //判断是否有数据
+            if (empty($relate_customer_resData) || empty($list)){
+                //有关键数据为空，直接跳出
+                logger('关键数据为空，直接跳出;$relate_customer_resData:'.json_encode($relate_customer_resData).';$list:'.json_encode($list));
+                continue;
+            }else{
+                //关键数据在
+                $optUserId = env('AUTO_DISTRIBUTE_OPTUSERID');
+                echo $this->request_EC_add_customer($optUserId,$list,$relate_customer_resData,$new_auto_EcUser_list,$single_available_distribute->id);
+            }
+
         }
     }
 
