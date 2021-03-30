@@ -251,6 +251,19 @@ class DistributeDataController extends Controller
             $access_distribute_users = array_merge_recursive($access_distribute_users,array_keys($recyclable_arr));
         }
         //以获取加载过资源，判断是否足够
+        //还需排除已经离职的人员
+        $resign_users = DB::table('ec_users')->where('status','=','0')->get();
+        foreach ($resign_users as $val){//排除了请假列表的数据
+            if (in_array($val->userId,$access_distribute_users)){
+                //需要排除,跳过
+                $key = array_search($val->userId,$access_distribute_users);
+                unset($access_distribute_users[$key]);
+                continue;
+            }else{
+                //不需要排除
+                continue;
+            }
+        }
         if (count($access_distribute_users) >= $res_data_sum){
             //数量足够，直接返回，先把排除列表中的数据，清除
             return $this->get_except_ec_arr($distribute_data,$access_distribute_users);
@@ -265,9 +278,17 @@ class DistributeDataController extends Controller
     //清除EC用户列表中的排除数据
     public function get_except_ec_arr($distribute_data,$access_distribute_users){
         $except_arr = json_decode($distribute_data->except_list,true);
+
+        //还需排除已经离职的人员
+        $leaved_ec_user = [];
+        $resign_users = DB::table('users')->get();
+        foreach ($resign_users as $val){//排除了请假列表的数据
+            $leaved_ec_user[] = $val->userId;
+        }
+
         $access_ec_user = [];
         foreach ($access_distribute_users as $key=>$distribute_user){
-            if (in_array($distribute_user,$except_arr)){
+            if (in_array($distribute_user,$except_arr) || in_array($distribute_user,$leaved_ec_user)){
                 //需要排除,跳过
                 continue;
             }else{
@@ -284,7 +305,7 @@ class DistributeDataController extends Controller
         $except_arr = json_decode($distribute_data->except_list,true);
         //还需排除已经离职的人员
         $leaved_ec_user = [];
-        $resign_users = DB::table('users')->get();
+        $resign_users = DB::table('ec_users')->where('status','=','0')->get();
         foreach ($resign_users as $val){//排除了请假列表的数据
             $leaved_ec_user[] = $val->userId;
         }
