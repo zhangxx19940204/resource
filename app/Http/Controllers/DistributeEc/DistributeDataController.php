@@ -99,16 +99,16 @@ class DistributeDataController extends Controller
             //请求成功，判断成功和失败列表 进行更新
             if (!empty($res_data['data']['successIdList'])){
                 foreach ($res_data['data']['successIdList'] as $success_data){ //{"index": 0,"crmId": 4262563847}
-                    DB::table('res_data')->where('id', $relate_customer_resData['res_data_id'])
+                    DB::table('res_data')->where('id', $relate_customer_resData['index']['res_data_id'])
                         ->update(['crmId' => $success_data['crmId'] //数据库设计为字符串即可
-                            ,'ec_userId' => $relate_customer_resData['ec_userId']
+                            ,'ec_userId' => $relate_customer_resData['index']['ec_userId']
                             ,'failureCause' => ''
                             ,'synchronize_para' => $list[$success_data['index']] //相对应的用户
                             ,'synchronize_results'=>1
                         ]);
-                    $success_EcUser_list[] = $relate_customer_resData['ec_userId'];
+                    $success_EcUser_list[] = $relate_customer_resData['index']['ec_userId'];
                     //操作完毕后，进行调用日志方法
-                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['ec_userId']
+                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['index']['ec_userId']
                         ,'failureCause' => ''
                         ,'synchronize_para' => $list[$success_data['index']] //相对应的用户
                         ,'synchronize_results'=>1];
@@ -120,15 +120,15 @@ class DistributeDataController extends Controller
             if (!empty($res_data['data']['failureList'])){
                 foreach ($res_data['data']['failureList'] as $failure_data){ //{"failureCause": "该客户被多人频繁操作，请稍后重试。", "index": 1}
 
-                    DB::table('res_data')->where('id', $relate_customer_resData['res_data_id'])
+                    DB::table('res_data')->where('id', $relate_customer_resData['index']['res_data_id'])
                         ->update(['crmId' => '' //数据库设计为字符串即可
-                            ,'ec_userId' => $relate_customer_resData['ec_userId']
+                            ,'ec_userId' => $relate_customer_resData['index']['ec_userId']
                             ,'failureCause' => $failure_data['failureCause']
                             ,'synchronize_para' => $list[$failure_data['index']] //相对应的用户
                             ,'synchronize_results'=>0
                         ]);
                     //操作完毕后，进行调用日志方法
-                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['ec_userId']
+                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['index']['ec_userId']
                         ,'failureCause' => $failure_data['failureCause']
                         ,'synchronize_para' => $list[$failure_data['index']] //相对应的用户
                         ,'synchronize_results'=>0];
