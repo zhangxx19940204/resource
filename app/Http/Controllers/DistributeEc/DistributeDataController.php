@@ -81,8 +81,8 @@ class DistributeDataController extends Controller
         logger('$list'.json_encode($list));
         logger('$relate_customer_resData'.json_encode($relate_customer_resData));
         logger('$new_auto_EcUser_list'.json_encode($new_auto_EcUser_list));
-        die();
-        logger('request_EC_add_customer1:'.json_encode($list));
+//        die();
+        logger('到这为止，已经处理完毕等待放进ec系统中；');
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
         $appId = env('EC_APPID');
