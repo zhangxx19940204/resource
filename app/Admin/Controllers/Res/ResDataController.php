@@ -176,7 +176,6 @@ class ResDataController extends AdminController
 
         $grid->disableCreateButton();
 
-
         $grid->actions(function ($actions){
             // 去掉删除
             $actions->disableDelete();
