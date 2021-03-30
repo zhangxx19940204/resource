@@ -108,12 +108,12 @@ class DistributeDataController extends Controller
                         ]);
                     $success_EcUser_list[] = $relate_customer_resData['ec_userId'];
                     //操作完毕后，进行调用日志方法
-//                    $distribution_log_data = ['ec_userId' => $userId
-//                        ,'failureCause' => ''
-//                        ,'synchronize_para' => $customer[$success_data['index']] //相对应的用户
-//                        ,'synchronize_results'=>1];
-//
-//                    $this->record_distribution_log($distribution_log_data,$model->belong);
+                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['ec_userId']
+                        ,'failureCause' => ''
+                        ,'synchronize_para' => $list[$success_data['index']] //相对应的用户
+                        ,'synchronize_results'=>1];
+
+                    $this->record_distribution_log($distribution_log_data,'1');
 
                 }
             }
@@ -127,12 +127,12 @@ class DistributeDataController extends Controller
                             ,'synchronize_para' => $list[$failure_data['index']] //相对应的用户
                             ,'synchronize_results'=>0
                         ]);
-//                    //操作完毕后，进行调用日志方法
-//                    $distribution_log_data = ['ec_userId' => $userId
-//                        ,'failureCause' => $failure_data['failureCause']
-//                        ,'synchronize_para' => $list[$failure_data['index']] //相对应的用户
-//                        ,'synchronize_results'=>0];
-//                    $this->record_distribution_log($distribution_log_data,$model->belong);
+                    //操作完毕后，进行调用日志方法
+                    $distribution_log_data = ['ec_userId' => $relate_customer_resData['ec_userId']
+                        ,'failureCause' => $failure_data['failureCause']
+                        ,'synchronize_para' => $list[$failure_data['index']] //相对应的用户
+                        ,'synchronize_results'=>0];
+                    $this->record_distribution_log($distribution_log_data,'1');
                 }
             }
             logger('自动分配完毕，如有异常已记录在数据中，请查看');
@@ -157,6 +157,23 @@ class DistributeDataController extends Controller
             return '自动分配:EC异常';
         }
 
+    }
+
+    public function record_distribution_log($distribution_log_data,$is_auto=0){
+        date_default_timezone_set('Asia/Shanghai');
+        logger('开始记录log日志(自动分配);日志数据：',$distribution_log_data);
+        $synchronize_para = json_encode($distribution_log_data['synchronize_para']);
+        $distribution_log_data['synchronize_para'] = $synchronize_para;
+        $distribution_log_data['created_at'] = date('Y-m-d H:i:s');
+
+        if ($is_auto == '1'){
+            //是自动分配下发的
+            $distribution_log_data['is_auto'] = '1';
+        }else{
+            $distribution_log_data['is_auto'] = '0';
+        }
+        DB::table('res_distribution_log')->insert($distribution_log_data);
+        return '';
     }
     //获取多于资源数量的EC用户数
     public function get_distribute_EcUser_data($distribute_data,$res_data_sum){
