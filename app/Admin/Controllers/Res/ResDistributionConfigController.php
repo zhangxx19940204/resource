@@ -196,14 +196,7 @@ class ResDistributionConfigController extends AdminController
 
             })->default(1);
 
-
         $form->ignore(['nationality',]);
-
-
-
-//        $form->text('enable_time', __('Enable time'));
-//        $form->text('disbale_time', __('Disbale time'));
-//
 
         return $form;
     }
