@@ -240,9 +240,9 @@ class DistributeDataController extends Controller
     public function get_auto_distribute_arr($distribute_data,$res_data_sum,$access_distribute_users){ //用来合并和临时加载分配列表的地方
 
         if (is_array($distribute_data->recyclable_list)){
-            $recyclable_arr = json_decode($distribute_data->recyclable_list,true);//总可分配列表
+            $recyclable_arr =$distribute_data->recyclable_list;//总可分配列表
         }else{
-            if (isset($distribute_data->recyclable_list)){
+            if (!isset($distribute_data->recyclable_list)){
                 $recyclable_arr = [];
             }else{
                 $recyclable_arr = json_decode($distribute_data->recyclable_list,true);
@@ -291,7 +291,7 @@ class DistributeDataController extends Controller
         if (is_array($distribute_data->except_list)){
             $except_arr = $distribute_data->except_list;
         }else{
-            if (isset($distribute_data->except_list)){
+            if (!isset($distribute_data->except_list)){
                 $except_arr = [];
             }else{
                 $except_arr = json_decode($distribute_data->except_list,true);
@@ -325,7 +325,7 @@ class DistributeDataController extends Controller
         if (is_array($distribute_data->except_list)){
             $except_arr = $distribute_data->except_list;
         }else{
-            if (isset($distribute_data->except_list)){
+            if (!isset($distribute_data->except_list)){
                 $except_arr = [];
             }else{
                 $except_arr = json_decode($distribute_data->except_list,true);
