@@ -191,6 +191,8 @@ class ResDistributionConfigController extends AdminController
                 $form->switch('status', __('启用状态'));
                 $form->switch('auto_distribute_status', __('自动分配状态'));
                 $form->text('belong', __('所属'));
+                $form->text('enable_time', __('开始营业时间'));
+                $form->text('disbale_time', __('结束营业时间'));
 
             })->default(1);
 
