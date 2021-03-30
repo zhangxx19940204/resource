@@ -108,7 +108,15 @@ class FiveThreeController extends Controller
             ->where('data_guest_id',$data['guest_id'])->first();
 //        logger('receive_53kf_user_info进行数据的数据库'.json_encode($data));
         //判断此条数据是否存在，此数据必然更新或者插入了，那先去同步至同步系统中
-        $syn_status = $this->syn_user_info_to_distribute_sys($customerService_config->id,$data);
+        //判断是否同步到统计系统中
+        if ($customerService_config->is_syn == '1'){
+            //请求同步
+            $syn_status = $this->syn_user_info_to_distribute_sys($customerService_config->id,$data);
+        }else{
+            //不等于1，不同步
+            $syn_status = '0';
+        }
+
         if (!empty($origin_data)){
             //数据已存在,只更新自我的字段就可以了
             DB::table('customerservice_record')
