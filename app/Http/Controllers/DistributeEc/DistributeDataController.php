@@ -238,7 +238,17 @@ class DistributeDataController extends Controller
 
     //获取足够的EC用户数
     public function get_auto_distribute_arr($distribute_data,$res_data_sum,$access_distribute_users){ //用来合并和临时加载分配列表的地方
-        $recyclable_arr = json_decode($distribute_data->recyclable_list,true);//总可分配列表
+
+        if (is_array($distribute_data->recyclable_list)){
+            $recyclable_arr = json_decode($distribute_data->recyclable_list,true);//总可分配列表
+        }else{
+            if (isset($distribute_data->recyclable_list)){
+                $recyclable_arr = [];
+            }else{
+                $recyclable_arr = json_decode($distribute_data->recyclable_list,true);
+            }
+        }
+
         if (empty($access_distribute_users)){
             //可分配的ec用户列表为空,加载可循环列表
             $access_distribute_users = array_keys($recyclable_arr);
@@ -277,7 +287,17 @@ class DistributeDataController extends Controller
 
     //清除EC用户列表中的排除数据
     public function get_except_ec_arr($distribute_data,$access_distribute_users){
-        $except_arr = json_decode($distribute_data->except_list,true);
+
+        if (is_array($distribute_data->except_list)){
+            $except_arr = $distribute_data->except_list;
+        }else{
+            if (isset($distribute_data->except_list)){
+                $except_arr = [];
+            }else{
+                $except_arr = json_decode($distribute_data->except_list,true);
+            }
+
+        }
 
         //还需排除已经离职的人员
         $leaved_ec_user = [];
@@ -302,7 +322,16 @@ class DistributeDataController extends Controller
     //得到排除之后的源EC用户列表
     public function get_after_except_arr($distribute_data){
         $auto_distribute_arr = json_decode($distribute_data->auto_distribute_list,true);//原自动下发的EC用户列表
-        $except_arr = json_decode($distribute_data->except_list,true);
+        if (is_array($distribute_data->except_list)){
+            $except_arr = $distribute_data->except_list;
+        }else{
+            if (isset($distribute_data->except_list)){
+                $except_arr = [];
+            }else{
+                $except_arr = json_decode($distribute_data->except_list,true);
+            }
+
+        }
         //还需排除已经离职的人员
         $leaved_ec_user = [];
         $resign_users = DB::table('ec_users')->where('status','=','0')->get();
