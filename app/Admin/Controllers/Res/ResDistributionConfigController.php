@@ -86,12 +86,12 @@ class ResDistributionConfigController extends AdminController
         });
 
         $states = [
-            1 => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
-            0 => ['value' => 0, 'text' => '关闭', 'color' => 'default'],
+            1 => ['value' => '1', 'text' => '打开', 'color' => 'primary'],
+            0 => ['value' => '0', 'text' => '关闭', 'color' => 'default'],
         ];
         $grid->column('recyclable', __('是否重复'))->switch($states);
         $grid->column('status', __('启用状态'))->switch($states);
-        $grid->column('status', __('自动分配状态'))->switch($states);
+        $grid->column('auto_distribute_status', __('自动分配状态'))->switch($states);
         $grid->column('enable_time', __('开始工作时间'))->editable();
         $grid->column('disbale_time', __('结束工作时间'))->editable();
 //        $grid->column('created_at', __('创建时间'));
@@ -189,6 +189,7 @@ class ResDistributionConfigController extends AdminController
 
                 $form->switch('recyclable', __('是否循环'));
                 $form->switch('status', __('启用状态'));
+                $form->switch('auto_distribute_status', __('自动分配状态'));
                 $form->text('belong', __('所属'));
 
             })->default(1);
