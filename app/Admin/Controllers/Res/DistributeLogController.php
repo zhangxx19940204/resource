@@ -33,6 +33,16 @@ class DistributeLogController extends AdminController
             return $this->ecUser->userName;
         });
         $grid->column('failureCause', __('错误原因'));
+        $grid->column('is_auto', __('同步方式'))->display(function ($is_auto){
+            if (empty($is_auto) || $is_auto == '0'){
+                return '手动';
+            }elseif($is_auto == '1'){
+                return '自动';
+            }else{
+                return $is_auto;
+            }
+
+        });
         $grid->column('synchronize_para', __('同步参数'))->display(function (){
                 return '点击查看';
             })->modal('数据源数据', function ($model) {
@@ -88,6 +98,7 @@ class DistributeLogController extends AdminController
                 $ecUser_data = EcUser::get()->toarray();
 
                 $ecUser_arr = [];
+
                 foreach ($ecUser_data as $key=>$ecUser){
                     $ecUser_arr[$ecUser['userId']] = $ecUser['deptName'];
                 }
@@ -102,6 +113,10 @@ class DistributeLogController extends AdminController
                 $filter->in('synchronize_results','同步结果')->checkbox([
                     '0'    => '失败',
                     '1'    => '成功',
+                ]);
+                $filter->in('synchronize_results','同步方式')->checkbox([
+                    '0'    => '手动',
+                    '1'    => '自动',
                 ]);
                 $filter->between('created_at', '创建时间')->datetime();
 
