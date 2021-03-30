@@ -77,6 +77,11 @@ class DistributeDataController extends Controller
 
     //将获得数据，请求到Ec等待返回和操作
     public function request_EC_add_customer($optUserId,$list,$relate_customer_resData,$new_auto_EcUser_list,$res_distribute_config_id){
+        logger('已准备好展示同步数据$res_distribute_config_id'.$res_distribute_config_id.'$optUserId'.$optUserId);
+        logger('$list'.json_encode($list));
+        logger('$relate_customer_resData'.json_encode($relate_customer_resData));
+        logger('$new_auto_EcUser_list'.json_encode($new_auto_EcUser_list));
+        die();
         logger('request_EC_add_customer1:'.json_encode($list));
         $url = env('EC_ADDCUSTOMER');
         $cid = env('EC_CID');
@@ -260,12 +265,19 @@ class DistributeDataController extends Controller
     public function get_after_except_arr($distribute_data){
         $auto_distribute_arr = json_decode($distribute_data->auto_distribute_list,true);//原自动下发的EC用户列表
         $except_arr = json_decode($distribute_data->except_list,true);
+        //还需排除已经离职的人员
+        $leaved_ec_user = [];
+        $resign_users = DB::table('users')->get();
+        foreach ($resign_users as $val){//排除了请假列表的数据
+            $leaved_ec_user[] = $val->userId;
+        }
+
         $access_ec_user = [];
         if (empty($auto_distribute_arr)){
             return $access_ec_user;//源列表已经为空了
         }
         foreach ($auto_distribute_arr as $key=>$distribute_user){
-            if (in_array($distribute_user,$except_arr)){
+            if (in_array($distribute_user,$except_arr) || in_array($distribute_user,$leaved_ec_user)){
                 //需要排除,跳过
                 continue;
             }else{
