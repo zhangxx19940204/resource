@@ -114,7 +114,7 @@ class DistributeLogController extends AdminController
                     '0'    => '失败',
                     '1'    => '成功',
                 ]);
-                $filter->in('synchronize_results','同步方式')->checkbox([
+                $filter->in('is_auto','同步方式')->checkbox([
                     '0'    => '手动',
                     '1'    => '自动',
                 ]);

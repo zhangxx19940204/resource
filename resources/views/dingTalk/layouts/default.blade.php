@@ -15,8 +15,8 @@
     <meta name="HandheldFriendly" content="True"/>
     <meta name="MobileOptimized" content="320"/>
     <meta name="robots" content="noindex,nofollow,noarchive"/>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <!-- CSS files -->
     <link href="{{ asset('dingTalk/investment/tabler.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('dingTalk/investment/demo.min.css') }}" rel="stylesheet"/>
@@ -29,8 +29,6 @@
     <script src="{{ asset('dingTalk/investment/tabler.min.js') }}"></script>
 
     <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.10.3/dingtalk.open.js"></script>
-
-
 
 
     <style>
