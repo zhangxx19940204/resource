@@ -31,8 +31,8 @@ class RecordController extends AdminController
         Admin::js('/assets/admin/customer_service/jquery.base64.js');
         Admin::js('/assets/admin/customer_service/mslider_config.js');
         //侧边栏的和聊天框的代码和引入
-        Admin::css('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
-        Admin::css('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+        Admin::css('/assets/admin/customer_service/reset.min.css');
+        Admin::css('/assets/admin/customer_service/font-awesome.min.css');
         Admin::css('/assets/admin/customer_service/style.css');
         Admin::js('/assets/admin/customer_service/list.min.js');
         Admin::js('/assets/admin/customer_service/handlebars.min.js');
