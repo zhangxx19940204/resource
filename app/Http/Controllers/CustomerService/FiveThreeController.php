@@ -14,7 +14,7 @@ class FiveThreeController extends Controller
 //        logger('receive_53kf_message_info:'.json_encode($request->all()));
         $customer_data = $request->all(); //{"cmd":"talk_info","msg_id":"ba667079-9f31-4522-9569-0775c14a06fc","content":"这里是url_encode的字符串","token":"rH0D52587Wt54mFok"}
         //先判断是否是百度关键词推送
-        if (!array_key_exists('cmd',$customer_data)){
+        if (!array_key_exists('cmd',$customer_data)){   //**********************************
             //此条记录没有cmd字段，可能是百度关键词的推送，先logger，不做操作
             logger('cmd不存在'.json_encode($customer_data));
             return ['cmd'=>'OK','token'=>''];
@@ -36,18 +36,22 @@ class FiveThreeController extends Controller
 
             }elseif ($customer_data['cmd'] == 'customer'){
                 //客户信息的数据的推送
-                $complete_data = json_decode(urldecode($customer_data['content']),true);
+                $complete_data = json_decode(urldecode($customer_data['content']),true);//解析后的数据格式为：array
                 //先去判断token是否在系统中
-                $customerService_config = DB::table('customerservice_config')->where('status','1')->where('token',$complete_data['token'])->first();
+                $customerService_config = DB::table('customerservice_config')
+                    ->where('account',$complete_data['worker_id'])
+                    ->where('status','1')
+                    ->where('token',$complete_data['token'])->first();
                 if (empty($customerService_config)){
                     //此推送不在系统配置中,直接返回就好
                     logger('客户信息推送系统未配置');
-                    return ['cmd'=>'OK','token'=>''];
+                    return ['cmd'=>'OK','token'=>$complete_data['token']];
                 }
                 $token = $this->receive_53kf_user_info($complete_data,$customerService_config);
                 logger('记录下customer的'.json_encode($customer_data));
             }elseif($customer_data['cmd'] == 'activate'){
                 //激活的推送
+                logger('激活的推送');
                 return ['cmd'=>'OK','token'=>$customer_data['token']];
             }else{
                 logger('else:cmd不存在'.json_encode($customer_data));
