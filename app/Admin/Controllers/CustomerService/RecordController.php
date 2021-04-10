@@ -2,12 +2,14 @@
 
 namespace App\Admin\Controllers\CustomerService;
 
+use App\Models\CustomerService\Config;
 use App\Models\CustomerService\Record;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RecordController extends AdminController
@@ -40,7 +42,14 @@ class RecordController extends AdminController
         Admin::style('.mSlider-inner {overflow:auto;}');
         Admin::html('<div class="wrap" id="slider_message_div" style="margin-top: 0px;">留言内容加载中</div>');
         $grid->column('id', __('编号'));
-//        $grid->column('config_id', __('账号信息'));
+
+        $grid->column('config_id_second', __('账号'))->display(function (){
+            return $this->configData->account;
+        });
+        $grid->column('config_id', __('账号信息'))->display(function (){
+            return $this->configData->custom_name;
+        });
+
         $grid->column('customer_styleName', __('风格名称（用于同步）'))->width(200);
         $grid->column('customer_mobile', __('手机号'));
         $grid->column('customer_kw', __('关键字'));
@@ -81,6 +90,21 @@ class RecordController extends AdminController
                 $filter->like('customer_styleName', '风格');
             });
             $filter->column(5/10, function ($filter) {
+                $user_obj = Auth::guard('admin')->user();
+                if ($user_obj->id == 1){
+                    //超级管理员
+
+                    $config_data = Config::get()->toarray();
+                }else{
+                    $config_data = Config::get()->toarray();
+                }
+                $config_arr = [];
+                foreach ($config_data as $config_data){
+                    $config_arr[$config_data['id']] = '账号（'.$config_data['id'].'）：'.$config_data['custom_name'];
+                }
+
+                $filter->in('config_id', '账户信息')->multipleSelect($config_arr);
+
                 $filter->in('syn_status', '同步状态')->checkbox([
                     '0'    => '未同步',
                     '1'    => '已同步',

@@ -44,7 +44,7 @@ class FiveThreeController extends Controller
                     ->where('token',$complete_data['token'])->first();
                 if (empty($customerService_config)){
                     //此推送不在系统配置中,直接返回就好
-                    logger('客户信息推送系统未配置');
+                    logger('客户信息推送系统未配置'.json_encode($complete_data));
                     return ['cmd'=>'OK','token'=>$complete_data['token']];
                 }
                 $token = $this->receive_53kf_user_info($complete_data,$customerService_config);
