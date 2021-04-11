@@ -132,7 +132,7 @@ class FiveThreeController extends Controller
                     'customer_remark'=>$data['remark'],
                     'customer_se'=>$data['se'],
                     'customer_kw'=>$data['kw'],
-                    'customer_styleName'=>$data['style_name'],
+                    'customer_styleName'=>array_key_exists('style_name',$data)? $data['style_name']:'未知',
                     'data_customer'=>json_encode($data)
                 ]);
         }else{
@@ -150,7 +150,7 @@ class FiveThreeController extends Controller
                     'customer_remark'=>$data['remark'],
                     'customer_se'=>$data['se'],
                     'customer_kw'=>$data['kw'],
-                    'customer_styleName'=>$data['style_name'],
+                    'customer_styleName'=>array_key_exists('style_name',$data)? $data['style_name']:'未知',
                     'data_customer'=>json_encode($data)
                 ]
             );
