@@ -178,7 +178,9 @@ class UserController extends Controller
             // ->whereNull('crmId')
             ->whereNull('exist_ec_userId')
             ->where('synchronize_results','=','0')
-            ->where('failureCause','=','手机号已被其他客户使用')->get()->toArray();
+            ->where('failureCause','=','手机号已被其他客户使用')
+            ->whereBetween('created_at',[date('Y-m-d 00:00:00'),date('Y-m-d H:i:s')])
+            ->get()->toArray();
         if (empty($synchronize_fail_list)){
             return '暂无新的占用手机号';
         }
