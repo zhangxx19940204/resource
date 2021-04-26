@@ -368,12 +368,14 @@ class DistributeDataController extends Controller
     public function get_distribute_res_data($distribute_data){
         //查询还未分配的相关资源进行分配
         //取数据的条件：①前一天的结束营业时间，到当前时间 ②状态未分配 ③所属
-        $start_date = date("Y-m-d",strtotime("-1 day")).' '.$distribute_data->disbale_time;
+        $start_date_pre = date("Y-m-d",strtotime("-1 day")).' '.$distribute_data->disbale_time;
+        $start_date_pre_oneHour = strtotime($start_date_pre)-60*60;
+        $start_date = date('Y-m-d H:i:s',$start_date_pre_oneHour);
         $end_date = date('Y-m-d H:i:s');
 //        DB::connection()->enableQueryLog();  // 开启QueryLog
         $distribute_rea_data_arr = ResData::where('synchronize_results','0')->whereNull('failureCause')->whereNull('ec_userId')
             ->where('belong','=',trim($distribute_data->belong))
-            ->whereBetween('created_at', [$start_date, $end_date]) //资源的创建时间应该大于上一天的解释时间，和当前时间
+            ->whereBetween('created_at', [$start_date, $end_date]) //资源的创建时间应该大于上一天的结束时间，和当前时间
             ->limit(49)
             ->orderBy('id', 'asc')
             ->get();
