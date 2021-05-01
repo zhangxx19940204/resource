@@ -62,6 +62,10 @@ class DistributeDataController extends Controller
             //接下来循环资源数组，拼接
             $list = [];
             $relate_customer_resData = [];//记录资源
+
+            logger(count($new_auto_EcUser_list).':67行报错'.json_encode($new_auto_EcUser_list));
+            logger(count($distribute_res_data_arr).':$distribute_res_data_arr68行报错'.json_encode($distribute_res_data_arr));
+
             foreach ($distribute_res_data_arr as $key=>$single_res_data){
                 //请求接口返回组装好的数据
                 $userId = $new_auto_EcUser_list[$key];
@@ -283,6 +287,9 @@ class DistributeDataController extends Controller
                 continue;
             }
         }
+        //获取的列表进行排除处理
+        $access_distribute_users = $this->get_except_ec_arr($distribute_data,$access_distribute_users);
+
         if (count($access_distribute_users) >= $res_data_sum){
             //数量足够，直接返回，先把排除列表中的数据，清除
             return $this->get_except_ec_arr($distribute_data,$access_distribute_users);
