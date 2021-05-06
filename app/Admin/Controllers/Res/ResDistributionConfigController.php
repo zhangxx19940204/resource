@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ResDistributionConfigController extends AdminController
@@ -71,6 +72,14 @@ class ResDistributionConfigController extends AdminController
                 $except_str .= '<strong>'.$single_except->userName.'</strong>；<br/>';
             }
             return $except_str;
+        });
+        $grid->column('except_auto_account_list', __('排除账号自动分配列表'))->display(function ($except_auto_account_list){
+            $except_auto_account_list_arr = DB::table('res_config')->whereIn('id', $except_auto_account_list)->get();
+            $except_account_str = '';
+            foreach ($except_auto_account_list_arr as $single_except_account){
+                $except_account_str .= '<strong>'.$single_except_account->custom_name.'</strong>；<br/>';
+            }
+            return $except_account_str;
         });
 
         $grid->column('auto_distribute_list', __('自动分配列表'))->display(function ($auto_distribute_list){
@@ -148,10 +157,11 @@ class ResDistributionConfigController extends AdminController
 
         $form->radio('nationality', '分组展示')
             ->options([
-                1 => '排除列表',
+                1 => '排除用户列表',
                 3 => '可循环的列表',
                 2 => '使用中的列表',
                 4 => '其他',
+                5 => '排除账号的自动分配',
             ])->when(1, function (Form $form) {
                 $users = DB::table('ec_users')->where('status','=','1')->get()->toArray();
                 $depts = DB::table('ec_depts')->get()->toArray();
@@ -193,6 +203,19 @@ class ResDistributionConfigController extends AdminController
                 $form->text('belong', __('所属'));
                 $form->text('enable_time', __('开始营业时间'));
                 $form->text('disbale_time', __('结束营业时间'));
+
+            })->when(5, function (Form $form) {
+//                $user_obj = Auth::guard('admin')->user();
+                $res_config_account_arr = DB::table('res_config')->where('status','=','1')->get();
+                $finish_account_arr = [];
+                if (empty($res_config_account_arr)){
+                    $finish_account_arr = [];
+                }else{
+                    foreach ($res_config_account_arr as $res_config_account){
+                        $finish_account_arr[$res_config_account->id] = $res_config_account->custom_name.'-('.$res_config_account->belong.'-'.$res_config_account->type.')';
+                    }
+                }
+                $form->listbox('except_auto_account_list', __('排除账号自动分配列表'))->options($finish_account_arr);
 
             })->default(1);
 

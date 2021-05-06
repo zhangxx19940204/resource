@@ -383,6 +383,7 @@ class DistributeDataController extends Controller
         $distribute_rea_data_arr = ResData::where('synchronize_results','0')->whereNull('failureCause')->whereNull('ec_userId')
             ->where('belong','=',trim($distribute_data->belong))
             ->whereBetween('created_at', [$start_date, $end_date]) //资源的创建时间应该大于上一天的结束时间，和当前时间
+            ->whereNotIn('config_id', $distribute_data->except_auto_account_list)
             ->limit(49)
             ->orderBy('id', 'asc')
             ->get();

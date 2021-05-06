@@ -46,5 +46,15 @@ class ResDistributionConfig extends Model
         $this->attributes['except_list'] = json_encode(array_values($value3));
     }
 
+    public function getExceptAutoAccountListAttribute($value4)
+    {
+        return array_values(json_decode($value4, true) ?: []);
+    }
+
+    public function setExceptAutoAccountListAttribute($value4)
+    {
+        $this->attributes['except_auto_account_list'] = json_encode(array_values($value4));
+    }
+
 
 }
