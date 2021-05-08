@@ -245,7 +245,7 @@ class DistributeDataController extends Controller
             $fast_horse_message = '';
         }
 
-        $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message;
+        $memo = $model->belong.'-'.$model->type.'-'.$fastHorse_id.'-'.$fast_horse_message.'-'.$model->remarks;
         return ['followUserId'=>$userId,'name'=>$name,'mobile'=>trim($phone),'memo'=>$memo];
     }
 

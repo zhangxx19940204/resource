@@ -32,6 +32,7 @@ class FeiyuController extends Controller
         $ResData->config_id = $config_data->id;
         $ResData->created_at = date('Y-m-d H:i:s');
         $ResData->updated_at = date('Y-m-d H:i:s');
+        $ResData->remarks = $config_data->remarks;
         $ResData->belong = $config_data->belong;
         $ResData->type = $config_data->type;
         $ResData->data_json = json_encode($para);
