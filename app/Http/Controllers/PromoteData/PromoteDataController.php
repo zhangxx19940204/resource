@@ -34,7 +34,15 @@ class PromoteDataController extends Controller
     		//进行邮箱数据的读取
             //需要先进行
             echo '<br/>循环开始'.$key;
-    		$this->get_single_mail_data($value,$from_mail_arr);
+
+            try {
+                $this->get_single_mail_data($value,$from_mail_arr);
+                continue;
+            } catch(Exception $ex) {
+                logger('邮箱报错：'.$ex->getMessage());
+                continue;
+            }
+
     	}
 
     }
