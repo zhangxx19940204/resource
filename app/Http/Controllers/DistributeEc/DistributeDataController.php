@@ -223,7 +223,7 @@ class DistributeDataController extends Controller
 
         }elseif ($model->type == '头条'){
             $data_arr = json_decode($model->data_json,true);
-            $fastHorse_id = $data_arr['app_name'];
+            $fastHorse_id = array_key_exists('app_name',$data_arr)? $data_arr['app_name']:'';
             $fast_horse_message = '';
         }elseif ($model->type == '5988'){
             $data_arr = json_decode($model->data_json,true);
