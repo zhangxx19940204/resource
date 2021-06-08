@@ -63,8 +63,8 @@ class DistributeDataController extends Controller
             $list = [];
             $relate_customer_resData = [];//记录资源
 
-            logger(count($new_auto_EcUser_list).':67行报错'.json_encode($new_auto_EcUser_list));
-            logger(count($distribute_res_data_arr).':$distribute_res_data_arr68行报错'.json_encode($distribute_res_data_arr));
+//            logger(count($new_auto_EcUser_list).':67行报错'.json_encode($new_auto_EcUser_list));
+//            logger(count($distribute_res_data_arr).':$distribute_res_data_arr68行报错'.json_encode($distribute_res_data_arr));
 
             foreach ($distribute_res_data_arr as $key=>$single_res_data){
                 //请求接口返回组装好的数据
@@ -89,10 +89,10 @@ class DistributeDataController extends Controller
 
     //将获得数据，请求到Ec等待返回和操作
     public function request_EC_add_customer($optUserId,$list,$relate_customer_resData,$new_auto_EcUser_list,$res_distribute_config_id){
-        logger('已准备好展示同步数据$res_distribute_config_id'.$res_distribute_config_id.'$optUserId'.$optUserId);
-        logger('$list'.json_encode($list));
-        logger('$relate_customer_resData'.json_encode($relate_customer_resData));
-        logger('$new_auto_EcUser_list'.json_encode($new_auto_EcUser_list));
+//        logger('已准备好展示同步数据$res_distribute_config_id'.$res_distribute_config_id.'$optUserId'.$optUserId);
+//        logger('$list'.json_encode($list));
+//        logger('$relate_customer_resData'.json_encode($relate_customer_resData));
+//        logger('$new_auto_EcUser_list'.json_encode($new_auto_EcUser_list));
 //        die();
         logger('到这为止，已经处理完毕等待放进ec系统中；');
         $url = env('EC_ADDCUSTOMER');
