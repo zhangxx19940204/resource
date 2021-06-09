@@ -99,10 +99,7 @@ class PromoteDataController extends Controller
                 continue;
             }else{
 
-                $email_title = $email->subject;
-                $email_date =date('Y-m-d H:i:s', strtotime($email->date));
                 $email_content = '';
-
                 if(!empty($email->textHtml)){
                     $email_content = $email->textHtml;
                 }elseif (!empty($email->textPlain)) {
@@ -111,6 +108,13 @@ class PromoteDataController extends Controller
                     echo 'continue';
                     continue;
                 }
+                //判断是否关键字匹配（keywords_sift），null则全线通过
+                var_dump('keywords_sift',$data['keywords_sift']);
+                die();
+
+                $email_title = $email->subject;
+                $email_date =date('Y-m-d H:i:s', strtotime($email->date));
+
                 echo 'html:'.$email->textHtml.'<br/>';
                 echo 'plain:'.$email->textPlain.'<br/>';
 
