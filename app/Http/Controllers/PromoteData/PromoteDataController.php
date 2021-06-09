@@ -27,9 +27,7 @@ class PromoteDataController extends Controller
         }
 
     	//查询属于这个用户的邮件账号，同时查询出状态为可用的（1）
-    	$config_data = EmailConfig::where('user_id', $user_id)->where('status','>','0')->where('type','=','mail')
-            ->orderBy('created_at', 'desc')
-            ->get()->toarray();
+    	$config_data = EmailConfig::where('user_id', $user_id)->where('status','>','0')->where('type','=','mail')->get()->toarray();
         // var_dump($config_data);
         // die();
     	foreach ($config_data as $key=>$value){
