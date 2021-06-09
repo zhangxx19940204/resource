@@ -145,7 +145,6 @@ class PromoteDataController extends Controller
                 echo '<pre>';
                 var_dump($mail_data);
                 echo '</pre>';
-                die();
 
 
                 $mail_data['from_mail'] = $from_email;
