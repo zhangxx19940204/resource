@@ -108,27 +108,44 @@ class PromoteDataController extends Controller
                     echo 'continue';
                     continue;
                 }
-                //判断是否关键字匹配（keywords_sift），null则全线通过
-                var_dump('keywords_sift',$data['keywords_sift']);
-                die();
-
                 $email_title = $email->subject;
-                $email_date =date('Y-m-d H:i:s', strtotime($email->date));
-
-                echo 'html:'.$email->textHtml.'<br/>';
-                echo 'plain:'.$email->textPlain.'<br/>';
-
-//                $mail_data = [];
                 if ($from_email == '2162750756@qq.com'){//此信息由公司内部模板发出
                     //姓名、电话、来源
                     $mail_data = $this->deal_inside_mail($email_content);
                 }else{ //是由的外部模板
                     $mail_data = $this->deal_outside_mail($email_content);
                 }
+                //判断是否关键字匹配（keywords_sift），null则全线通过
+                $sift_result = 0;//筛选的结果默认为否
+                $keywords_sift_arr = json_decode($data['keywords_sift'],true);//此账号下筛选需要包含的关键词
+                foreach ($keywords_sift_arr as $keyword_sift){ //每个词都去循环
+                    //检查此关键词是否在标题和内容中
+                    if(strpos($email_title,$keyword_sift) !== false){
+                        //标题包含，重置筛选的结果为1
+                        $sift_result = 1;
+                    }elseif (strpos(strip_tags($email_content),$keyword_sift) !== false){
+                        //内容包含，重置筛选的结果为1
+                        $sift_result = 1;
+                    }else{
+                        //不包含，不用理会，默认为0即可
+                    }
+                }
+                //
+                if ($sift_result == '0'){
+                    //结果为0,此条数据不应被此条邮件配置记录收录
+                    continue;
+                }
+                var_dump('keywords_sift',$data['keywords_sift']);
+//                die();
+                $email_date =date('Y-m-d H:i:s', strtotime($email->date));
+
+//                echo 'html:'.$email->textHtml.'<br/>';
+//                echo 'plain:'.$email->textPlain.'<br/>';
 
                 echo '<pre>';
                 var_dump($mail_data);
                 echo '</pre>';
+                die();
 
 
                 $mail_data['from_mail'] = $from_email;
