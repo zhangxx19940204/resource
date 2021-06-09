@@ -155,7 +155,7 @@ class PromoteDataController extends Controller
             DB::connection()->enableQueryLog();
             var_dump('插入的数据：',json_encode($total_mail_data));
             // die();
-            $insert_status = DB::table('email_data')->insert($total_mail_data);
+//            $insert_status = DB::table('email_data')->insert($total_mail_data);
             //插入邮件表格后，进行
             dump(DB::getQueryLog());
             if(empty($be_to_flaged)){
