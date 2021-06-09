@@ -117,17 +117,26 @@ class PromoteDataController extends Controller
                 }
                 //判断是否关键字匹配（keywords_sift），null则全线通过
                 $sift_result = 0;//筛选的结果默认为否
-                $keywords_sift_arr = json_decode($data['keywords_sift'],true);//此账号下筛选需要包含的关键词
-                foreach ($keywords_sift_arr as $keyword_sift){ //每个词都去循环
-                    //检查此关键词是否在标题和内容中
-                    if(strpos($email_title,$keyword_sift) !== false){
-                        //标题包含，重置筛选的结果为1
-                        $sift_result = 1;
-                    }elseif (strpos(strip_tags($email_content),$keyword_sift) !== false){
-                        //内容包含，重置筛选的结果为1
+                if (empty($data['keywords_sift'])){
+                    //此参数为空，则不限制
+                    $sift_result = 1;
+                }else{
+                    $keywords_sift_arr = json_decode($data['keywords_sift'],true);//此账号下筛选需要包含的关键词
+                    if(empty($keywords_sift_arr)){
                         $sift_result = 1;
                     }else{
-                        //不包含，不用理会，默认为0即可
+                        foreach ($keywords_sift_arr as $keyword_sift){ //每个词都去循环
+                            //检查此关键词是否在标题和内容中
+                            if(strpos($email_title,$keyword_sift) !== false){
+                                //标题包含，重置筛选的结果为1
+                                $sift_result = 1;
+                            }elseif (strpos(strip_tags($email_content),$keyword_sift) !== false){
+                                //内容包含，重置筛选的结果为1
+                                $sift_result = 1;
+                            }else{
+                                //不包含，不用理会，默认为0即可
+                            }
+                        }
                     }
                 }
                 //
