@@ -19,6 +19,11 @@ class FeiyuController extends Controller
         date_default_timezone_set('Asia/Shanghai');
 
         //第一步开始去查询相应的账号对应
+        if(!array_key_exists('adv_id',$para)){
+            //adv_id 不存在
+            logger('error参数有误:'.json_encode($para));
+            return json_encode(['code'=>-1,'message'=>'fail：参数有误（adv_id）']);
+        }
         $config_data = DB::table('res_config')->where('account_id', '=', $para['adv_id'])->where('status','=','1')->first();
         if (empty($config_data)){
             //没有对应的生效账号
