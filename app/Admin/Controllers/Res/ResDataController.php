@@ -220,7 +220,7 @@ class ResDataController extends AdminController
                 }
                 $config_arr = [];
                 foreach ($config_data as $key=>$config_data){
-                    $config_arr[$config_data['id']] = '账号（'.$config_data['id'].'）：'.$config_data['custom_name'];
+                    $config_arr[$config_data->id] = '账号（'.$config_data->id.'）：'.$config_data->custom_name;
                 }
 
 
