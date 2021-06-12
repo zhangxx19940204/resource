@@ -212,9 +212,11 @@ class ResDataController extends AdminController
                 $user_obj = Auth::guard('admin')->user();
                 if ($user_obj->id == 1){
                     //超级管理员
-                    $config_data = ResConfig::get()->orderBy('status', 'desc')->toarray();
+                    $config_data = DB::table('res_config')->orderBy('status', 'desc')
+                        ->get()->toarray();
                 }else{
-                    $config_data = ResConfig::get()->where('user_id',$user_obj->id)->orderBy('status', 'desc')->toarray();
+                    $config_data = DB::table('res_config')->where('user_id',$user_obj->id)->orderBy('status', 'desc')
+                        ->get()->toarray();
                 }
                 $config_arr = [];
                 foreach ($config_data as $key=>$config_data){
