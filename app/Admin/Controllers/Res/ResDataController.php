@@ -212,9 +212,9 @@ class ResDataController extends AdminController
                 $user_obj = Auth::guard('admin')->user();
                 if ($user_obj->id == 1){
                     //超级管理员
-                    $config_data = ResConfig::get()->toarray();
+                    $config_data = ResConfig::get()->orderBy('status', 'desc')->toarray();
                 }else{
-                    $config_data = ResConfig::get()->where('user_id',$user_obj->id)->toarray();
+                    $config_data = ResConfig::get()->where('user_id',$user_obj->id)->orderBy('status', 'desc')->toarray();
                 }
                 $config_arr = [];
                 foreach ($config_data as $key=>$config_data){
@@ -224,7 +224,7 @@ class ResDataController extends AdminController
 
                 $filter->in('config_id', '账户信息')->multipleSelect($config_arr);
 
-                $project_list = DB::table('dingding_project')->where('status','1')->get();
+                $project_list = DB::table('dingding_project')->get();
                 $project_arr = [];
                 foreach ($project_list as $single_project) {
                     $project_arr[$single_project->project_name] = $single_project->project_name;
@@ -237,7 +237,7 @@ class ResDataController extends AdminController
 
             $filter->column(5/10, function ($filter) {
 
-                $type_list = DB::table('res_config')->where('status','=','1')->get();
+                $type_list = DB::table('res_config')->orderBy('status', 'desc')->get();
                 $type_arr = [];
                 foreach ($type_list as $single_type) {
                     $type_arr[$single_type->type] = $single_type->type;
