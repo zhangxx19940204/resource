@@ -237,7 +237,9 @@ class ResDataController extends AdminController
 
             $filter->column(5/10, function ($filter) {
 
-                $type_list = DB::table('res_config')->orderBy('status', 'desc')->get();
+                $type_list = DB::table('res_config')
+                    ->orderBy('status','desc')
+                    ->get();
                 $type_arr = [];
                 foreach ($type_list as $single_type) {
                     $type_arr[$single_type->type] = $single_type->type;
