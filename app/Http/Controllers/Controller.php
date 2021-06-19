@@ -79,7 +79,7 @@ class Controller extends BaseController
             //判断是否已绑定（ec与钉钉）
             $bind_ec_data = DB::table('dingtalk_ec_relative')
                 ->leftJoin('ec_users','dingtalk_ec_relative.ec_userid','=','ec_users.userId')
-                ->where('dingtalk_ec_relative.dingtalk_userid ', '=',$user_id_arr['result']['userid'])->first();
+                ->where('dingtalk_ec_relative.dingtalk_userid', '=',$user_id_arr['result']['userid'])->first();
             if(empty($bind_ec_data)){
                 //未绑定，未有记录
                 $bind_ec_status = [];
