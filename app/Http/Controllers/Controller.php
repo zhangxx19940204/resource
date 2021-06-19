@@ -76,6 +76,17 @@ class Controller extends BaseController
 
             //判断userid是否存在
             $single_user = DB::table('dingding_user')->where('userid', '=',$user_id_arr['result']['userid'])->first();
+            //判断是否已绑定（ec与钉钉）
+            $bind_ec_data = DB::table('dingtalk_ec_relative')
+                ->leftJoin('Ec_userId','dingtalk_ec_relative.Ec_userId','=','ec_users.userId')
+                ->where('dingtalk_ec_relative.dingTalk_userId ', '=',$user_id_arr['result']['userid'])->first();
+            if(empty($bind_ec_data)){
+                //未绑定，未有记录
+                $bind_ec_status = [];
+            }else{
+                //已绑定
+                $bind_ec_status = $bind_ec_data;
+            }
 
             if(empty($single_user)){
                 //新用户，进行插入操作
@@ -94,7 +105,7 @@ class Controller extends BaseController
                 if ($user_id > '0'){
                     $res_data = $user_detail['data'];
                     $res_data['id'] = $user_id;
-                    return response()->json(['status'=>1,'message'=>'正常登录','data'=>$res_data]);
+                    return response()->json(['status'=>1,'message'=>'正常登录','data'=>$res_data,'is_bind_ec'=>$bind_ec_status]);
                 }else{
                     return response()->json(['status'=>-1,'message'=>'登录异常4，请重新登录','data'=>[]]);
                 }
@@ -102,7 +113,7 @@ class Controller extends BaseController
                 //查询到了用户，判断状态是否需要更新
                 if ($single_user->status == '1'){
                     //无需更新
-                    return response()->json(['status'=>1,'message'=>'登录成功1','data'=>$single_user]);
+                    return response()->json(['status'=>1,'message'=>'登录成功1','data'=>$single_user,'is_bind_ec'=>$bind_ec_status]);
                 }else{
                     //需要更新数据
                     $user_detail = $this->get_user_detail($app_config,$user_id_arr['result']['userid'],$access_token);
@@ -113,7 +124,7 @@ class Controller extends BaseController
                     //正常，更新操作
                     $update_status = DB::table('dingding_user')->where('id', '=',$single_user->id)->update($user_detail['data']);
                     $update_after_data = DB::table('dingding_user')->where('userid', '=',$user_id_arr['result']['userid'])->first();
-                    return response()->json(['status'=>1,'message'=>'登录成功2','data'=>$update_after_data]);
+                    return response()->json(['status'=>1,'message'=>'登录成功2','data'=>$update_after_data,'is_bind_ec'=>$bind_ec_status]);
                 }
             }
 
