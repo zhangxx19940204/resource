@@ -20,6 +20,7 @@ Route::get('/forbid_visit_prompt', function () {
     return '禁止未绑定IP访问接口';
 });
 Route::any('/receive_fei_oceanengine', [Oceanengine\FeiyuController::class, 'receive_fei_oceanengine']); //接收头条飞鱼crm发送的数据
+Route::any('/receive_baidu_yingxiaotong', [Baidu\YingxiaotongController::class, 'receive_baidu_yingxiaotong']); //接收百度营销通发送的数据
 
 //对接53客服的消息
 Route::any('/receive_53kf_info', [CustomerService\FiveThreeController::class, 'receive_53kf_info']);//接收53客服的所有消息类型
