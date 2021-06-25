@@ -45,7 +45,7 @@ class YingxiaotongController extends Controller
         $ResData->type = $config_data->type;
         $ResData->data_json = json_encode($para);
         $name_key = array_search('name', array_column($para['formDetail'], 'type'));
-        if ($name_key){
+        if (is_numeric($name_key)){
             //知道key值了，去取值
             $ResData->data_name = $para['formDetail'][$name_key]['value'];
         }else{
