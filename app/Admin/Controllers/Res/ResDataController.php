@@ -115,7 +115,8 @@ class ResDataController extends AdminController
                 //判断值是否为其他类型
                 if (is_array($data_arr[$value])){
                     //当前值为数组
-                    $data_val[] = ['key'=>$value,'value'=>implode(';',((array) $data_arr[$value]))];
+//                    $data_val[] = ['key'=>$value,'value'=>implode(';',((array) $data_arr[$value]))];
+                    $data_val[] = ['key'=>$value,'value'=>json_encode($data_arr[$value],JSON_UNESCAPED_UNICODE)];
                 }else{
                     //不是数组直接赋值
                     $data_val[] = ['key'=>$value,'value'=>$data_arr[$value]];
