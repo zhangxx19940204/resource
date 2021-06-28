@@ -68,5 +68,20 @@ class FeedbackController extends Controller
         //返回信息
         return response()->json($res_info);
     }
+    //绑定ec用户
+    public function bing_ec_user(Request $request){
+        $para = $request->all();
+        $insert_status = DB::table('dingtalk_ec_relative')->insert(
+            ['dingtalk_userid' => $para['dingding_userid'], 'ec_userid' => $para['ec_user_id']]
+        );
+        if ($insert_status){
+            $res_info = ['code'=>0,'msg'=>'绑定成功','data'=>[]];
+        }else{
+            $res_info = ['code'=>0,'msg'=>'绑定成功1','data'=>[]];
+        }
+
+        //返回信息
+        return response()->json($res_info);
+    }
 
 }

@@ -219,39 +219,39 @@ function modal_ec_bind(){
         layui.use(['form'], function(){
             let form = layui.form
                 ,layer = layui.layer
-
             let data = form.val("bindEc");
             console.log(data)
-        });
+            let user_info = JSON.parse(localStorage.getItem("user_info"))
+            let dingding_userid = user_info.data.userid;
+            // alert(JSON.stringify(data));
+            //这边进行请求方法，更新与增加的集合
+            $.ajax({
+                //请求方式
+                type : "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //请求地址
+                url : "/bing_ec_user",
+                //数据，json字符串
+                data : JSON.stringify({"dingding_userid":dingding_userid,"ec_user_id":data.ec_user_list}),//JSON.stringify(list),
+                //请求成功
+                success : function(result) {
+                    console.log(result);
+                    //清除用户信息记录然后更新新的
+                    localStorage.clear()
+                    layer.msg(result.msg);
+                    location.reload();
 
-        die();
-
-        // alert(JSON.stringify(data));
-        //这边进行请求方法，更新与增加的集合
-        $.ajax({
-            //请求方式
-            type : "POST",
-            //请求的媒体类型
-            contentType: "application/json;charset=UTF-8",
-            //请求地址
-            url : "/opera_data",
-            //数据，json字符串
-            data : JSON.stringify({"opera_type":opera_type,"originally_data":originally_data,"dingding_user_id":user_id,"latest_data":data}),//JSON.stringify(list),
-            //请求成功
-            success : function(result) {
-                console.log(result);
-                layer.msg(result.msg);
-                location.reload();
-
-            },
-            //请求失败，包含具体的错误信息
-            error : function(e){
-                layer.msg('请重新操作');
-                console.log(e.status);
-                console.log(e.responseText);
-                location.reload();
-            }
-        });
+                },
+                //请求失败，包含具体的错误信息
+                error : function(e){
+                    layer.msg('请重新操作');
+                    console.log(e.status);
+                    console.log(e.responseText);
+                    location.reload();
+                }
+            });
+        }); //layui.use
 
     });//layui的click的事件的结束
 }
