@@ -296,7 +296,8 @@ layui.use('table', function(){
         ,{field: 'visit_cycle', title: '来访周期（距离拿资源时间）'}
         ,{field: 'signing_cycle', title: '签约周期'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_visit'} //这里的toolbar值是模板元素的选择器
-    ]]
+    ]],
+      defaultToolbar: ['filter']
   });
 
    //监听工具条

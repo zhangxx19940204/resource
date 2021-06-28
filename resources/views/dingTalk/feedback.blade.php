@@ -95,7 +95,7 @@ layui.use('table', function(){
   //第一个实例
   table.render({
     elem: '#feedback'
-    ,toolbar:true
+    // ,toolbar:true
     // ,height: 1080
     // ,width: 1080
     ,toolbar:'#toolbar_header'
@@ -114,7 +114,12 @@ layui.use('table', function(){
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
-    ]]
+    ]],
+      defaultToolbar: ['filter', 'exports', {
+          title: '提示' //标题
+          ,layEvent: 'bind_ec_info' //点击弹出绑定modal框，用于 toolbar 事件中使用
+          ,icon: 'layui-icon-tips' //图标类名
+      }]
   });
 
    //监听工具条
@@ -155,14 +160,15 @@ layui.use('table', function(){
     //监听头部工具条
     table.on('toolbar(feedback)', function(obj){
       var checkStatus = table.checkStatus(obj.config.id);
-      switch(obj.event){
-        case 'add':
-            console.log('add')
-            modal_data_func(obj.event,[])
-            open_modal(1,'新增','modal_feeedback')
-        break;
-
-      };
+        switch(obj.event){
+            case 'add':
+                console.log('add')
+                modal_data_func(obj.event,[])
+                open_modal(1,'新增','modal_feeedback')
+                break;
+            case 'bind_ec_info':
+                console.log('bind_ec_info')
+        };
     });
 
 
