@@ -216,8 +216,10 @@ function modal_ec_bind(){
 
     layui.$('#sub_bind_btn').on('click', function(){
         console.log('#sub_bind_btn')
+        var data = form.val("bindEc");
+        console.log(data)
         die();
-        var data = form.val("feedback");
+
         // alert(JSON.stringify(data));
         //这边进行请求方法，更新与增加的集合
         $.ajax({
