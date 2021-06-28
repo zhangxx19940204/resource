@@ -202,7 +202,6 @@ layui.use('table', function(){
                     console.log("不为空");
                     //不为空，则已绑定过，禁止绑定
                     alert('已绑定，联系管理员');
-                    location.reload();
                 }
         };
     });
@@ -238,8 +237,8 @@ function modal_ec_bind(){
                 success : function(result) {
                     console.log(result);
                     //清除用户信息记录然后更新新的
-                    localStorage.clear()
                     layer.msg(result.msg);
+                    localStorage.clear()
                     location.reload();
 
                 },

@@ -75,9 +75,9 @@ class FeedbackController extends Controller
             ['dingtalk_userid' => $para['dingding_userid'], 'ec_userid' => $para['ec_user_id']]
         );
         if ($insert_status){
-            $res_info = ['code'=>0,'msg'=>'绑定成功','data'=>[]];
+            $res_info = ['code'=>0,'msg'=>'绑定成功,重新登陆','data'=>[]];
         }else{
-            $res_info = ['code'=>0,'msg'=>'绑定成功1','data'=>[]];
+            $res_info = ['code'=>0,'msg'=>'绑定成功1,重新登陆','data'=>[]];
         }
 
         //返回信息
