@@ -217,10 +217,10 @@ function modal_ec_bind(){
     layui.$('#sub_bind_btn').on('click', function(){
         console.log('#sub_bind_btn')
         layui.use(['form'], function(){
-            var form = layui.form
+            let form = layui.form
                 ,layer = layui.layer
 
-            var data = form.val("bindEc");
+            let data = form.val("bindEc");
             console.log(data)
         });
 
