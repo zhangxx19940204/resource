@@ -73,7 +73,7 @@
         <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即提交</button>
     </div>
 
-    <div id="modal_bind_ec" style="text-align:center;display:none;">
+    <div id="modal_bind_ec" style="text-align:center;display:none;height: 210px;width: 400px;">
         <form class="layui-form layui-form-pane" action="" lay-filter="bindEc">
             <!--EC用户列表-->
             <div class="layui-form-item">
