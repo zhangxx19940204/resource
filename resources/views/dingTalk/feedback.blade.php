@@ -94,7 +94,7 @@
 
         </form>
         <!--操作按钮-->
-        <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即绑定</button>
+        <button type="submit" class="layui-btn" id="sub_bind_btn" lay-submit="" lay-filter="demo1">立即绑定</button>
     </div>
 @endsection
 
@@ -196,6 +196,7 @@ layui.use('table', function(){
                 if((user_info.is_bind_ec).length == 0){ // "",[]
                     console.log("为空");
                     //弹出modal
+                    modal_ec_bind()
                     open_modal(1,'绑定EC用户','modal_bind_ec')
                 }else{
                     console.log("不为空");
@@ -203,15 +204,49 @@ layui.use('table', function(){
                     alert('已绑定，联系管理员');
                     location.reload();
                 }
-
-                //判定是否已绑定
-                //点击了绑定按钮，请求ec用户数据
         };
     });
 
 
 
 });
+//EC用户绑定的前置方法
+function modal_ec_bind(){
+    $("#sub_bind_btn").unbind("click")
+
+    layui.$('#sub_bind_btn').on('click', function(){
+        console.log('#sub_bind_btn')
+        die();
+        var data = form.val("feedback");
+        // alert(JSON.stringify(data));
+        //这边进行请求方法，更新与增加的集合
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "/opera_data",
+            //数据，json字符串
+            data : JSON.stringify({"opera_type":opera_type,"originally_data":originally_data,"dingding_user_id":user_id,"latest_data":data}),//JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                layer.msg(result.msg);
+                location.reload();
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                layer.msg('请重新操作');
+                console.log(e.status);
+                console.log(e.responseText);
+                location.reload();
+            }
+        });
+
+    });//layui的click的事件的结束
+}
 
 function open_modal(type,title='信息',content='modal_feeedback'){
         layer.open({
@@ -220,7 +255,6 @@ function open_modal(type,title='信息',content='modal_feeedback'){
           content: $('#'+content+'') //这里content是一个普通的String
         });
 }
-
 function modal_data_func(layEvent,data){
     console.log(layEvent);
     console.log(data);
