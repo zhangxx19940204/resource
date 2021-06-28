@@ -201,7 +201,7 @@ layui.use('table', function(){
                 }else{
                     console.log("不为空");
                     //不为空，则已绑定过，禁止绑定
-                    alert('已绑定，联系管理员');
+                    alert('EC关系已绑定，联系管理员');
                 }
         };
     });
@@ -237,7 +237,7 @@ function modal_ec_bind(){
                 success : function(result) {
                     console.log(result);
                     //清除用户信息记录然后更新新的
-                    layer.msg(result.msg);
+                    alert(result.msg);
                     localStorage.clear()
                     location.reload();
 
