@@ -72,6 +72,30 @@
         <!--操作按钮-->
         <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即提交</button>
     </div>
+
+    <div id="modal_bind_ec" style="text-align:center;display:none;">
+        <form class="layui-form layui-form-pane" action="" lay-filter="bindEc">
+            <!--EC用户列表-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">EC用户列表</label>
+                <div class="layui-input-inline">
+                    <select name="ec_user_list" lay-verify="required" lay-search="">
+                        <option value="">请选择</option>
+
+                        @forelse ($ec_user_list as $ec_user)
+                            <option value="{{ $ec_user->userId }}">{{ $ec_user->deptName }}</option>
+                        @empty
+
+                        @endforelse
+
+                    </select>
+                </div>
+            </div>
+
+        </form>
+        <!--操作按钮-->
+        <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即绑定</button>
+    </div>
 @endsection
 
 
@@ -168,6 +192,20 @@ layui.use('table', function(){
                 break;
             case 'bind_ec_info':
                 console.log('bind_ec_info')
+                let user_info = JSON.parse(localStorage.getItem("user_info"))
+                if((user_info.is_bind_ec).length == 0){ // "",[]
+                    console.log("为空");
+                    //弹出modal
+                    open_modal(1,'绑定EC用户','modal_bind_ec')
+                }else{
+                    console.log("不为空");
+                    //不为空，则已绑定过，禁止绑定
+                    alert('已绑定，联系管理员');
+                    location.reload();
+                }
+
+                //判定是否已绑定
+                //点击了绑定按钮，请求ec用户数据
         };
     });
 

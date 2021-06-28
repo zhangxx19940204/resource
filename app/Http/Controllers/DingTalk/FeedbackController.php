@@ -15,7 +15,8 @@ class FeedbackController extends Controller
         $dingTalk_arr = config('dingTalk');
         $short_feedback_list = DB::table('short_feedback_relative')->get();
         $project_list = DB::table('dingding_project')->where('status','1')->get();
-        return view('dingTalk.feedback',['project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
+        $ec_user_list = DB::table('ec_users')->where('status','1')->get();
+        return view('dingTalk.feedback',['ec_user_list'=>$ec_user_list,'project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
     }
 
     //获取列表
