@@ -33,6 +33,7 @@ Route::get('/investment', [DingTalk\FeedbackController::class, 'index']); //默�
 Route::any('/get_list', [DingTalk\FeedbackController::class, 'get_list']); //资源反馈表的列表
 Route::any('/opera_data', [DingTalk\FeedbackController::class, 'opera_data']); //资源反馈表的操作
 Route::any('/bing_ec_user', [DingTalk\FeedbackController::class, 'bing_ec_user']); //资源反馈表的绑定ec用户
+Route::any('/get_ec_user_leave_info', [DingTalk\FeedbackController::class, 'get_ec_user_leave_info']); //资源反馈表的ec用户是否请假
 
 Route::get('/visit', [DingTalk\VisitController::class, 'index']); //来访进款表
 Route::any('/get_visit_list', [DingTalk\VisitController::class, 'get_list']); //资源反馈表的列表

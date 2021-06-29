@@ -104,6 +104,12 @@
 @section('content')
 <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
+
+<div>
+    <span id="show_ecuser_info"></span>
+    <span id="show_ecuser_leave"></span>
+</div>
+
 <table id="feedback" lay-filter="feedback"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
@@ -374,6 +380,59 @@ function modal_data_func(layEvent,data){
 
 });
 }
+
+
+function get_ecuser_leave_info(ec_userid){
+    console.log('get_ecuser_leave_info')
+    $.ajax({
+        //请求方式
+        type : "POST",
+        //请求的媒体类型
+        contentType: "application/json;charset=UTF-8",
+        //请求地址
+        url : "/get_ec_user_leave_info",
+        //数据，json字符串
+        data : JSON.stringify({"ec_userid":ec_userid}),//JSON.stringify(list),
+        //请求成功
+        success : function(result) {
+            console.log(result);
+            if(result.code == '1'){
+                //工作中
+                $("#show_ecuser_leave").html("工作中");
+            }else if(result.code == '0'){
+                //请假中
+                $("#show_ecuser_leave").html("请假中");
+            }else{
+                //异常
+                $("#show_ecuser_leave").html("异常");
+            }
+        },
+        //请求失败，包含具体的错误信息
+        error : function(e){
+            console.log(e.status);
+            console.log(e.responseText);
+        }
+    });
+}
+
+//页面加载完毕，进行赋值的展示等
+$(function(){
+    console.log("页面加载完成！");
+    let user_info = JSON.parse(localStorage.getItem("user_info"))
+    if((user_info.is_bind_ec).length == 0){ // "",[]
+        console.log('未绑定，提示去绑定')
+        $("#show_ecuser_info").html(".");//未EC认证绑定
+    }else{
+        console.log('已绑定，去查询数据和展示')
+        //1.将用户名放进#show_ecuser_info中
+        console.log(user_info.is_bind_ec)
+        $("#show_ecuser_info").html("已绑定EC信息："+user_info.is_bind_ec.deptName);
+        //2.从后台获取是否请假
+        get_ecuser_leave_info(user_info.is_bind_ec.ec_userid)
+    }
+
+});
+
 </script>
 <script type="text/html" id="bar_feedback">
 

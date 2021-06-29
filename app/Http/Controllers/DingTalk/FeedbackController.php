@@ -84,4 +84,25 @@ class FeedbackController extends Controller
         return response()->json($res_info);
     }
 
+    //资源反馈表的ec用户是否请假
+    public function get_ec_user_leave_info(Request $request){
+        $para = $request->all();
+        $res_distribution_config_list = DB::table('res_distribution_config')->get();
+        $except_arr = [];
+        foreach ($res_distribution_config_list as $key=>$res_distribution_config){
+            $except_arr = array_merge($res_distribution_config->except_list,$except_arr);
+        }
+        //进行清除相同值
+        $except_arr = array_unique($except_arr);
+        if (in_array($para['ec_userid'],$except_arr)){
+            //在请假列表中
+            $res_info = ['code'=>0,'msg'=>'请假中','data'=>[]];
+        }else{
+            //不在请假列表中
+            $res_info = ['code'=>1,'msg'=>'工作中','data'=>[]];
+        }
+        //返回信息
+        return response()->json($res_info);
+    }
+
 }
