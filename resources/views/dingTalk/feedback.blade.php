@@ -107,7 +107,7 @@
 
 <div>
     <span id="show_ecuser_info"></span>
-    <span id="show_ecuser_leave"></span>
+    <span id="show_ecuser_leave">;</span>
 </div>
 
 <table id="feedback" lay-filter="feedback"></table>
