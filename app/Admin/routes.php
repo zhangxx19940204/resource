@@ -33,6 +33,7 @@ Route::group([
     $router->resource('feedback', DingTalk\FeedbackController::class);
     $router->resource('visits', DingTalk\VisitController::class);
     $router->resource('ding-talk-users', DingTalk\DingTalkUserController::class);
+    $router->resource('dingtalk-ec-relatives', DingTalk\DingtalkEcRelativeController::class);
 
     //53kf系统对接
     $router->resource('customerService_configs', CustomerService\ConfigController::class);
