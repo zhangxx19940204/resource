@@ -44,7 +44,7 @@ class DingtalkEcRelativeController extends AdminController
                 $user_list = DingTalkUser::get(['id','name','department_name'])->toarray();
                 $user_arr = [];
                 foreach ($user_list as $k=>$v){
-                    $user_arr[$v['id']] = $v['department_name'].$v['name'];
+                    $user_arr[$v['userid']] = $v['department_name'].$v['name'];
                 }
                 $filter->in('dingtalk_userid','钉钉用户')->multipleSelect($user_arr);
             });
