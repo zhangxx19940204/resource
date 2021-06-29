@@ -41,7 +41,7 @@ class DingtalkEcRelativeController extends AdminController
             $filter->disableIdFilter();
             $filter->column(0.5, function ($filter) {
                 // 在这里添加字段过滤器
-                $user_list = DingTalkUser::get(['id','name','department_name'])->toarray();
+                $user_list = DingTalkUser::get(['id','name','department_name','userid'])->toarray();
                 $user_arr = [];
                 foreach ($user_list as $k=>$v){
                     $user_arr[$v['userid']] = $v['department_name'].$v['name'];
