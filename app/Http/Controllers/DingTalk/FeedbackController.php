@@ -71,13 +71,21 @@ class FeedbackController extends Controller
     //绑定ec用户
     public function bing_ec_user(Request $request){
         $para = $request->all();
-        $insert_status = DB::table('dingtalk_ec_relative')->insert(
-            ['dingtalk_userid' => $para['dingding_userid'], 'ec_userid' => $para['ec_user_id']]
-        );
-        if ($insert_status){
-            $res_info = ['code'=>0,'msg'=>'绑定成功,重新登陆','data'=>[]];
+        //检查钉钉和ec 是否已绑定
+        $exist_ec = DB::table('dingtalk_ec_relative')->where('ec_userid','=',$para['ec_user_id'])->get();
+        if (!empty($exist_ec)){
+            //ec数据已存在
+            $res_info = ['code'=>2,'msg'=>'EC用户已绑定，请先解绑EC用户','data'=>[]];
         }else{
-            $res_info = ['code'=>0,'msg'=>'绑定成功1,重新登陆','data'=>[]];
+            //ec数据不存在
+            $insert_status = DB::table('dingtalk_ec_relative')->insert(
+                ['dingtalk_userid' => $para['dingding_userid'], 'ec_userid' => $para['ec_user_id']]
+            );
+            if ($insert_status){
+                $res_info = ['code'=>0,'msg'=>'绑定成功,重新登陆','data'=>[]];
+            }else{
+                $res_info = ['code'=>0,'msg'=>'绑定成功1,重新登陆','data'=>[]];
+            }
         }
 
         //返回信息

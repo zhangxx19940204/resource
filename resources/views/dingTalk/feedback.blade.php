@@ -244,8 +244,12 @@ function modal_ec_bind(){
                     console.log(result);
                     //清除用户信息记录然后更新新的
                     alert(result.msg);
-                    localStorage.clear()
-                    location.reload();
+                    if(result.code == '2'){
+                        //数据并未绑定不需要清理用户数据，不需要刷新
+                    }else{
+                        localStorage.clear()
+                        location.reload();
+                    }
 
                 },
                 //请求失败，包含具体的错误信息
