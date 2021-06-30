@@ -97,22 +97,33 @@ class FeedbackController extends Controller
         $para = $request->all();
         $res_distribution_config_list = DB::table('res_distribution_config')->get();
         $except_arr = [];
+        $recyclable_arr = [];
         foreach ($res_distribution_config_list as $key=>$res_distribution_config){
             if (!is_null($res_distribution_config->except_list)){
                 $except_arr = array_merge(json_decode($res_distribution_config->except_list,true),$except_arr);
-            }else{
-                continue;
             }
-
+            if (!is_null($res_distribution_config->recyclable_list)){
+                $single_recyclable_list = array_keys(json_decode($res_distribution_config->recyclable_list,true));
+                $recyclable_arr = array_merge($single_recyclable_list,$recyclable_arr);
+            }
+            continue;
         }
         //进行清除相同值
         $except_arr = array_unique($except_arr);
+        $recyclable_arr = array_unique($recyclable_arr);
         if (in_array($para['ec_userid'],$except_arr)){
             //在请假列表中
             $res_info = ['code'=>0,'msg'=>'请假中','data'=>[]];
         }else{
-            //不在请假列表中
-            $res_info = ['code'=>1,'msg'=>'工作中','data'=>[]];
+            //不在请假列表中（工作中或者未配置分配）
+            //判断是否在分配列表中
+            if (in_array($para['ec_userid'],$recyclable_arr)){
+                //已在循环分配列表中，并且不在请假中
+                $res_info = ['code'=>1,'msg'=>'工作中','data'=>[]];
+            }else{
+                //未在循环分配列表中，未配置
+                $res_info = ['code'=>2,'msg'=>'未配置分配权限','data'=>[]];
+            }
         }
         //返回信息
         return response()->json($res_info);

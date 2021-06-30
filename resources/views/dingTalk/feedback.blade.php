@@ -107,7 +107,7 @@
 
 <div>
     <span id="show_ecuser_info"></span>
-    <span id="show_ecuser_leave">;</span>
+    <span id="show_ecuser_leave">; </span>
 </div>
 
 <table id="feedback" lay-filter="feedback"></table>
@@ -402,13 +402,17 @@ function get_ecuser_leave_info(ec_userid){
             console.log(result);
             if(result.code == '1'){
                 //工作中
-                $("#show_ecuser_leave").html("工作中");
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #40af26;'>工作中</span>");
             }else if(result.code == '0'){
                 //请假中
-                $("#show_ecuser_leave").html("请假中");
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #e2102b;'>请假中</span>");
+
+            }else if(result.code == '2'){
+                //未配置分配权限
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #d0cc2a;'>未配置分配权限</span>");
             }else{
                 //异常
-                $("#show_ecuser_leave").html("异常");
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #2a35d0;'>异常</span>");
             }
         },
         //请求失败，包含具体的错误信息
