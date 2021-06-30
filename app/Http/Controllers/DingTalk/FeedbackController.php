@@ -72,7 +72,7 @@ class FeedbackController extends Controller
     public function bing_ec_user(Request $request){
         $para = $request->all();
         //检查钉钉和ec 是否已绑定
-        $exist_ec = DB::table('dingtalk_ec_relative')->where('ec_userid','=',$para['ec_user_id'])->get();
+        $exist_ec = DB::table('dingtalk_ec_relative')->where('ec_userid','=',$para['ec_user_id'])->first();
         if (!empty($exist_ec)){
             //ec数据已存在
             $res_info = ['code'=>2,'msg'=>'EC用户已绑定，请先解绑EC用户','data'=>[]];
