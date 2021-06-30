@@ -19,14 +19,14 @@ class YingxiaotongController extends Controller
         date_default_timezone_set('Asia/Shanghai');
 
         //第一步开始去查询相应的账号对应
-        if(!array_key_exists('pageId',$para) || !array_key_exists('ucid',$para)){
+        if(!array_key_exists('ucid',$para)){
             //账号id和页面id 不存在
             logger('接收百度营销通发送的数据error参数有误:'.json_encode($para));
             return json_encode(['code'=>-1,'message'=>'fail：参数有误（adv_id）']);
         }
         $config_data = DB::table('res_config')
             ->where('account_id', '=', $para['ucid'])
-            ->where('account', '=', $para['pageId'])
+            // ->where('account', '=', $para['pageId'])
             ->where('status','=','1')
             ->first();
         if (empty($config_data)){
@@ -44,14 +44,20 @@ class YingxiaotongController extends Controller
         $ResData->belong = $config_data->belong;
         $ResData->type = $config_data->type;
         $ResData->data_json = json_encode($para);
-        $name_key = array_search('name', array_column($para['formDetail'], 'type'));
-        if (is_numeric($name_key)){
-            //知道key值了，去取值
-            $ResData->data_name = $para['formDetail'][$name_key]['value'];
-        }else{
-            //未查询到name字段，没有名字
+
+        if (!array_key_exists('formDetail',$para) || !is_array($para['formDetail'])){
             $ResData->data_name = '未知';
+        }else{
+            $name_key = array_search('name', array_column($para['formDetail'], 'type'));
+            if (is_numeric($name_key)){
+                //知道key值了，去取值
+                $ResData->data_name = $para['formDetail'][$name_key]['value'];
+            }else{
+                //未查询到name字段，没有名字
+                $ResData->data_name = '未知';
+            }
         }
+
         $ResData->data_phone = trim($para['cluePhoneNumber']);
         $ResData->save();
 
