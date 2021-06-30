@@ -90,11 +90,12 @@ class FeedbackController extends Controller
         $res_distribution_config_list = DB::table('res_distribution_config')->get();
         $except_arr = [];
         foreach ($res_distribution_config_list as $key=>$res_distribution_config){
-            if (is_array($res_distribution_config->except_list)){
+            if (!is_null($res_distribution_config->except_list)){
                 $except_arr = array_merge(json_decode($res_distribution_config->except_list,true),$except_arr);
             }else{
                 continue;
             }
+
         }
         //进行清除相同值
         $except_arr = array_unique($except_arr);
