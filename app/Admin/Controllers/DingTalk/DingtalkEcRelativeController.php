@@ -4,6 +4,7 @@ namespace App\Admin\Controllers\DingTalk;
 
 use App\Models\DingTalk\DingtalkEcRelative;
 use App\Models\DingTalk\DingTalkUser;
+use App\Models\EcUser;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -44,9 +45,17 @@ class DingtalkEcRelativeController extends AdminController
                 $user_list = DingTalkUser::get(['id','name','department_name','userid'])->toarray();
                 $user_arr = [];
                 foreach ($user_list as $k=>$v){
-                    $user_arr[$v['userid']] = $v['department_name'].$v['name'];
+                    $user_arr[$v['userid']] = $v['department_name'].$v['name'].$v['userid'];
                 }
                 $filter->in('dingtalk_userid','钉钉用户')->multipleSelect($user_arr);
+
+                // 在这里添加字段过滤器
+                $ecuser_list = EcUser::get(['id','deptName','userId'])->toarray();
+                $ecuser_arr = [];
+                foreach ($ecuser_list as $k1=>$v1){
+                    $ecuser_arr[$v1['userId']] = $v1['deptName'].$v1['userId'];
+                }
+                $filter->in('ec_userid','EC用户的查询')->multipleSelect($ecuser_arr);
             });
         });
         return $grid;
