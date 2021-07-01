@@ -429,7 +429,7 @@ $(function(){
     let user_info = JSON.parse(localStorage.getItem("user_info"))
     if((user_info.is_bind_ec).length == 0){ // "",[]
         console.log('未绑定，提示去绑定')
-        $("#show_ecuser_info").html(".");//未EC认证绑定
+        $("#show_ecuser_info").html("EC关系未绑定");//未EC认证绑定
     }else{
         console.log('已绑定，去查询数据和展示')
         //1.将用户名放进#show_ecuser_info中
