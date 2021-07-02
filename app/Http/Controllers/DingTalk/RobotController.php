@@ -48,7 +48,7 @@ class RobotController extends Controller
     public function opera_leave_data($senderStaffId,$content){
         //首先判断是否已经钉钉与EC相互绑定
         //首先使用钉钉的userid去查询是否已经有记录
-        $dingTalk_ec_relative_data = DB::table('dingtalk_ec_relative')->where('dingTalk_userId','=',$senderStaffId)->first();
+        $dingTalk_ec_relative_data = DB::table('dingtalk_ec_relative')->where('dingtalk_userid','=',$senderStaffId)->first();
         if (empty($dingTalk_ec_relative_data)){
             //绑定关系为空，则未绑定，跳出
             return '还未绑定EC账号';
@@ -56,15 +56,16 @@ class RobotController extends Controller
             //已绑定成功的数据
             if ($content == '请假'){
                 //用户请假，标记为请假状态，添加到排除列表中
-
+                logger('请假');
             }elseif ($content == '上班'){
-
+                logger('上班');
             }elseif ($content == '查询'){
-
+                logger('查询');
             }else{
                 //未知关键词，跳过
+                logger('未知');
             }
-            return '';
+            return '已绑定成功的数据，匹配关键词';
         }
     }
 
