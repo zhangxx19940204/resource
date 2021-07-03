@@ -58,13 +58,13 @@ class RobotController extends Controller
             return ['msgtype'=>"text","text"=>["content"=>"EC账号未绑定"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
         }else{
             //已绑定成功的数据
-            if ($content == '请假'){
+            if ($content == '停资源'){
                 //用户请假，标记为请假状态，添加到排除列表中
                 logger('请假');
                 $content =$this->change_except_list('leave',$dingTalk_ec_relative_data->ec_userid);
                 return ['msgtype'=>"text","text"=>["content"=>$content],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
 
-            }elseif ($content == '上班'){
+            }elseif ($content == '接资源'){
                 logger('上班');
                 $content = $this->change_except_list('work',$dingTalk_ec_relative_data->ec_userid);
                 return ['msgtype'=>"text","text"=>["content"=>$content],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
@@ -105,7 +105,7 @@ class RobotController extends Controller
                 DB::table('res_distribution_config')->where('id', '=',$new_except['id'])
                     ->update(['except_list' => json_encode($new_except['new_except_arr'])]);
             }
-            return '请假完毕';
+            return '停止接资源';
 
         }elseif ($type == 'work'){
             //从排除列表中移除
@@ -131,7 +131,7 @@ class RobotController extends Controller
                 DB::table('res_distribution_config')->where('id', '=',$new_except['id'])
                     ->update(['except_list' => json_encode($new_except['new_except_arr'])]);
             }
-            return '上班中';
+            return '开始接资源';
         }else{
             //类型未知
             return 'change：$type；未知';
