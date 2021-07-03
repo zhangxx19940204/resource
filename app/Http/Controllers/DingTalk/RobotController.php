@@ -117,7 +117,7 @@ class RobotController extends Controller
                     $except_arr = json_decode($res_distribution_config->except_list,true);
                     //查找值，找到并删除
                     $search_key = array_search($ec_userid,$except_arr);
-                    if($search_key){//有值，直接删除
+                    if(is_numeric($search_key)){//有值，直接删除
                         unset($except_arr[$search_key]);
                     }
                 }else{
@@ -126,6 +126,7 @@ class RobotController extends Controller
                 }
                 $new_except_arr[] = ['id'=>$res_distribution_config->id,'new_except_arr'=>$except_arr];
             }
+            logger('上班中'.$new_except_arr);
             foreach ($new_except_arr as $new_except){
                 DB::table('res_distribution_config')->where('id', '=',$new_except['id'])
                     ->update(['except_list' => json_encode($new_except['new_except_arr'])]);
