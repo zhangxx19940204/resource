@@ -126,7 +126,6 @@ class RobotController extends Controller
                 }
                 $new_except_arr[] = ['id'=>$res_distribution_config->id,'new_except_arr'=>$except_arr];
             }
-            logger('上班中'.$new_except_arr);
             foreach ($new_except_arr as $new_except){
                 DB::table('res_distribution_config')->where('id', '=',$new_except['id'])
                     ->update(['except_list' => json_encode($new_except['new_except_arr'])]);
