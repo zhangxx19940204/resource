@@ -402,10 +402,10 @@ function get_ecuser_leave_info(ec_userid){
             console.log(result);
             if(result.code == '1'){
                 //工作中
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #40af26;'>工作中</span>");
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #40af26;'>接资源中</span>");
             }else if(result.code == '0'){
                 //请假中
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #e2102b;'>请假中</span>");
+                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #e2102b;'>停资源中</span>");
 
             }else if(result.code == '2'){
                 //未配置分配权限
