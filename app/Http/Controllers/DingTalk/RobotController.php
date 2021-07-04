@@ -85,8 +85,18 @@ class RobotController extends Controller
     public function change_except_list($type,$ec_userid){
         //这里去添加和修改请假列表
         $res_distribution_config_list = DB::table('res_distribution_config')->get();
+        $Robot_allow_keywords = env('Robot_allow_keywords');
+        if ($Robot_allow_keywords == ''){
+            //允许的字段为空，则不通过操作
+            return '此操作暂未开放';
+        }
+        $Robot_allow_keywords_arr = explode(',',$Robot_allow_keywords);
         //第一步先判断操作类型
         if ($type == 'leave'){
+            if (!in_array('leave',$Robot_allow_keywords_arr)){
+                //未允许此操作
+                return '停止接资源操作暂未开通';
+            }
             //增加，添加ecuser到排除列表中
             //判断是否为null
             $new_except_arr = [];
@@ -108,6 +118,10 @@ class RobotController extends Controller
             return '停止接资源';
 
         }elseif ($type == 'work'){
+            if (!in_array('work',$Robot_allow_keywords_arr)){
+                //未允许此操作
+                return '接资源操作暂未开通';
+            }
             //从排除列表中移除
             //判断是否为null
             $new_except_arr = [];
