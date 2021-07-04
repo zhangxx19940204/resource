@@ -88,14 +88,14 @@ class RobotController extends Controller
         $Robot_allow_keywords = env('Robot_allow_keywords');
         if ($Robot_allow_keywords == ''){
             //允许的字段为空，则不通过操作
-            return '此操作暂未开放';
+            return '自主请假操作暂未开放';
         }
         $Robot_allow_keywords_arr = explode(',',$Robot_allow_keywords);
         //第一步先判断操作类型
         if ($type == 'leave'){
             if (!in_array('leave',$Robot_allow_keywords_arr)){
                 //未允许此操作
-                return '停止接资源操作暂未开通';
+                return '停资源：操作暂未开通';
             }
             //增加，添加ecuser到排除列表中
             //判断是否为null
@@ -120,7 +120,7 @@ class RobotController extends Controller
         }elseif ($type == 'work'){
             if (!in_array('work',$Robot_allow_keywords_arr)){
                 //未允许此操作
-                return '接资源操作暂未开通';
+                return '接资源：操作暂未开通';
             }
             //从排除列表中移除
             //判断是否为null
