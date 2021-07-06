@@ -43,7 +43,8 @@ class RobotController extends Controller
         }else{
             //机器人未发布
             logger('机器人应用未发布');
-            return '机器人未发布';
+            $res_dingRobot = ['msgtype'=>"text","text"=>["content"=>'机器人应用未发布']];
+            return response()->json($res_dingRobot);
         }
     }
 
