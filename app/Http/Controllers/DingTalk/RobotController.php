@@ -55,29 +55,36 @@ class RobotController extends Controller
         if (empty($dingTalk_ec_relative_data)){
             //绑定关系为空，则未绑定，跳出
             logger("还未绑定EC账号");
-            return ['msgtype'=>"text","text"=>["content"=>"EC账号未绑定"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
+            //记录用户的关键词记录
+            $res_text = "EC账号未绑定";
+            $this->record_keyWords_response($senderStaffId,$content,$res_text);
+            return ['msgtype'=>"text","text"=>["content"=>$res_text],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
         }else{
             //已绑定成功的数据
             if ($content == '停资源'){
                 //用户请假，标记为请假状态，添加到排除列表中
                 logger('请假');
-                $content =$this->change_except_list('leave',$dingTalk_ec_relative_data->ec_userid);
-                return ['msgtype'=>"text","text"=>["content"=>$content],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
+                $res_text =$this->change_except_list('leave',$dingTalk_ec_relative_data->ec_userid);
+                // return ['msgtype'=>"text","text"=>["content"=>$res_text],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
 
             }elseif ($content == '接资源'){
                 logger('上班');
-                $content = $this->change_except_list('work',$dingTalk_ec_relative_data->ec_userid);
-                return ['msgtype'=>"text","text"=>["content"=>$content],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
+                $res_text = $this->change_except_list('work',$dingTalk_ec_relative_data->ec_userid);
+                // return ['msgtype'=>"text","text"=>["content"=>$res_text],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
 
             }elseif ($content == '查询'){
                 logger('查询');
-                return ['msgtype'=>"text","text"=>["content"=>"查询联系管理员"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
+                $res_text = "查询联系管理员";
+                // return ['msgtype'=>"text","text"=>["content"=>"查询联系管理员"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
             }else{
                 //未知关键词，跳过
                 logger('未知');
-                return ['msgtype'=>"text","text"=>["content"=>"未知"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
-
+                $res_text = "未知";
+                // return ['msgtype'=>"text","text"=>["content"=>"未知"],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
             }
+            //记录用户的关键词记录
+            $this->record_keyWords_response($senderStaffId,$content,$res_text);
+            return ['msgtype'=>"text","text"=>["content"=>$res_text],"at"=>["atUserIds"=>[$senderStaffId],"isAtAll"=>false]];
 
         }
     }
@@ -148,6 +155,18 @@ class RobotController extends Controller
         }else{
             //类型未知
             return 'change：$type；未知';
+        }
+    }
+
+    public function record_keyWords_response($senderStaffId,$keyWord,$response){
+        try {
+            DB::table('record_leave_robot_data')->insert(
+                ['dingding_userid' => $senderStaffId, 'key_word' => $keyWord, 'res_word'=>$response]
+            );
+            return '';
+        } catch (\Exception $e) {
+            logger("record_keyWords_response:".$e->getMessage());
+            return '';
         }
     }
 
