@@ -175,10 +175,11 @@ class UserController extends Controller
 
         //查询当前手机重复的记录，准备一次去请求
         $synchronize_fail_list = DB::table('res_data')
-            ->where(function ($query) {
-                $query->whereNull('exist_ec_userId')
-                    ->orwhere('exist_ec_userId','=','0');
-            })
+            // ->where(function ($query) {
+            //     $query->whereNull('exist_ec_userId')
+            //         ->orwhere('exist_ec_userId','=','0');
+            // })
+            ->whereNull('exist_ec_userId')
             ->where('synchronize_results','=','0')
             ->where('failureCause','=','手机号已被其他客户使用')
             ->whereBetween('created_at',[date("Y-m-d 00:00:00", strtotime("-1 day")),date('Y-m-d H:i:s')])
@@ -198,14 +199,13 @@ class UserController extends Controller
             if (empty($res_data_arr['data']['customerInfoList'])){
                 //公海资源，没有指定人
                 logger('公海资源');
-                DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
-                    ->update(['exist_ec_userId' =>'1']);
+                continue;
             }else{
                 //资源原先已有指定人
                 DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
                     ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
             }
-            continue;
+
         }
         return '重复记录更新完毕';
     }
