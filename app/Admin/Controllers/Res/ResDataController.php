@@ -129,11 +129,13 @@ class ResDataController extends AdminController
         $grid->column('synchronize_results', __('分配状态'))->bool();
         $grid->column('failureCause', __('错误原因'))->display(function ($failureCause){
             $exist_ec_userId = $this->exist_ec_userId;
-            if ($failureCause == '手机号已被其他客户使用' && !empty($exist_ec_userId)){
+            if ($failureCause == '手机号已被其他客户使用' && !empty($exist_ec_userId) && $exist_ec_userId != '1'){
                 $single_user = DB::table('ec_users')->where('userId','=',$this->exist_ec_userId)->first();
                 return $failureCause.'：<b>'.$single_user->userName.'</b>';
             }else if ($failureCause == '手机号已被其他客户使用' && empty($exist_ec_userId)){
                 return $failureCause;
+            }else if ($failureCause == '手机号已被其他客户使用' && !empty($exist_ec_userId) && $exist_ec_userId == '1'){
+                return $failureCause.'：<b>公海资源</b>';
             }else{
                 return $failureCause;
             }

@@ -197,15 +197,17 @@ class UserController extends Controller
             logger(json_encode($res_data_arr));
             if (empty($res_data_arr['data']['customerInfoList'])){
                 //公海资源，没有指定人
-                continue;
+                logger('公海资源');
+                DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
+                    ->update(['exist_ec_userId' =>'1']);
             }else{
                 //资源原先已有指定人
                 DB::table('res_data')->where('id','=',$synchronize_fail_data->id)
                     ->update(['exist_ec_userId' =>$res_data_arr['data']['customerInfoList'][0]['followUserId'] ]);
             }
-
+            continue;
         }
-
+        return '重复记录更新完毕';
     }
 
     public function add_feedbackContent_short(){
