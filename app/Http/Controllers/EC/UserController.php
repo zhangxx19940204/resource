@@ -177,9 +177,10 @@ class UserController extends Controller
         DB::connection()->enableQueryLog();  // 开启QueryLog
 
         $synchronize_fail_list = DB::table('res_data')
-            // ->whereNull('crmId')
-            ->orwhereNull('exist_ec_userId')
-            ->orwhere('exist_ec_userId','=','0')
+            ->where(function ($query) {
+                $query->whereNull('exist_ec_userId')
+                    ->orwhere('exist_ec_userId','=','0');
+            })
             ->where('synchronize_results','=','0')
             ->where('failureCause','=','手机号已被其他客户使用')
             ->whereBetween('created_at',[date("Y-m-d 00:00:00", strtotime("-1 day")),date('Y-m-d H:i:s')])
