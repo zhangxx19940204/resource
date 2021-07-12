@@ -174,13 +174,18 @@ class UserController extends Controller
         logger('synchronous_failureCause_userId；');
 
         //查询当前手机重复的记录，准备一次去请求
+        DB::connection()->enableQueryLog();  // 开启QueryLog
+
         $synchronize_fail_list = DB::table('res_data')
             // ->whereNull('crmId')
-            ->whereNull('exist_ec_userId')
+            ->orwhereNull('exist_ec_userId')
+            ->orwhere('exist_ec_userId','=','0')
             ->where('synchronize_results','=','0')
             ->where('failureCause','=','手机号已被其他客户使用')
-            ->whereBetween('created_at',[date('Y-m-d 00:00:00'),date('Y-m-d H:i:s')])
+            ->whereBetween('created_at',[date("Y-m-d 00:00:00", strtotime("-1 day")),date('Y-m-d H:i:s')])
             ->get()->toArray();
+        dump(DB::getQueryLog());
+        die();
         if (empty($synchronize_fail_list)){
             return '暂无新的占用手机号';
         }
