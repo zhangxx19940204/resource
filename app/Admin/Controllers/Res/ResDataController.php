@@ -96,10 +96,18 @@ class ResDataController extends AdminController
         });
 
         $grid->column('created_at', __('入库时间'))->display(function ($created_at){
-            return date('Y-m-d H:i:s',strtotime($created_at));
+            if(empty($created_at)){
+                return '';
+            }else{
+                return date('Y-m-d H:i:s',strtotime($created_at));
+            }
         });
         $grid->column('updated_at', __('更新时间'))->display(function ($updated_at){
-            return date('Y-m-d H:i:s',strtotime($updated_at));
+            if(empty($updated_at)){
+                return '';
+            }else{
+                return date('Y-m-d H:i:s',strtotime($updated_at));
+            }
         });
 
 //        $grid->column('remarks', __('备注'));
@@ -239,6 +247,7 @@ class ResDataController extends AdminController
                 }
 
                 $filter->in('belong', '所属')->multipleSelect($project_arr);
+
                 // 设置created_at字段的范围查询
                 $filter->between('created_at', '创建时间')->datetime();
             });

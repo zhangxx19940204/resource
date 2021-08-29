@@ -16,7 +16,7 @@ class FiveThreeController extends Controller
         //先判断是否是百度关键词推送
         if (!array_key_exists('cmd',$customer_data)){   //**********************************
             //此条记录没有cmd字段，可能是百度关键词的推送，先logger，不做操作
-            logger('cmd不存在'.json_encode($customer_data));
+            logger('53kf_cmd不存在'.json_encode($customer_data));
             return ['cmd'=>'OK','token'=>''];
         }else{
             //在推送的数据中，可以查询到cmd字段，可能是 聊天数据或者客户数据
@@ -29,7 +29,7 @@ class FiveThreeController extends Controller
                 $customerService_config = DB::table('customerservice_config')->where('status','1')->where('token',$customer_data['token'])->first();
                 if (empty($customerService_config)){
                     //此推送不在系统配置中,直接返回就好
-                    logger('系统未配置');
+                    logger('53kf_系统未配置'.json_encode($complete_data));
                     return ['cmd'=>'OK','token'=>$customer_data['token']];
                 }
                 $token = $this->receive_53kf_message_info($complete_data,$customerService_config);
@@ -51,10 +51,10 @@ class FiveThreeController extends Controller
                 logger('记录下customer的'.json_encode($customer_data));
             }elseif($customer_data['cmd'] == 'activate'){
                 //激活的推送
-                logger('激活的推送');
+                logger('53kf_激活的推送');
                 return ['cmd'=>'OK','token'=>$customer_data['token']];
             }else{
-                logger('else:cmd不存在'.json_encode($customer_data));
+                logger('53kf_else:cmd不存在'.json_encode($customer_data));
                 return ['cmd'=>'OK','token'=>''];
             }
 
@@ -63,6 +63,7 @@ class FiveThreeController extends Controller
     }
     //接收53客服的整体的消息数据
     public function receive_53kf_message_info($data,$customerService_config){//para 数组
+        logger('53kf_message_info'.json_encode($data));
         //判断session是否需要更新
         $data_session = $data['session'];
         $data_end = $data['end'];
@@ -105,6 +106,7 @@ class FiveThreeController extends Controller
 
     //接收53客服的客户消息
     public function receive_53kf_user_info($data,$customerService_config){//para 数组
+        logger('53kf_user_info'.json_encode($data));
         $data_session = [];
         $data_end = [];
         $data_message = [];

@@ -44,9 +44,6 @@ Route::any('/opera_visit_data', [DingTalk\VisitController::class, 'opera_data'])
 Route::any('/receive_robot_message', [DingTalk\RobotController::class, 'receive_robot_message']); //请假群机器人
 
 
-
-
-
 //涉及被外部访问的问题
 Route::middleware(['checkIp'])->group(function () {
 

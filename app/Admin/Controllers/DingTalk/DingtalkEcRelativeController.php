@@ -28,11 +28,44 @@ class DingtalkEcRelativeController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new DingtalkEcRelative());
+        $ec_user_list = DB::table('ec_users')->get();
+        $ec_user_arr = [];
+        foreach ($ec_user_list as $k1=>$v1){
+            $ec_user_arr[$v1->userId] = $v1;
+        }
+        $dingding_user_list = DB::table('dingding_user')->get();
+        $dingding_user_arr = [];
+        foreach ($dingding_user_list as $k2=>$v2){
+            $dingding_user_arr[$v2->userid] = $v2;
+        }
 
         $grid->column('id', __('编号'));
-        $grid->column('dingtalk_userid', __('钉钉用户id'));
-        $grid->column('ec_userid', __('ec系统的用户id'));
-        $grid->column('created_at', __('创建时间'));
+        $grid->column('dingtalk_userid', __('钉钉用户id'))->display(function ($dingtalk_userid) use($dingding_user_arr) {
+            if (array_key_exists($dingtalk_userid,$dingding_user_arr)){
+                $dingding_user = $dingding_user_arr[$dingtalk_userid];
+                return $dingding_user->department_name.$dingding_user->position.'-'.$dingding_user->name;
+            }else{
+                return '暂未收录的钉钉用户：'.$dingtalk_userid;
+            }
+        });
+        $grid->column('ec_userid', __('ec系统的用户id'))->display(function ($ec_userid) use($ec_user_arr) {
+            if (array_key_exists($ec_userid,$ec_user_arr)){
+                return $ec_user_arr[$ec_userid]->deptName;
+            }else{
+                return '暂未收录的EC用户：'.$ec_userid;
+            }
+
+        });
+        $grid->column('created_at', __('创建时间'))->display(function ($created_at) {
+            return date('Y-m-d H:i:s',strtotime($created_at));
+        });
+        $grid->model()->orderBy('id', 'desc');
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableView();
+            $actions->disableEdit();
+            // $actions->disableDelete();
+        });
+        $grid->disableCreateButton();
 
         //查询过滤器
         $grid->expandFilter();

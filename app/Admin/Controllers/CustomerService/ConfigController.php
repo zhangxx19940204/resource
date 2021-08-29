@@ -15,7 +15,7 @@ class ConfigController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Config';
+    protected $title = '53客服系统配置';
 
     /**
      * Make a grid builder.
@@ -26,12 +26,22 @@ class ConfigController extends AdminController
     {
         $grid = new Grid(new Config());
 
-        $grid->column('id', __('Id'));
-        $grid->column('custom_name', __('Custom name'));
-        $grid->column('token', __('Token'));
-        $grid->column('status', __('Status'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('id', __('编号'));
+        $grid->column('custom_name', __('渠道名称'));
+        $grid->column('account', __('客服登录账号'));
+        $grid->column('token', __('53客服后台token值'));
+        $grid->column('status', __('是否启用状态'))->bool(['1' => true, '0' => false]);
+        $grid->column('is_syn', __('是否同步至分配'))->bool(['1' => true, '0' => false]);
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
+        $grid->model()->orderBy('id', 'desc');
+        // 全部关闭
+        $grid->disableFilter();
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableView();
+            // $actions->disableEdit();
+            // $actions->disableDelete();
+        });
 
         return $grid;
     }
@@ -65,9 +75,11 @@ class ConfigController extends AdminController
     {
         $form = new Form(new Config());
 
-        $form->text('custom_name', __('Custom name'));
-        $form->text('token', __('Token'));
-        $form->switch('status', __('Status'));
+        $form->text('custom_name', __('渠道名称'));
+        $form->text('account', __('客服登录账号'));
+        $form->text('token', __('53客服后台token值'));
+        $form->switch('status', __('是否启用状态'));
+        $form->switch('is_syn', __('是否同步至分配'));
 
         return $form;
     }

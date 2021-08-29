@@ -15,8 +15,10 @@ Route::group([
     $router->any('/get_resource_all_by_day', 'HomeController@get_resource_all_by_day');
 
     //资源统计列表页
+    $router->resource('res-configs', Res\ResConfigController::class);
     $router->resource('res-datas', Res\ResDataController::class);
     $router->resource('res-distribution-configs', Res\ResDistributionConfigController::class);
+    $router->resource('record_leave_robot_datas', Res\RecordLeaveRobotDataController::class);
 
     //邮件留言系统
     $router->resource('email-configs', Email\EmailConfigController::class);
@@ -34,6 +36,7 @@ Route::group([
     $router->resource('visits', DingTalk\VisitController::class);
     $router->resource('ding-talk-users', DingTalk\DingTalkUserController::class);
     $router->resource('dingtalk-ec-relatives', DingTalk\DingtalkEcRelativeController::class);
+    $router->resource('ding-talk-projects', DingTalk\DingTalkProjectController::class);
 
     //53kf系统对接
     $router->resource('customerService_configs', CustomerService\ConfigController::class);

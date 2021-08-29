@@ -28,14 +28,15 @@ class EmailConfigController extends AdminController
     {
         $grid = new Grid(new EmailConfig);
 
-        $grid->column('id', __('Id'))->display(function ($name) {
-		    return "$name";
-		});
-        $grid->column('user_id', __('User id'));
-        $grid->column('email_address', __('Email address'));
-        $grid->column('email_password', __('Email password'));
-        $grid->column('host_port', __('Host port'));
-        $grid->column('status', __('状态'));
+        $grid->column('id', __('编号'));
+        $grid->column('user_id', __('用户id'));
+        $grid->column('email_address', __('邮箱账号'));
+        $grid->column('email_password', __('邮箱的服务密码'));
+        $grid->column('host_port', __('邮箱的端口'));
+        $grid->column('status', __('是否启用状态'))->bool(['0'=>false,'1'=>true]);
+        $grid->column('remarks', __('备注'));
+        $grid->column('type', __('类别（用于同步默认mail）'));
+        $grid->column('keywords_sift', __('邮件匹配关键字'));
 //        $grid->column('move_folder', __('move folder'))->editable('select',function($single_data){
 //        	//
 //        	if (empty($single_data->move_folder)) {
@@ -51,7 +52,7 @@ class EmailConfigController extends AdminController
 //
 //		} );
 
-        $grid->column('create_date', __('Create date'));
+        // $grid->column('create_date', __('Create date'));
         // $grid->username('用户名');
 
 		$grid->filter(function($filter){
@@ -107,13 +108,16 @@ class EmailConfigController extends AdminController
 
         $form = new Form(new EmailConfig);
 
-        $form->number('user_id', __('User id'))->default($user_arr['id']);
-        $form->number('status', __('状态'));
-        $form->text('email_address', __('Email address'));
-        $form->text('email_password', __('Email password'));
-        $form->text('host_port', __('Host port'));
-        $form->text('move_folder', __('move folder'));
-        $form->datetime('create_date', __('Create date'))->default(date('Y-m-d H:i:s'));
+        $form->text('user_id', __('用户id（不可修改）'))->default($user_arr['id']);
+        $form->switch('status', __('状态'))->default(1);
+        $form->text('email_address', __('邮箱地址'));
+        $form->text('email_password', __('邮箱服务密码'));
+        $form->text('host_port', __('邮箱的端口'));
+        $form->text('remarks', __('备注'));
+        $form->text('type', __('类别（用于同步默认mail）'))->default('mail');
+        // $form->text('keywords_sift', __('邮件匹配关键字'))->default("['测试1'，'测试2']");
+        // $form->text('move_folder', __('move folder'));
+        // $form->datetime('create_date', __('Create date'))->default(date('Y-m-d H:i:s'));
 
         return $form;
     }

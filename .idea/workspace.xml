@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update data_json show five">
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update res-data model code 20210712 0.5">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/resource.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resource.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/CustomerService/ConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/CustomerService/ConfigController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/DingtalkEcRelativeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/DingtalkEcRelativeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailConfigController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ShortFeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ShortFeedbackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerService/FiveThreeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerService/FiveThreeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/shortFeedback_relative.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +36,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="hiddenUrls">
@@ -144,13 +166,22 @@
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/php-imap/php-imap" />
       <path value="$PROJECT_DIR$/vendor/ichynul/row-table" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/overtrue/http" />
+      <path value="$PROJECT_DIR$/vendor/mingyoung/dingtalk" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
       <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
-      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
       <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/jxlwqq/env-manager" />
     </include_path>
   </component>
   <component name="ProjectId" id="1kBKS9H8ihx14VYMZX0I9YpwUX4" />
@@ -170,7 +201,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -216,352 +247,421 @@
       <workItem from="1613784368876" duration="1738000" />
       <workItem from="1613871081868" duration="2598000" />
       <workItem from="1614044459410" duration="104000" />
-      <workItem from="1614044597204" duration="28502000" />
+      <workItem from="1614044597204" duration="49488000" />
+      <workItem from="1614388559767" duration="18589000" />
+      <workItem from="1614476161360" duration="22989000" />
+      <workItem from="1614647581955" duration="2983000" />
+      <workItem from="1614734857960" duration="14812000" />
+      <workItem from="1614914012596" duration="21395000" />
+      <workItem from="1615353488967" duration="6951000" />
+      <workItem from="1615425613381" duration="25065000" />
+      <workItem from="1615624457224" duration="47383000" />
+      <workItem from="1615943929472" duration="6250000" />
+      <workItem from="1615967262944" duration="8915000" />
+      <workItem from="1616061099180" duration="34000" />
+      <workItem from="1616202105285" duration="52250000" />
+      <workItem from="1616641252045" duration="7257000" />
+      <workItem from="1616825278167" duration="55769000" />
+      <workItem from="1617097207237" duration="352000" />
+      <workItem from="1617161185655" duration="2306000" />
+      <workItem from="1617267193454" duration="566000" />
+      <workItem from="1617502774842" duration="2293000" />
+      <workItem from="1617527431584" duration="1478000" />
+      <workItem from="1617955009451" duration="30635000" />
+      <workItem from="1618298038939" duration="1491000" />
+      <workItem from="1618795579758" duration="275000" />
+      <workItem from="1618795880726" duration="8797000" />
+      <workItem from="1618881912377" duration="12183000" />
+      <workItem from="1618967761453" duration="3735000" />
+      <workItem from="1619416814361" duration="367000" />
+      <workItem from="1619417200706" duration="143000" />
+      <workItem from="1619417357858" duration="454000" />
+      <workItem from="1619417827685" duration="4000" />
+      <workItem from="1619418137147" duration="368000" />
+      <workItem from="1619418520005" duration="3964000" />
+      <workItem from="1619767556721" duration="168000" />
+      <workItem from="1619838020813" duration="3342000" />
+      <workItem from="1620281935627" duration="6525000" />
+      <workItem from="1620437566645" duration="1828000" />
+      <workItem from="1620718180586" duration="1930000" />
+      <workItem from="1620801117080" duration="3764000" />
+      <workItem from="1621059909619" duration="6796000" />
+      <workItem from="1621304098221" duration="4005000" />
+      <workItem from="1621731629948" duration="5292000" />
+      <workItem from="1623051572304" duration="4118000" />
+      <workItem from="1623138487278" duration="14147000" />
+      <workItem from="1623304062116" duration="2310000" />
+      <workItem from="1623317018808" duration="202000" />
+      <workItem from="1623477679765" duration="2687000" />
+      <workItem from="1624085881972" duration="6868000" />
+      <workItem from="1624329987300" duration="12754000" />
+      <workItem from="1624612412573" duration="425000" />
+      <workItem from="1624613508561" duration="1598000" />
+      <workItem from="1624672037053" duration="20532000" />
+      <workItem from="1624933163348" duration="19640000" />
+      <workItem from="1625214246724" duration="4513000" />
+      <workItem from="1625274822701" duration="14938000" />
+      <workItem from="1625556693081" duration="3709000" />
+      <workItem from="1625625235275" duration="5629000" />
+      <workItem from="1625801745690" duration="1574000" />
+      <workItem from="1625886460440" duration="648000" />
+      <workItem from="1626059248025" duration="10831000" />
+      <workItem from="1626249267162" duration="15000" />
+      <workItem from="1626312183108" duration="5624000" />
+      <workItem from="1626660045767" duration="6863000" />
+      <workItem from="1627033545744" duration="196000" />
+      <workItem from="1628149556093" duration="29000" />
+      <workItem from="1628242653151" duration="72000" />
+      <workItem from="1628242785964" duration="2274000" />
+      <workItem from="1628488324772" duration="10352000" />
+      <workItem from="1629164945919" duration="21366000" />
+      <workItem from="1629766862401" duration="8336000" />
+      <workItem from="1630030793717" duration="5904000" />
     </task>
-    <task id="LOCAL-00052" summary="commit import mukuai first">
-      <created>1607332890359</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+    <task id="LOCAL-00202" summary="update mail model code 20210619 0.3">
+      <created>1624094841486</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
       <option name="project" value="LOCAL" />
-      <updated>1607332890359</updated>
+      <updated>1624094841486</updated>
     </task>
-    <task id="LOCAL-00053" summary="commit import mukuai second">
-      <created>1607332942231</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+    <task id="LOCAL-00203" summary="update mail model code 20210619 0.4">
+      <created>1624095234260</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
       <option name="project" value="LOCAL" />
-      <updated>1607332942231</updated>
+      <updated>1624095234260</updated>
     </task>
-    <task id="LOCAL-00054" summary="commit import mukuai third">
-      <created>1607334053921</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
+    <task id="LOCAL-00204" summary="update mail model code 20210619 0.5">
+      <created>1624095635448</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
       <option name="project" value="LOCAL" />
-      <updated>1607334053921</updated>
+      <updated>1624095635448</updated>
     </task>
-    <task id="LOCAL-00055" summary="commit import mukuai four">
-      <created>1607334864031</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
+    <task id="LOCAL-00205" summary="update mail model code 20210622 0.1">
+      <created>1624349193075</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
       <option name="project" value="LOCAL" />
-      <updated>1607334864031</updated>
+      <updated>1624349193075</updated>
     </task>
-    <task id="LOCAL-00056" summary="commit import mukuai five">
-      <created>1607336750802</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
+    <task id="LOCAL-00206" summary="update mail model code 20210625 0.1">
+      <created>1624608681584</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
       <option name="project" value="LOCAL" />
-      <updated>1607336750802</updated>
+      <updated>1624608681584</updated>
     </task>
-    <task id="LOCAL-00057" summary="commit import mukuai six">
-      <created>1607336906029</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
+    <task id="LOCAL-00207" summary="update mail model code 20210625 0.2">
+      <created>1624610351942</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
       <option name="project" value="LOCAL" />
-      <updated>1607336906029</updated>
+      <updated>1624610351942</updated>
     </task>
-    <task id="LOCAL-00058" summary="commit import mukuai ceshi">
-      <created>1607391823544</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
+    <task id="LOCAL-00208" summary="update mail model code 20210625 0.3">
+      <created>1624614151205</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
       <option name="project" value="LOCAL" />
-      <updated>1607391823544</updated>
+      <updated>1624614151207</updated>
     </task>
-    <task id="LOCAL-00059" summary="commit import mukuai ceshi2">
-      <created>1607392142257</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
+    <task id="LOCAL-00209" summary="update dingtalk model code 20210628 0.1">
+      <created>1624860326835</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
       <option name="project" value="LOCAL" />
-      <updated>1607392142257</updated>
+      <updated>1624860326835</updated>
     </task>
-    <task id="LOCAL-00060" summary="commit import mukuai ceshi3">
-      <created>1607392290128</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
+    <task id="LOCAL-00210" summary="update dingtalk model code 20210628 0.2">
+      <created>1624865723935</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
       <option name="project" value="LOCAL" />
-      <updated>1607392290128</updated>
+      <updated>1624865723935</updated>
     </task>
-    <task id="LOCAL-00061" summary="commit import mukuai ceshi4">
-      <created>1607393557828</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
+    <task id="LOCAL-00211" summary="update dingtalk model code 20210628 0.3">
+      <created>1624866550549</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
       <option name="project" value="LOCAL" />
-      <updated>1607393557828</updated>
+      <updated>1624866550549</updated>
     </task>
-    <task id="LOCAL-00062" summary="commit import mukuai ceshi5">
-      <created>1607397766356</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
+    <task id="LOCAL-00212" summary="update dingtalk model code 20210628 0.4">
+      <created>1624868575117</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
       <option name="project" value="LOCAL" />
-      <updated>1607397766356</updated>
+      <updated>1624868575117</updated>
     </task>
-    <task id="LOCAL-00063" summary="commit import mukuai ceshi6">
-      <created>1607398659292</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
+    <task id="LOCAL-00213" summary="update dingtalk model code 20210628 0.5">
+      <created>1624868924145</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
       <option name="project" value="LOCAL" />
-      <updated>1607398659292</updated>
+      <updated>1624868924145</updated>
     </task>
-    <task id="LOCAL-00064" summary="commit import mukuai ceshi7">
-      <created>1607398764989</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
+    <task id="LOCAL-00214" summary="update dingtalk model code 20210628 0.6">
+      <created>1624869107778</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
       <option name="project" value="LOCAL" />
-      <updated>1607398764989</updated>
+      <updated>1624869107778</updated>
     </task>
-    <task id="LOCAL-00065" summary="commit import mukuai ceshi8">
-      <created>1607413859767</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
+    <task id="LOCAL-00215" summary="update dingtalk model code 20210628 0.7">
+      <created>1624869304183</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
       <option name="project" value="LOCAL" />
-      <updated>1607413859767</updated>
+      <updated>1624869304183</updated>
     </task>
-    <task id="LOCAL-00066" summary="add auto distribution first">
-      <created>1607657953915</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
+    <task id="LOCAL-00216" summary="update dingtalk model code 20210628 0.8">
+      <created>1624870132609</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
       <option name="project" value="LOCAL" />
-      <updated>1607657953915</updated>
+      <updated>1624870132609</updated>
     </task>
-    <task id="LOCAL-00067" summary="commit auto distribution first">
-      <created>1607852709463</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
+    <task id="LOCAL-00217" summary="update dingtalk model code 20210628 0.9">
+      <created>1624871813030</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
       <option name="project" value="LOCAL" />
-      <updated>1607852709463</updated>
+      <updated>1624871813030</updated>
     </task>
-    <task id="LOCAL-00068" summary="commit auto distribution second">
-      <created>1607854003796</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
+    <task id="LOCAL-00218" summary="update dingtalk model code 20210628 0.10">
+      <created>1624872434044</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
       <option name="project" value="LOCAL" />
-      <updated>1607854003796</updated>
+      <updated>1624872434045</updated>
     </task>
-    <task id="LOCAL-00069" summary="commit auto distribution third">
-      <created>1608021899973</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
+    <task id="LOCAL-00219" summary="update dingtalk model code 20210628 0.11">
+      <created>1624872896103</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
       <option name="project" value="LOCAL" />
-      <updated>1608021899973</updated>
+      <updated>1624872896103</updated>
     </task>
-    <task id="LOCAL-00070" summary="commit auto distribution four">
-      <created>1608026941673</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
+    <task id="LOCAL-00220" summary="update dingtalk model code 20210629 0.2">
+      <created>1624950823478</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
       <option name="project" value="LOCAL" />
-      <updated>1608026941673</updated>
+      <updated>1624950823478</updated>
     </task>
-    <task id="LOCAL-00071" summary="commit disabled distribution button">
-      <created>1608710708758</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
+    <task id="LOCAL-00221" summary="update dingtalk model code 20210629 0.3">
+      <created>1624951110897</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
       <option name="project" value="LOCAL" />
-      <updated>1608710708759</updated>
+      <updated>1624951110897</updated>
     </task>
-    <task id="LOCAL-00072" summary="commit disabled distribution button second">
-      <created>1608712394789</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
+    <task id="LOCAL-00222" summary="update dingtalk model code 20210629 0.4">
+      <created>1624951590805</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
       <option name="project" value="LOCAL" />
-      <updated>1608712394789</updated>
+      <updated>1624951590805</updated>
     </task>
-    <task id="LOCAL-00073" summary="commit disabled distribution button third">
-      <created>1608713124763</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
+    <task id="LOCAL-00223" summary="update dingtalk model code 20210629 0.5">
+      <created>1624960470164</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
       <option name="project" value="LOCAL" />
-      <updated>1608713124763</updated>
+      <updated>1624960470164</updated>
     </task>
-    <task id="LOCAL-00074" summary="commit disabled distribution button four">
-      <created>1608715552186</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
+    <task id="LOCAL-00224" summary="update dingtalk model code 20210629 0.7">
+      <created>1624960819601</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
       <option name="project" value="LOCAL" />
-      <updated>1608715552186</updated>
+      <updated>1624960819601</updated>
     </task>
-    <task id="LOCAL-00075" summary="commit distribute update first">
-      <created>1609226176608</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
+    <task id="LOCAL-00225" summary="update dingtalk model code 20210630 0.1">
+      <created>1625033210673</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
       <option name="project" value="LOCAL" />
-      <updated>1609226176608</updated>
+      <updated>1625033210673</updated>
     </task>
-    <task id="LOCAL-00076" summary="commit distribute update second">
-      <created>1609230749436</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
+    <task id="LOCAL-00226" summary="update dingtalk model code 20210630 0.2">
+      <created>1625033977240</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
       <option name="project" value="LOCAL" />
-      <updated>1609230749436</updated>
+      <updated>1625033977240</updated>
     </task>
-    <task id="LOCAL-00077" summary="commit distribute update four">
-      <created>1609297510975</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
+    <task id="LOCAL-00227" summary="update dingtalk model code 20210630 0.3">
+      <created>1625036449444</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
       <option name="project" value="LOCAL" />
-      <updated>1609297510975</updated>
+      <updated>1625036449444</updated>
     </task>
-    <task id="LOCAL-00078" summary="commit distribute update five">
-      <created>1609298653729</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
+    <task id="LOCAL-00228" summary="update dingtalk model code 20210630 0.4">
+      <created>1625039266764</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
       <option name="project" value="LOCAL" />
-      <updated>1609298653729</updated>
+      <updated>1625039266764</updated>
     </task>
-    <task id="LOCAL-00079" summary="commit distribute update six">
-      <created>1609311753133</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
+    <task id="LOCAL-00229" summary="update dingtalk model code 20210630 0.5">
+      <created>1625040087607</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
       <option name="project" value="LOCAL" />
-      <updated>1609311753133</updated>
+      <updated>1625040087607</updated>
     </task>
-    <task id="LOCAL-00080" summary="commit distribute update six">
-      <created>1609311836055</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
+    <task id="LOCAL-00230" summary="update dingtalk model code 20210630 0.6">
+      <created>1625042039943</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
       <option name="project" value="LOCAL" />
-      <updated>1609311836055</updated>
+      <updated>1625042039943</updated>
     </task>
-    <task id="LOCAL-00081" summary="commit distribute update seven">
-      <created>1609312749831</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
+    <task id="LOCAL-00231" summary="update dingtalk model code 20210701 0.1">
+      <created>1625104798310</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
       <option name="project" value="LOCAL" />
-      <updated>1609312749831</updated>
+      <updated>1625104798310</updated>
     </task>
-    <task id="LOCAL-00082" summary="commit distribute update seven">
-      <created>1609313351681</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
+    <task id="LOCAL-00232" summary="update dingtalk model code 20210702 0.1">
+      <created>1625215172882</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
       <option name="project" value="LOCAL" />
-      <updated>1609313351681</updated>
+      <updated>1625215172882</updated>
     </task>
-    <task id="LOCAL-00083" summary="commit distribute update eight">
-      <created>1609322876718</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
+    <task id="LOCAL-00233" summary="update dingtalk model code 20210703 0.1">
+      <created>1625303347508</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
       <option name="project" value="LOCAL" />
-      <updated>1609322876718</updated>
+      <updated>1625303347509</updated>
     </task>
-    <task id="LOCAL-00084" summary="commit distribute update night">
-      <created>1609324239430</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00234" summary="update dingtalk model code 20210703 0.2">
+      <created>1625304817352</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
       <option name="project" value="LOCAL" />
-      <updated>1609324239430</updated>
+      <updated>1625304817352</updated>
     </task>
-    <task id="LOCAL-00085" summary="commit distribute update ten">
-      <created>1609324675425</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
+    <task id="LOCAL-00235" summary="update dingtalk model code 20210703 0.3">
+      <created>1625305186643</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
       <option name="project" value="LOCAL" />
-      <updated>1609324675425</updated>
+      <updated>1625305186643</updated>
     </task>
-    <task id="LOCAL-00086" summary="commit distribute update ten">
-      <created>1609325540054</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
+    <task id="LOCAL-00236" summary="update dingtalk model code 20210703 0.4">
+      <created>1625305365540</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
       <option name="project" value="LOCAL" />
-      <updated>1609325540054</updated>
+      <updated>1625305365540</updated>
     </task>
-    <task id="LOCAL-00087" summary="commit distribute update ten">
-      <created>1609325746923</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
+    <task id="LOCAL-00237" summary="update dingtalk model code 20210703 0.5">
+      <created>1625305622336</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
       <option name="project" value="LOCAL" />
-      <updated>1609325746923</updated>
+      <updated>1625305622336</updated>
     </task>
-    <task id="LOCAL-00088" summary="commit shortfeedback update first">
-      <created>1609479123647</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
+    <task id="LOCAL-00238" summary="update dingtalk model code 20210703 0.6">
+      <created>1625306183692</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
       <option name="project" value="LOCAL" />
-      <updated>1609479123647</updated>
+      <updated>1625306183692</updated>
     </task>
-    <task id="LOCAL-00089" summary="commit Optimized code">
-      <created>1609572937956</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
+    <task id="LOCAL-00239" summary="update dingtalk model code 20210704 0.1">
+      <created>1625368019472</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
       <option name="project" value="LOCAL" />
-      <updated>1609572937956</updated>
+      <updated>1625368019472</updated>
     </task>
-    <task id="LOCAL-00090" summary="commit system finally 0.1">
-      <created>1609742742760</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
+    <task id="LOCAL-00240" summary="update dingtalk model code 20210704 0.2">
+      <created>1625368783402</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
       <option name="project" value="LOCAL" />
-      <updated>1609742742760</updated>
+      <updated>1625368783402</updated>
     </task>
-    <task id="LOCAL-00091" summary="commit batchdistirbute bug 0.1">
-      <created>1609915501496</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
+    <task id="LOCAL-00241" summary="update dingtalk model code 20210706 0.1">
+      <created>1625558295476</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
       <option name="project" value="LOCAL" />
-      <updated>1609915501497</updated>
+      <updated>1625558295477</updated>
     </task>
-    <task id="LOCAL-00092" summary="commit batchdistirbute bug 0.2">
-      <created>1609918812908</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
+    <task id="LOCAL-00242" summary="update dingtalk model code 20210706 0.2">
+      <created>1625559834126</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
       <option name="project" value="LOCAL" />
-      <updated>1609918812908</updated>
+      <updated>1625559834126</updated>
     </task>
-    <task id="LOCAL-00093" summary="commit batchdistirbute bug 0.3">
-      <created>1610100196836</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
+    <task id="LOCAL-00243" summary="update dingtalk model code 20210707 0.1">
+      <created>1625648698694</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
       <option name="project" value="LOCAL" />
-      <updated>1610100196836</updated>
+      <updated>1625648698695</updated>
     </task>
-    <task id="LOCAL-00094" summary="commit batchdistirbute bug 0.4">
-      <created>1610100302454</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
+    <task id="LOCAL-00244" summary="update dingtalk model code 20210707 0.2">
+      <created>1625650803566</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
       <option name="project" value="LOCAL" />
-      <updated>1610100302454</updated>
+      <updated>1625650803566</updated>
     </task>
-    <task id="LOCAL-00095" summary="commit batchdistirbute bug 0.5">
-      <created>1610153958602</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
+    <task id="LOCAL-00245" summary="update dingtalk model code 20210709 0.1">
+      <created>1625813151276</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
       <option name="project" value="LOCAL" />
-      <updated>1610153958602</updated>
+      <updated>1625813151276</updated>
     </task>
-    <task id="LOCAL-00096" summary="commit batchdistirbute bug 0.6">
-      <created>1610154348736</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
+    <task id="LOCAL-00246" summary="update res-data model code 20210712 0.1">
+      <created>1626073770767</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
       <option name="project" value="LOCAL" />
-      <updated>1610154348736</updated>
+      <updated>1626073770767</updated>
     </task>
-    <task id="LOCAL-00097" summary="commit batchdistirbute bug 0.7">
-      <created>1610182121824</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
+    <task id="LOCAL-00247" summary="update res-data model code 20210712 0.2">
+      <created>1626075361077</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
       <option name="project" value="LOCAL" />
-      <updated>1610182121824</updated>
+      <updated>1626075361078</updated>
     </task>
-    <task id="LOCAL-00098" summary="commit batchdistirbute bug 0.8">
-      <created>1610183262486</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
+    <task id="LOCAL-00248" summary="update res-data model code 20210712 0.3">
+      <created>1626075597642</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
       <option name="project" value="LOCAL" />
-      <updated>1610183262486</updated>
+      <updated>1626075597642</updated>
     </task>
-    <task id="LOCAL-00099" summary="commit update ec_user list 20210221">
-      <created>1613873080151</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
+    <task id="LOCAL-00249" summary="update res-data model code 20210712 0.4">
+      <created>1626078342450</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
       <option name="project" value="LOCAL" />
-      <updated>1613873080151</updated>
+      <updated>1626078342450</updated>
     </task>
-    <task id="LOCAL-00100" summary="update Globaljoin access">
-      <created>1614076943308</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
+    <task id="LOCAL-00250" summary="update res-data model code 20210712 0.5">
+      <created>1626079578384</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
       <option name="project" value="LOCAL" />
-      <updated>1614076943308</updated>
+      <updated>1626079578384</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,31 +710,31 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="commit disabled distribution button third" />
-    <MESSAGE value="commit disabled distribution button four" />
-    <MESSAGE value="commit distribute update first" />
-    <MESSAGE value="commit distribute update second" />
-    <MESSAGE value="commit distribute update third" />
-    <MESSAGE value="commit distribute update four" />
-    <MESSAGE value="commit distribute update five" />
-    <MESSAGE value="commit distribute update six" />
-    <MESSAGE value="commit distribute update seven" />
-    <MESSAGE value="commit distribute update eight" />
-    <MESSAGE value="commit distribute update night" />
-    <MESSAGE value="commit distribute update ten" />
-    <MESSAGE value="commit shortfeedback update first" />
-    <MESSAGE value="commit Optimized code" />
-    <MESSAGE value="commit system finally 0.1" />
-    <MESSAGE value="commit batchdistirbute bug 0.1" />
-    <MESSAGE value="commit batchdistirbute bug 0.2" />
-    <MESSAGE value="commit batchdistirbute bug 0.3" />
-    <MESSAGE value="commit batchdistirbute bug 0.4" />
-    <MESSAGE value="commit batchdistirbute bug 0.5" />
-    <MESSAGE value="commit batchdistirbute bug 0.6" />
-    <MESSAGE value="commit batchdistirbute bug 0.7" />
-    <MESSAGE value="commit batchdistirbute bug 0.8" />
-    <MESSAGE value="commit update ec_user list 20210221" />
-    <MESSAGE value="update Globaljoin access" />
-    <option name="LAST_COMMIT_MESSAGE" value="update Globaljoin access" />
+    <MESSAGE value="update dingtalk model code 20210630 0.2" />
+    <MESSAGE value="update dingtalk model code 20210630 0.3" />
+    <MESSAGE value="update dingtalk model code 20210630 0.4" />
+    <MESSAGE value="update dingtalk model code 20210630 0.5" />
+    <MESSAGE value="update dingtalk model code 20210630 0.6" />
+    <MESSAGE value="update dingtalk model code 20210701 0.1" />
+    <MESSAGE value="update dingtalk model code 20210702 0.1" />
+    <MESSAGE value="update dingtalk model code 20210703 0.1" />
+    <MESSAGE value="update dingtalk model code 20210703 0.2" />
+    <MESSAGE value="update dingtalk model code 20210703 0.3" />
+    <MESSAGE value="update dingtalk model code 20210703 0.4" />
+    <MESSAGE value="update dingtalk model code 20210703 0.5" />
+    <MESSAGE value="update dingtalk model code 20210703 0.6" />
+    <MESSAGE value="update dingtalk model code 20210704 0.1" />
+    <MESSAGE value="update dingtalk model code 20210704 0.2" />
+    <MESSAGE value="update dingtalk model code 20210706 0.1" />
+    <MESSAGE value="update dingtalk model code 20210706 0.2" />
+    <MESSAGE value="update dingtalk model code 20210707 0.1" />
+    <MESSAGE value="update dingtalk model code 20210707 0.2" />
+    <MESSAGE value="update dingtalk model code 20210709 0.1" />
+    <MESSAGE value="update res-data model code 20210712 0.1" />
+    <MESSAGE value="update res-data model code 20210712 0.2" />
+    <MESSAGE value="update res-data model code 20210712 0.3" />
+    <MESSAGE value="update res-data model code 20210712 0.4" />
+    <MESSAGE value="update res-data model code 20210712 0.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="update res-data model code 20210712 0.5" />
   </component>
 </project>
