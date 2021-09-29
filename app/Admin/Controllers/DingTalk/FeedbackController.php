@@ -44,6 +44,7 @@ class FeedbackController extends AdminController
             return date('Y-m-d H:i:s',strtotime($date));
         });
         $grid->column('data_date', __('日期'));
+        $grid->column('name', __('姓名'));
         $grid->column('phone', __('手机号'));
         $grid->column('feedback_short', __('反馈'));
         $grid->column('feedback_detail', __('跟进记录'))->width(700);
@@ -54,7 +55,7 @@ class FeedbackController extends AdminController
 
             // $export->except(['column1', 'column2']);
 
-            $export->only(['dingding_user_id', 'blong', 'data_date', 'phone', 'feedback_short', 'feedback_detail']);
+            $export->only(['dingding_user_id', 'blong', 'data_date','name', 'phone', 'feedback_short', 'feedback_detail']);
 
             // $export->originalValue(['column1', 'column2']);
 
@@ -96,6 +97,7 @@ class FeedbackController extends AdminController
                 }
                 $filter->in('dingding_user_id','用户')->multipleSelect($user_arr);
                 $filter->like('phone', '手机号');
+                $filter->like('name', '姓名');
                 $filter->ilike('feedback_detail', '跟进记录');
                 $filter->between('created_at', '创建日期')->datetime();
                 $filter->between('updated_at', '上次更新日期')->datetime();
