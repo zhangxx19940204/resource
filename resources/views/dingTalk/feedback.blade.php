@@ -37,6 +37,13 @@
                     <input type="text" name="data_date" id="data_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <!--姓名-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
             <!--手机-->
             <div class="layui-form-item">
                 <label class="layui-form-label">手机</label>
@@ -140,6 +147,7 @@ layui.use('table', function(){
         // ,{field: 'dingding_user_id', title: '用户名'}
         ,{field: 'blong', title: '所属'}
         ,{field: 'data_date', title: '日期'}
+          ,{field: 'name', title: '姓名'}
         ,{field: 'phone', title: '手机号'}
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
@@ -294,6 +302,7 @@ function modal_data_func(layEvent,data){
     case 'edit':
         assignment.blong = data.blong;
         assignment.data_date = data.data_date;
+        assignment.name = data.name;
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
@@ -304,6 +313,7 @@ function modal_data_func(layEvent,data){
     case 'detail':
         assignment.blong = data.blong;
         assignment.data_date = data.data_date;
+        assignment.name = data.name;
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
@@ -330,6 +340,7 @@ function modal_data_func(layEvent,data){
         }
         let dingding_user_id = user_info.data.id;
 
+        assignment.name = '';
         assignment.phone = '';
         assignment.feedback_short = '';
         assignment.feedback_detail = '';

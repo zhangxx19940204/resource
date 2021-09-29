@@ -8,22 +8,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update res-data model code 20210712 0.5">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/resource.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/resource.iml" afterDir="false" />
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update res-data model code 20210829 0.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/CustomerService/ConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/CustomerService/ConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/DingtalkEcRelativeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/DingtalkEcRelativeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Email/EmailConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ResDataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/Res/ShortFeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/Res/ShortFeedbackController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerService/FiveThreeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerService/FiveThreeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/shortFeedback_relative.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,14 +303,9 @@
       <workItem from="1628488324772" duration="10352000" />
       <workItem from="1629164945919" duration="21366000" />
       <workItem from="1629766862401" duration="8336000" />
-      <workItem from="1630030793717" duration="5904000" />
-    </task>
-    <task id="LOCAL-00202" summary="update mail model code 20210619 0.3">
-      <created>1624094841486</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1624094841486</updated>
+      <workItem from="1630030793717" duration="7572000" />
+      <workItem from="1631070741996" duration="2565000" />
+      <workItem from="1632892910367" duration="1533000" />
     </task>
     <task id="LOCAL-00203" summary="update mail model code 20210619 0.4">
       <created>1624095234260</created>
@@ -661,7 +643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626079578384</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <task id="LOCAL-00251" summary="update res-data model code 20210829 0.1">
+      <created>1630202284852</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1630202284853</updated>
+    </task>
+    <option name="localTasksCounter" value="252" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,7 +699,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update dingtalk model code 20210630 0.2" />
     <MESSAGE value="update dingtalk model code 20210630 0.3" />
     <MESSAGE value="update dingtalk model code 20210630 0.4" />
     <MESSAGE value="update dingtalk model code 20210630 0.5" />
@@ -735,6 +723,7 @@
     <MESSAGE value="update res-data model code 20210712 0.3" />
     <MESSAGE value="update res-data model code 20210712 0.4" />
     <MESSAGE value="update res-data model code 20210712 0.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="update res-data model code 20210712 0.5" />
+    <MESSAGE value="update res-data model code 20210829 0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update res-data model code 20210829 0.1" />
   </component>
 </project>
