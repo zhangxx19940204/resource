@@ -8,9 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update dingding_feedback code 20210929 0.1">
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update dingding_feedback code 20211001 0.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/FeedbackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/DingTalk/FeedbackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dingTalk/visit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dingTalk/visit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,21 +306,8 @@
       <workItem from="1629766862401" duration="8336000" />
       <workItem from="1630030793717" duration="7572000" />
       <workItem from="1631070741996" duration="2565000" />
-      <workItem from="1632892910367" duration="2074000" />
-    </task>
-    <task id="LOCAL-00204" summary="update mail model code 20210619 0.5">
-      <created>1624095635448</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1624095635448</updated>
-    </task>
-    <task id="LOCAL-00205" summary="update mail model code 20210622 0.1">
-      <created>1624349193075</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1624349193075</updated>
+      <workItem from="1632892910367" duration="2787000" />
+      <workItem from="1632907284081" duration="1490000" />
     </task>
     <task id="LOCAL-00206" summary="update mail model code 20210625 0.1">
       <created>1624608681584</created>
@@ -650,7 +638,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632894616263</updated>
     </task>
-    <option name="localTasksCounter" value="253" />
+    <task id="LOCAL-00253" summary="update dingding_feedback code 20210929 0.2">
+      <created>1632895013160</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1632895013161</updated>
+    </task>
+    <task id="LOCAL-00254" summary="update dingding_feedback code 20211001 0.1">
+      <created>1633054371697</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1633054371697</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,8 +701,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update dingtalk model code 20210630 0.4" />
-    <MESSAGE value="update dingtalk model code 20210630 0.5" />
     <MESSAGE value="update dingtalk model code 20210630 0.6" />
     <MESSAGE value="update dingtalk model code 20210701 0.1" />
     <MESSAGE value="update dingtalk model code 20210702 0.1" />
@@ -724,6 +724,8 @@
     <MESSAGE value="update res-data model code 20210712 0.5" />
     <MESSAGE value="update res-data model code 20210829 0.1" />
     <MESSAGE value="update dingding_feedback code 20210929 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dingding_feedback code 20210929 0.1" />
+    <MESSAGE value="update dingding_feedback code 20210929 0.2" />
+    <MESSAGE value="update dingding_feedback code 20211001 0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update dingding_feedback code 20211001 0.1" />
   </component>
 </project>
