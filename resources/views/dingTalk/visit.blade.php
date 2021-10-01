@@ -240,7 +240,8 @@
 
 @section('content')
 <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
-<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
+<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
 <table id="visit" lay-filter="visit"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
