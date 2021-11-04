@@ -39,6 +39,7 @@ class VisitController extends AdminController
         $grid->column('include_time', __('录入时间'));
         $grid->column('visit_month', __('月份'));
         $grid->column('visit_date', __('来访日期'));
+        $grid->column('payment_date', __('进款时间'));
         $grid->column('visit_brand', __('品牌'));
         $grid->column('visit_name', __('客户姓名'));
         $grid->column('visit_sex', __('性别'));
@@ -156,6 +157,7 @@ class VisitController extends AdminController
         $show->field('create_date', __('创建时间'));
         $show->field('visit_month', __('月份'));
         $show->field('visit_date', __('来访日期'));
+        $show->field('payment_date', __('进款日期'));
         $show->field('visit_brand', __('品牌'));
         $show->field('visit_name', __('客户姓名'));
         $show->field('visit_sex', __('性别'));
@@ -203,6 +205,7 @@ class VisitController extends AdminController
         $form->datetime('create_date',__('创建时间'))->default(date('Y-m-d H:i:s'));
         $form->text('visit_month',__('月份'));
         $form->date('visit_date',__('来访日期'))->default(date('Y-m-d'));
+        $form->date('payment_date',__('进款日期'))->default(date('Y-m-d'));
         $form->text('visit_brand',__('品牌'));
         $form->text('visit_name',__('客户姓名'));
         $form->text('visit_sex',__('性别'));
