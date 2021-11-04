@@ -46,6 +46,13 @@
                     <input type="text" name="visit_date" id="visit_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <!--进款日期-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">进款日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="payment_date" id="payment_date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
             <!--品牌-->
             <div class="layui-form-item">
                 <label class="layui-form-label">品牌</label>
@@ -274,6 +281,7 @@ layui.use('table', function(){
         ,{field: 'blong', title: '所属'}
         ,{field: 'visit_month', title: '月份'}
         ,{field: 'visit_date', title: '来访日期'}
+          ,{field: 'payment_date', title: '进款日期'}
         ,{field: 'visit_brand', title: '品牌'}
 
         ,{field: 'visit_sex', title: '性别'}
@@ -384,6 +392,13 @@ function modal_data_func(layEvent,data){
             // ,value: new Date()
             ,isInitValue: true //是否允许填充初始值，默认为 true
         });
+        //进款日期
+        laydate.render({
+            elem: '#payment_date'
+            ,type: 'date'
+            // ,value: new Date()
+            ,isInitValue: true //是否允许填充初始值，默认为 true
+        });
         //录入时间
         laydate.render({
             elem: '#include_time'
@@ -400,6 +415,7 @@ function modal_data_func(layEvent,data){
         assignment.blong = data.blong
         assignment.visit_month = data.visit_month
         assignment.visit_date = data.visit_date
+        assignment.payment_date = data.payment_date
         assignment.visit_brand = data.visit_brand
         assignment.visit_name = data.visit_name
         assignment.visit_sex = data.visit_sex
@@ -430,6 +446,7 @@ function modal_data_func(layEvent,data){
         assignment.blong = data.blong
         assignment.visit_month = data.visit_month
         assignment.visit_date = data.visit_date
+        assignment.payment_date = data.payment_date
         assignment.visit_brand = data.visit_brand
         assignment.visit_name = data.visit_name
         assignment.visit_sex = data.visit_sex
@@ -477,6 +494,7 @@ function modal_data_func(layEvent,data){
         assignment.blong = ''
         assignment.visit_month = ''
         assignment.visit_date = ''
+        assignment.payment_date = ''
         assignment.visit_brand = ''
         assignment.visit_name = ''
         assignment.visit_sex = ''
