@@ -40,6 +40,10 @@ Route::get('/visit', [DingTalk\VisitController::class, 'index']); //来访进款
 Route::any('/get_visit_list', [DingTalk\VisitController::class, 'get_list']); //资源反馈表的列表
 Route::any('/opera_visit_data', [DingTalk\VisitController::class, 'opera_data']); //资源反馈表的操作
 
+Route::get('/manage_feedback', [DingTalk\ManageFeedbackController::class, 'manage_feedback']); //默认为资源反馈表
+Route::any('/get_manage_feedback_list', [DingTalk\ManageFeedbackController::class, 'get_manage_feedback_list']); //资源反馈表的列表
+Route::any('/manage_feedback_opera_data', [DingTalk\ManageFeedbackController::class, 'opera_data']); //资源反馈表的操作
+
 
 Route::any('/receive_robot_message', [DingTalk\RobotController::class, 'receive_robot_message']); //请假群机器人
 

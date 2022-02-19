@@ -115,6 +115,18 @@
                               </a>
                             </li>
 
+                            <li class="nav-item @yield('manage_feedback')">
+                                <a class="nav-link" href="/manage_feedback" >
+
+                                <span class="nav-link-title">
+                                  管理员
+                                </span>
+
+                                    <!-- <span class="badge bg-red">2</span> -->
+
+                                </a>
+                            </li>
+
                         </ul>
                         @show
 

@@ -2,6 +2,7 @@
 
 @section('feedback', '')
 @section('visit', 'active')
+@section('manage_feedback', '')
 
 @section('sidebar')
 @parent

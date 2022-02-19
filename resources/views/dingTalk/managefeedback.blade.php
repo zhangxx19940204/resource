@@ -1,9 +1,8 @@
 @extends('dingTalk.layouts.default')
 
-@section('feedback', 'active')
+@section('feedback', '')
 @section('visit', '')
-@section('manage_feedback', '')
-
+@section('manage_feedback', 'active')
 
 @section('sidebar')
     @parent
@@ -82,29 +81,6 @@
         <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即提交</button>
     </div>
 
-    <div id="modal_bind_ec" style="text-align:center;display:none;height: 210px;width: 400px;">
-        <form class="layui-form layui-form-pane" action="" lay-filter="bindEc">
-            <!--EC用户列表-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">EC用户列表</label>
-                <div class="layui-input-inline">
-                    <select name="ec_user_list" lay-verify="required" lay-search="">
-                        <option value="">请选择</option>
-
-                        @forelse ($ec_user_list as $ec_user)
-                            <option value="{{ $ec_user->userId }}">{{ $ec_user->deptName }}</option>
-                        @empty
-
-                        @endforelse
-
-                    </select>
-                </div>
-            </div>
-
-        </form>
-        <!--操作按钮-->
-        <button type="submit" class="layui-btn" id="sub_bind_btn" lay-submit="" lay-filter="demo1">立即绑定</button>
-    </div>
 @endsection
 
 
@@ -114,15 +90,11 @@
     <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
     <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
 
-<div>
-    <span id="show_ecuser_info"></span>
-    <span id="show_ecuser_leave">; </span>
-</div>
 
 <table id="feedback" lay-filter="feedback"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+{{--    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>--}}
   </div>
 </script>
 
@@ -138,7 +110,7 @@ layui.use('table', function(){
     // ,height: 1080
     // ,width: 1080
     ,toolbar:'#toolbar_header'
-    ,url: '/get_list' //数据接口
+    ,url: '/get_manage_feedback_list' //数据接口
     ,where: {user_id: dngding_user_id} //如果无需传递额外参数，可不加该参数
     ,method: 'post' //如果无需自定义HTTP类型，可不加该参数
   //request: {} //如果无需自定义请求参数，可不加该参数
@@ -153,6 +125,7 @@ layui.use('table', function(){
         ,{field: 'phone', title: '手机号'}
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
+          ,{field: 'dingding_user_name', title: '资源所属人'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
     ]],
       defaultToolbar: ['filter', 'exports', {
@@ -177,8 +150,9 @@ layui.use('table', function(){
       }  else if(layEvent === 'edit'){ //编辑
         //do something
         console.log('edit')
-        modal_data_func(layEvent,data)
-        open_modal(1,'更新','modal_feeedback')
+          alert('本页面仅支持查看，请去反馈页面操作');
+        // modal_data_func(layEvent,data)
+        // open_modal(1,'更新','modal_feeedback')
         //方法更新
         //同步更新缓存对应的值
         // obj.update({
@@ -202,78 +176,31 @@ layui.use('table', function(){
       var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'add':
-                console.log('add')
-                modal_data_func(obj.event,[])
-                open_modal(1,'新增','modal_feeedback')
+                console.log('add');
+                alert('本页面仅支持查看，请去反馈页面操作');
+                // modal_data_func(obj.event,[])
+                // open_modal(1,'新增','modal_feeedback')
                 break;
             case 'bind_ec_info':
                 console.log('bind_ec_info')
-                let user_info = JSON.parse(localStorage.getItem("user_info"))
-                if((user_info.is_bind_ec).length == 0){ // "",[]
-                    console.log("为空");
-                    //弹出modal
-                    modal_ec_bind()
-                    open_modal(1,'绑定EC用户','modal_bind_ec')
-                }else{
-                    console.log("不为空");
-                    //不为空，则已绑定过，禁止绑定
-                    alert('EC关系已绑定，联系管理员');
-                }
+                alert('本页面仅支持查看，请去反馈页面操作');
+                // let user_info = JSON.parse(localStorage.getItem("user_info"))
+                // if((user_info.is_bind_ec).length == 0){ // "",[]
+                //     console.log("为空");
+                //     //弹出modal
+                //     modal_ec_bind()
+                //     open_modal(1,'绑定EC用户','modal_bind_ec')
+                // }else{
+                //     console.log("不为空");
+                //     //不为空，则已绑定过，禁止绑定
+                //     alert('EC关系已绑定，联系管理员');
+                // }
         };
     });
 
 
 
 });
-//EC用户绑定的前置方法
-function modal_ec_bind(){
-    $("#sub_bind_btn").unbind("click")
-
-    layui.$('#sub_bind_btn').on('click', function(){
-        console.log('#sub_bind_btn')
-        layui.use(['form'], function(){
-            let form = layui.form
-                ,layer = layui.layer
-            let data = form.val("bindEc");
-            console.log(data)
-            let user_info = JSON.parse(localStorage.getItem("user_info"))
-            let dingding_userid = user_info.data.userid;
-            // alert(JSON.stringify(data));
-            //这边进行请求方法，更新与增加的集合
-            $.ajax({
-                //请求方式
-                type : "POST",
-                //请求的媒体类型
-                contentType: "application/json;charset=UTF-8",
-                //请求地址
-                url : "/bing_ec_user",
-                //数据，json字符串
-                data : JSON.stringify({"dingding_userid":dingding_userid,"ec_user_id":data.ec_user_list}),//JSON.stringify(list),
-                //请求成功
-                success : function(result) {
-                    console.log(result);
-                    //清除用户信息记录然后更新新的
-                    alert(result.msg);
-                    if(result.code == '2'){
-                        //数据并未绑定不需要清理用户数据，不需要刷新
-                    }else{
-                        localStorage.clear()
-                        location.reload();
-                    }
-
-                },
-                //请求失败，包含具体的错误信息
-                error : function(e){
-                    layer.msg('请重新操作');
-                    console.log(e.status);
-                    console.log(e.responseText);
-                    location.reload();
-                }
-            });
-        }); //layui.use
-
-    });//layui的click的事件的结束
-}
 
 function open_modal(type,title='信息',content='modal_feeedback'){
         layer.open({
@@ -308,6 +235,8 @@ function modal_data_func(layEvent,data){
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
+        assignment.dingding_user_name = data.dingding_user_name;
+
         $("#sub_btn").html('修改');
         $("#sub_btn").show();
         get_opera_data('edit',data,data.dingding_user_id) //操作的方法的集合
@@ -319,6 +248,7 @@ function modal_data_func(layEvent,data){
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
+        assignment.dingding_user_name = data.dingding_user_name;
         //隐藏掉提交按钮
         $("#sub_btn").hide();
          break;
@@ -346,7 +276,7 @@ function modal_data_func(layEvent,data){
         assignment.phone = '';
         assignment.feedback_short = '';
         assignment.feedback_detail = '';
-
+        assignment.dingding_user_name = '';
         $("#sub_btn").html('新增');
         $("#sub_btn").show();
         get_opera_data('add',data,dingding_user_id) //操作的方法的集合
@@ -372,7 +302,7 @@ function modal_data_func(layEvent,data){
                 //请求的媒体类型
                 contentType: "application/json;charset=UTF-8",
                 //请求地址
-                url : "/opera_data",
+                url : "/manage_feedback_opera_data",
                 //数据，json字符串
                 data : JSON.stringify({"opera_type":opera_type,"originally_data":originally_data,"dingding_user_id":user_id,"latest_data":data}),//JSON.stringify(list),
                 //请求成功
@@ -399,58 +329,7 @@ function modal_data_func(layEvent,data){
 }
 
 
-function get_ecuser_leave_info(ec_userid){
-    console.log('get_ecuser_leave_info')
-    $.ajax({
-        //请求方式
-        type : "POST",
-        //请求的媒体类型
-        contentType: "application/json;charset=UTF-8",
-        //请求地址
-        url : "/get_ec_user_leave_info",
-        //数据，json字符串
-        data : JSON.stringify({"ec_userid":ec_userid}),//JSON.stringify(list),
-        //请求成功
-        success : function(result) {
-            console.log(result);
-            if(result.code == '1'){
-                //工作中
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #40af26;'>接资源中</span>");
-            }else if(result.code == '0'){
-                //请假中
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #e2102b;'>停资源中</span>");
 
-            }else if(result.code == '2'){
-                //未配置分配权限
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #d0cc2a;'>未配置分配权限</span>");
-            }else{
-                //异常
-                $("#show_ecuser_leave").html("<span style='font-size: 17px;color: #2a35d0;'>异常</span>");
-            }
-        },
-        //请求失败，包含具体的错误信息
-        error : function(e){
-            console.log(e.status);
-            console.log(e.responseText);
-        }
-    });
-}
-
-//页面加载完毕，进行赋值的展示等
-$(function(){
-    console.log("页面加载完成！");
-    let user_info = JSON.parse(localStorage.getItem("user_info"))
-    if((user_info.is_bind_ec).length == 0){ // "",[]
-        console.log('未绑定，提示去绑定')
-        $("#show_ecuser_info").html("EC关系未绑定");//
-    }else{
-        console.log('已绑定，去查询数据和展示')
-        //1.将用户名放进#show_ecuser_info中
-        console.log(user_info.is_bind_ec)
-        $("#show_ecuser_info").html("已绑定EC信息："+user_info.is_bind_ec.deptName);
-        //2.从后台获取是否请假
-        get_ecuser_leave_info(user_info.is_bind_ec.ec_userid)
-    }
 
 });
 
@@ -458,7 +337,7 @@ $(function(){
 <script type="text/html" id="bar_feedback">
 
   <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+{{--  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
 
 </script>
 
