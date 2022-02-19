@@ -209,129 +209,134 @@ function open_modal(type,title='信息',content='modal_feeedback'){
           content: $('#'+content+'') //这里content是一个普通的String
         });
 }
-function modal_data_func(layEvent,data){
+function modal_data_func(layEvent,data) {
     console.log(layEvent);
     console.log(data);
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
-        ,layer = layui.layer
-        ,layedit = layui.layedit
-        ,laydate = layui.laydate;
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
 
         //日期
         laydate.render({
             elem: '#data_date'
-            ,value: new Date()
-            ,isInitValue: true //是否允许填充初始值，默认为 true
+            , value: new Date()
+            , isInitValue: true //是否允许填充初始值，默认为 true
         });
-    //先做判断类型，进行添加值
-    let assignment = {}
+        //先做判断类型，进行添加值
+        let assignment = {}
 
-    switch (layEvent) {
-    case 'edit':
-        assignment.blong = data.blong;
-        assignment.data_date = data.data_date;
-        assignment.name = data.name;
-        assignment.phone = data.phone;
-        assignment.feedback_short = data.feedback_short;
-        assignment.feedback_detail = data.feedback_detail;
-        assignment.dingding_user_name = data.dingding_user_name;
+        switch (layEvent) {
+            case 'edit':
+                assignment.blong = data.blong;
+                assignment.data_date = data.data_date;
+                assignment.name = data.name;
+                assignment.phone = data.phone;
+                assignment.feedback_short = data.feedback_short;
+                assignment.feedback_detail = data.feedback_detail;
+                assignment.dingding_user_name = data.dingding_user_name;
 
-        $("#sub_btn").html('修改');
-        $("#sub_btn").show();
-        get_opera_data('edit',data,data.dingding_user_id) //操作的方法的集合
-        break;
-    case 'detail':
-        assignment.blong = data.blong;
-        assignment.data_date = data.data_date;
-        assignment.name = data.name;
-        assignment.phone = data.phone;
-        assignment.feedback_short = data.feedback_short;
-        assignment.feedback_detail = data.feedback_detail;
-        assignment.dingding_user_name = data.dingding_user_name;
-        //隐藏掉提交按钮
-        $("#sub_btn").hide();
-         break;
-    case 'add':
-        //为所属进行赋值
-        assignment.blong = '';
-        let user_info = JSON.parse(localStorage.getItem("user_info"))
-        let show_user_name = user_info.data.department_name+user_info.data.position + '--' +user_info.data.name
+                $("#sub_btn").html('修改');
+                $("#sub_btn").show();
+                get_opera_data('edit', data, data.dingding_user_id) //操作的方法的集合
+                break;
+            case 'detail':
+                assignment.blong = data.blong;
+                assignment.data_date = data.data_date;
+                assignment.name = data.name;
+                assignment.phone = data.phone;
+                assignment.feedback_short = data.feedback_short;
+                assignment.feedback_detail = data.feedback_detail;
+                assignment.dingding_user_name = data.dingding_user_name;
+                //隐藏掉提交按钮
+                $("#sub_btn").hide();
+                break;
+            case 'add':
+                //为所属进行赋值
+                assignment.blong = '';
+                let user_info = JSON.parse(localStorage.getItem("user_info"))
+                let show_user_name = user_info.data.department_name + user_info.data.position + '--' + user_info.data.name
 
-        let project_arr = <?php echo json_encode($project_list);?>;
-        console.log(project_arr)
-        for (x in project_arr) {
-            console.log(project_arr[x].project_name)
-            if(show_user_name.indexOf(project_arr[x].project_name) !== -1){
-                //包含此項目名稱
-                assignment.blong = project_arr[x].project_name;
-            }else{
-                //跳過
-                continue;
-            }
-        }
-        let dingding_user_id = user_info.data.id;
-
-        assignment.name = '';
-        assignment.phone = '';
-        assignment.feedback_short = '';
-        assignment.feedback_detail = '';
-        assignment.dingding_user_name = '';
-        $("#sub_btn").html('新增');
-        $("#sub_btn").show();
-        get_opera_data('add',data,dingding_user_id) //操作的方法的集合
-        break;
-    }
-
-    console.log(assignment);
-    //表单赋值
-    form.val('feedback', assignment)
-
-    //获取表单值并请求后台
-    function get_opera_data(opera_type,originally_data,user_id){
-
-        $("#sub_btn").unbind("click")
-
-        layui.$('#sub_btn').on('click', function(){
-            var data = form.val("feedback");
-            // alert(JSON.stringify(data));
-            //这边进行请求方法，更新与增加的集合
-            $.ajax({
-                //请求方式
-                type : "POST",
-                //请求的媒体类型
-                contentType: "application/json;charset=UTF-8",
-                //请求地址
-                url : "/manage_feedback_opera_data",
-                //数据，json字符串
-                data : JSON.stringify({"opera_type":opera_type,"originally_data":originally_data,"dingding_user_id":user_id,"latest_data":data}),//JSON.stringify(list),
-                //请求成功
-                success : function(result) {
-                    console.log(result);
-                    layer.msg(result.msg);
-                    location.reload();
-
-                },
-                //请求失败，包含具体的错误信息
-                error : function(e){
-                    layer.msg('请重新操作');
-                    console.log(e.status);
-                    console.log(e.responseText);
-                    location.reload();
+                let project_arr = <?php echo json_encode($project_list);?>;
+                console.log(project_arr)
+                for (x in project_arr) {
+                    console.log(project_arr[x].project_name)
+                    if (show_user_name.indexOf(project_arr[x].project_name) !== -1) {
+                        //包含此項目名稱
+                        assignment.blong = project_arr[x].project_name;
+                    } else {
+                        //跳過
+                        continue;
+                    }
                 }
-            });
+                let dingding_user_id = user_info.data.id;
 
-        });//layui的click的事件的结束
-    }
+                assignment.name = '';
+                assignment.phone = '';
+                assignment.feedback_short = '';
+                assignment.feedback_detail = '';
+                assignment.dingding_user_name = '';
+                $("#sub_btn").html('新增');
+                $("#sub_btn").show();
+                get_opera_data('add', data, dingding_user_id) //操作的方法的集合
+                break;
+        }
+
+        console.log(assignment);
+        //表单赋值
+        form.val('feedback', assignment)
+
+        //获取表单值并请求后台
+        function get_opera_data(opera_type, originally_data, user_id) {
+
+            $("#sub_btn").unbind("click")
+
+            layui.$('#sub_btn').on('click', function () {
+                var data = form.val("feedback");
+                // alert(JSON.stringify(data));
+                //这边进行请求方法，更新与增加的集合
+                $.ajax({
+                    //请求方式
+                    type: "POST",
+                    //请求的媒体类型
+                    contentType: "application/json;charset=UTF-8",
+                    //请求地址
+                    url: "/manage_feedback_opera_data",
+                    //数据，json字符串
+                    data: JSON.stringify({
+                        "opera_type": opera_type,
+                        "originally_data": originally_data,
+                        "dingding_user_id": user_id,
+                        "latest_data": data
+                    }),//JSON.stringify(list),
+                    //请求成功
+                    success: function (result) {
+                        console.log(result);
+                        layer.msg(result.msg);
+                        location.reload();
+
+                    },
+                    //请求失败，包含具体的错误信息
+                    error: function (e) {
+                        layer.msg('请重新操作');
+                        console.log(e.status);
+                        console.log(e.responseText);
+                        location.reload();
+                    }
+                });
+
+            });//layui的click的事件的结束
+        }
 
 
-});
+    });
+
 }
 
 
 
 
-});
 
 </script>
 <script type="text/html" id="bar_feedback">
