@@ -26,8 +26,20 @@ class ManageFeedbackController extends Controller
         if ($page != 0) {
             $page = $para['limit'] * $page;//从哪里开始
         }
+        //先查询是否为管理员
+        $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->get()->toarray();
+        $member_arr = [];
+        if (empty($manage_result)){
+            //没有查询到相关的数据
+            $member_arr[] = $para['user_id'];
+        }else{
+            $member_arr = $manage_result['member_id_list'];
+            $member_arr[] = $para['user_id'];
+        }
+        var_dump($member_arr);
+        die();
         $data = DB::table('dingding_feedback')
-            ->where('dingding_user_id', '=', $para['user_id'])
+            ->where('dingding_user_id', '=', $para['user_id'])   //**********这里换成in的
             ->offset($page)
             ->limit($para['limit'])
             ->orderBy('id', 'desc')

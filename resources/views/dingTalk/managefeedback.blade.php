@@ -336,8 +336,6 @@ function modal_data_func(layEvent,data) {
 
 
 
-
-
 </script>
 <script type="text/html" id="bar_feedback">
 
