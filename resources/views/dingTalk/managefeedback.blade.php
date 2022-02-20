@@ -3,6 +3,7 @@
 @section('feedback', '')
 @section('visit', '')
 @section('manage_feedback', 'active')
+@section('manage_visit', '')
 
 @section('sidebar')
     @parent
@@ -128,7 +129,7 @@ layui.use('table', function(){
           ,{field: 'dingding_user_name', title: '资源所属人'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
     ]],
-      defaultToolbar: ['filter', 'exports', {
+      defaultToolbar: ['filter', {
           title: '提示' //标题
           ,layEvent: 'bind_ec_info' //点击弹出绑定modal框，用于 toolbar 事件中使用
           ,icon: 'layui-icon-tips' //图标类名

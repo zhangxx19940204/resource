@@ -119,7 +119,19 @@
                                 <a class="nav-link" href="/manage_feedback" >
 
                                 <span class="nav-link-title">
-                                  管理员
+                                  管理反馈
+                                </span>
+
+                                    <!-- <span class="badge bg-red">2</span> -->
+
+                                </a>
+                            </li>
+
+                            <li class="nav-item @yield('manage_visit')">
+                                <a class="nav-link" href="/manage_visit" >
+
+                                <span class="nav-link-title">
+                                  管理来访
                                 </span>
 
                                     <!-- <span class="badge bg-red">2</span> -->

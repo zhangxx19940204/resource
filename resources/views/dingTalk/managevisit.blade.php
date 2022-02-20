@@ -1,9 +1,9 @@
 @extends('dingTalk.layouts.default')
 
 @section('feedback', '')
-@section('visit', 'active')
+@section('visit', '')
 @section('manage_feedback', '')
-@section('manage_visit', '')
+@section('manage_visit', 'active')
 
 @section('sidebar')
 @parent
@@ -253,7 +253,7 @@
 <table id="visit" lay-filter="visit"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+{{--    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>--}}
   </div>
 </script>
 
@@ -269,7 +269,7 @@ layui.use('table', function(){
     // ,height: 312
     // ,width: 1080
     ,toolbar:'#toolbar_header'
-    ,url: '/get_visit_list' //数据接口
+    ,url: '/get_manage_visit_list' //数据接口
     ,where: {user_id: dngding_user_id} //如果无需传递额外参数，可不加该参数
     ,method: 'post' //如果无需自定义HTTP类型，可不加该参数
   //request: {} //如果无需自定义请求参数，可不加该参数
@@ -305,6 +305,7 @@ layui.use('table', function(){
         ,{field: 'is_partner', title: '是否有合伙人'}
         ,{field: 'visit_cycle', title: '来访周期（距离拿资源时间）'}
         ,{field: 'signing_cycle', title: '签约周期'}
+          ,{field: 'dingding_user_name', title: '资源所属人'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_visit'} //这里的toolbar值是模板元素的选择器
     ]],
       defaultToolbar: ['filter']
@@ -325,8 +326,9 @@ layui.use('table', function(){
       }  else if(layEvent === 'edit'){ //编辑
         //do something
         console.log('edit')
-        modal_data_func(layEvent,data)
-        open_modal(1,'更新','modal_visit')
+          alert('本页面仅支持查看，请去反馈页面操作')
+        // modal_data_func(layEvent,data)
+        // open_modal(1,'更新','modal_visit')
         //方法更新
         //同步更新缓存对应的值
         // obj.update({
@@ -351,8 +353,9 @@ layui.use('table', function(){
       switch(obj.event){
         case 'add':
             console.log('add')
-            modal_data_func(obj.event,[])
-            open_modal(1,'新增','modal_visit')
+            alert('本页面仅支持查看，请去反馈页面操作');
+            // modal_data_func(obj.event,[])
+            // open_modal(1,'新增','modal_visit')
         break;
 
       };
@@ -544,7 +547,7 @@ function modal_data_func(layEvent,data){
                 //请求的媒体类型
                 contentType: "application/json;charset=UTF-8",
                 //请求地址
-                url : "/opera_visit_data",
+                url : "/manage_visit_opera_data",
                 //数据，json字符串
                 data : JSON.stringify({"opera_type":opera_type,"originally_data":originally_data,"dingding_user_id":user_id,"latest_data":data}),//JSON.stringify(list),
                 //请求成功
@@ -574,7 +577,7 @@ function modal_data_func(layEvent,data){
 <script type="text/html" id="bar_visit">
 
   <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+{{--  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--}}
 
 </script>
 

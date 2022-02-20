@@ -3,6 +3,7 @@
 @section('feedback', 'active')
 @section('visit', '')
 @section('manage_feedback', '')
+@section('manage_visit', '')
 
 
 @section('sidebar')
