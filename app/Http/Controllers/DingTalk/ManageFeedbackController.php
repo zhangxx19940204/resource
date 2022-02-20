@@ -39,7 +39,7 @@ class ManageFeedbackController extends Controller
 
         $data = DB::table('dingding_feedback')
             // ->where('dingding_user_id', '=', $para['user_id'])   //**********这里换成in的
-            ->select('dingding_feedback.*', 'dingding_user.name')
+            ->select('dingding_feedback.*', 'dingding_user.name as dingding_user_name')
             ->leftJoin('dingding_user', 'dingding_feedback.dingding_user_id', '=', 'dingding_user.id')
             ->whereIn('dingding_feedback.dingding_user_id', $member_arr)
             ->offset($page)
