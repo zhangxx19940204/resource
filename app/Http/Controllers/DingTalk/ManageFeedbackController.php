@@ -27,26 +27,29 @@ class ManageFeedbackController extends Controller
             $page = $para['limit'] * $page;//从哪里开始
         }
         //先查询是否为管理员
-        $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->get()->toarray();
+        $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->first();
         $member_arr = [];
         if (empty($manage_result)){
             //没有查询到相关的数据
             $member_arr[] = $para['user_id'];
         }else{
-            $member_arr = $manage_result['member_id_list'];
+            $member_arr = json_decode($manage_result->member_id_list);
             $member_arr[] = $para['user_id'];
         }
-        var_dump($member_arr);
-        die();
+
         $data = DB::table('dingding_feedback')
-            ->where('dingding_user_id', '=', $para['user_id'])   //**********这里换成in的
+            // ->where('dingding_user_id', '=', $para['user_id'])   //**********这里换成in的
+            ->select('dingding_feedback.*', 'dingding_user.name')
+            ->leftJoin('dingding_user', 'dingding_feedback.dingding_user_id', '=', 'dingding_user.id')
+            ->whereIn('dingding_feedback.dingding_user_id', $member_arr)
             ->offset($page)
             ->limit($para['limit'])
-            ->orderBy('id', 'desc')
+            ->orderBy('dingding_feedback.id', 'desc')
             ->get()->toarray();
 
         $count = DB::table('dingding_feedback')
-            ->where('dingding_user_id', '=', $para['user_id'])
+            // ->where('dingding_user_id', '=', $para['user_id'])
+            ->whereIn('dingding_user_id', $member_arr)
             ->count();
         // dd( DB::getQueryLog());
         return response()->json(['code'=>0,'msg'=>'获取成功','count'=>$count,'data'=>$data]);
