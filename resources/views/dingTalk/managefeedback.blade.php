@@ -95,6 +95,57 @@
 <table id="feedback" lay-filter="feedback"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
+      <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+
+          <div class="layui-form-item">
+              <label class="layui-form-label">所属</label>
+              <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                      <option value="0">写作</option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="layui-form-item">
+              <label class="layui-form-label">日期</label>
+              <div class="layui-input-block">
+                  <input type="text" lay-verify="date" name="" placeholder="日期" id="feedback_date" class="layui-input">
+              </div>
+          </div>
+
+          <div class="layui-form-item">
+              <label class="layui-form-label">手机号</label>
+              <div class="layui-input-block">
+                  <input type="text" lay-verify="phone|number" name="" placeholder="手机号" autocomplete="off" class="layui-input">
+              </div>
+          </div>
+
+          <div class="layui-form-item">
+              <label class="layui-form-label">反馈</label>
+              <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                      <option value="0">反馈</option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="layui-form-item">
+              <label class="layui-form-label">资源所属人</label>
+              <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                      <option value="0">资源所属人</option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="layui-form-item">
+              <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+              </div>
+          </div>
+
+      </form>
 {{--    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>--}}
   </div>
 </script>
