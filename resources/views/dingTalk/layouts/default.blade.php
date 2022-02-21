@@ -116,7 +116,7 @@
                             </li>
 
                             <li class="nav-item @yield('manage_feedback')">
-                                <a class="nav-link" href="/manage_feedback" >
+                                <a class="nav-link" href="/manage_feedback" id="manage_feedback">
 
                                 <span class="nav-link-title">
                                   管理反馈
@@ -128,7 +128,7 @@
                             </li>
 
                             <li class="nav-item @yield('manage_visit')">
-                                <a class="nav-link" href="/manage_visit" >
+                                <a class="nav-link" href="/manage_visit" id="manage_visit">
 
                                 <span class="nav-link-title">
                                   管理来访
@@ -194,6 +194,9 @@
             $('#pc_user_name').text(show_user_name);
             $('#mobile_user_name').text(show_user_name);
             $("#user_avatar").css({"background-image":"url("+user_info.data.avatar+")"});
+            //对访问链接加上user_id的参数  （manage_feedback、manage_visit）
+            $("#manage_feedback").attr('href','/manage_feedback?user_id='+user_info.data.id);
+            $("#manage_visit").attr('href','/manage_visit?user_id='+user_info.data.id);
 
         });
 

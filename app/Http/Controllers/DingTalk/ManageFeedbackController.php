@@ -16,6 +16,7 @@ class ManageFeedbackController extends Controller
         $short_feedback_list = DB::table('short_feedback_relative')->get();
         $project_list = DB::table('dingding_project')->where('status','1')->get();
         $ec_user_list = [];//DB::table('ec_users')->where('status','1')->get();
+
         return view('dingTalk.managefeedback',['ec_user_list'=>$ec_user_list,'project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
     }
 

@@ -91,13 +91,19 @@
     <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
     <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
 
-    <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <form class="layui-form" lay-filter="filter_feedback"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
 
         <div class="layui-form-item">
             <label class="layui-form-label">所属</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
-                    <option value="0">写作</option>
+                <select name="filter_blong" lay-filter="aihao">
+                    <option value="请选择">请选择</option>
+
+                    @forelse ($project_list as $project)
+                        <option value="{{ $project->project_name }}">{{ $project->project_name }}</option>
+                    @empty
+
+                    @endforelse
                 </select>
             </div>
         </div>
@@ -105,22 +111,28 @@
         <div class="layui-form-item">
             <label class="layui-form-label">日期</label>
             <div class="layui-input-block">
-                <input type="text" lay-verify="date" name="" placeholder="日期" id="feedback_date" class="layui-input">
+                <input type="text" lay-verify="date" name="filter_date" placeholder="日期" id="filter_date" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-block">
-                <input type="text" lay-verify="phone|number" name="" placeholder="手机号" autocomplete="off" class="layui-input">
+                <input type="text" lay-verify="phone|number" name="filter_phone" placeholder="手机号" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">反馈</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
-                    <option value="0">反馈</option>
+                <select name="filter_short" lay-filter="aihao">
+                    <option value="">请选择</option>
+
+                    @forelse ($short_feedback_list as $short_feedback)
+                        <option value="{{ $short_feedback->short_feeback }}">{{ $short_feedback->short_feeback }}</option>
+                    @empty
+
+                    @endforelse
                 </select>
             </div>
         </div>
@@ -128,7 +140,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">资源所属人</label>
             <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
+                <select name="dingding_user" lay-filter="aihao">
                     <option value="0">资源所属人</option>
                 </select>
             </div>
@@ -385,7 +397,16 @@ function modal_data_func(layEvent,data) {
 
 }
 
-
+//对于搜索进行处理
+layui.use('form', function(){
+    let form = layui.form;
+    form.on('submit(*)', function(data){
+        console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+        console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+        console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+});
 
 </script>
 <script type="text/html" id="bar_feedback">
