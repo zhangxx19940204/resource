@@ -137,7 +137,17 @@
             </div>
         </div>
 
-
+        <div class="layui-form-item">
+            <label class="layui-form-label">资源所属人</label>
+            <div class="layui-input-block">
+                <select name="dingding_user" lay-filter="aihao">
+                    <option value="">请选择</option>
+                    @forelse ($filter_user_list as $single_user)
+                        <option value="{{ $single_user->id }}">{{ $single_user->name }}</option>
+                    @empty
+                </select>
+            </div>
+        </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
