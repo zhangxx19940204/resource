@@ -111,7 +111,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">日期</label>
             <div class="layui-input-block">
-                <input type="text" lay-verify="date" name="filter_date" placeholder="日期" id="filter_date" class="layui-input">
+                <input type="text" name="filter_date" placeholder="日期" id="filter_date" class="layui-input">
             </div>
         </div>
 
