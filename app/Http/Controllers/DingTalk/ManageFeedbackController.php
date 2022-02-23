@@ -43,17 +43,16 @@ class ManageFeedbackController extends Controller
         $where_arr = [];
         //所属的过滤
         if (array_key_exists('filter_blong',$para) && !empty($para['filter_blong'])){
-            $where_str = "->where('dingding_feedback.blong','=','".$para['filter_blong']."')";
             $where_arr[] = ['dingding_feedback.blong','=',$para['filter_blong']];
         }
         if (array_key_exists('filter_date',$para) && !empty($para['filter_date'])){
-            $where_str = "->where('dingding_feedback.data_date','=','".$para['filter_date']."')";
+            $where_arr[] = ['dingding_feedback.data_date','=',$para['filter_date']];
         }
         if (array_key_exists('filter_phone',$para) && !empty($para['filter_phone'])){
-            $where_str = "->where('dingding_feedback.phone','=','".$para['filter_phone']."')";
+            $where_arr[] = ['dingding_feedback.phone','=',$para['filter_phone']];
         }
         if (array_key_exists('filter_short',$para) && !empty($para['filter_short'])){
-            $where_str = "->where('dingding_feedback.feedback_short','=','".$para['filter_short']."')";
+            $where_arr[] = ['dingding_feedback.feedback_short','=',$para['filter_short']];
         }
         $member_arr = [];
         if (array_key_exists('filter_dingding_user',$para) && !empty($para['filter_dingding_user'])){
