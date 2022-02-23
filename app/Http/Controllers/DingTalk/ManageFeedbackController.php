@@ -39,30 +39,51 @@ class ManageFeedbackController extends Controller
         if ($page != 0) {
             $page = $para['limit'] * $page;//从哪里开始
         }
-        //先查询是否为管理员
-        $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->first();
+
+        $where_arr = [];
+        //所属的过滤
+        if (array_key_exists('filter_blong',$para) && !empty($para['filter_blong'])){
+            $where_str = "->where('dingding_feedback.blong','=','".$para['filter_blong']."')";
+            $where_arr[] = ['dingding_feedback.blong','=',$para['filter_blong']];
+        }
+        if (array_key_exists('filter_date',$para) && !empty($para['filter_date'])){
+            $where_str = "->where('dingding_feedback.data_date','=','".$para['filter_date']."')";
+        }
+        if (array_key_exists('filter_phone',$para) && !empty($para['filter_phone'])){
+            $where_str = "->where('dingding_feedback.phone','=','".$para['filter_phone']."')";
+        }
+        if (array_key_exists('filter_short',$para) && !empty($para['filter_short'])){
+            $where_str = "->where('dingding_feedback.feedback_short','=','".$para['filter_short']."')";
+        }
         $member_arr = [];
-        if (empty($manage_result)){
-            //没有查询到相关的数据
-            $member_arr[] = $para['user_id'];
+        if (array_key_exists('filter_dingding_user',$para) && !empty($para['filter_dingding_user'])){
+            $member_arr = [$para['filter_dingding_user']];
         }else{
-            $member_arr = json_decode($manage_result->member_id_list);
-            $member_arr[] = $para['user_id'];
+            //先查询是否为管理员
+            $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->first();
+            if (empty($manage_result)){
+                //没有查询到相关的数据
+                $member_arr[] = $para['user_id'];
+            }else{
+                $member_arr = json_decode($manage_result->member_id_list);
+                $member_arr[] = $para['user_id'];
+            }
         }
 
+
         $data = DB::table('dingding_feedback')
-            // ->where('dingding_user_id', '=', $para['user_id'])   //**********这里换成in的
             ->select('dingding_feedback.*', 'dingding_user.name as dingding_user_name')
             ->leftJoin('dingding_user', 'dingding_feedback.dingding_user_id', '=', 'dingding_user.id')
             ->whereIn('dingding_feedback.dingding_user_id', $member_arr)
+            ->where($where_arr)
             ->offset($page)
             ->limit($para['limit'])
             ->orderBy('dingding_feedback.id', 'desc')
             ->get()->toarray();
 
         $count = DB::table('dingding_feedback')
-            // ->where('dingding_user_id', '=', $para['user_id'])
             ->whereIn('dingding_user_id', $member_arr)
+            ->where($where_arr)
             ->count();
         // dd( DB::getQueryLog());
         return response()->json(['code'=>0,'msg'=>'获取成功','count'=>$count,'data'=>$data]);
