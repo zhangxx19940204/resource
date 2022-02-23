@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 class ManageFeedbackController extends Controller
 {
     //首页（资源反馈的管理页面）
-    public function manage_feedback(){
+    public function manage_feedback(Request $request){
+        $para = $request->all();
+        var_dump($para);
         $dingTalk_arr = config('dingTalk');
         $short_feedback_list = DB::table('short_feedback_relative')->get();
         $project_list = DB::table('dingding_project')->where('status','1')->get();
