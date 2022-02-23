@@ -118,7 +118,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-block">
-                <input type="text" lay-verify="phone|number" name="filter_phone" placeholder="手机号" autocomplete="off" class="layui-input">
+                <input type="text" lay-verify="" name="filter_phone" placeholder="手机号" class="layui-input">
             </div>
         </div>
 
