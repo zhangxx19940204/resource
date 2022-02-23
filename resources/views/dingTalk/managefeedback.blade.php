@@ -168,7 +168,7 @@
 </script>
 
 <script>
-layui.use('table', function(){
+layui.use('table','form','laydate', function(){
   let table = layui.table;
   let user_info = JSON.parse(localStorage.getItem("user_info"))
   let dngding_user_id = user_info.data.id //'5'
@@ -267,6 +267,23 @@ layui.use('table', function(){
         };
     });
 
+    //filter
+    let form = layui.form
+        , laydate = layui.laydate;
+    //日期
+    laydate.render({
+        elem: '#filter_date'
+        , value: new Date()
+        , isInitValue: false //是否允许填充初始值，默认为 true
+    });
+
+    form.on('submit(*)', function(data){
+        // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+        // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+        console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
 
 
 });
@@ -404,23 +421,24 @@ function modal_data_func(layEvent,data) {
 }
 
 //对于搜索进行处理
-layui.use(['form','laydate',], function(){
-    let form = layui.form
-        , laydate = layui.laydate;
-    //日期
-    laydate.render({
-        elem: '#filter_date'
-        , value: new Date()
-        , isInitValue: false //是否允许填充初始值，默认为 true
-    });
-
-    form.on('submit(*)', function(data){
-        console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-        console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-        console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-    });
-});
+// layui.use(['form','laydate','table',], function(){
+//     let form = layui.form
+//         , laydate = layui.laydate;
+//     //日期
+//     laydate.render({
+//         elem: '#filter_date'
+//         , value: new Date()
+//         , isInitValue: false //是否允许填充初始值，默认为 true
+//     });
+//
+//     form.on('submit(*)', function(data){
+//         // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+//         // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+//         console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+//
+//         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+//     });
+// });
 
 </script>
 <script type="text/html" id="bar_feedback">
