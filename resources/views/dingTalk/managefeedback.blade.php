@@ -140,7 +140,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">资源所属人</label>
             <div class="layui-input-block">
-                <select name="dingding_user" lay-filter="aihao">
+                <select name="filter_dingding_user" lay-filter="aihao">
                     <option value="">请选择</option>
 
                     @forelse ($filter_user_list as $single_user)
@@ -280,7 +280,11 @@ layui.use(['table','form','laydate',], function(){
         // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
         // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
         console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-
+        table.reload('feedback', {
+            url: '/get_manage_feedback_list'
+            ,where: {} //设定异步数据接口的额外参数
+            //,height: 300
+        });
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
 
