@@ -142,9 +142,12 @@
             <div class="layui-input-block">
                 <select name="dingding_user" lay-filter="aihao">
                     <option value="">请选择</option>
+
                     @forelse ($filter_user_list as $single_user)
                         <option value="{{ $single_user->id }}">{{ $single_user->name }}</option>
                     @empty
+
+                    @endforelse
                 </select>
             </div>
         </div>
