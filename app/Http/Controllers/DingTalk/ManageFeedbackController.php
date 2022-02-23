@@ -13,13 +13,26 @@ class ManageFeedbackController extends Controller
     //首页（资源反馈的管理页面）
     public function manage_feedback(Request $request){
         $para = $request->all();
-        var_dump($para);
         $dingTalk_arr = config('dingTalk');
         $short_feedback_list = DB::table('short_feedback_relative')->get();
         $project_list = DB::table('dingding_project')->where('status','1')->get();
         $ec_user_list = [];//DB::table('ec_users')->where('status','1')->get();
 
-        return view('dingTalk.managefeedback',['ec_user_list'=>$ec_user_list,'project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
+        //先查询是否为管理员
+        $manage_result = DB::table('dingding_manage_relative')->where('status','=','1')->where('manager_id','=',$para['user_id'])->first();
+        $member_arr = [];
+        if (empty($manage_result)){
+            //没有查询到相关的数据
+            $member_arr[] = $para['user_id'];
+        }else{
+            $member_arr = json_decode($manage_result->member_id_list);
+            $member_arr[] = $para['user_id'];
+        }
+        $user_list_data = DB::table('dingding_user')
+            ->whereIn('id', $member_arr)
+            ->get();
+
+        return view('dingTalk.managefeedback',['filter_user_list'=>$user_list_data,'ec_user_list'=>$ec_user_list,'project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
     }
 
     //获取列表
