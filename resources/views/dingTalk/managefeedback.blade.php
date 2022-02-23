@@ -97,7 +97,7 @@
             <label class="layui-form-label">所属</label>
             <div class="layui-input-block">
                 <select name="filter_blong" lay-filter="aihao">
-                    <option value="请选择">请选择</option>
+                    <option value="">请选择</option>
 
                     @forelse ($project_list as $project)
                         <option value="{{ $project->project_name }}">{{ $project->project_name }}</option>
