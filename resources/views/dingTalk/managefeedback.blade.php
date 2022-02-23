@@ -404,8 +404,16 @@ function modal_data_func(layEvent,data) {
 }
 
 //对于搜索进行处理
-layui.use('form', function(){
-    let form = layui.form;
+layui.use(['form','laydate',], function(){
+    let form = layui.form
+        , laydate = layui.laydate;
+    //日期
+    laydate.render({
+        elem: '#filter_date'
+        , value: new Date()
+        , isInitValue: true //是否允许填充初始值，默认为 true
+    });
+
     form.on('submit(*)', function(data){
         console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
         console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回

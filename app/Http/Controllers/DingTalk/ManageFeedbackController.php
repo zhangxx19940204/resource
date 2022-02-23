@@ -29,7 +29,6 @@ class ManageFeedbackController extends Controller
             $member_arr[] = $para['user_id'];
         }
         $user_list_data = DB::table('dingding_user')->whereIn('id', $member_arr)->get();
-        var_dump($user_list_data);
         return view('dingTalk.managefeedback',['filter_user_list'=>$user_list_data,'ec_user_list'=>$ec_user_list,'project_list'=>$project_list,'short_feedback_list'=>$short_feedback_list,'corp_id'=>$dingTalk_arr['corp_id']]);
     }
 
