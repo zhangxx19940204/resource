@@ -250,6 +250,63 @@
 @section('content')
 <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
 <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
+
+<form class="layui-form" lay-filter="filter_visit"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属</label>
+        <div class="layui-input-block">
+            <select name="filter_blong" lay-filter="aihao">
+                <option value="">请选择</option>
+
+                @forelse ($project_list as $project)
+                    <option value="{{ $project->project_name }}">{{ $project->project_name }}</option>
+                @empty
+
+                @endforelse
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">来访日期</label>
+        <div class="layui-input-block">
+            <input type="text" name="filter_date" placeholder="来访日期" id="filter_date" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-block">
+            <input type="text" lay-verify="" name="filter_phone" placeholder="手机号" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">资源所属人</label>
+        <div class="layui-input-block">
+            <select name="filter_dingding_user" lay-filter="aihao">
+                <option value="">请选择</option>
+
+                @forelse ($filter_user_list as $single_user)
+                    <option value="{{ $single_user->id }}">{{ $single_user->name }}</option>
+                @empty
+
+                @endforelse
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+
+
 <table id="visit" lay-filter="visit"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">
@@ -258,7 +315,7 @@
 </script>
 
 <script>
-layui.use('table', function(){
+layui.use(['table','form','laydate',], function(){
   let table = layui.table;
   let user_info = JSON.parse(localStorage.getItem("user_info"))
   let dngding_user_id = user_info.data.id
@@ -361,6 +418,28 @@ layui.use('table', function(){
       };
     });
 
+    let form = layui.form
+        , laydate = layui.laydate;
+    //日期
+    laydate.render({
+        elem: '#filter_date'
+        , value: new Date()
+        , isInitValue: false //是否允许填充初始值，默认为 true
+    });
+
+    form.on('submit(*)', function(data){
+        // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+        // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+        console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+        let where_data = data.field;
+        where_data.user_id = dngding_user_id;
+        table.reload('feedback', {
+            url: '/get_manage_feedback_list'
+            ,where: where_data //设定异步数据接口的额外参数
+            //,height: 300
+        });
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
 
 
 });
