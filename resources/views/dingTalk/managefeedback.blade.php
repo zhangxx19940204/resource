@@ -411,7 +411,7 @@ layui.use(['form','laydate',], function(){
     laydate.render({
         elem: '#filter_date'
         , value: new Date()
-        , isInitValue: true //是否允许填充初始值，默认为 true
+        , isInitValue: false //是否允许填充初始值，默认为 true
     });
 
     form.on('submit(*)', function(data){
