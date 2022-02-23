@@ -21,7 +21,9 @@
     <link href="{{ asset('dingTalk/investment/tabler.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('dingTalk/investment/demo.min.css') }}" rel="stylesheet"/>
 
-    <script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+    <script src="{{ asset('dingTalk/investment/jquery-3.5.0.min.js') }}"></script>
+{{--      <script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>--}}
+
 
     <!-- Libs JS -->
     <script src="{{ asset('dingTalk/investment/bootstrap.bundle.min.js') }}"></script>
