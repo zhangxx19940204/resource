@@ -433,7 +433,7 @@ layui.use(['table','form','laydate',], function(){
         console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
         let where_data = data.field;
         where_data.user_id = dngding_user_id;
-        table.reload('feedback', {
+        table.reload('visit', {
             url: '/get_manage_feedback_list'
             ,where: where_data //设定异步数据接口的额外参数
             //,height: 300
