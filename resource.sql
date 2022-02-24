@@ -867,4 +867,22 @@ CREATE TABLE `users`  (
 -- Records of users
 -- ----------------------------
 
+
+-- ----------------------------
+-- Table structure for dingding_manage_relative
+-- ----------------------------
+DROP TABLE IF EXISTS `dingding_manage_relative`;
+CREATE TABLE `dingding_manage_relative` (
+    `id` int(11) NOT NULL,
+    `manager_id` int(11) DEFAULT NULL COMMENT '管理员id',
+    `member_id_list` json DEFAULT NULL COMMENT '成员的id列表',
+    `status` tinyint(2) DEFAULT '0' COMMENT '状态1：启用 0：禁用',
+    `created_at` datetime DEFAULT NULL,
+    `updated_at` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of dingding_manage_relative
+-- ----------------------------
+
 SET FOREIGN_KEY_CHECKS = 1;
