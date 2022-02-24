@@ -113,7 +113,8 @@
 
 @section('content')
     <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
-    <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
+    {{--<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>--}}
+    <script src="{{ asset('dingTalk/investment/layui.min.js') }}"></script>
 
 <div>
     <span id="show_ecuser_info"></span>
@@ -222,6 +223,18 @@ layui.use('table', function(){
                 }
         };
     });
+
+    //搜索功能
+
+    // table.reload('feedback', {
+    //     where: { //设定异步数据接口的额外参数，任意设
+    //         aaaaaa: 'xxx'
+    //         ,bbb: 'yyy'
+    //     }
+    //     ,page: {
+    //         curr: 1 //重新从第 1 页开始
+    //     }
+    // }); //只重载数据
 
 
 

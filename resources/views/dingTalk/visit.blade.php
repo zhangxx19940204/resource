@@ -249,7 +249,9 @@
 
 @section('content')
 <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
-<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
+{{--<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>--}}
+<script src="{{ asset('dingTalk/investment/layui.min.js') }}"></script>
+
 <table id="visit" lay-filter="visit"></table>
 <script type="text/html" id="toolbar_header">
   <div class="layui-btn-container">

@@ -89,7 +89,8 @@
 
 @section('content')
     <link href="{{ asset('dingTalk/investment/layui.css') }}" rel="stylesheet"/>
-    <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
+    {{--<script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>--}}
+    <script src="{{ asset('dingTalk/investment/layui.min.js') }}"></script>
 
     <form class="layui-form" lay-filter="filter_feedback"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
 
