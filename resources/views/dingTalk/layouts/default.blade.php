@@ -31,7 +31,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('dingTalk/investment/tabler.min.js') }}"></script>
 
-    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.10.3/dingtalk.open.js"></script>
+{{--    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.10.3/dingtalk.open.js"></script>--}}
+      <script src="{{ asset('dingTalk/investment/dingtalk.open.js') }}"></script>
 
 
     <style>
