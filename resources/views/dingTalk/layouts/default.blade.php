@@ -22,8 +22,10 @@
     <link href="{{ asset('dingTalk/investment/demo.min.css') }}" rel="stylesheet"/>
 
     <script src="{{ asset('dingTalk/investment/jquery-3.5.0.min.js') }}"></script>
-      <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>
-{{--      <script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>--}}
+      {{--      <script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>--}}
+      <script src="{{ asset('dingTalk/investment/layui.min.js') }}"></script>
+{{--      <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.6.8/layui.min.js"></script>--}}
+
 
 
     <!-- Libs JS -->
