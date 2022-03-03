@@ -39,7 +39,7 @@ class YingxiaotongController extends Controller
             foreach ($config_data_arr as $single_config){
                 if ($single_config->account == $para['pageId']){
                     //寻找到了本账号下的对应页面
-                    $config_data = $single_config;
+                    $config_data = (array)$single_config;
                     break;
                 }else{
                     //没找到
@@ -50,7 +50,7 @@ class YingxiaotongController extends Controller
         //主账号已配置，相应页面结果是
         if (empty($config_data) && count($config_data_arr) == '1'){
             //为空,页面未配置，并且只有一条记录，则为全局配置
-            $config_data = $config_data_arr[0];
+            $config_data = (array)$config_data_arr[0];
         }
         //查询到百度营销通的账号，进行数据的整理和存储
         $ResData = new ResData;
