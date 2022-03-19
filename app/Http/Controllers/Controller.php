@@ -111,7 +111,9 @@ class Controller extends BaseController
                 }
             }else{
                 //查询到了用户，判断状态是否需要更新
-                if ($single_user->status == '1'){
+                $current_time = time();
+                $last_time = strtotime($single_user->create_date);
+                if ($single_user->status == '1' && ($current_time-$last_time) < 24*60*60*2 ){
                     //无需更新
                     return response()->json(['status'=>1,'message'=>'登录成功1','data'=>$single_user,'is_bind_ec'=>$bind_ec_status]);
                 }else{
@@ -160,6 +162,7 @@ class Controller extends BaseController
     //获取钉钉用户的详情和部门
     public function get_user_detail($app_config,$userid,$access_token){
         //查詢用户详情和部门列表更新
+        date_default_timezone_set('Asia/Shanghai');
         $user_detail_json = $this->simple_post($app_config['getuserdetail_url'].'?access_token='.$access_token,['userid'=>$userid]);
         $user_detail_arr = json_decode($user_detail_json,true);
         if ($user_detail_arr['errcode'] != '0'){
