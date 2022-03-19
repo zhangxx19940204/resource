@@ -886,3 +886,6 @@ CREATE TABLE `dingding_manage_relative` (
 -- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+ALTER TABLE `dingding_user` CHANGE `create_date` `create_date` DATETIME NULL DEFAULT NULL;
