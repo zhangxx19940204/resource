@@ -95,6 +95,15 @@ class ResDataController extends AdminController
             }
         });
 
+        $grid->column('location', __('用户地址'))->display(function (){
+            if ($this->type == '头条'){
+                $data_arr = json_decode($this->data_json,true);
+                return $data_arr['location'];
+            }else{
+                return '';
+            }
+        });
+
         $grid->column('created_at', __('入库时间'))->display(function ($created_at){
             if(empty($created_at)){
                 return '';
@@ -276,7 +285,7 @@ class ResDataController extends AdminController
 
             $export->filename(date('YmdHis').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId']);
+            $export->only(['belong','type','config_id','data_name','data_phone','location','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
