@@ -19,7 +19,7 @@ class CallBackController extends Controller
         $nonce = $request->get('nonce','');
         $msg_signature = $request->get('msg_signature','');
         $crypt = new DingCallbackCrypto("eXCjpvtXFjVEajtEmgFYhokNDtqbZUT7t954GDK", "o6W8zKoCnmyNvLpoL689xfgbzoz2r2k7V4FBaxAiSXY", "ding72571b91c47e745235c2f4657eb6378f");
-        $text = $crypt->getDecryptMsg($msg_signature, $timestamp, $nonce, $encrypt);
+        $text = $crypt->getDecryptMsg($signature, $timestamp, $nonce, $encrypt);
         $res = $crypt->getEncryptedMap("success");
 
         var_dump($res);
