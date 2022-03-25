@@ -49,6 +49,7 @@ Route::any('/get_manage_visit_list', [DingTalk\ManageVisitController::class, 'ge
 Route::any('/manage_visit_opera_data', [DingTalk\ManageVisitController::class, 'opera_data']); //管理资源反馈表的操作
 
 
+Route::any('/receive_dingtalk_event', [DingTalk\CallBackController::class, 'receive_dingtalk_event']); //接收钉钉回调
 Route::any('/receive_robot_message', [DingTalk\RobotController::class, 'receive_robot_message']); //请假群机器人
 
 
