@@ -23,7 +23,7 @@ class CallBackController extends Controller
         $res = $crypt->getEncryptedMap("success"); //制造一个返回成功事件
         $data = json_decode($res,true);
         $text_arr = json_decode($text,true);
-        logger('EventType'.json_encode($text_arr).';data：'.json_encode($text_arr));
+        logger(';data：'.json_encode($text_arr));
         if ($text_arr['EventType'] == 'check_url'){
             //订阅事件
 
