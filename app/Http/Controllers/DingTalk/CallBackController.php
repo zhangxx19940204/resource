@@ -26,15 +26,12 @@ class CallBackController extends Controller
         logger('EventType'.json_encode($text_arr).';data：'.json_encode($text_arr));
         if ($text_arr['EventType'] == 'check_url'){
             //订阅事件
-            logger('EventType'.$text_arr['EventType'].';data：'.json_encode($data));
 
         }elseif ($text_arr['EventType'] == 'attendance_check_record'){
             //员工打卡事件
-            logger('EventType'.$text_arr['EventType'].';data：'.json_encode($text_arr));
 
         }else{
             //无法辨别的事件
-            logger('EventType'.$text_arr['EventType'].';data：'.json_encode($data));
         }
         //推送事件统一返回成功
         return response()->json($data);
