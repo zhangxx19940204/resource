@@ -21,8 +21,8 @@ class CallBackController extends Controller
         $crypt = new DingCallbackCrypto("eXCjpvtXFjVEajtEmgFYhokNDtqbZUT7t954GDK", "o6W8zKoCnmyNvLpoL689xfgbzoz2r2k7V4FBaxAiSXY", "dingcibjfzwphqk9foye");
         $text = $crypt->getDecryptMsg($signature, $timestamp, $nonce, $encrypt); //事件类型的url  {"EventType":"check_url"}
         $res = $crypt->getEncryptedMap("success"); //制造一个返回成功事件
-        $data = json_decode($res);
-        $text_arr = json_decode($text);
+        $data = json_decode($res,true);
+        $text_arr = json_decode($text,true);
         if ($text_arr['EventType'] == 'check_url'){
             //订阅事件
             logger('EventType'.$text_arr['EventType'].';data：'.json_encode($data));
