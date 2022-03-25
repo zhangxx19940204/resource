@@ -22,7 +22,7 @@ class DingCallbackCrypto
         $this->m_encodingAesKey = $encodingAesKey;
         $this->m_corpId = $ownerKey;
 	}
-	
+
 	public function getEncryptedMap($plain){
 		$timeStamp = time();
 		$pc = new Prpcrypt($this->m_encodingAesKey);
@@ -65,7 +65,7 @@ class DingCallbackCrypto
             "timeStamp" => $timeStamp,
             "nonce" => $nonce
         ));
-        
+
 		return $encryptMsg;
     }
 
@@ -104,7 +104,7 @@ class DingCallbackCrypto
         }
 
         $result = $pc->decrypt($encrypt, $this->m_corpId);
-       
+
         if ($result[0] != 0) {
             //return $result[0];
 			// return ['ErrorCode'=>$result[0], 'data' => ''];
@@ -148,7 +148,7 @@ class SHA1
 class ErrorCode
 {
 	public static $OK = 0;
-	
+
 	public static $IllegalAesKey = 900004;
 	public static $ValidateSignatureError = 900005;
 	public static $ComputeSignatureError = 900006;
@@ -210,7 +210,7 @@ class Prpcrypt
 			// 网络字节序
 			// $size = mcrypt_get_block_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
 			// $module = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_CBC, '');
-			
+
 			//使用自定义的填充方式对明文进行补位填充
 			$pkc_encoder = new PKCS7Encoder;
 			$text = $pkc_encoder->encode($text);
@@ -219,9 +219,9 @@ class Prpcrypt
 			// $encrypted = mcrypt_generic($module, $text);
 			// mcrypt_generic_deinit($module);
             // mcrypt_module_close($module);
-        
 
-            
+
+
 
             $encrypted = openssl_encrypt($text, 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $iv );
 
@@ -246,10 +246,10 @@ class Prpcrypt
 			// $decrypted = mdecrypt_generic($module, $ciphertext_dec);
 			// mcrypt_generic_deinit($module);
             // mcrypt_module_close($module);
-            
+
             $decrypted = openssl_decrypt ( $ciphertext_dec, 'AES-256-CBC', $this->key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $iv );
 
-        
+
            // return $decrypted;
 		} catch (Exception $e) {
 			return array(ErrorCode::$DecryptAESError, null);
@@ -274,8 +274,8 @@ class Prpcrypt
 		}
 		if ($from_corpid != $corpid)
             return array(ErrorCode::$ValidateSuiteKeyError, null);
-            
-        
+
+
 		return array(0, $xml_content);
 
 	}
@@ -295,14 +295,14 @@ class Prpcrypt
 }
 
 
-function test_demo(){
-    $crypt = new DingCallbackCrypto("xxxx", "o1w0aum42yaptlz8alnhwikjd3jenzt9cb9wmzptgus", "suiteKeyxx");
-    $text = $crypt->getDecryptMsg($data->msg_signature, $data->timeStamp, $data->nonce, $data->encrypt);
-	$res = $crypt->getEncryptedMap("success");
-	var_dump($res);
-    $data = json_decode($res);
-    var_dump($text);
-}
-
-test_demo();
+// function test_demo(){
+//     $crypt = new DingCallbackCrypto("xxxx", "o1w0aum42yaptlz8alnhwikjd3jenzt9cb9wmzptgus", "suiteKeyxx");
+//     $text = $crypt->getDecryptMsg($data->msg_signature, $data->timeStamp, $data->nonce, $data->encrypt);
+// 	$res = $crypt->getEncryptedMap("success");
+// 	var_dump($res);
+//     $data = json_decode($res);
+//     var_dump($text);
+// }
+//
+// test_demo();
 ?>
