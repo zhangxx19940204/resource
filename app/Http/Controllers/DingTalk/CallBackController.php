@@ -53,10 +53,11 @@ class CallBackController extends Controller
             $locationMethod = array_key_exists('locationMethod', $dataArr)?$dataArr['locationMethod']:'';
             $locationResult = array_key_exists('locationResult', $dataArr)?$dataArr['locationResult']:'';
             $checkTime = array_key_exists('checkTime', $dataArr)?$dataArr['checkTime']:'';
+            $check_date = date('Y-m-d H:i:s',substr($checkTime,0,10));
             DB::table('dingding_user_checkrecord')
                 ->updateOrInsert(
                     ['event_type' => $EventType, 'user_id' => $dataArr['userId']],
-                    ['data' => json_encode($dataArr),'locationMethod'=>$locationMethod,'checkTime'=>date('Y-m-d H:i:s',substr($checkTime,0,10)),'locationResult'=>$locationResult]
+                    ['data' => json_encode($dataArr),'locationMethod'=>$locationMethod,'checkTime'=>$check_date,'locationResult'=>$locationResult]
                 );
             return;
         } catch (Exception $e) {
