@@ -872,18 +872,33 @@ CREATE TABLE `users`  (
 -- Table structure for dingding_manage_relative
 -- ----------------------------
 DROP TABLE IF EXISTS `dingding_manage_relative`;
-CREATE TABLE `dingding_manage_relative` (
-    `id` int(11) NOT NULL,
-    `manager_id` int(11) DEFAULT NULL COMMENT '管理员id',
-    `member_id_list` json DEFAULT NULL COMMENT '成员的id列表',
-    `status` tinyint(2) DEFAULT '0' COMMENT '状态1：启用 0：禁用',
-    `created_at` datetime DEFAULT NULL,
-    `updated_at` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+CREATE TABLE `dingding_manage_relative`  (
+                                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                                             `manager_id` int(11) NULL DEFAULT NULL COMMENT '管理员id',
+                                             `member_id_list` json NULL COMMENT '成员的id列表',
+                                             `status` tinyint(2) NULL DEFAULT 0 COMMENT '状态1：启用 0：禁用',
+                                             `created_at` datetime(0) NULL DEFAULT NULL,
+                                             `updated_at` datetime(0) NULL DEFAULT NULL,
+                                             PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dingding_manage_relative
 -- ----------------------------
+
+DROP TABLE IF EXISTS `dingding_user_checkrecord`;
+CREATE TABLE `dingding_user_checkrecord`  (
+                                              `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                              `event_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                              `data` json NULL,
+                                              `user_id` int(11) NULL DEFAULT NULL,
+                                              `locationMethod` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                              `locationResult` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                                              `checkTime` datetime(0) NULL DEFAULT NULL,
+                                              `created_at` datetime(0) NULL DEFAULT NULL,
+                                              `updated_at` datetime(0) NULL DEFAULT NULL,
+                                              PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
