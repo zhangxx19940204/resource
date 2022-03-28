@@ -45,7 +45,7 @@ class CheckRecordController extends AdminController
         });
         $grid->column('user_id', __('用户'))->display(function (){
             if (empty($this->ding_user_info)){
-                return '非招商人员';
+                return '';
             }else{
                 return ($this->ding_user_info)['department_name'].($this->ding_user_info)['name'];
             }
