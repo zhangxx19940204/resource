@@ -44,7 +44,7 @@ class CheckRecordController extends AdminController
             }
         });
         $grid->column('user_id', __('用户'))->display(function (){
-            return $this->ding_user_info->department_name.$this->ding_user_info->name;
+            return ($this->ding_user_info)['department_name'].($this->ding_user_info)['name'];
         });
         $grid->column('checkTime', __('打卡时间'));
         $grid->column('locationMethod', __('打卡方式'))->display(function ($LocationMethod){
