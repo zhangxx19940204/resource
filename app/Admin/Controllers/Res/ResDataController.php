@@ -98,7 +98,7 @@ class ResDataController extends AdminController
         $grid->column('location', __('用户地址'))->display(function (){
             if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
-                return $data_arr['location'];
+                return array_key_exists('location',$data_arr)?$data_arr['location']:'1111';
             }else{
                 return '';
             }
