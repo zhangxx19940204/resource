@@ -18,7 +18,7 @@ class CallBackController extends Controller
         $timestamp = $request->get('timestamp','');
         $nonce = $request->get('nonce','');
         $msg_signature = $request->get('msg_signature','');
-        $crypt = new DingCallbackCrypto("eXCjpvtXFjVEajtEmgFYhokNDtqbZUT7t954GDK", "o6W8zKoCnmyNvLpoL689xfgbzoz2r2k7V4FBaxAiSXY", "dingcibjfzwphqk9foye");
+        $crypt = new DingCallbackCrypto(env('DingTalk_Check_token'), env('DingTalk_Check_encodingAesKey'), env('DingTalk_Check_appKey'));
         $res = $crypt->getEncryptedMap("success"); //制造一个返回成功事件
         $data = json_decode($res,true);
         if(empty($encrypt) || empty($signature)){

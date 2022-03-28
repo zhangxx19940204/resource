@@ -9,4 +9,9 @@ class DingTalkUser extends Model
 {
     use HasFactory;
     protected $table = 'dingding_user';
+
+    public function checkRecord()
+    {
+        return $this->hasMany('App\Models\DingTalk\CheckRecord','userid','user_id');
+    }
 }
