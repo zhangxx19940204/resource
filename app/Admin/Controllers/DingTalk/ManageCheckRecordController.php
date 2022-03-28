@@ -66,7 +66,7 @@ class ManageCheckRecordController extends AdminController
                 }else{
                     $dingding_user_data = '未知';
                 }
-                $dingTalkUserStr .= $dingding_user_data.'打卡时间：'.$dingding_checkrecord_data.';<br/>';
+                $dingTalkUserStr .= $dingding_user_data.'打卡时间：<span>'.$dingding_checkrecord_data.'</span><br/>';
             }
             return $dingTalkUserStr;
 

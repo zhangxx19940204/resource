@@ -900,6 +900,28 @@ CREATE TABLE `dingding_user_checkrecord`  (
                                               PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+
+
+-- ----------------------------
+-- Table structure for dingding_manage_checkrecord
+-- ----------------------------
+DROP TABLE IF EXISTS `dingding_manage_checkrecord`;
+CREATE TABLE `dingding_manage_checkrecord`  (
+                                                `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+                                                `manage_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '管理员id',
+                                                `employee` json NULL COMMENT '员工列表',
+                                                `status` tinyint(2) NULL DEFAULT 0 COMMENT '是否启用',
+                                                `monitor_start` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '监控开始时间',
+                                                `monitor_end` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '监控结束时间',
+                                                `created_at` datetime(0) NULL DEFAULT NULL,
+                                                `updated_at` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+                                                PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dingding_manage_checkrecord
+-- ----------------------------
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 
