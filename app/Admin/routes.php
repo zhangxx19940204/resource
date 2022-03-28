@@ -44,6 +44,7 @@ Route::group([
     $router->resource('customerService_records', CustomerService\RecordController::class);
 
     $router->resource('check-records', DingTalk\CheckRecordController::class);
+    $router->resource('manage-check-records', DingTalk\ManageCheckRecordController::class);
 
 
 });
