@@ -58,15 +58,22 @@ class ManageCheckRecordController extends AdminController
             foreach ($employee as $value){
                 if (array_key_exists($value,$dingding_checkrecord_arr)){
                     $dingding_checkrecord_data = $dingding_checkrecord_arr[$value];
+                    //判断时间是否大于今天6点
+                    if (strtotime($dingding_checkrecord_data) > strtotime(date('Y-m-d 06:00:00'))){
+                        $color = '#27b91d';
+                    }else{
+                        $color = '##cf4e78';
+                    }
                 }else{
                     $dingding_checkrecord_data = '未知';
+                    $color = '##cf4e78';
                 }
                 if (array_key_exists($value,$dingding_user_arr)){
                     $dingding_user_data = $dingding_user_arr[$value];
                 }else{
                     $dingding_user_data = '未知';
                 }
-                $dingTalkUserStr .= $dingding_user_data.'打卡时间：<span style="color: chocolate;">'.$dingding_checkrecord_data.'</span><br/>';
+                $dingTalkUserStr .= $dingding_user_data.'：<span style="color: '.$color.';">'.$dingding_checkrecord_data.'</span><br/>';
             }
             return $dingTalkUserStr;
 
