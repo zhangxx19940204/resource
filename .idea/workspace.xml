@@ -8,10 +8,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="update dingding_feedback code 20211001 0.1">
+    <list default="true" id="b76bfc17-4c24-42de-8de4-36d4ca7e000b" name="Default Changelist" comment="updated dingtalk updated user info modal 0.32">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dingTalk/feedback.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dingTalk/visit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dingTalk/visit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DingTalk/CallBackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DingTalk/CallBackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resource.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +40,9 @@
         <option value="https://github.com/zhangxx19940204/resource" />
       </set>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -307,352 +311,379 @@
       <workItem from="1630030793717" duration="7572000" />
       <workItem from="1631070741996" duration="2565000" />
       <workItem from="1632892910367" duration="2787000" />
-      <workItem from="1632907284081" duration="1490000" />
+      <workItem from="1632907284081" duration="2419000" />
+      <workItem from="1633769255859" duration="206000" />
+      <workItem from="1635062225324" duration="913000" />
+      <workItem from="1635405125398" duration="3249000" />
+      <workItem from="1635933530980" duration="3906000" />
+      <workItem from="1636353159640" duration="62000" />
+      <workItem from="1638250814490" duration="1334000" />
+      <workItem from="1638694234493" duration="125000" />
+      <workItem from="1644546930793" duration="136000" />
+      <workItem from="1644547142545" duration="1854000" />
+      <workItem from="1644995420962" duration="36000" />
+      <workItem from="1644995470970" duration="128000" />
+      <workItem from="1644995619577" duration="1448000" />
+      <workItem from="1645061996763" duration="53085000" />
+      <workItem from="1645666232850" duration="6685000" />
+      <workItem from="1645764121564" duration="6145000" />
+      <workItem from="1645837518682" duration="660000" />
+      <workItem from="1646297884954" duration="2344000" />
+      <workItem from="1646703972908" duration="3878000" />
+      <workItem from="1647593830270" duration="1175000" />
+      <workItem from="1647653861585" duration="6891000" />
+      <workItem from="1647663165664" duration="5800000" />
+      <workItem from="1647934853203" duration="92000" />
+      <workItem from="1648105570511" duration="930000" />
+      <workItem from="1648106523213" duration="1753000" />
+      <workItem from="1648113925731" duration="12733000" />
+      <workItem from="1648258647671" duration="40144000" />
+      <workItem from="1648892557339" duration="3937000" />
     </task>
-    <task id="LOCAL-00206" summary="update mail model code 20210625 0.1">
-      <created>1624608681584</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
+    <task id="LOCAL-00283" summary="add manage relative modal 0.22">
+      <created>1645599135128</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
       <option name="project" value="LOCAL" />
-      <updated>1624608681584</updated>
+      <updated>1645599135128</updated>
     </task>
-    <task id="LOCAL-00207" summary="update mail model code 20210625 0.2">
-      <created>1624610351942</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
+    <task id="LOCAL-00284" summary="add manage relative modal 0.22">
+      <created>1645599628628</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
       <option name="project" value="LOCAL" />
-      <updated>1624610351942</updated>
+      <updated>1645599628628</updated>
     </task>
-    <task id="LOCAL-00208" summary="update mail model code 20210625 0.3">
-      <created>1624614151205</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
+    <task id="LOCAL-00285" summary="add manage relative modal 0.22">
+      <created>1645599713058</created>
+      <option name="number" value="00285" />
+      <option name="presentableId" value="LOCAL-00285" />
       <option name="project" value="LOCAL" />
-      <updated>1624614151207</updated>
+      <updated>1645599713058</updated>
     </task>
-    <task id="LOCAL-00209" summary="update dingtalk model code 20210628 0.1">
-      <created>1624860326835</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
+    <task id="LOCAL-00286" summary="add manage relative modal 0.22">
+      <created>1645601265633</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
       <option name="project" value="LOCAL" />
-      <updated>1624860326835</updated>
+      <updated>1645601265633</updated>
     </task>
-    <task id="LOCAL-00210" summary="update dingtalk model code 20210628 0.2">
-      <created>1624865723935</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
+    <task id="LOCAL-00287" summary="add manage relative modal 0.22">
+      <created>1645603151968</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
       <option name="project" value="LOCAL" />
-      <updated>1624865723935</updated>
+      <updated>1645603151968</updated>
     </task>
-    <task id="LOCAL-00211" summary="update dingtalk model code 20210628 0.3">
-      <created>1624866550549</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
+    <task id="LOCAL-00288" summary="add manage relative modal 0.22">
+      <created>1645603303763</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
       <option name="project" value="LOCAL" />
-      <updated>1624866550549</updated>
+      <updated>1645603303763</updated>
     </task>
-    <task id="LOCAL-00212" summary="update dingtalk model code 20210628 0.4">
-      <created>1624868575117</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
+    <task id="LOCAL-00289" summary="add manage relative modal 0.23">
+      <created>1645604710047</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
       <option name="project" value="LOCAL" />
-      <updated>1624868575117</updated>
+      <updated>1645604710047</updated>
     </task>
-    <task id="LOCAL-00213" summary="update dingtalk model code 20210628 0.5">
-      <created>1624868924145</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
+    <task id="LOCAL-00290" summary="add manage relative modal 0.24">
+      <created>1645604823532</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
       <option name="project" value="LOCAL" />
-      <updated>1624868924145</updated>
+      <updated>1645604823532</updated>
     </task>
-    <task id="LOCAL-00214" summary="update dingtalk model code 20210628 0.6">
-      <created>1624869107778</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
+    <task id="LOCAL-00291" summary="add manage relative modal 0.25">
+      <created>1645604940254</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
       <option name="project" value="LOCAL" />
-      <updated>1624869107778</updated>
+      <updated>1645604940254</updated>
     </task>
-    <task id="LOCAL-00215" summary="update dingtalk model code 20210628 0.7">
-      <created>1624869304183</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
+    <task id="LOCAL-00292" summary="add manage relative modal 0.26">
+      <created>1645607597253</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
       <option name="project" value="LOCAL" />
-      <updated>1624869304183</updated>
+      <updated>1645607597253</updated>
     </task>
-    <task id="LOCAL-00216" summary="update dingtalk model code 20210628 0.8">
-      <created>1624870132609</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
+    <task id="LOCAL-00293" summary="add manage relative modal 0.27">
+      <created>1645667595068</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
       <option name="project" value="LOCAL" />
-      <updated>1624870132609</updated>
+      <updated>1645667595068</updated>
     </task>
-    <task id="LOCAL-00217" summary="update dingtalk model code 20210628 0.9">
-      <created>1624871813030</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
+    <task id="LOCAL-00294" summary="add manage relative modal 0.28">
+      <created>1645667974714</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
       <option name="project" value="LOCAL" />
-      <updated>1624871813030</updated>
+      <updated>1645667974714</updated>
     </task>
-    <task id="LOCAL-00218" summary="update dingtalk model code 20210628 0.10">
-      <created>1624872434044</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
+    <task id="LOCAL-00295" summary="add manage relative modal 0.29">
+      <created>1645669848347</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
       <option name="project" value="LOCAL" />
-      <updated>1624872434045</updated>
+      <updated>1645669848347</updated>
     </task>
-    <task id="LOCAL-00219" summary="update dingtalk model code 20210628 0.11">
-      <created>1624872896103</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
+    <task id="LOCAL-00296" summary="add manage relative modal 0.30">
+      <created>1645682547178</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
       <option name="project" value="LOCAL" />
-      <updated>1624872896103</updated>
+      <updated>1645682547178</updated>
     </task>
-    <task id="LOCAL-00220" summary="update dingtalk model code 20210629 0.2">
-      <created>1624950823478</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
+    <task id="LOCAL-00297" summary="add manage relative modal 0.31">
+      <created>1645686867567</created>
+      <option name="number" value="00297" />
+      <option name="presentableId" value="LOCAL-00297" />
       <option name="project" value="LOCAL" />
-      <updated>1624950823478</updated>
+      <updated>1645686867567</updated>
     </task>
-    <task id="LOCAL-00221" summary="update dingtalk model code 20210629 0.3">
-      <created>1624951110897</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
+    <task id="LOCAL-00298" summary="add yingxiaotong modal 0.1">
+      <created>1645770322811</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
       <option name="project" value="LOCAL" />
-      <updated>1624951110897</updated>
+      <updated>1645770322811</updated>
     </task>
-    <task id="LOCAL-00222" summary="update dingtalk model code 20210629 0.4">
-      <created>1624951590805</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
+    <task id="LOCAL-00299" summary="add yingxiaotong modal 0.1">
+      <created>1646298609045</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
       <option name="project" value="LOCAL" />
-      <updated>1624951590805</updated>
+      <updated>1646298609045</updated>
     </task>
-    <task id="LOCAL-00223" summary="update dingtalk model code 20210629 0.5">
-      <created>1624960470164</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
+    <task id="LOCAL-00300" summary="updated dingtalk updated user info modal">
+      <created>1647660843284</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
       <option name="project" value="LOCAL" />
-      <updated>1624960470164</updated>
+      <updated>1647660843284</updated>
     </task>
-    <task id="LOCAL-00224" summary="update dingtalk model code 20210629 0.7">
-      <created>1624960819601</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
+    <task id="LOCAL-00301" summary="updated dingtalk updated user info modal 0.2">
+      <created>1647661234788</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
       <option name="project" value="LOCAL" />
-      <updated>1624960819601</updated>
+      <updated>1647661234788</updated>
     </task>
-    <task id="LOCAL-00225" summary="update dingtalk model code 20210630 0.1">
-      <created>1625033210673</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
+    <task id="LOCAL-00302" summary="updated dingtalk updated user info modal 0.3">
+      <created>1648106261575</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
       <option name="project" value="LOCAL" />
-      <updated>1625033210673</updated>
+      <updated>1648106261575</updated>
     </task>
-    <task id="LOCAL-00226" summary="update dingtalk model code 20210630 0.2">
-      <created>1625033977240</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
+    <task id="LOCAL-00303" summary="updated dingtalk updated user info modal 0.4">
+      <created>1648189588692</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
       <option name="project" value="LOCAL" />
-      <updated>1625033977240</updated>
+      <updated>1648189588693</updated>
     </task>
-    <task id="LOCAL-00227" summary="update dingtalk model code 20210630 0.3">
-      <created>1625036449444</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
+    <task id="LOCAL-00304" summary="updated dingtalk updated user info modal 0.5">
+      <created>1648195000686</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
       <option name="project" value="LOCAL" />
-      <updated>1625036449444</updated>
+      <updated>1648195000686</updated>
     </task>
-    <task id="LOCAL-00228" summary="update dingtalk model code 20210630 0.4">
-      <created>1625039266764</created>
-      <option name="number" value="00228" />
-      <option name="presentableId" value="LOCAL-00228" />
+    <task id="LOCAL-00305" summary="updated dingtalk updated user info modal 0.6">
+      <created>1648195577375</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
       <option name="project" value="LOCAL" />
-      <updated>1625039266764</updated>
+      <updated>1648195577375</updated>
     </task>
-    <task id="LOCAL-00229" summary="update dingtalk model code 20210630 0.5">
-      <created>1625040087607</created>
-      <option name="number" value="00229" />
-      <option name="presentableId" value="LOCAL-00229" />
+    <task id="LOCAL-00306" summary="updated dingtalk updated user info modal 0.7">
+      <created>1648197334346</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
       <option name="project" value="LOCAL" />
-      <updated>1625040087607</updated>
+      <updated>1648197334346</updated>
     </task>
-    <task id="LOCAL-00230" summary="update dingtalk model code 20210630 0.6">
-      <created>1625042039943</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
+    <task id="LOCAL-00307" summary="updated dingtalk updated user info modal 0.8">
+      <created>1648197643088</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
       <option name="project" value="LOCAL" />
-      <updated>1625042039943</updated>
+      <updated>1648197643088</updated>
     </task>
-    <task id="LOCAL-00231" summary="update dingtalk model code 20210701 0.1">
-      <created>1625104798310</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
+    <task id="LOCAL-00308" summary="updated dingtalk updated user info modal 0.9">
+      <created>1648198284967</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
       <option name="project" value="LOCAL" />
-      <updated>1625104798310</updated>
+      <updated>1648198284967</updated>
     </task>
-    <task id="LOCAL-00232" summary="update dingtalk model code 20210702 0.1">
-      <created>1625215172882</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
+    <task id="LOCAL-00309" summary="updated dingtalk updated user info modal 0.10">
+      <created>1648198769995</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
       <option name="project" value="LOCAL" />
-      <updated>1625215172882</updated>
+      <updated>1648198769995</updated>
     </task>
-    <task id="LOCAL-00233" summary="update dingtalk model code 20210703 0.1">
-      <created>1625303347508</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
+    <task id="LOCAL-00310" summary="updated dingtalk updated user info modal 0.11">
+      <created>1648200993743</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
       <option name="project" value="LOCAL" />
-      <updated>1625303347509</updated>
+      <updated>1648200993743</updated>
     </task>
-    <task id="LOCAL-00234" summary="update dingtalk model code 20210703 0.2">
-      <created>1625304817352</created>
-      <option name="number" value="00234" />
-      <option name="presentableId" value="LOCAL-00234" />
+    <task id="LOCAL-00311" summary="updated dingtalk updated user info modal 0.12">
+      <created>1648202205645</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
       <option name="project" value="LOCAL" />
-      <updated>1625304817352</updated>
+      <updated>1648202205645</updated>
     </task>
-    <task id="LOCAL-00235" summary="update dingtalk model code 20210703 0.3">
-      <created>1625305186643</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
+    <task id="LOCAL-00312" summary="updated dingtalk updated user info modal 0.13">
+      <created>1648202320983</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
       <option name="project" value="LOCAL" />
-      <updated>1625305186643</updated>
+      <updated>1648202320983</updated>
     </task>
-    <task id="LOCAL-00236" summary="update dingtalk model code 20210703 0.4">
-      <created>1625305365540</created>
-      <option name="number" value="00236" />
-      <option name="presentableId" value="LOCAL-00236" />
+    <task id="LOCAL-00313" summary="updated dingtalk updated user info modal 0.14">
+      <created>1648202456481</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
       <option name="project" value="LOCAL" />
-      <updated>1625305365540</updated>
+      <updated>1648202456481</updated>
     </task>
-    <task id="LOCAL-00237" summary="update dingtalk model code 20210703 0.5">
-      <created>1625305622336</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
+    <task id="LOCAL-00314" summary="updated dingtalk updated user info modal 0.15">
+      <created>1648203053597</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
       <option name="project" value="LOCAL" />
-      <updated>1625305622336</updated>
+      <updated>1648203053597</updated>
     </task>
-    <task id="LOCAL-00238" summary="update dingtalk model code 20210703 0.6">
-      <created>1625306183692</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
+    <task id="LOCAL-00315" summary="updated dingtalk updated user info modal 0.16">
+      <created>1648264903152</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
       <option name="project" value="LOCAL" />
-      <updated>1625306183692</updated>
+      <updated>1648264903152</updated>
     </task>
-    <task id="LOCAL-00239" summary="update dingtalk model code 20210704 0.1">
-      <created>1625368019472</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
+    <task id="LOCAL-00316" summary="updated dingtalk updated user info modal 0.17">
+      <created>1648265302218</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
       <option name="project" value="LOCAL" />
-      <updated>1625368019472</updated>
+      <updated>1648265302218</updated>
     </task>
-    <task id="LOCAL-00240" summary="update dingtalk model code 20210704 0.2">
-      <created>1625368783402</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
+    <task id="LOCAL-00317" summary="updated dingtalk updated user info modal 0.18">
+      <created>1648271050602</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
       <option name="project" value="LOCAL" />
-      <updated>1625368783402</updated>
+      <updated>1648271050602</updated>
     </task>
-    <task id="LOCAL-00241" summary="update dingtalk model code 20210706 0.1">
-      <created>1625558295476</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
+    <task id="LOCAL-00318" summary="updated dingtalk updated user info modal 0.19">
+      <created>1648280257553</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
       <option name="project" value="LOCAL" />
-      <updated>1625558295477</updated>
+      <updated>1648280257553</updated>
     </task>
-    <task id="LOCAL-00242" summary="update dingtalk model code 20210706 0.2">
-      <created>1625559834126</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
+    <task id="LOCAL-00319" summary="updated dingtalk updated user info modal 0.20">
+      <created>1648284530074</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
       <option name="project" value="LOCAL" />
-      <updated>1625559834126</updated>
+      <updated>1648284530074</updated>
     </task>
-    <task id="LOCAL-00243" summary="update dingtalk model code 20210707 0.1">
-      <created>1625648698694</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
+    <task id="LOCAL-00320" summary="updated dingtalk updated user info modal 0.21">
+      <created>1648429553788</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
       <option name="project" value="LOCAL" />
-      <updated>1625648698695</updated>
+      <updated>1648429553788</updated>
     </task>
-    <task id="LOCAL-00244" summary="update dingtalk model code 20210707 0.2">
-      <created>1625650803566</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
+    <task id="LOCAL-00321" summary="updated dingtalk updated user info modal 0.22">
+      <created>1648429700778</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
       <option name="project" value="LOCAL" />
-      <updated>1625650803566</updated>
+      <updated>1648429700778</updated>
     </task>
-    <task id="LOCAL-00245" summary="update dingtalk model code 20210709 0.1">
-      <created>1625813151276</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
+    <task id="LOCAL-00322" summary="updated dingtalk updated user info modal 0.23">
+      <created>1648449225641</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
       <option name="project" value="LOCAL" />
-      <updated>1625813151276</updated>
+      <updated>1648449225641</updated>
     </task>
-    <task id="LOCAL-00246" summary="update res-data model code 20210712 0.1">
-      <created>1626073770767</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
+    <task id="LOCAL-00323" summary="updated dingtalk updated user info modal 0.24">
+      <created>1648450878626</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
       <option name="project" value="LOCAL" />
-      <updated>1626073770767</updated>
+      <updated>1648450878626</updated>
     </task>
-    <task id="LOCAL-00247" summary="update res-data model code 20210712 0.2">
-      <created>1626075361077</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
+    <task id="LOCAL-00324" summary="updated dingtalk updated user info modal 0.25">
+      <created>1648451090963</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
       <option name="project" value="LOCAL" />
-      <updated>1626075361078</updated>
+      <updated>1648451090963</updated>
     </task>
-    <task id="LOCAL-00248" summary="update res-data model code 20210712 0.3">
-      <created>1626075597642</created>
-      <option name="number" value="00248" />
-      <option name="presentableId" value="LOCAL-00248" />
+    <task id="LOCAL-00325" summary="updated dingtalk updated user info modal 0.26">
+      <created>1648451349684</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
       <option name="project" value="LOCAL" />
-      <updated>1626075597642</updated>
+      <updated>1648451349684</updated>
     </task>
-    <task id="LOCAL-00249" summary="update res-data model code 20210712 0.4">
-      <created>1626078342450</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
+    <task id="LOCAL-00326" summary="updated dingtalk updated user info modal 0.27">
+      <created>1648451426367</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
       <option name="project" value="LOCAL" />
-      <updated>1626078342450</updated>
+      <updated>1648451426367</updated>
     </task>
-    <task id="LOCAL-00250" summary="update res-data model code 20210712 0.5">
-      <created>1626079578384</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
+    <task id="LOCAL-00327" summary="updated dingtalk updated user info modal 0.28">
+      <created>1648458309632</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
       <option name="project" value="LOCAL" />
-      <updated>1626079578384</updated>
+      <updated>1648458309632</updated>
     </task>
-    <task id="LOCAL-00251" summary="update res-data model code 20210829 0.1">
-      <created>1630202284852</created>
-      <option name="number" value="00251" />
-      <option name="presentableId" value="LOCAL-00251" />
+    <task id="LOCAL-00328" summary="updated dingtalk updated user info modal 0.29">
+      <created>1648458395178</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
       <option name="project" value="LOCAL" />
-      <updated>1630202284853</updated>
+      <updated>1648458395178</updated>
     </task>
-    <task id="LOCAL-00252" summary="update dingding_feedback code 20210929 0.1">
-      <created>1632894616262</created>
-      <option name="number" value="00252" />
-      <option name="presentableId" value="LOCAL-00252" />
+    <task id="LOCAL-00329" summary="updated dingtalk updated user info modal 0.30">
+      <created>1648458891932</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
       <option name="project" value="LOCAL" />
-      <updated>1632894616263</updated>
+      <updated>1648458891932</updated>
     </task>
-    <task id="LOCAL-00253" summary="update dingding_feedback code 20210929 0.2">
-      <created>1632895013160</created>
-      <option name="number" value="00253" />
-      <option name="presentableId" value="LOCAL-00253" />
+    <task id="LOCAL-00330" summary="updated dingtalk updated user info modal 0.31">
+      <created>1648459000390</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
       <option name="project" value="LOCAL" />
-      <updated>1632895013161</updated>
+      <updated>1648459000390</updated>
     </task>
-    <task id="LOCAL-00254" summary="update dingding_feedback code 20211001 0.1">
-      <created>1633054371697</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
+    <task id="LOCAL-00331" summary="updated dingtalk updated user info modal 0.32">
+      <created>1648516408302</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
       <option name="project" value="LOCAL" />
-      <updated>1633054371697</updated>
+      <updated>1648516408302</updated>
     </task>
-    <option name="localTasksCounter" value="255" />
+    <option name="localTasksCounter" value="332" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,34 +729,33 @@
         <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update dingtalk model code 20210630 0.6" />
-    <MESSAGE value="update dingtalk model code 20210701 0.1" />
-    <MESSAGE value="update dingtalk model code 20210702 0.1" />
-    <MESSAGE value="update dingtalk model code 20210703 0.1" />
-    <MESSAGE value="update dingtalk model code 20210703 0.2" />
-    <MESSAGE value="update dingtalk model code 20210703 0.3" />
-    <MESSAGE value="update dingtalk model code 20210703 0.4" />
-    <MESSAGE value="update dingtalk model code 20210703 0.5" />
-    <MESSAGE value="update dingtalk model code 20210703 0.6" />
-    <MESSAGE value="update dingtalk model code 20210704 0.1" />
-    <MESSAGE value="update dingtalk model code 20210704 0.2" />
-    <MESSAGE value="update dingtalk model code 20210706 0.1" />
-    <MESSAGE value="update dingtalk model code 20210706 0.2" />
-    <MESSAGE value="update dingtalk model code 20210707 0.1" />
-    <MESSAGE value="update dingtalk model code 20210707 0.2" />
-    <MESSAGE value="update dingtalk model code 20210709 0.1" />
-    <MESSAGE value="update res-data model code 20210712 0.1" />
-    <MESSAGE value="update res-data model code 20210712 0.2" />
-    <MESSAGE value="update res-data model code 20210712 0.3" />
-    <MESSAGE value="update res-data model code 20210712 0.4" />
-    <MESSAGE value="update res-data model code 20210712 0.5" />
-    <MESSAGE value="update res-data model code 20210829 0.1" />
-    <MESSAGE value="update dingding_feedback code 20210929 0.1" />
-    <MESSAGE value="update dingding_feedback code 20210929 0.2" />
-    <MESSAGE value="update dingding_feedback code 20211001 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dingding_feedback code 20211001 0.1" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.8" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.9" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.10" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.11" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.12" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.13" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.14" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.15" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.16" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.17" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.18" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.19" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.20" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.21" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.22" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.23" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.24" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.25" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.26" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.27" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.28" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.29" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.30" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.31" />
+    <MESSAGE value="updated dingtalk updated user info modal 0.32" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated dingtalk updated user info modal 0.32" />
   </component>
 </project>

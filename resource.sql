@@ -68,6 +68,9 @@ INSERT INTO `admin_menu` VALUES (28, 8, 5, '资源账户配置', 'fa-bars', 'res
 INSERT INTO `admin_menu` VALUES (29, 21, 10, '项目列表', 'fa-bars', 'ding-talk-projects', '*', '2021-12-02 17:52:15', '2021-12-02 17:52:40');
 INSERT INTO `admin_menu` VALUES (30, 25, 13, '客服系统对接配置', 'fa-bars', 'customerService_configs', '*', '2021-12-02 17:53:22', '2021-12-02 17:56:05');
 INSERT INTO `admin_menu` VALUES (31, 14, 22, '自主请假记录', 'fa-bars', 'record_leave_robot_datas', '*', '2021-12-02 17:54:47', '2021-12-02 17:55:27');
+INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `permission`, `created_at`, `updated_at`) VALUES (NULL, '21', '11', '管理与员工', 'fa-bars', 'manage-relatives', '*', '2022-02-25 14:43:09', '2022-02-25 14:43:16')
+INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `permission`, `created_at`, `updated_at`) VALUES (NULL, '21', '12', '员工打卡记录', 'fa-bars', 'check-records', '*', '2022-03-28 14:37:40', '2022-03-28 14:37:54'), (NULL, '21', '13', '员工打卡汇总', 'fa-bars', 'manage-check-records', '*', '2022-03-28 17:24:06', '2022-03-28 17:24:12')
+
 
 -- ----------------------------
 -- Table structure for admin_operation_log

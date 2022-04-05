@@ -52,8 +52,11 @@ class CallBackController extends Controller
             }
             $locationMethod = array_key_exists('locationMethod', $dataArr)?$dataArr['locationMethod']:'';
             $locationResult = array_key_exists('locationResult', $dataArr)?$dataArr['locationResult']:'';
-            $checkTime = array_key_exists('checkTime', $dataArr)?$dataArr['checkTime']:'';
-            $check_date = date('Y-m-d H:i:s',substr($checkTime,0,10));
+            $checkTime = array_key_exists('checkTime', $dataArr)?$dataArr['checkTime']:''; //毫秒级时间戳
+            $check_time = substr($checkTime,0,10); //秒级时间戳
+            $check_date = date('Y-m-d H:i:s',substr($check_time,0,10));
+            //先判断打卡时间是否在时间区间内
+
             DB::table('dingding_user_checkrecord')
                 ->updateOrInsert(
                     ['event_type' => $EventType, 'user_id' => $dataArr['userId']],
