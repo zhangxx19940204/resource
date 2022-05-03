@@ -189,6 +189,24 @@ class ResDataController extends AdminController
 //        });
 
 //        $grid->column('', __('客户ID'))->hide();
+        $grid->column('ad_id', __('飞鱼广告计划ID'))->display(function (){
+            if ($this->type == '头条'){
+                $data_arr = json_decode($this->data_json,true);
+                return array_key_exists('ad_id',$data_arr)?$data_arr['ad_id']:'';
+            }else{
+                return '';
+            }
+
+        });
+        $grid->column('ad_name', __('飞鱼广告计划名称'))->display(function (){
+            if ($this->type == '头条'){
+                $data_arr = json_decode($this->data_json,true);
+                return array_key_exists('ad_name',$data_arr)?$data_arr['ad_name']:'';
+            }else{
+                return '';
+            }
+
+        })->hide();
 
         $grid->model()->orderBy('id', 'desc');
         if ($user_obj->id == 1) {
@@ -285,7 +303,9 @@ class ResDataController extends AdminController
 
             $export->filename(date('YmdHis').'-资源统计.csv');
 
-            $export->only(['belong','type','config_id','data_name','data_phone','location','created_at','fastHorse_id','fast_horse_message','failureCause','ec_userId']);
+            $export->only(['belong','type','config_id','data_name','data_phone','location','created_at',
+                'fastHorse_id','fast_horse_message','failureCause','ec_userId',
+                'ad_id','ad_name']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
