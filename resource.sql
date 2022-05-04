@@ -929,3 +929,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
 ALTER TABLE `dingding_user` CHANGE `create_date` `create_date` DATETIME NULL DEFAULT NULL;
+
+
+ALTER TABLE `dingding_feedback` ADD `customer_concerns` VARCHAR(255) NULL COMMENT '客户顾虑点' AFTER `name`;

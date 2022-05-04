@@ -47,6 +47,13 @@
                     <input type="text" name="name" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <!--客户顾虑点-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">客户顾虑点</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="customer_concerns" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
             <!--手机-->
             <div class="layui-form-item">
                 <label class="layui-form-label">手机</label>
@@ -152,6 +159,7 @@ layui.use('table', function(){
         ,{field: 'blong', title: '所属'}
         ,{field: 'data_date', title: '日期'}
           ,{field: 'name', title: '姓名'}
+          ,{field: 'customer_concerns', title: '客户顾虑点'}
         ,{field: 'phone', title: '手机号'}
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
@@ -319,6 +327,7 @@ function modal_data_func(layEvent,data){
         assignment.blong = data.blong;
         assignment.data_date = data.data_date;
         assignment.name = data.name;
+        assignment.customer_concerns = data.customer_concerns;
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
@@ -330,6 +339,7 @@ function modal_data_func(layEvent,data){
         assignment.blong = data.blong;
         assignment.data_date = data.data_date;
         assignment.name = data.name;
+        assignment.customer_concerns = data.customer_concerns;
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
