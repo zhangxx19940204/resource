@@ -45,6 +45,7 @@ class FeedbackController extends AdminController
         });
         $grid->column('data_date', __('日期'));
         $grid->column('name', __('姓名'));
+        $grid->column('customer_concerns', __('客户顾虑点'))->width(200);
         $grid->column('phone', __('手机号'));
         $grid->column('feedback_short', __('反馈'));
         $grid->column('feedback_detail', __('跟进记录'))->width(700);
@@ -55,7 +56,7 @@ class FeedbackController extends AdminController
 
             // $export->except(['column1', 'column2']);
 
-            $export->only(['dingding_user_id', 'blong', 'data_date','name', 'phone', 'feedback_short', 'feedback_detail']);
+            $export->only(['dingding_user_id', 'blong', 'data_date','name','customer_concerns', 'phone', 'feedback_short', 'feedback_detail']);
 
             // $export->originalValue(['column1', 'column2']);
 
