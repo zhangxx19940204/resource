@@ -932,3 +932,6 @@ ALTER TABLE `dingding_user` CHANGE `create_date` `create_date` DATETIME NULL DEF
 
 
 ALTER TABLE `dingding_feedback` ADD `customer_concerns` VARCHAR(255) NULL COMMENT '客户顾虑点' AFTER `name`;
+
+
+

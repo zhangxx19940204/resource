@@ -13,6 +13,8 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->any('/get_resource_all_by_day', 'HomeController@get_resource_all_by_day');
+    $router->resource('user-graydzs', UserGraydzController::class);//用户的成绩结果
+    $router->get('/graydzs_echarts', 'UserGraydzController@get_echarts');//用户的成绩的绘图页面
 
     //资源统计列表页
     $router->resource('res-configs', Res\ResConfigController::class);
