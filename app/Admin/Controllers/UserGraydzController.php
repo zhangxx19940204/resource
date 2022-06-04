@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\DingTalk\DingTalkUser;
+use App\Models\EcUser;
 use App\Models\UserGraydz;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -29,19 +29,19 @@ class UserGraydzController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new UserGraydz());
-        $user_list = DingTalkUser::get(['id','name','department_name'])->toarray();
+        $user_list = EcUser::get(['id','userName','deptName'])->toarray();
         $user_arr = [];
         foreach ($user_list as $k=>$v){
-            $user_arr[$v['id']] = $v['department_name'].$v['name'];
+            $user_arr[$v['id']] = $v['deptName'];
         }
 
         $grid->column('id', __('编号'));
-        $grid->column('dingding_user_id', __('用户'))->display(function ($dingding_user_id) use($user_arr)  {
-            if (empty($dingding_user_id)){
+        $grid->column('ec_user_id', __('用户'))->display(function ($ec_user_id) use($user_arr)  {
+            if (empty($ec_user_id)){
                 return '';
             }
-            if (array_key_exists($dingding_user_id,$user_arr)){
-                return $user_arr[$dingding_user_id];
+            if (array_key_exists($ec_user_id,$user_arr)){
+                return $user_arr[$ec_user_id];
             }else{
                 return '';
             }
@@ -68,7 +68,7 @@ class UserGraydzController extends AdminController
             // 去掉默认的id过滤器
             $filter->disableIdFilter();
             $filter->expand();//默认展开搜索栏
-            $filter->in('dingding_user_id', '用户')->multipleSelect($user_arr);
+            $filter->in('ec_user_id', 'ec用户')->multipleSelect($user_arr);
             // 日期查询
             $filter->between('created_at', '日期')->date();
 
@@ -88,7 +88,7 @@ class UserGraydzController extends AdminController
         $show = new Show(UserGraydz::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('dingding_user_id', __('Dingding user id'));
+        $show->field('ec_user_id', __('ec user id'));
         $show->field('date', __('Date'));
         $show->field('res_number', __('Res number'));
         $show->field('visit_number', __('Visit number'));
@@ -109,13 +109,13 @@ class UserGraydzController extends AdminController
     {
         $form = new Form(new UserGraydz());
 
-        $user_list = DingTalkUser::get(['id','name','department_name'])->toarray();
+        $user_list = EcUser::get(['id','userName','deptName'])->toarray();
         $user_arr = [];
         foreach ($user_list as $k=>$v){
-            $user_arr[$v['id']] = $v['department_name'].$v['name'];
+            $user_arr[$v['id']] = $v['deptName'];
         }
 
-        $form->select('dingding_user_id', __('钉钉用户'))->options($user_arr);
+        $form->select('ec_user_id', __('EC用户'))->options($user_arr);
         $form->date('date', __('日期'))->default(date('Y-m-d'));
         $form->text('res_number', __('资源量'));
         $form->text('visit_number', __('来访'));
