@@ -40,7 +40,12 @@ class UserGraydzController extends AdminController
             if (empty($dingding_user_id)){
                 return '';
             }
-            return $user_arr[$dingding_user_id];
+            if (array_key_exists($dingding_user_id,$user_arr)){
+                return $user_arr[$dingding_user_id];
+            }else{
+                return '';
+            }
+
         });
         $grid->column('date', __('日期'));
         $grid->column('res_number', __('资源量'));
