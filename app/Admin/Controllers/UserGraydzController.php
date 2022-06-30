@@ -52,7 +52,13 @@ class UserGraydzController extends AdminController
         $grid->column('visit_number', __('来访'));
         $grid->column('agency_number', __('签约'));
         $grid->column('incom_payments', __('进款'));
-        $grid->column('created_at', __('创建日期'));
+        $grid->column('created_at', __('创建日期'))->display(function ($created_at){
+            if(empty($created_at)){
+                return '';
+            }else{
+                return date('Y-m-d H:i:s',strtotime($created_at));
+            }
+        });
         $grid->model()->orderBy('id', 'desc');
         $grid->actions(function ($actions){
             // 去掉删除
