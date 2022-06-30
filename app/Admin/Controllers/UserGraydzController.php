@@ -47,11 +47,12 @@ class UserGraydzController extends AdminController
             }
 
         });
-        $grid->column('date', __('日期'));
+        $grid->column('date', __('进款日期'));
         $grid->column('res_number', __('资源量'));
         $grid->column('visit_number', __('来访'));
         $grid->column('agency_number', __('签约'));
         $grid->column('incom_payments', __('进款'));
+        $grid->column('created_at', __('创建日期'));
         $grid->model()->orderBy('id', 'desc');
         $grid->actions(function ($actions){
             // 去掉删除
@@ -70,7 +71,9 @@ class UserGraydzController extends AdminController
             $filter->expand();//默认展开搜索栏
             $filter->in('ec_user_id', 'ec用户')->multipleSelect($user_arr);
             // 日期查询
-            $filter->between('created_at', '日期')->date();
+            $filter->between('date', '进款日期')->date();
+            $filter->between('created_at', '创建日期')->datetime();
+
 
         });
 
@@ -116,7 +119,7 @@ class UserGraydzController extends AdminController
         }
 
         $form->select('ec_user_id', __('EC用户'))->options($user_arr);
-        $form->date('date', __('日期'))->default(date('Y-m-d'));
+        $form->date('date', __('进款日期'))->default(date('Y-m-d'));
         $form->text('res_number', __('资源量'));
         $form->text('visit_number', __('来访'));
         $form->text('agency_number', __('签约'));
