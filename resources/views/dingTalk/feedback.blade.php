@@ -54,6 +54,19 @@
                     <input type="text" name="customer_concerns" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <!--是否近视-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否近视</label>
+                <div class="layui-input-inline">
+                    <select name="is_myopia" lay-search="">
+                        <option value="">请选择</option>
+
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+
+                    </select>
+                </div>
+            </div>
             <!--手机-->
             <div class="layui-form-item">
                 <label class="layui-form-label">手机</label>
@@ -84,19 +97,7 @@
                     <textarea placeholder="跟进记录" name="feedback_detail" class="layui-textarea"></textarea>
                 </div>
             </div>
-            <!--是否近视-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">是否近视</label>
-                <div class="layui-input-inline">
-                    <select name="is_myopia" lay-search="">
-                        <option value="">请选择</option>
 
-                        <option value="是">是</option>
-                        <option value="否">否</option>
-
-                    </select>
-                </div>
-            </div>
 
         </form>
         <!--操作按钮-->

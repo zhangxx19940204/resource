@@ -934,4 +934,7 @@ ALTER TABLE `dingding_user` CHANGE `create_date` `create_date` DATETIME NULL DEF
 ALTER TABLE `dingding_feedback` ADD `customer_concerns` VARCHAR(255) NULL COMMENT '客户顾虑点' AFTER `name`;
 
 
+ALTER TABLE `user_graydz` CHANGE `dingding_user_id` `ec_user_id` INT(11) NOT NULL COMMENT '钉钉用户id';
 
+
+ALTER TABLE `dingding_feedback` ADD `is_myopia` VARCHAR(12) NULL AFTER `feedback_detail`;
