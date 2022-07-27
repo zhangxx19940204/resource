@@ -84,6 +84,19 @@
                     <textarea placeholder="跟进记录" name="feedback_detail" class="layui-textarea"></textarea>
                 </div>
             </div>
+            <!--是否近视-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否近视</label>
+                <div class="layui-input-inline">
+                    <select name="is_myopia" lay-search="">
+                        <option value="">请选择</option>
+
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+
+                    </select>
+                </div>
+            </div>
 
         </form>
         <!--操作按钮-->
@@ -163,6 +176,7 @@ layui.use('table', function(){
         ,{field: 'phone', title: '手机号'}
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
+        ,{field: 'is_myopia', title: '是否近视'}
         ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
     ]],
       defaultToolbar: ['filter', 'exports', {
@@ -331,6 +345,7 @@ function modal_data_func(layEvent,data){
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
+        assignment.is_myopia = data.is_myopia;
         $("#sub_btn").html('修改');
         $("#sub_btn").show();
         get_opera_data('edit',data,data.dingding_user_id) //操作的方法的集合
@@ -343,6 +358,7 @@ function modal_data_func(layEvent,data){
         assignment.phone = data.phone;
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
+        assignment.is_myopia = data.is_myopia;
         //隐藏掉提交按钮
         $("#sub_btn").hide();
          break;
@@ -370,6 +386,7 @@ function modal_data_func(layEvent,data){
         assignment.phone = '';
         assignment.feedback_short = '';
         assignment.feedback_detail = '';
+        assignment.is_myopia = '';
 
         $("#sub_btn").html('新增');
         $("#sub_btn").show();
