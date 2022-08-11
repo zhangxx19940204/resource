@@ -188,7 +188,7 @@ class ResDataController extends AdminController
 //
 //        });
 
-//        $grid->column('', __('客户ID'))->hide();
+//        $grid->column('', __('客户ID'))->hide(); ad_name
         $grid->column('ad_id', __('飞鱼广告计划ID'))->display(function (){
             if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
@@ -206,7 +206,7 @@ class ResDataController extends AdminController
                 return '';
             }
 
-        })->hide();
+        });
 
         $grid->model()->orderBy('id', 'desc');
         if ($user_obj->id == 1) {
