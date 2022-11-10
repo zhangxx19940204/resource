@@ -51,7 +51,7 @@ class DingTalkProjectController extends AdminController
         if ($user_obj->id == 1) {
             // 不加 用户id的限制
         } else {
-            $grid->model()->whereIn('user_id', [$user_obj->id]);
+            // $grid->model()->whereIn('user_id', [$user_obj->id]);
         }
         return $grid;
     }
