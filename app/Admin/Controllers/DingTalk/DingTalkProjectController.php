@@ -48,11 +48,11 @@ class DingTalkProjectController extends AdminController
             // $actions->disableDelete();
         });
 
-        if ($user_obj->id == 1) {
-            // 不加 用户id的限制
-        } else {
-            // $grid->model()->whereIn('user_id', [$user_obj->id]);
-        }
+        // if ($user_obj->id == 1) {
+        //     // 不加 用户id的限制
+        // } else {
+        //     // $grid->model()->whereIn('user_id', [$user_obj->id]);
+        // }
         return $grid;
     }
 
