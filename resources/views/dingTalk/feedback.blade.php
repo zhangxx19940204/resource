@@ -47,26 +47,102 @@
                     <input type="text" name="name" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <?php $dingtalk_web_subassembly = env('dingtalk_web_subassembly',''); ?>
             <!--客户顾虑点-->
-            <div class="layui-form-item">
+            <?php
+                if (strpos($dingtalk_web_subassembly,'customer_concerns') !== false){
+            ?>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">客户顾虑点</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="customer_concerns" lay-verify="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            <?php }else{ ?>
+            <div class="layui-form-item" style="display: none;">
                 <label class="layui-form-label">客户顾虑点</label>
                 <div class="layui-input-inline">
                     <input type="text" name="customer_concerns" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
             </div>
+
+            <?php } ?>
+
+
             <!--是否近视-->
+            <?php
+            if (strpos($dingtalk_web_subassembly,'is_myopia') !== false){
+                ?>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否近视</label>
+                    <div class="layui-input-inline">
+                        <select name="is_myopia" lay-search="">
+                            <option value="">请选择</option>
+
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+
+                        </select>
+                    </div>
+                </div>
+            <?php }else{ ?>
+                <div class="layui-form-item" style="display: none;">
+                    <label class="layui-form-label">是否近视</label>
+                    <div class="layui-input-inline">
+                        <select name="is_myopia" lay-search="">
+                            <option value="">请选择</option>
+
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+
+                        </select>
+                    </div>
+                </div>
+
+            <?php } ?>
+
+                <!--资源平台-->
+            <?php
+            if (strpos($dingtalk_web_subassembly,'resource_platform') !== false){
+                ?>
             <div class="layui-form-item">
-                <label class="layui-form-label">是否近视</label>
+                <label class="layui-form-label">资源平台</label>
                 <div class="layui-input-inline">
-                    <select name="is_myopia" lay-search="">
-                        <option value="">请选择</option>
-
-                        <option value="是">是</option>
-                        <option value="否">否</option>
-
-                    </select>
+                    <input type="text" name="resource_platform" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <?php }else{ ?>
+            <div class="layui-form-item" style="display: none;">
+                <label class="layui-form-label">资源平台</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="resource_platform" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <?php } ?>
+
+                <!--区域-->
+            <?php
+            if (strpos($dingtalk_web_subassembly,'region') !== false){
+                ?>
+            <div class="layui-form-item">
+                <label class="layui-form-label">区域</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="region" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <?php }else{ ?>
+            <div class="layui-form-item" style="display: none;">
+                <label class="layui-form-label">区域</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="region" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <?php } ?>
+
+
+
             <!--手机-->
             <div class="layui-form-item">
                 <label class="layui-form-label">手机</label>
@@ -101,7 +177,7 @@
 
         </form>
         <!--操作按钮-->
-        <button type="submit" class="layui-btn" id="sub_btn" lay-submit="" lay-filter="demo1">立即提交</button>
+        <button type="submit" class="layui-btn" id="sub_btn" data-subassembly_str="<?php echo $dingtalk_web_subassembly;?>" lay-submit="" lay-filter="demo1">立即提交</button>
     </div>
 
     <div id="modal_bind_ec" style="text-align:center;display:none;height: 210px;width: 400px;">
@@ -154,6 +230,38 @@ layui.use('table', function(){
   let table = layui.table;
   let user_info = JSON.parse(localStorage.getItem("user_info"))
   let dngding_user_id = user_info.data.id //'5'
+    let subassembly_str =$("#sub_btn").attr('data-subassembly_str');
+    let cols_arr = [ //表头
+        {field: 'id', title: 'ID', width:80 }
+        // ,{field: 'dingding_user_id', title: '用户名'}
+        ,{field: 'blong', title: '所属'}
+        ,{field: 'data_date', title: '日期'}
+        ,{field: 'name', title: '姓名'}
+        ,{field: 'phone', title: '手机号'}
+        ,{field: 'feedback_short', title: '反馈'}
+        ,{field: 'feedback_detail', title: '跟进记录'}
+        ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
+    ];
+    if (subassembly_str.indexOf('customer_concerns') != -1){
+        //查询到了客户焦虑点
+        cols_arr.push({field: 'customer_concerns', title: '客户顾虑点'})
+    }
+    if (subassembly_str.indexOf('is_myopia') != -1){
+        //查询到了 是否近视
+        cols_arr.push({field: 'is_myopia', title: '是否近视'})
+    }
+    if (subassembly_str.indexOf('resource_platform') != -1){
+        //查询到了 资源平台
+        cols_arr.push({field: 'resource_platform', title: '资源平台'})
+    }
+    if (subassembly_str.indexOf('region') != -1){
+        //查询到了 区域
+        cols_arr.push({field: 'region', title: '区域'})
+    }
+
+
+
+
   //第一个实例
   table.render({
     elem: '#feedback'
@@ -167,19 +275,7 @@ layui.use('table', function(){
   //request: {} //如果无需自定义请求参数，可不加该参数
   //response: {} //如果无需自定义数据响应名称，可不加该参数
     ,page: true //开启分页
-    ,cols: [[ //表头
-         {field: 'id', title: 'ID', width:80 }
-        // ,{field: 'dingding_user_id', title: '用户名'}
-        ,{field: 'blong', title: '所属'}
-        ,{field: 'data_date', title: '日期'}
-          ,{field: 'name', title: '姓名'}
-          ,{field: 'customer_concerns', title: '客户顾虑点'}
-        ,{field: 'phone', title: '手机号'}
-        ,{field: 'feedback_short', title: '反馈'}
-        ,{field: 'feedback_detail', title: '跟进记录'}
-        ,{field: 'is_myopia', title: '是否近视'}
-        ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
-    ]],
+    ,cols: [],
       defaultToolbar: ['filter', 'exports', {
           title: '提示' //标题
           ,layEvent: 'bind_ec_info' //点击弹出绑定modal框，用于 toolbar 事件中使用
@@ -347,6 +443,8 @@ function modal_data_func(layEvent,data){
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
         assignment.is_myopia = data.is_myopia;
+        assignment.resource_platform = data.resource_platform;
+        assignment.region = data.region;
         $("#sub_btn").html('修改');
         $("#sub_btn").show();
         get_opera_data('edit',data,data.dingding_user_id) //操作的方法的集合
@@ -360,6 +458,8 @@ function modal_data_func(layEvent,data){
         assignment.feedback_short = data.feedback_short;
         assignment.feedback_detail = data.feedback_detail;
         assignment.is_myopia = data.is_myopia;
+        assignment.resource_platform = data.resource_platform;
+        assignment.region = data.region;
         //隐藏掉提交按钮
         $("#sub_btn").hide();
          break;
@@ -388,6 +488,8 @@ function modal_data_func(layEvent,data){
         assignment.feedback_short = '';
         assignment.feedback_detail = '';
         assignment.is_myopia = '';
+        assignment.resource_platform = '';
+        assignment.region = '';
 
         $("#sub_btn").html('新增');
         $("#sub_btn").show();

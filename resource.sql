@@ -938,3 +938,5 @@ ALTER TABLE `user_graydz` CHANGE `dingding_user_id` `ec_user_id` INT(11) NOT NUL
 
 
 ALTER TABLE `dingding_feedback` ADD `is_myopia` VARCHAR(12) NULL AFTER `feedback_detail`;
+
+ALTER TABLE `dingding_feedback` ADD `region` VARCHAR(255) NULL COMMENT '区域' AFTER `is_myopia`, ADD `resource_platform` VARCHAR(255) NULL COMMENT '资源平台' AFTER `region`;

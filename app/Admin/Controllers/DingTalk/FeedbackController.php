@@ -29,7 +29,7 @@ class FeedbackController extends AdminController
         $grid = new Grid(new Feedback());
 
         $grid->column('id', __('ID'));
-
+        $dingtalk_web_subassembly = env('dingtalk_web_subassembly','');
         $grid->column('dingding_user_id', __('用户名'))->display(function($dingding_user_id) {
             $user_info = DingTalkUser::find($dingding_user_id);
             return $user_info->department_name . $user_info->name;
@@ -45,19 +45,42 @@ class FeedbackController extends AdminController
         });
         $grid->column('data_date', __('日期'));
         $grid->column('name', __('姓名'));
-        $grid->column('customer_concerns', __('客户顾虑点'))->width(200);
-        $grid->column('is_myopia', __('是否近视'))->width(200);
         $grid->column('phone', __('手机号'));
         $grid->column('feedback_short', __('反馈'));
-        $grid->column('feedback_detail', __('跟进记录'))->width(700);
+        $grid->column('feedback_detail', __('跟进记录'))->width(500);
 
-        $grid->export(function ($export) {
+        if (strpos($dingtalk_web_subassembly,'customer_concerns') !== false){
+            $grid->column('customer_concerns', __('客户顾虑点'));
+        }
+        if (strpos($dingtalk_web_subassembly,'is_myopia') !== false){
+            $grid->column('is_myopia', __('是否近视'));
+        }
+        if (strpos($dingtalk_web_subassembly,'resource_platform') !== false){
+            $grid->column('resource_platform', __('资源平台'));
+        }
+        if (strpos($dingtalk_web_subassembly,'region') !== false){
+            $grid->column('is_myopia', __('区域'));
+        }
+
+        $grid->export(function ($export) use($dingtalk_web_subassembly){
 
             $export->filename('资源反馈'.time().'.csv');
 
             // $export->except(['column1', 'column2']);
-
-            $export->only(['dingding_user_id', 'blong', 'data_date','name','is_myopia','customer_concerns', 'phone', 'feedback_short', 'feedback_detail']);
+            $data_cols = ['dingding_user_id', 'blong', 'data_date','name', 'phone', 'feedback_short', 'feedback_detail'];
+            if (strpos($dingtalk_web_subassembly,'customer_concerns') !== false){
+                $data_cols[] = 'customer_concerns';
+            }
+            if (strpos($dingtalk_web_subassembly,'is_myopia') !== false){
+                $data_cols[] = 'is_myopia';
+            }
+            if (strpos($dingtalk_web_subassembly,'resource_platform') !== false){
+                $data_cols[] = 'resource_platform';
+            }
+            if (strpos($dingtalk_web_subassembly,'region') !== false){
+                $data_cols[] = 'region';
+            }
+            $export->only($data_cols);
 
             // $export->originalValue(['column1', 'column2']);
 
