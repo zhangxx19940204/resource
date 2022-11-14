@@ -275,7 +275,7 @@ layui.use('table', function(){
   //request: {} //如果无需自定义请求参数，可不加该参数
   //response: {} //如果无需自定义数据响应名称，可不加该参数
     ,page: true //开启分页
-    ,cols: [],
+    ,cols: [cols_arr],
       defaultToolbar: ['filter', 'exports', {
           title: '提示' //标题
           ,layEvent: 'bind_ec_info' //点击弹出绑定modal框，用于 toolbar 事件中使用
