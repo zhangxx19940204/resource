@@ -240,7 +240,6 @@ layui.use('table', function(){
         ,{field: 'phone', title: '手机号'}
         ,{field: 'feedback_short', title: '反馈'}
         ,{field: 'feedback_detail', title: '跟进记录'}
-        ,{fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'} //这里的toolbar值是模板元素的选择器
     ];
     if (subassembly_str.indexOf('customer_concerns') != -1){
         //查询到了客户焦虑点
@@ -258,6 +257,8 @@ layui.use('table', function(){
         //查询到了 区域
         cols_arr.push({field: 'region', title: '区域'})
     }
+    cols_arr.push({fixed: 'right', width:200, align:'center', toolbar: '#bar_feedback'})//这里的toolbar值是模板元素的选择器
+
 
 
 
