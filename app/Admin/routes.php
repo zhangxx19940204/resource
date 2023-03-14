@@ -16,6 +16,10 @@ Route::group([
     $router->resource('user-graydzs', UserGraydzController::class);//用户的成绩结果
     $router->get('/graydzs_echarts', 'UserGraydzController@get_echarts');//用户的成绩的绘图页面
 
+    $router->get('/show_form_data', 'HomeController@show_form_data');//展示用户提交的表单信息列表
+    $router->get('/get_form_data', 'HomeController@get_form_data');//获取用户提交的表单信息列表
+    $router->get('/print_form_data/{id}', 'HomeController@print_form_data');//打印用户提交的表单信息
+
     //资源统计列表页
     $router->resource('res-configs', Res\ResConfigController::class);
     $router->resource('res-datas', Res\ResDataController::class);

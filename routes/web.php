@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,7 +74,11 @@ Route::middleware(['checkIp'])->group(function () {
     Route::any('/get_framework_info', [EC\UserController::class, 'get_framework_info']);//更新EC用户信息和部门信息 （需要单独调用去更新新用户）
     Route::any('/add_deptName', [EC\UserController::class, 'add_deptName']);//更新EC用户的所有部门名
 
+    //获取问卷系统的数据
+
+
 });
+Route::any('/get_form_data', [Form\FormController::class, 'get_form_data']);//获取用户提交的表单信息列表
 
 
 //EC的用户的相关操作
