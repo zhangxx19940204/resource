@@ -98,13 +98,18 @@ LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE 
                         //展示字段，过滤
                         continue;
                     }
-                    //表单字段存在，并为填写字段，进行展示
-                    $form_data_arr[] = ['value'=>$v,'label'=>$form_item_arr[$k]->label];
+                    //表单字段存在，并为填写字段，进行展示，加一段排序的功能
+                    $form_data_arr[] = ['value'=>$v,'label'=>$form_item_arr[$k]->label,'sort'=>$form_item_arr[$k]->sort];
                 }else{
                     //表单字段不存在，直接不展示
                     continue;
                 }
             }
+            //第二次真正的排序
+            $sort_arr = array_column($form_data_arr,'sort');
+            array_multisort($sort_arr, SORT_ASC, $form_data_arr);
+            //将值转化为具体值
+            
             $res_data = ['form_data_arr'=>$form_data_arr,'title'=>$form_data[0]->name];
         }
         return $content->title('问卷表单打印')
