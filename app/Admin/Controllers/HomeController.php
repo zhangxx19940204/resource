@@ -114,7 +114,7 @@ LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE 
 
     //获取问卷系统的数据
     public function get_form_data (Request $request){
-        $para = $request->get('key');
+        $para = $request->get('key',['search'=>'']);
         date_default_timezone_set('Asia/Shanghai');
         $page = $request->get('page','1');
         $pageSize = $request->get('limit','10');
@@ -138,7 +138,11 @@ LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE 
             // $form_key_list[] = $form_data->form_key;
             $original_arr = json_decode($form_data->original_data,true);
             $form_data->original_arr = $original_arr;
-            $form_data->original_str = implode(',',$original_arr).';';
+            $original_str = '';
+            foreach ($original_arr as $single_original){
+                $original_str .= is_array($single_original)?implode(',',$single_original):$single_original;
+            }
+            $form_data->original_str = $original_str;
             $sub_data[] = $form_data;
         }
         // $form_item_list = DB::connection('form_mysql')->select('SELECT label,form_item_id,form_key FROM `fm_user_form_item` WHERE form_key IN ("'.implode('","',$form_key_list).'");');
