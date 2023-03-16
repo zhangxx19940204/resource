@@ -47,7 +47,18 @@
                                             <!-- 循环表单数据 -->
                                         <tr class="field-item item_field_1  ">
                                             <td class="first-item"> {{$value['label']}} </td>
-                                            <td><div class="textarea"><p>{{$value['value']}}</p></div></td>
+                                            <td><div class="textarea"><p>
+                                                <?php 
+                                                    if (is_array($value['value'])) {
+                                                        // 是数组
+                                                        echo implode('-',$value['value']);
+                                                    }else {
+                                                        // 非数组
+                                                        echo $value['value'];
+                                                    }
+                                                ?>
+                                                </p></div>
+                                            </td>
                                         </tr>
                                             <?php  } ?>
 
