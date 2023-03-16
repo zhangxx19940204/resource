@@ -131,7 +131,7 @@ LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE 
             $form_user_arr[] = $form_user->form_user_id;
         }
         $form_data_list = DB::connection('form_mysql')->select('SELECT fm_user_form_data.*,fm_user_form.`name` FROM `fm_user_form_data`
-LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE fm_user_form_data.original_data LIKE '."'%".$para['search']."%'".' AND fm_user_form.user_id IN ('.implode(',',$form_user_arr).') limit '.$start.', '.$pageSize.';');
+LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE fm_user_form_data.original_data LIKE '."'%".$para['search']."%'".' AND fm_user_form.user_id IN ('.implode(',',$form_user_arr).') order by fm_user_form_data.id desc limit '.$start.', '.$pageSize.';');
         $sub_data = [];
         // $form_key_list = [];//表单的key值列表
         foreach ($form_data_list as $form_data){
