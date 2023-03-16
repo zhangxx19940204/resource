@@ -98,8 +98,15 @@ LEFT JOIN fm_user_form ON fm_user_form.`key` = fm_user_form_data.form_key WHERE 
                         //展示字段，过滤
                         continue;
                     }
-                    //表单字段存在，并为填写字段，进行展示，加一段排序的功能
-                    $form_data_arr[] = ['value'=>$v,'label'=>$form_item_arr[$k]->label,'sort'=>$form_item_arr[$k]->sort];
+                    //表单字段存在，并为填写字段，进行展示，加一段排序的功能,判断是否为radio字段
+                    if ($form_item_arr[$k]->type == "RADIO") {
+                        // 单选字段，绑定替换值
+                        
+                        $radio_label = $original_data[$k.'label'];
+                        $form_data_arr[] = ['value'=>$radio_label,'label'=>$form_item_arr[$k]->label,'sort'=>$form_item_arr[$k]->sort];
+                    }else{
+                        $form_data_arr[] = ['value'=>$v,'label'=>$form_item_arr[$k]->label,'sort'=>$form_item_arr[$k]->sort];
+                    }
                 }else{
                     //表单字段不存在，直接不展示
                     continue;
