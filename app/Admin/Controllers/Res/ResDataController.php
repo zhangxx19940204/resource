@@ -192,7 +192,14 @@ class ResDataController extends AdminController
         $grid->column('ad_id', __('飞鱼广告计划ID'))->display(function (){
             if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
-                return array_key_exists('ad_id',$data_arr)?$data_arr['ad_id']:'';
+                if(array_key_exists('ad_id',$data_arr)){
+                    return $data_arr['ad_id'];
+                }elseif(array_key_exists('promotion_id',$data_arr)){
+                    return $data_arr['promotion_id'];
+                }else{
+                    return '';
+                }
+                // return array_key_exists('ad_id',$data_arr)?$data_arr['ad_id']:'';
             }else{
                 return '';
             }
@@ -201,7 +208,14 @@ class ResDataController extends AdminController
         $grid->column('ad_name', __('飞鱼广告计划名称'))->display(function (){
             if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
-                return array_key_exists('ad_name',$data_arr)?$data_arr['ad_name']:'';
+                if(array_key_exists('ad_name',$data_arr)){
+                    return $data_arr['ad_name'];
+                }elseif(array_key_exists('promotion_name',$data_arr)){
+                    return $data_arr['promotion_name'];
+                }else{
+                    return '';
+                }
+                // return array_key_exists('ad_name',$data_arr)?$data_arr['ad_name']:'';
             }else{
                 return '';
             }
