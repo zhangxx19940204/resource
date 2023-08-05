@@ -221,6 +221,20 @@ class ResDataController extends AdminController
             }
 
         });
+        $grid->column('external_url', __('广告页面链接'))->display(function (){
+            if ($this->type == '头条'){
+                $data_arr = json_decode($this->data_json,true);
+                if(array_key_exists('external_url',$data_arr)){
+                    return $data_arr['external_url'];
+                }else{
+                    return '';
+                }
+                // return array_key_exists('ad_id',$data_arr)?$data_arr['ad_id']:'';
+            }else{
+                return '';
+            }
+
+        });
 
         $grid->model()->orderBy('id', 'desc');
         if ($user_obj->id == 1) {
@@ -319,7 +333,7 @@ class ResDataController extends AdminController
 
             $export->only(['belong','type','config_id','data_name','data_phone','location','created_at',
                 'fastHorse_id','fast_horse_message','failureCause','ec_userId',
-                'ad_id','ad_name']);
+                'ad_id','ad_name','external_url']);
 
             $export->column('created_at', function ($value, $original) {
                 return $value;
