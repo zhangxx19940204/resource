@@ -189,7 +189,7 @@ class ResDataController extends AdminController
 //        });
 
 //        $grid->column('', __('客户ID'))->hide(); ad_name
-        $grid->column('ad_id', __('飞鱼广告计划ID'))->display(function (){
+               $grid->column('ad_id', __('飞鱼广告计划ID'))->display(function (){
             if ($this->type == '头条'){
                 $data_arr = json_decode($this->data_json,true);
                 if(array_key_exists('ad_id',$data_arr)){
