@@ -83,6 +83,8 @@ Route::any('/get_form_data', [Form\FormController::class, 'get_form_data']);//�
 
 //德胜小程序的功能模块
 Route::any('/get_search_img', [Wechat\WechatController::class, 'get_search_img']);//根据关键字获取图片列表
+Route::any('/get_single_search_img', [Wechat\WechatController::class, 'get_single_search_img']);//根据id获取单个图片
+Route::any('/user/code2Session', [Wechat\WechatController::class, 'code2Session']);;//获取用户的openid
 
 
 //EC的用户的相关操作
