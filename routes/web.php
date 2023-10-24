@@ -81,6 +81,10 @@ Route::middleware(['checkIp'])->group(function () {
 Route::any('/get_form_data', [Form\FormController::class, 'get_form_data']);//获取用户提交的表单信息列表
 
 
+//德胜小程序的功能模块
+Route::any('/get_search_img', [Wechat\WechatController::class, 'get_search_img']);//根据关键字获取图片列表
+
+
 //EC的用户的相关操作
 //Route::any('/synchronous_feedback', [EC\UserController::class, 'synchronous_single_feedback']);//更新单个EC客户的反馈(EC客户端用户主动调用)【暂时弃用】
 

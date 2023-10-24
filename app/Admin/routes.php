@@ -53,4 +53,8 @@ Route::group([
     $router->resource('manage-check-records', DingTalk\ManageCheckRecordController::class);
 
 
+    //微信小程序后台
+    $router->resource('wechat-search-images', Wechat\SearchImageController::class);
+
+
 });
