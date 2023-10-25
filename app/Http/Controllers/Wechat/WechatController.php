@@ -132,11 +132,6 @@ class WechatController extends Controller
     }
     public function inspection_certification_status(Request $request){
         $user_info = DB::table('wx_user')->where('id','=',$request->user_id)->first();
-        if($user_info->avatar){
-            $user_info->avatar = env('APP_URL').'storage/'.$user_info->avatar;
-        }else{
-            $user_info->avatar = '';
-        }
         if (empty($user_info->mobile) || empty($user_info->truename)){
             //姓名、身份证号、手机号  有一个为空，则跳出验证
             return ['code'=>'0','msg'=>'用户未认证','is_auth'=>'0'];
