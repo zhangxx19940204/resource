@@ -85,6 +85,8 @@ Route::any('/get_form_data', [Form\FormController::class, 'get_form_data']);//�
 Route::any('/get_search_img', [Wechat\WechatController::class, 'get_search_img']);//根据关键字获取图片列表
 Route::any('/get_single_search_img', [Wechat\WechatController::class, 'get_single_search_img']);//根据id获取单个图片
 Route::any('/user/code2Session', [Wechat\WechatController::class, 'code2Session']);;//获取用户的openid
+Route::any('/inspection_certification_status', [Wechat\WechatController::class, 'inspection_certification_status']);;//验证是否需要登录
+Route::any('/add_user_info', [Wechat\WechatController::class, 'add_user_info']);;//添加用户的信息
 
 
 //EC的用户的相关操作

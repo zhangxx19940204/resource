@@ -91,6 +91,7 @@ class WechatController extends Controller
 
 
         if (!isset($result['openid'])) {
+            Log::info($result);
             return ['code'=>'-2','message'=>'登录异常，重新登录:0123'];
         }
         if (!isset($result['unionid'])) {
@@ -129,15 +130,6 @@ class WechatController extends Controller
             'user_id'=>$user_id,'token'=>$result['session_key'],'is_get_user'=>$is_get_user,
             'userInfo'=>$userInfo];
     }
-    public function get_user_info(Request $request){
-        $user_info = DB::table('wx_user')->where('id','=',$request->user_id)->first();
-        if($user_info->avatar){
-            $user_info->avatar = env('APP_URL').'storage/'.$user_info->avatar;
-        }else{
-            $user_info->avatar = '';
-        }
-        return ['code'=>'0','msg'=>'用户信息','info'=>$user_info];
-    }
     public function inspection_certification_status(Request $request){
         $user_info = DB::table('wx_user')->where('id','=',$request->user_id)->first();
         if($user_info->avatar){
@@ -145,11 +137,24 @@ class WechatController extends Controller
         }else{
             $user_info->avatar = '';
         }
-        if (empty($user_info->mobile) || empty($user_info->truename) || empty($user_info->trueIdcard)){
+        if (empty($user_info->mobile) || empty($user_info->truename)){
             //姓名、身份证号、手机号  有一个为空，则跳出验证
             return ['code'=>'0','msg'=>'用户未认证','is_auth'=>'0'];
         }else{
             return ['code'=>'0','msg'=>'用户已认证','is_auth'=>'1'];
+        }
+
+    }
+
+    public function add_user_info(Request $request){
+        $status = DB::table('wx_user')
+            ->where('id', $request->user_id)
+            ->update(['mobile'=>$request->phone,'truename'=>$request->user_name]);
+        Log::info('add_user_info:'.$status);
+        if ($status){
+            return ['code'=>'0','msg'=>'登录成功'];
+        }else{
+            return ['code'=>'1','msg'=>'登录失败，请重试'];
         }
 
     }
