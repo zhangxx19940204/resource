@@ -78,6 +78,9 @@ Route::middleware(['checkIp'])->group(function () {
 
 
 });
+
+
+
 Route::any('/get_form_data', [Form\FormController::class, 'get_form_data']);//获取用户提交的表单信息列表
 
 

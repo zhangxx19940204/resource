@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GlobalJoin;
 use App\Http\Controllers\Controller;
 use App\Models\ResData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
 
@@ -25,19 +26,23 @@ class GlobaljoinController extends Controller
         }
 
         //查询到全球的账号，进行数据的整理和存储
-        $api_url = 'http://zs.jiameng.com/service/msgOpenService.html';
+        $api_url = 'http://zs.jiameng.com/service/getBrandMessage.html';
         logger('全球的账号列表：'.$config_data);
         foreach ($config_data as $config){
             //单独的全球的账号,进行请求判定
+            //首先判断token是否过期是否需要更新
+            $token = $this->get_globaljoin_token($config->id,$config);
+            //判断是否为空值，如果为空则取消缓存，等待下次的更新
+            if (empty($token)){
+                Cache::forget('global_join_token_'.$config->id);
+            }
             $para = [
-                'login_name'=>$config->account,
-                'transfer_key'=>$config->account_password,
-                'transfer_offset'=>$config->account_id,
+                'token'=>$token,
             ];
             $current_datetime = date('Y-m-d H:i:s');
             $msg_json_str = $this->simple_post($api_url,$para);
-            $message_data_arr = json_decode($msg_json_str,true);//数组
-//            dump($message_data_arr);
+            $message_data_arr = json_decode($str = preg_replace('/[\x00-\x1F\x80-\x9F]/u','',trim($msg_json_str)),true);//数组
+//            logger($message_data_arr);
 //            die();
             if ($message_data_arr['status'] == 'false'){
                 //判断status为false，记录日志
@@ -99,7 +104,7 @@ class GlobaljoinController extends Controller
             }
 
             //插入数据库
-//            dump('插入数据库的数组：',$add_data_arr);
+//            logger('插入数据库的数组：',$add_data_arr);
 //            die();
             try {
                 DB::beginTransaction();
@@ -113,5 +118,32 @@ class GlobaljoinController extends Controller
         }
 
 
+    }
+    public function get_globaljoin_token($res_config_id,$config)
+    {
+
+        if (Cache::has('global_join_token_'.$res_config_id)) {
+            //全球加盟网的这个账号的token，token存在
+            return Cache::get('global_join_token_'.$res_config_id, '');
+        }else{
+            //token不存在，请求生成并存储
+            $api_token_url = 'http://zs.jiameng.com/service/getTokens.html';
+            $para = [
+                'login_name'=>$config->account,
+                'transfer_key'=>$config->account_password,
+                'transfer_offset'=>$config->account_id,
+            ];
+            $msg_json_str = $this->simple_post($api_token_url,$para);
+            $token_data_arr = json_decode($msg_json_str,true);//数组
+            if ($token_data_arr['status'] == 'false'){
+                //判断status为false，记录日志
+                return '';
+            }else{
+                //token获取到了
+                Cache::put('global_join_token_'.$res_config_id, $token_data_arr['token'], 60*60*6);
+                return $token_data_arr['token'];
+            }
+
+        }
     }
 }
