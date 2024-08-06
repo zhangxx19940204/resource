@@ -24,7 +24,9 @@ class FeiyuController extends Controller
             logger('error参数有误:'.json_encode($para));
             return json_encode(['code'=>-1,'message'=>'fail：参数有误（adv_id）']);
         }
-        $config_data = DB::table('res_config')->where('account_id', '=', $para['adv_id'])->where('status','=','1')->first();
+        $config_data = DB::table('res_config')->where('account_id', '=', $para['adv_id'])
+            ->where('type','=','头条')
+            ->where('status','=','1')->first();
         if (empty($config_data)){
             //没有对应的生效账号
             logger('无对应有效账号:'.$para['adv_name'].','.$para['adv_id']);
