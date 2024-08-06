@@ -24,6 +24,7 @@ Route::get('/forbid_visit_prompt', function () {
 Route::any('/receive_fei_oceanengine', [Oceanengine\FeiyuController::class, 'receive_fei_oceanengine']); //接收头条飞鱼crm发送的数据
 Route::any('/receive_baidu_yingxiaotong', [Baidu\YingxiaotongController::class, 'receive_baidu_yingxiaotong']); //接收百度营销通发送的数据
 Route::any('/receive_weixin_adv', [Weixin\WeixnAdvertisementController::class, 'receive_weixin_adv']); //接收腾讯线索平台（微信广告）发送的数据
+Route::any('/receive_mengzhao', [MengZhao\MengZhaoController::class, 'receive_mengzhao']); //接收盟招网发送的数据
 
 //对接53客服的消息
 Route::any('/receive_53kf_info', [CustomerService\FiveThreeController::class, 'receive_53kf_info']);//接收53客服的所有消息类型
